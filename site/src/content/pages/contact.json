@@ -2,7 +2,7 @@
   "title": "Contact Form",
   "description": "Contact Form",
   "slug": "contact",
-  "order": 3,
+  "order": 2,
   "draft": false,
   "seo": {
     "title": "",
@@ -30,6 +30,6 @@
       }
     }
   ],
-  "updatedAt": "2026-09-28T17:52:24.853Z",
+  "updatedAt": "2026-09-28T17:57:11.511Z",
   "updatedBy": "admin"
 }
