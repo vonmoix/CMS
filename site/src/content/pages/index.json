@@ -15,7 +15,7 @@
       "subheading": "Este contenido lo edita el equipo de marketing desde el panel de administración, sin tocar código.",
       "image": {
         "src": "/images/hero-bienvenida.svg",
-        "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, HTML y CSS"
+        "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, Astro, HTML y CSS"
       },
       "button": {
         "label": "Saber más",
