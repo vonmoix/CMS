@@ -66,4 +66,74 @@ const SECTION_CATALOG = {
   },
 };
 
-module.exports = { SECTION_CATALOG };
+const isBlank = (v) => v === undefined || v === null || String(v).trim() === "";
+
+// Limpia y valida las secciones antes de guardarlas, para no hacer commit de
+// contenido que luego rompa el build del sitio (el esquema zod de Astro es
+// estricto: un botón sin enlace o una imagen sin ruta tumban la publicación).
+// - Quita botones/imágenes opcionales que se han dejado vacíos.
+// - Quita elementos vacíos de las listas.
+// - Devuelve errores legibles para lo que no se puede arreglar solo.
+function cleanSections(sections) {
+  const errors = [];
+  if (!Array.isArray(sections)) {
+    return { sections: [], errors: ["Las secciones no tienen un formato válido."] };
+  }
+
+  const cleaned = sections.map((section, i) => {
+    const def = SECTION_CATALOG[section && section.type];
+    if (!def) {
+      errors.push(`Sección ${i + 1}: tipo desconocido ("${section && section.type}").`);
+      return section;
+    }
+    const out = { ...section };
+    const where = `Sección ${i + 1} (${def.label})`;
+
+    for (const field of def.fields) {
+      const value = out[field.name];
+      switch (field.type) {
+        case "button": {
+          const label = value && value.label;
+          const href = value && value.href;
+          if (isBlank(label) && isBlank(href)) {
+            delete out[field.name];
+            if (field.required) errors.push(`${where}: el botón necesita texto y enlace.`);
+          } else if (isBlank(label) || isBlank(href)) {
+            errors.push(`${where}: el botón necesita texto y enlace (o deja los dos vacíos).`);
+          }
+          break;
+        }
+        case "image":
+          if (!value || isBlank(value.src)) {
+            delete out[field.name];
+            if (field.required) errors.push(`${where}: falta la imagen.`);
+          }
+          break;
+        case "imageList": {
+          const list = (Array.isArray(value) ? value : []).filter((img) => img && !isBlank(img.src));
+          out[field.name] = list;
+          if (field.required && list.length === 0) errors.push(`${where}: añade al menos una imagen.`);
+          break;
+        }
+        case "faqList": {
+          const list = (Array.isArray(value) ? value : []).filter(
+            (it) => it && !(isBlank(it.question) && isBlank(it.answer))
+          );
+          if (list.some((it) => isBlank(it.question) || isBlank(it.answer))) {
+            errors.push(`${where}: cada pregunta necesita pregunta y respuesta.`);
+          }
+          out[field.name] = list;
+          if (field.required && list.length === 0) errors.push(`${where}: añade al menos una pregunta.`);
+          break;
+        }
+        default:
+          if (field.required && isBlank(value)) errors.push(`${where}: falta "${field.label}".`);
+      }
+    }
+    return out;
+  });
+
+  return { sections: cleaned, errors };
+}
+
+module.exports = { SECTION_CATALOG, cleanSections };

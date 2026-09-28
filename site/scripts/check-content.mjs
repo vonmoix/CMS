@@ -70,6 +70,14 @@ for (const file of files) {
         errors.push(`${file}: sección #${i} (${section.type}) le falta "${field}"`);
       }
     }
+    // Botones e imágenes, si están presentes, deben ir completos (el esquema
+    // de Astro rechaza un botón sin enlace o una imagen sin ruta).
+    if (section.button !== undefined && (!section.button?.label || !section.button?.href)) {
+      errors.push(`${file}: sección #${i} (${section.type}) tiene un botón sin texto o sin enlace`);
+    }
+    if (section.image !== undefined && !section.image?.src) {
+      errors.push(`${file}: sección #${i} (${section.type}) tiene una imagen sin ruta`);
+    }
   });
 }
 

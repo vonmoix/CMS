@@ -6,7 +6,7 @@ const multer = require("multer");
 const path = require("node:path");
 
 const github = require("./lib/github");
-const { SECTION_CATALOG } = require("./lib/sectionSchema");
+const { SECTION_CATALOG, cleanSections } = require("./lib/sectionSchema");
 
 const app = express();
 const upload = multer({
@@ -156,6 +156,16 @@ app.post("/pages/:slugParam", async (req, res, next) => {
         userFacing: true,
       });
     }
+
+    if (!req.body.title || !req.body.title.trim()) {
+      throw Object.assign(new Error("El título de la página es obligatorio."), { userFacing: true });
+    }
+
+    const cleaned = cleanSections(sections);
+    if (cleaned.errors.length) {
+      throw Object.assign(new Error(cleaned.errors.join(" ")), { userFacing: true });
+    }
+    sections = cleaned.sections;
 
     const data = {
       title: req.body.title,
