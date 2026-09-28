@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Diagrama: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages">
+  <title>Diagrama: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1330"/><stop offset="1" stop-color="#060a1c"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#1b2a55" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6d5dfc" stop-opacity="0.45"/>
+      <stop offset="0.6" stop-color="#22d3ee" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#18234a"/><stop offset="1" stop-color="#0f1734"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b7dff"/><stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b7dff"/><stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#22d3ee"/>
+    </marker>
+
+    <!-- Iconos (caja 64x64) -->
+    <symbol id="i-claude" viewBox="0 0 64 64">
+      <g stroke="#D97757" stroke-width="5.5" stroke-linecap="round"><line x1="36.8" y1="33.3" x2="55.2" y2="38.2"/><line x1="35.5" y1="35.5" x2="44.0" y2="44.0"/><line x1="33.3" y1="36.8" x2="38.2" y2="55.2"/><line x1="30.7" y1="36.8" x2="27.6" y2="48.4"/><line x1="28.5" y1="35.5" x2="15.0" y2="49.0"/><line x1="27.2" y1="33.3" x2="15.6" y2="36.4"/><line x1="27.2" y1="30.7" x2="8.8" y2="25.8"/><line x1="28.5" y1="28.5" x2="20.0" y2="20.0"/><line x1="30.7" y1="27.2" x2="25.8" y2="8.8"/><line x1="33.3" y1="27.2" x2="36.4" y2="15.6"/><line x1="35.5" y1="28.5" x2="49.0" y2="15.0"/><line x1="36.8" y1="30.7" x2="48.4" y2="27.6"/></g>
+    </symbol>
+    <symbol id="i-figma" viewBox="0 0 64 64">
+      <path d="M22 6h10v16H22a8 8 0 0 1 0-16z" fill="#F24E1E"/>
+      <path d="M32 6h10a8 8 0 0 1 0 16H32z" fill="#FF7262"/>
+      <path d="M22 22h10v16H22a8 8 0 0 1 0-16z" fill="#A259FF"/>
+      <circle cx="42" cy="30" r="8" fill="#1ABCFE"/>
+      <path d="M22 38h10v8a8 8 0 1 1-10-8z" fill="#0ACF83"/>
+    </symbol>
+    <symbol id="i-git" viewBox="0 0 64 64">
+      <rect x="11" y="11" width="42" height="42" rx="7" transform="rotate(45 32 32)" fill="#F05032"/>
+      <g stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none">
+        <path d="M25 20L32 27V44"/><path d="M32 27L40 35"/>
+      </g>
+      <g fill="#fff"><circle cx="32" cy="27" r="3.6"/><circle cx="32" cy="44" r="3.6"/><circle cx="40.5" cy="35.5" r="3.6"/></g>
+    </symbol>
+    <symbol id="i-render" viewBox="0 0 64 64">
+      <rect x="6" y="6" width="52" height="52" rx="12" fill="#fff"/>
+      <path d="M22 46V30a12 12 0 0 1 12-12h8" fill="none" stroke="#0b1330" stroke-width="7" stroke-linecap="round"/>
+      <rect x="37" y="37" width="9" height="9" rx="2" fill="#0b1330"/>
+    </symbol>
+    <symbol id="i-html" viewBox="0 0 64 64">
+      <path d="M10 6h44l-4 46-18 6-18-6z" fill="#E34F26"/>
+      <path d="M32 10v44l14-4.6L49.5 10z" fill="#EF652A"/>
+      <path d="M21 17h22l-.6 6H27.5l.5 6h14l-1.2 13.5L32 45l-8.8-2.5-.6-7h5.6l.3 3.3L32 40l3.4-1.2.4-4.8H22.8z" fill="#fff"/>
+    </symbol>
+    <symbol id="i-css" viewBox="0 0 64 64">
+      <path d="M10 6h44l-4 46-18 6-18-6z" fill="#1572B6"/>
+      <path d="M32 10v44l14-4.6L49.5 10z" fill="#33A9DC"/>
+      <path d="M21 17h22l-.6 6-8.2 4.6h7.8l-1.3 14.9L32 45l-8.8-2.5-.6-7h5.6l.3 3.3L32 40l3.4-1.2.5-6.3H25.8l-.4-4.9 8.2-4.6H21.5z" fill="#fff"/>
+    </symbol>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#grid)" opacity="0.55"/>
+  <ellipse cx="400" cy="280" rx="380" ry="230" fill="url(#glow)" opacity="0.8"/>
+  <text x="26" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#22d3ee" letter-spacing="2">CMS // FLUJO DE PUBLICACIÓN</text>
+  <text x="26" y="98" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="700" fill="#e6ebff">Del panel a la web en ~2 minutos</text>
+  <g>
+    <rect x="30" y="160" width="160" height="250" rx="18" fill="#000" opacity="0.4" filter="url(#soft)"/>
+    <rect x="26" y="150" width="160" height="250" rx="18" fill="url(#tile)" stroke="url(#edge)" stroke-opacity="0.75" stroke-width="1.5"/>
+    <text x="42" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#8b7dff">01</text>
+    <text x="42" y="358" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e6ebff">Editar</text>
+    <text x="42" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#8fa3d6">Panel · Render</text>
+  </g>
+  <path d="M190 265.0H216" stroke="#22d3ee" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="226" y="160" width="160" height="250" rx="18" fill="#000" opacity="0.4" filter="url(#soft)"/>
+    <rect x="222" y="150" width="160" height="250" rx="18" fill="url(#tile)" stroke="url(#edge)" stroke-opacity="0.75" stroke-width="1.5"/>
+    <text x="238" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#8b7dff">02</text>
+    <text x="238" y="358" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e6ebff">Commit</text>
+    <text x="238" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#8fa3d6">Git · main</text>
+  </g>
+  <path d="M386 265.0H412" stroke="#22d3ee" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="422" y="160" width="160" height="250" rx="18" fill="#000" opacity="0.4" filter="url(#soft)"/>
+    <rect x="418" y="150" width="160" height="250" rx="18" fill="url(#tile)" stroke="url(#edge)" stroke-opacity="0.75" stroke-width="1.5"/>
+    <text x="434" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#8b7dff">03</text>
+    <text x="434" y="358" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e6ebff">Build</text>
+    <text x="434" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#8fa3d6">Astro · Actions</text>
+  </g>
+  <path d="M582 265.0H608" stroke="#22d3ee" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="618" y="160" width="160" height="250" rx="18" fill="#000" opacity="0.4" filter="url(#soft)"/>
+    <rect x="614" y="150" width="160" height="250" rx="18" fill="url(#tile)" stroke="url(#edge)" stroke-opacity="0.75" stroke-width="1.5"/>
+    <text x="630" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#8b7dff">04</text>
+    <text x="630" y="358" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#e6ebff">Publicar</text>
+    <text x="630" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#8fa3d6">GitHub Pages</text>
+  </g>
+  <g>
+    <rect x="42" y="194" width="128" height="104" rx="10" fill="#0b1330" stroke="#2c3d74"/>
+    <rect x="52" y="206" width="46" height="6" rx="3" fill="#4a5c92"/>
+    <rect x="52" y="218" width="108" height="14" rx="4" fill="#18234a" stroke="#3a4d8a"/>
+    <rect x="52" y="240" width="46" height="6" rx="3" fill="#4a5c92"/>
+    <rect x="52" y="252" width="108" height="14" rx="4" fill="#18234a" stroke="#22d3ee"/>
+    <rect x="56" y="256" width="52" height="6" rx="3" fill="#e6ebff"/>
+    <rect x="112" y="276" width="48" height="14" rx="7" fill="url(#wire)"/>
+    <use href="#i-render" x="134" y="168" width="40" height="40"/>
+  </g>
+  <g>
+    <path d="M282 202V294" stroke="#4a5c92" stroke-width="3"/>
+    <path d="M282 224C312 224 312 246 312 254C312 266 282 270 282 278" stroke="#8b7dff" stroke-width="3" fill="none"/>
+    <circle cx="282" cy="206" r="6" fill="#0b1330" stroke="#4a5c92" stroke-width="3"/>
+    <circle cx="282" cy="224" r="6" fill="#0b1330" stroke="#4a5c92" stroke-width="3"/>
+    <circle cx="312" cy="252" r="6" fill="#0b1330" stroke="#8b7dff" stroke-width="3"/>
+    <circle cx="282" cy="278" r="8" fill="#22d3ee"/>
+    <circle cx="282" cy="278" r="14" fill="none" stroke="#22d3ee" opacity="0.4"/>
+    <text x="302" y="282" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" fill="#22d3ee">a1f3c9e</text>
+    <use href="#i-git" x="330" y="168" width="40" height="40"/>
+  </g>
+  <g>
+    <g fill="#4a5c92"><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(0 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(45 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(90 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(135 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(180 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(225 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(270 474 244)"/><rect x="469" y="206" width="10" height="14" rx="2" transform="rotate(315 474 244)"/></g>
+    <circle cx="474" cy="244" r="28" fill="#4a5c92"/>
+    <circle cx="474" cy="244" r="12" fill="#0f1734" stroke="#22d3ee" stroke-width="2"/>
+    <use href="#i-html" x="510" y="202" width="44" height="44"/>
+    <use href="#i-css" x="510" y="250" width="44" height="44"/>
+    <rect x="434" y="298" width="128" height="6" rx="3" fill="#18234a"/>
+    <rect x="434" y="298" width="92" height="6" rx="3" fill="url(#wire)"/>
+  </g>
+  <g>
+    <rect x="630" y="194" width="128" height="104" rx="10" fill="#0b1330" stroke="url(#edge)"/>
+    <path d="M630 204a10 10 0 0 1 10-10h108a10 10 0 0 1 10 10v8H630z" fill="#18234a"/>
+    <circle cx="642" cy="203" r="3" fill="#ff5f57"/><circle cx="652" cy="203" r="3" fill="#febc2e"/><circle cx="662" cy="203" r="3" fill="#28c840"/>
+    <rect x="642" y="224" width="24" height="5" rx="2.5" fill="#8b7dff"/>
+    <rect x="642" y="236" width="62" height="9" rx="3" fill="#e6ebff"/>
+    <rect x="642" y="250" width="48" height="9" rx="3" fill="#e6ebff"/>
+    <rect x="642" y="268" width="34" height="12" rx="6" fill="url(#wire)"/>
+    <rect x="710" y="224" width="38" height="56" rx="6" fill="#18234a"/>
+    <circle cx="742" cy="290" r="14" fill="#28c840"/>
+    <path d="M735 290l5 5 9-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <path d="M106.0 450H694.0" stroke="#1f2d5c" stroke-width="2"/>
+    <path d="M302.0 450H694.0" stroke="#22d3ee" stroke-width="2"/>
+    <circle cx="106.0" cy="450" r="5" fill="#0b1330" stroke="#22d3ee" stroke-width="2"/><circle cx="302.0" cy="450" r="5" fill="#0b1330" stroke="#22d3ee" stroke-width="2"/><circle cx="498.0" cy="450" r="5" fill="#0b1330" stroke="#22d3ee" stroke-width="2"/><circle cx="694.0" cy="450" r="5" fill="#0b1330" stroke="#22d3ee" stroke-width="2"/>
+    <text x="106.0" y="476" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6f83b8">guardar</text>
+    <text x="498.0" y="476" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#22d3ee">automático · ~1–2 min</text>
+    <text x="694.0" y="476" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#6f83b8">online</text>
+  </g>
+</svg>

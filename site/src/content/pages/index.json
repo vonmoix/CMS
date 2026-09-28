@@ -14,8 +14,8 @@
       "heading": "Bienvenidos al nuevo sitio",
       "subheading": "Este contenido lo edita el equipo de marketing desde el panel de administración, sin tocar código.",
       "image": {
-        "src": "/images/placeholder-hero.svg",
-        "alt": ""
+        "src": "/images/hero-bienvenida.svg",
+        "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, HTML y CSS"
       },
       "button": {
         "label": "Saber más",
@@ -27,8 +27,8 @@
       "heading": "Cómo funciona",
       "body": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
       "image": {
-        "src": "/images/placeholder-content.svg",
-        "alt": ""
+        "src": "/images/como-funciona.svg",
+        "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
       },
       "imagePosition": "left"
     },
