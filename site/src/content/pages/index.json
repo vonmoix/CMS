@@ -33,15 +33,6 @@
       "imagePosition": "left"
     },
     {
-      "type": "cta",
-      "heading": "¿Listos para empezar?",
-      "body": "Entra al panel de administración para crear tu primera página.",
-      "button": {
-        "label": "Ir al panel",
-        "href": "https://cms-admin-p0mg.onrender.com"
-      }
-    },
-    {
       "type": "gallery",
       "heading": "Galeria de Imagenes",
       "images": [
@@ -54,8 +45,17 @@
           "alt": ""
         }
       ]
+    },
+    {
+      "type": "cta",
+      "heading": "¿Listos para empezar?",
+      "body": "Entra al panel de administración para crear tu primera página.",
+      "button": {
+        "label": "Ir al panel",
+        "href": "https://cms-admin-p0mg.onrender.com"
+      }
     }
   ],
-  "updatedAt": "2026-09-28T12:36:11.325Z",
+  "updatedAt": "2026-09-28T12:36:37.783Z",
   "updatedBy": "admin"
 }
