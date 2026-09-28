@@ -161,4 +161,16 @@ async function uploadImage({ filename, buffer, editorName }) {
   return { path: `${publicImagesBase}/${unique}` };
 }
 
-module.exports = { listPages, getPage, savePage, deletePage, uploadImage, getConfig };
+// El panel no sirve las imágenes subidas (viven solo en el repo de GitHub
+// hasta que el sitio se publica), así que la vista previa en el editor las
+// carga directamente desde raw.githubusercontent.com en vez de la ruta
+// pública "/images/..." (que solo existe una vez desplegado el sitio).
+function getImagePreviewConfig() {
+  const { owner, repo, branch, imagesPath, publicImagesBase } = getConfig();
+  return {
+    publicImagesBase,
+    rawImageBase: `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${imagesPath}`,
+  };
+}
+
+module.exports = { listPages, getPage, savePage, deletePage, uploadImage, getConfig, getImagePreviewConfig };

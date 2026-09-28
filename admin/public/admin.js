@@ -5,10 +5,26 @@
 (function () {
   const catalogEl = document.getElementById("section-catalog");
   const initialEl = document.getElementById("initial-sections");
+  const imagePreviewConfigEl = document.getElementById("image-preview-config");
   if (!catalogEl) return; // esta página no es el editor
 
   const CATALOG = JSON.parse(catalogEl.textContent);
   const state = { sections: JSON.parse(initialEl.textContent || "[]") };
+  const IMAGE_PREVIEW_CONFIG = JSON.parse(imagePreviewConfigEl.textContent || "{}");
+
+  // Las imágenes subidas se comitean directo al repo de GitHub y no a este
+  // servidor (ver admin/lib/github.js), así que la ruta pública "/images/…"
+  // solo resuelve una vez publicado el sitio (~1-2 min). Para previsualizar
+  // al instante, las servimos desde raw.githubusercontent.com.
+  function resolveImagePreviewSrc(src) {
+    if (!src) return "";
+    if (/^https?:\/\//.test(src)) return src;
+    const { publicImagesBase, rawImageBase } = IMAGE_PREVIEW_CONFIG;
+    if (rawImageBase && publicImagesBase && src.startsWith(publicImagesBase)) {
+      return rawImageBase + src.slice(publicImagesBase.length);
+    }
+    return src;
+  }
 
   const root = document.getElementById("sections-root");
   const typeSelect = document.getElementById("add-section-type");
@@ -111,9 +127,23 @@
 
   function imageControl(path, value) {
     value = value || { src: "", alt: "" };
+
+    const preview = el("div", { class: "image-preview" });
+    const previewImg = el("img", { alt: "" });
+    preview.appendChild(previewImg);
+    function updatePreview(src) {
+      const resolved = resolveImagePreviewSrc(src);
+      preview.style.display = resolved ? "" : "none";
+      previewImg.src = resolved || "";
+    }
+    updatePreview(value.src);
+
     const srcInput = el("input", { type: "text", placeholder: "/images/archivo.jpg" });
     srcInput.value = value.src || "";
-    srcInput.addEventListener("input", () => setAt(state, `${path}.src`, srcInput.value));
+    srcInput.addEventListener("input", () => {
+      setAt(state, `${path}.src`, srcInput.value);
+      updatePreview(srcInput.value);
+    });
 
     const altInput = el("input", { type: "text", placeholder: "Texto alternativo (accesibilidad)" });
     altInput.value = value.alt || "";
@@ -127,13 +157,9 @@
       uploadImage(file, status, (uploadedPath) => {
         srcInput.value = uploadedPath;
         setAt(state, `${path}.src`, uploadedPath);
+        updatePreview(uploadedPath);
       });
     });
-
-    const preview = el("div", { class: "image-preview" });
-    if (value.src) {
-      preview.appendChild(el("img", { src: value.src, alt: "" }));
-    }
 
     return el("div", { class: "image-field" }, [
       preview,

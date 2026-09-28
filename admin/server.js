@@ -123,6 +123,7 @@ app.get("/pages/new", (req, res) => {
     page: { title: "", description: "", slug: "", order: null, draft: false, seo: {}, sections: [] },
     sha: null,
     sectionCatalog: SECTION_CATALOG,
+    imagePreviewConfig: github.getImagePreviewConfig(),
     error: null,
     editorName: req.session.editorName,
   });
@@ -137,6 +138,7 @@ app.get("/pages/:slug/edit", async (req, res, next) => {
       page: data,
       sha,
       sectionCatalog: SECTION_CATALOG,
+      imagePreviewConfig: github.getImagePreviewConfig(),
       error: null,
       editorName: req.session.editorName,
     });
@@ -257,6 +259,7 @@ app.post("/pages/:slugParam", async (req, res, next) => {
         },
         sha: req.body.sha,
         sectionCatalog: SECTION_CATALOG,
+        imagePreviewConfig: github.getImagePreviewConfig(),
         error: err.message,
         editorName: req.session.editorName,
       });
