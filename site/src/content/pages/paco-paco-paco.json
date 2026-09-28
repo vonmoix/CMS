@@ -1,0 +1,28 @@
+{
+  "title": "Paco",
+  "description": "lo que sea pero paco",
+  "slug": "paco-paco-paco",
+  "draft": false,
+  "seo": {
+    "title": "paco ",
+    "description": "paco paco que mi paco"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "eyebrow": "Paco",
+      "heading": "The IT Admin of the Hell",
+      "subheading": "lo que sea que quieras abre un ticket",
+      "image": {
+        "src": "/images/1790596681034-banner.jpg",
+        "alt": ""
+      },
+      "button": {
+        "label": "paco",
+        "href": ""
+      }
+    }
+  ],
+  "updatedAt": "2026-09-28T11:58:35.297Z",
+  "updatedBy": "admin"
+}
