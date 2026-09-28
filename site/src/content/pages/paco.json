@@ -2,7 +2,7 @@
   "title": "Paco",
   "description": "lo que sea pero paco",
   "slug": "paco",
-  "order": 2,
+  "order": 1,
   "draft": false,
   "seo": {
     "title": "paco ",
@@ -20,6 +20,6 @@
       }
     }
   ],
-  "updatedAt": "2026-09-28T13:35:08.436Z",
+  "updatedAt": "2026-09-28T17:52:18.888Z",
   "updatedBy": "admin"
 }
