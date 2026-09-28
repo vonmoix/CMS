@@ -19,7 +19,7 @@
       },
       "button": {
         "label": "Saber más",
-        "href": "paco-paco-paco"
+        "href": "paco"
       }
     },
     {
@@ -56,6 +56,6 @@
       }
     }
   ],
-  "updatedAt": "2026-09-28T12:36:37.783Z",
+  "updatedAt": "2026-09-28T14:16:02.729Z",
   "updatedBy": "admin"
 }
