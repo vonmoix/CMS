@@ -1,7 +1,7 @@
 {
   "title": "Inicio",
-  "slug": "index",
   "description": "Página de inicio del sitio",
+  "slug": "index",
   "draft": false,
   "seo": {
     "title": "Expenti — Inicio",
@@ -13,23 +13,35 @@
       "eyebrow": "Nuevo",
       "heading": "Bienvenidos al nuevo sitio",
       "subheading": "Este contenido lo edita el equipo de marketing desde el panel de administración, sin tocar código.",
-      "image": { "src": "/images/placeholder-hero.svg", "alt": "" },
-      "button": { "label": "Saber más", "href": "#detalle" }
+      "image": {
+        "src": "/images/placeholder-hero.svg",
+        "alt": ""
+      },
+      "button": {
+        "label": "Saber más",
+        "href": "paco-paco-paco"
+      }
     },
     {
       "type": "textImage",
       "heading": "Cómo funciona",
       "body": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
-      "image": { "src": "/images/placeholder-content.svg", "alt": "" },
+      "image": {
+        "src": "/images/placeholder-content.svg",
+        "alt": ""
+      },
       "imagePosition": "right"
     },
     {
       "type": "cta",
       "heading": "¿Listos para empezar?",
       "body": "Entra al panel de administración para crear tu primera página.",
-      "button": { "label": "Ir al panel", "href": "https://cms-admin-p0mg.onrender.com" }
+      "button": {
+        "label": "Ir al panel",
+        "href": "https://cms-admin-p0mg.onrender.com"
+      }
     }
   ],
-  "updatedAt": "2026-09-04T00:00:00.000Z",
-  "updatedBy": "seed"
+  "updatedAt": "2026-09-28T12:13:11.879Z",
+  "updatedBy": "admin"
 }
