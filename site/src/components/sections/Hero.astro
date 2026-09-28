@@ -1,0 +1,50 @@
+---
+import { withBase } from "../../lib/url.js";
+const { eyebrow, heading, subheading, image, button } = Astro.props;
+---
+
+<section class="block hero">
+  <div class="hero-grid">
+    <div>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{heading}</h1>
+      {subheading && <p class="subheading">{subheading}</p>}
+      {button?.href && (
+        <a class="btn" href={withBase(button.href)}>
+          {button.label}
+        </a>
+      )}
+    </div>
+    {image?.src && <img src={withBase(image.src)} alt={image.alt || ""} />}
+  </div>
+</section>
+
+<style>
+  .hero-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: 0 0 0.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 1rem;
+  }
+  .subheading {
+    color: var(--color-muted);
+    font-size: 1.15rem;
+    margin: 0 0 1.5rem;
+  }
+  @media (min-width: 700px) {
+    .hero-grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+</style>

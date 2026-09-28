@@ -1,0 +1,44 @@
+---
+import { withBase } from "../../lib/url.js";
+const { heading, body, image, imagePosition = "right" } = Astro.props;
+---
+
+<section class="block text-image" data-position={imagePosition}>
+  <div class="grid">
+    <div class="text">
+      <h2>{heading}</h2>
+      <p>{body}</p>
+    </div>
+    {image?.src && (
+      <div class="image">
+        <img src={withBase(image.src)} alt={image.alt || ""} />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  p {
+    color: var(--color-muted);
+    white-space: pre-line;
+  }
+  @media (min-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .text-image[data-position="left"] .grid {
+      direction: rtl;
+    }
+    .text-image[data-position="left"] .grid > * {
+      direction: ltr;
+    }
+  }
+</style>

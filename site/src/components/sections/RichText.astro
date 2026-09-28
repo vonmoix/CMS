@@ -1,0 +1,15 @@
+---
+const { heading, body } = Astro.props;
+---
+
+<section class="block rich-text">
+  {heading && <h2>{heading}</h2>}
+  <p>{body}</p>
+</section>
+
+<style>
+  p {
+    white-space: pre-line;
+    max-width: 70ch;
+  }
+</style>

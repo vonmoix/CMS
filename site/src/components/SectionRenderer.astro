@@ -1,0 +1,32 @@
+---
+// Traduce cada objeto "sección" del JSON al componente que lo renderiza.
+// Añadir un tipo de sección nuevo = añadir una línea aquí + el componente
+// en ./sections/ + la definición en src/content/config.ts.
+import Hero from "./sections/Hero.astro";
+import TextImage from "./sections/TextImage.astro";
+import RichText from "./sections/RichText.astro";
+import Cta from "./sections/Cta.astro";
+import Gallery from "./sections/Gallery.astro";
+import Faq from "./sections/Faq.astro";
+
+const componentsByType = {
+  hero: Hero,
+  textImage: TextImage,
+  richText: RichText,
+  cta: Cta,
+  gallery: Gallery,
+  faq: Faq,
+};
+
+const { sections = [] } = Astro.props;
+---
+
+{
+  sections.map((section) => {
+    const Component = componentsByType[section.type];
+    if (!Component) {
+      return null;
+    }
+    return <Component {...section} />;
+  })
+}

@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionRenderer from "../components/SectionRenderer.astro";
+
+const pages = await getCollection("pages");
+const home = pages.find((p) => p.data.slug === "index" && !p.data.draft);
+
+if (!home) {
+  throw new Error(
+    'No se encontró ninguna página con slug "index". Creá una página de inicio desde el panel de administración.'
+  );
+}
+---
+
+<BaseLayout title={home.data.seo?.title || home.data.title} description={home.data.seo?.description || home.data.description}>
+  <SectionRenderer sections={home.data.sections} />
+</BaseLayout>

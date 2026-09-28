@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= isNew ? 'Nueva página' : ('Editar — ' + page.title) %></title>
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="back-link" href="/">&larr; Páginas</a>
+    <div class="topbar-right">
+      <span class="muted">Conectado como <%= editorName %></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1><%= isNew ? 'Nueva página' : 'Editar página' %></h1>
+
+    <% if (error) { %>
+      <p class="banner banner-error"><%= error %></p>
+    <% } %>
+
+    <form id="page-form" method="post" action="/pages/<%= isNew ? 'new' : slug %>">
+      <input type="hidden" name="sha" value="<%= sha || '' %>" />
+      <input type="hidden" name="previousSlug" value="<%= isNew ? '' : slug %>" />
+      <input type="hidden" name="sectionsJson" id="sectionsJson" />
+
+      <fieldset class="card">
+        <legend>Datos generales</legend>
+
+        <label>
+          Título de la página
+          <input type="text" name="title" required value="<%= page.title || '' %>" />
+        </label>
+
+        <label>
+          Slug (parte de la URL)
+          <input
+            type="text"
+            name="slug"
+            <%= (!isNew && slug === 'index') ? 'readonly' : '' %>
+            value="<%= isNew ? '' : slug %>"
+            placeholder="ej. sobre-nosotros"
+          />
+          <small class="muted">
+            "index" es la página de inicio ("/"). Cualquier otro valor se publica en "/&lt;slug&gt;/".
+          </small>
+        </label>
+
+        <label>
+          Descripción interna (no se publica)
+          <input type="text" name="description" value="<%= page.description || '' %>" />
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" name="draft" <%= page.draft ? 'checked' : '' %> />
+          Borrador (no se publica todavía)
+        </label>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>SEO</legend>
+        <label>
+          Título SEO (opcional)
+          <input type="text" name="seoTitle" value="<%= (page.seo && page.seo.title) || '' %>" />
+        </label>
+        <label>
+          Descripción SEO (opcional)
+          <input type="text" name="seoDescription" value="<%= (page.seo && page.seo.description) || '' %>" />
+        </label>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Contenido de la página</legend>
+        <div id="sections-root"></div>
+        <div class="add-section-row">
+          <select id="add-section-type"></select>
+          <button type="button" id="add-section-btn" class="btn btn-secondary">+ Añadir sección</button>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Guardar y publicar</button>
+        <a class="btn btn-secondary" href="/">Cancelar</a>
+      </div>
+    </form>
+  </main>
+
+  <script id="section-catalog" type="application/json"><%- JSON.stringify(sectionCatalog) %></script>
+  <script id="initial-sections" type="application/json"><%- JSON.stringify(page.sections || []) %></script>
+  <script src="/admin.js"></script>
+</body>
+</html>

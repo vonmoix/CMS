@@ -1,0 +1,27 @@
+---
+import { withBase } from "../../lib/url.js";
+const { heading, body, button } = Astro.props;
+---
+
+<section class="block cta">
+  <div class="cta-box">
+    <h2>{heading}</h2>
+    {body && <p>{body}</p>}
+    <a class="btn" href={withBase(button.href)}>{button.label}</a>
+  </div>
+</section>
+
+<style>
+  .cta-box {
+    background: #f3f4f6;
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .cta-box h2 {
+    margin-top: 0;
+  }
+  .cta-box p {
+    color: var(--color-muted);
+  }
+</style>

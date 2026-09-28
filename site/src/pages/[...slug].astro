@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionRenderer from "../components/SectionRenderer.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection(
+    "pages",
+    (entry) => entry.data.slug !== "index" && !entry.data.draft
+  );
+
+  return pages.map((page) => ({
+    params: { slug: page.data.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={page.data.seo?.title || page.data.title} description={page.data.seo?.description || page.data.description}>
+  <SectionRenderer sections={page.data.sections} />
+</BaseLayout>

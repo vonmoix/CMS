@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Páginas — Panel de contenido</title>
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body>
+  <header class="topbar">
+    <strong>Panel de contenido</strong>
+    <div class="topbar-right">
+      <span class="muted">Conectado como <%= editorName %></span>
+      <form method="post" action="/logout"><button class="link-btn" type="submit">Salir</button></form>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <h1>Páginas</h1>
+      <a class="btn" href="/pages/new">+ Nueva página</a>
+    </div>
+
+    <% if (flash) { %>
+      <p class="banner"><%= flash %></p>
+    <% } %>
+
+    <% if (!pages.length) { %>
+      <p class="muted">Todavía no hay páginas. Crea la primera con "Nueva página".</p>
+    <% } %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Slug</th>
+          <th>Estado</th>
+          <th>Última edición</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pages.forEach(function(p) { %>
+          <tr>
+            <td><%= p.data ? p.data.title : '(error al leer)' %></td>
+            <td><code><%= p.slug %></code></td>
+            <td>
+              <% if (p.data && p.data.draft) { %>
+                <span class="badge">Borrador</span>
+              <% } else { %>
+                <span class="badge badge-live">Publicada</span>
+              <% } %>
+            </td>
+            <td class="muted">
+              <%= p.data && p.data.updatedAt ? new Date(p.data.updatedAt).toLocaleString('es-ES') : '—' %>
+              <% if (p.data && p.data.updatedBy) { %> · <%= p.data.updatedBy %><% } %>
+            </td>
+            <td class="row-actions">
+              <a href="/pages/<%= p.slug %>/edit">Editar</a>
+              <% if (p.slug !== 'index') { %>
+                <form method="post" action="/pages/<%= p.slug %>/delete" onsubmit="return confirm('¿Eliminar la página &quot;' + '<%= p.slug %>' + '&quot;? Esta acción no se puede deshacer.');" style="display:inline">
+                  <button class="link-btn danger" type="submit">Eliminar</button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

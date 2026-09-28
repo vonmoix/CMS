@@ -1,0 +1,35 @@
+{
+  "title": "Sobre nosotros",
+  "slug": "sobre-nosotros",
+  "description": "Quiénes somos",
+  "draft": false,
+  "seo": {
+    "title": "Sobre nosotros",
+    "description": "Página de ejemplo con preguntas frecuentes y galería."
+  },
+  "sections": [
+    {
+      "type": "richText",
+      "heading": "Quiénes somos",
+      "body": "Este es un texto de ejemplo editable. Sustituidlo por vuestro contenido real desde el panel."
+    },
+    {
+      "type": "gallery",
+      "heading": "Nuestro equipo",
+      "images": [
+        { "src": "/images/placeholder-hero.svg", "alt": "Equipo 1" },
+        { "src": "/images/placeholder-content.svg", "alt": "Equipo 2" }
+      ]
+    },
+    {
+      "type": "faq",
+      "heading": "Preguntas frecuentes",
+      "items": [
+        { "question": "¿Quién puede editar el sitio?", "answer": "Cualquier persona del equipo de marketing con acceso al panel de administración." },
+        { "question": "¿Hace falta saber programar?", "answer": "No, todo se edita con formularios." }
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-04T00:00:00.000Z",
+  "updatedBy": "seed"
+}

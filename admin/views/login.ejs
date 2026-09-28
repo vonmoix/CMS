@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión — Panel de contenido</title>
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="login-body">
+  <form class="login-card" method="post" action="/login">
+    <h1>Panel de contenido</h1>
+    <p class="muted">Inicia sesión para editar las páginas del sitio.</p>
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+    <label>
+      Tu nombre
+      <input type="text" name="name" required autofocus />
+    </label>
+    <label>
+      Contraseña
+      <input type="password" name="password" required />
+    </label>
+    <button type="submit" class="btn">Entrar</button>
+  </form>
+</body>
+</html>
