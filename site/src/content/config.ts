@@ -90,6 +90,9 @@ const pagesCollection = defineCollection({
     // "index" = página de inicio (se sirve en "/"), cualquier otro valor
     // se sirve en "/<slug>/"
     slug: z.string().min(1),
+    // posición en el menú de cabecera/móvil (menor = antes); se gestiona
+    // desde el panel de administración, no hay que tocarla a mano
+    order: z.number().default(0),
     // oculta la página del sitio publicado sin borrar el contenido
     draft: z.boolean().default(false),
     seo: z

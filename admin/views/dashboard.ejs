@@ -32,6 +32,7 @@
     <table class="table">
       <thead>
         <tr>
+          <th>Orden</th>
           <th>Título</th>
           <th>Slug</th>
           <th>Estado</th>
@@ -40,8 +41,18 @@
         </tr>
       </thead>
       <tbody>
-        <% pages.forEach(function(p) { %>
+        <% pages.forEach(function(p, i) { %>
           <tr>
+            <td class="order-controls">
+              <form method="post" action="/pages/<%= p.slug %>/move" style="display:inline">
+                <input type="hidden" name="direction" value="up" />
+                <button class="icon-btn" type="submit" title="Subir en el menú" <%= i === 0 ? 'disabled' : '' %>>↑</button>
+              </form>
+              <form method="post" action="/pages/<%= p.slug %>/move" style="display:inline">
+                <input type="hidden" name="direction" value="down" />
+                <button class="icon-btn" type="submit" title="Bajar en el menú" <%= i === pages.length - 1 ? 'disabled' : '' %>>↓</button>
+              </form>
+            </td>
             <td>
               <% if (!p.data) { %>
                 (error al leer)
@@ -75,6 +86,7 @@
         <% }); %>
       </tbody>
     </table>
+    <p class="muted">El orden fijado aquí es el que se usa para los enlaces de la cabecera y el menú móvil del sitio.</p>
   </main>
 </body>
 </html>

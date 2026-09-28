@@ -2,6 +2,7 @@
   "title": "Inicio",
   "description": "Página de inicio del sitio",
   "slug": "index",
+  "order": 0,
   "draft": false,
   "seo": {
     "title": "MoixCMS — Inicio",

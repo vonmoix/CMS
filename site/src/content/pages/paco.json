@@ -2,6 +2,7 @@
   "title": "Paco",
   "description": "lo que sea pero paco",
   "slug": "paco",
+  "order": 2,
   "draft": false,
   "seo": {
     "title": "paco ",

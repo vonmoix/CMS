@@ -17,4 +17,21 @@ export default defineConfig({
   base,
   outDir: "./dist",
   trailingSlash: "ignore",
+  // De momento, sin minificar el HTML (fase de desarrollo) para poder leerlo fácilmente
+  compressHTML: false,
+  vite: {
+    build: {
+      // Deja el CSS legible (sin minificar) para poder revisarlo en el editor
+      cssMinify: false,
+      rollupOptions: {
+        output: {
+          // Nombre semántico para el CSS compilado (en vez del hash tipo _slug_.B6Rz826O.css)
+          assetFileNames: (asset) => {
+            const name = asset.name || asset.names?.[0] || "";
+            return name.endsWith(".css") ? "_astro/styles.css" : "_astro/[name].[hash][extname]";
+          },
+        },
+      },
+    },
+  },
 });

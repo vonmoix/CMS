@@ -87,9 +87,22 @@ app.use(requireAuth);
 const PUBLIC_SITE_URL = (process.env.PUBLIC_SITE_URL || "https://vonmoix.github.io/CMS").replace(/\/$/, "");
 const publicUrl = (slug) => (slug === "index" ? `${PUBLIC_SITE_URL}/` : `${PUBLIC_SITE_URL}/${slug}/`);
 
+// Mismo criterio que la cabecera del sitio (BaseLayout.astro): por "order"
+// y, a igualdad, por título. Las páginas que no se pudieron leer van al final.
+function sortPagesByOrder(pages) {
+  return [...pages].sort((a, b) => {
+    if (!a.data && !b.data) return 0;
+    if (!a.data) return 1;
+    if (!b.data) return -1;
+    const orderA = typeof a.data.order === "number" ? a.data.order : Infinity;
+    const orderB = typeof b.data.order === "number" ? b.data.order : Infinity;
+    return orderA - orderB || a.data.title.localeCompare(b.data.title, "es");
+  });
+}
+
 app.get("/", async (req, res, next) => {
   try {
-    const pages = await github.listPages();
+    const pages = sortPagesByOrder(await github.listPages());
     res.render("dashboard", {
       pages,
       publicUrl,
@@ -107,7 +120,7 @@ app.get("/pages/new", (req, res) => {
   res.render("edit", {
     isNew: true,
     slug: "",
-    page: { title: "", description: "", slug: "", draft: false, seo: {}, sections: [] },
+    page: { title: "", description: "", slug: "", order: null, draft: false, seo: {}, sections: [] },
     sha: null,
     sectionCatalog: SECTION_CATALOG,
     error: null,
@@ -176,10 +189,24 @@ app.post("/pages/:slugParam", async (req, res, next) => {
     }
     sections = cleaned.sections;
 
+    // El orden en el menú se gestiona desde el listado de páginas (flechas
+    // subir/bajar), no desde este formulario: si ya tenía uno lo respetamos
+    // (llega como campo oculto) y si es una página nueva la mandamos al final.
+    let order = req.body.order !== undefined && req.body.order !== "" ? Number(req.body.order) : NaN;
+    if (!Number.isFinite(order)) {
+      const pages = await github.listPages();
+      const maxOrder = pages.reduce(
+        (max, p) => (p.data && typeof p.data.order === "number" ? Math.max(max, p.data.order) : max),
+        -1
+      );
+      order = maxOrder + 1;
+    }
+
     const data = {
       title: req.body.title,
       description: req.body.description || "",
       slug,
+      order,
       draft: req.body.draft === "on",
       seo: {
         title: req.body.seoTitle || "",
@@ -243,6 +270,40 @@ app.post("/pages/:slug/delete", async (req, res, next) => {
     const { sha } = await github.getPage(req.params.slug);
     await github.deletePage({ slug: req.params.slug, sha, editorName: req.session.editorName });
     res.redirect(`/?flash=${encodeURIComponent(`Página "${req.params.slug}" eliminada.`)}`);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Mueve una página un puesto arriba/abajo en el menú: recalcula el orden de
+// toda la lista y solo confirma en GitHub las páginas cuyo puesto cambió.
+app.post("/pages/:slug/move", async (req, res, next) => {
+  try {
+    const sorted = sortPagesByOrder(await github.listPages());
+    const index = sorted.findIndex((p) => p.slug === req.params.slug);
+    const targetIndex = req.body.direction === "up" ? index - 1 : index + 1;
+
+    if (index === -1 || targetIndex < 0 || targetIndex >= sorted.length) {
+      return res.redirect("/");
+    }
+
+    [sorted[index], sorted[targetIndex]] = [sorted[targetIndex], sorted[index]];
+
+    await Promise.all(
+      sorted
+        .map((p, i) => ({ p, i }))
+        .filter(({ p, i }) => p.data && p.data.order !== i)
+        .map(({ p, i }) =>
+          github.savePage({
+            slug: p.slug,
+            data: { ...p.data, order: i },
+            sha: p.sha,
+            editorName: req.session.editorName,
+          })
+        )
+    );
+
+    res.redirect("/");
   } catch (err) {
     next(err);
   }

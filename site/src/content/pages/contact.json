@@ -2,6 +2,7 @@
   "title": "Contact Form",
   "description": "Contact Form",
   "slug": "contact",
+  "order": 1,
   "draft": false,
   "seo": {
     "title": "",

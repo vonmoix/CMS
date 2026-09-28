@@ -2,6 +2,7 @@
   "title": "Sobre nosotros",
   "description": "Quiénes somos",
   "slug": "sobre-nosotros",
+  "order": 3,
   "draft": false,
   "seo": {
     "title": "Sobre nosotros",

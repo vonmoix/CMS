@@ -24,6 +24,7 @@
     <form id="page-form" method="post" action="/pages/<%= isNew ? 'new' : slug %>">
       <input type="hidden" name="sha" value="<%= sha || '' %>" />
       <input type="hidden" name="previousSlug" value="<%= isNew ? '' : slug %>" />
+      <input type="hidden" name="order" value="<%= page.order != null ? page.order : '' %>" />
       <input type="hidden" name="sectionsJson" id="sectionsJson" />
 
       <fieldset class="card">
