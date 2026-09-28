@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import { withBase } from "../lib/url.js";
 
 interface Props {
@@ -8,6 +9,20 @@ interface Props {
 }
 
 const { title, description = "", ogImage } = Astro.props as Props;
+
+// Menú: todas las páginas publicadas, con la portada primero y el resto
+// por título. Se genera solo, así que una página nueva creada desde el
+// panel aparece en la cabecera sin tocar código.
+const navPages = (await getCollection("pages", (p) => !p.data.draft))
+  .map((p) => ({
+    title: p.data.title,
+    href: withBase(p.data.slug === "index" ? "/" : `/${p.data.slug}/`),
+    isHome: p.data.slug === "index",
+  }))
+  .sort((a, b) => (a.isHome ? -1 : b.isHome ? 1 : a.title.localeCompare(b.title, "es")));
+
+const normalize = (path: string) => path.replace(/\/+$/, "") || "/";
+const currentPath = normalize(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -26,14 +41,23 @@ const { title, description = "", ogImage } = Astro.props as Props;
   <body>
     <header class="site-header">
       <nav class="site-nav">
-        <a class="brand" href={import.meta.env.BASE_URL}>Expenti</a>
+        <a class="brand" href={withBase("/")}>MoixCMS</a>
+        <ul class="nav-links">
+          {navPages.map((p) => (
+            <li>
+              <a href={p.href} aria-current={normalize(p.href) === currentPath ? "page" : undefined}>
+                {p.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
     </header>
     <main>
       <slot />
     </main>
     <footer class="site-footer">
-      <p>© {new Date().getFullYear()} Expenti</p>
+      <p>© {new Date().getFullYear()} MoixCMS</p>
     </footer>
   </body>
 </html>
@@ -80,6 +104,38 @@ const { title, description = "", ogImage } = Astro.props as Props;
     max-width: 1100px;
     margin: 0 auto;
     padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.25rem 1.25rem;
+  }
+
+  .nav-links a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-text);
+  }
+
+  .nav-links a[aria-current="page"] {
+    color: var(--color-text);
+    border-bottom-color: var(--color-accent);
   }
 
   .brand {
