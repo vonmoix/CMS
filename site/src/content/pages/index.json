@@ -44,6 +44,22 @@
         {
           "src": "/images/1790598959562-erneslarion.png",
           "alt": ""
+        },
+        {
+          "src": "/images/1790618653808-galeria-01-hojas.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/images/1790618661448-galeria-02-mariposas.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/images/1790618667657-galeria-03-cuernos.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/images/1790618674875-galeria-04-armadura-azul.jpg",
+          "alt": ""
         }
       ]
     },
@@ -57,6 +73,6 @@
       }
     }
   ],
-  "updatedAt": "2026-09-28T14:16:02.729Z",
+  "updatedAt": "2026-09-28T18:04:41.416Z",
   "updatedBy": "admin"
 }
