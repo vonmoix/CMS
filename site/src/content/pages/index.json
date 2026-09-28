@@ -30,7 +30,7 @@
         "src": "/images/placeholder-content.svg",
         "alt": ""
       },
-      "imagePosition": "right"
+      "imagePosition": "left"
     },
     {
       "type": "cta",
@@ -40,8 +40,18 @@
         "label": "Ir al panel",
         "href": "https://cms-admin-p0mg.onrender.com"
       }
+    },
+    {
+      "type": "gallery",
+      "heading": "Galeria de Imagenes",
+      "images": [
+        {
+          "src": "/images/1790598509272-playzzard-mascot.svg",
+          "alt": ""
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-28T12:19:04.559Z",
+  "updatedAt": "2026-09-28T12:29:36.211Z",
   "updatedBy": "admin"
 }
