@@ -1,0 +1,39 @@
+# Blueprint de Render para el panel de administración.
+# En Render: New → Blueprint → elegir este repo. Pedirá los valores
+# marcados con "sync: false" (contraseña y token), que NO se guardan aquí.
+services:
+  - type: web
+    name: cms-admin
+    runtime: docker
+    rootDir: admin
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: frankfurt
+    branch: main
+    healthCheckPath: /healthz
+    # Solo redesplegar el panel cuando cambie su código, no con cada
+    # commit de contenido que hace el propio panel.
+    buildFilter:
+      paths:
+        - admin/**
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_OWNER
+        value: vonmoix
+      - key: GITHUB_REPO
+        value: CMS
+      - key: GITHUB_BRANCH
+        value: main
+      - key: CONTENT_PATH
+        value: site/src/content/pages
+      - key: IMAGES_PATH
+        value: site/public/images
+      - key: PUBLIC_IMAGES_BASE
+        value: /images

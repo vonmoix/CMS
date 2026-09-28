@@ -25,6 +25,11 @@ if (!process.env.ADMIN_PASSWORD) {
   console.warn("⚠️  ADMIN_PASSWORD no está definido en .env — nadie podrá iniciar sesión.");
 }
 
+// Render/Railway/etc. terminan HTTPS en un proxy delante de la app: sin
+// esto, Express cree que la petición es HTTP y no envía la cookie "secure"
+// (el login entraría en bucle).
+app.set("trust proxy", 1);
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -43,6 +48,9 @@ app.use(
     },
   })
 );
+
+// Comprobación de salud para la plataforma de hosting (sin login)
+app.get("/healthz", (req, res) => res.send("ok"));
 
 // -------------------- Auth --------------------
 
