@@ -94,17 +94,32 @@ async function savePage({ slug, data, sha, editorName }) {
   const content = Buffer.from(JSON.stringify(payload, null, 2) + "\n", "utf-8").toString("base64");
   const action = sha ? "Actualiza" : "Crea";
 
-  const res = await octokit.rest.repos.createOrUpdateFileContents({
-    owner,
-    repo,
-    path,
-    branch,
-    message: `${action} página "${slug}" (${editorName || "panel"})`,
-    content,
-    sha: sha || undefined,
-  });
+  const commit = (shaToUse) =>
+    octokit.rest.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path,
+      branch,
+      message: `${action} página "${slug}" (${editorName || "panel"})`,
+      content,
+      sha: shaToUse || undefined,
+    });
 
-  return { sha: res.data.content.sha };
+  try {
+    const res = await commit(sha);
+    return { sha: res.data.content.sha };
+  } catch (err) {
+    // La API de contenidos de GitHub a veces devuelve un sha ya desfasado
+    // justo después de un commit muy reciente (p. ej. varias operaciones de
+    // reordenar seguidas, o un push manual justo antes): si el sha no
+    // coincide, releemos el archivo y reintentamos una vez con el sha real.
+    if (sha && err.status === 409) {
+      const fresh = await getPage(slug, octokit);
+      const res = await commit(fresh.sha);
+      return { sha: res.data.content.sha };
+    }
+    throw err;
+  }
 }
 
 async function deletePage({ slug, sha, editorName }) {

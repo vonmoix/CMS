@@ -299,11 +299,23 @@ app.post("/pages/:slug/move", async (req, res, next) => {
             data: { ...p.data, order: i },
             sha: p.sha,
             editorName: req.session.editorName,
+          }).then(({ sha }) => {
+            p.sha = sha;
+            p.data = { ...p.data, order: i };
           })
         )
     );
 
-    res.redirect("/");
+    // Renderizamos directamente con el orden que acabamos de guardar, en vez
+    // de redirigir a "/" y releer de GitHub: justo después de un commit, la
+    // API de contenidos puede tardar un instante en reflejarlo (por eso a
+    // veces hacía falta refrescar a mano para ver el cambio).
+    res.render("dashboard", {
+      pages: sorted,
+      publicUrl,
+      editorName: req.session.editorName,
+      flash: null,
+    });
   } catch (err) {
     next(err);
   }
