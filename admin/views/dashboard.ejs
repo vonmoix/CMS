@@ -42,7 +42,15 @@
       <tbody>
         <% pages.forEach(function(p) { %>
           <tr>
-            <td><%= p.data ? p.data.title : '(error al leer)' %></td>
+            <td>
+              <% if (!p.data) { %>
+                (error al leer)
+              <% } else if (p.data.draft) { %>
+                <a href="/pages/<%= p.slug %>/edit" title="Borrador: todavía no está publicada"><%= p.data.title %></a>
+              <% } else { %>
+                <a href="<%= publicUrl(p.slug) %>" target="_blank" rel="noopener" title="Ver la página publicada"><%= p.data.title %> <span aria-hidden="true">↗</span></a>
+              <% } %>
+            </td>
             <td><code><%= p.slug %></code></td>
             <td>
               <% if (p.data && p.data.draft) { %>

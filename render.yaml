@@ -35,5 +35,7 @@ services:
         value: site/src/content/pages
       - key: IMAGES_PATH
         value: site/public/images
+      - key: PUBLIC_SITE_URL
+        value: https://vonmoix.github.io/CMS
       - key: PUBLIC_IMAGES_BASE
         value: /images

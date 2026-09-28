@@ -83,10 +83,19 @@ app.use(requireAuth);
 
 // -------------------- Dashboard --------------------
 
+// URL pública de cada página en el sitio publicado ("index" es la portada).
+const PUBLIC_SITE_URL = (process.env.PUBLIC_SITE_URL || "https://vonmoix.github.io/CMS").replace(/\/$/, "");
+const publicUrl = (slug) => (slug === "index" ? `${PUBLIC_SITE_URL}/` : `${PUBLIC_SITE_URL}/${slug}/`);
+
 app.get("/", async (req, res, next) => {
   try {
     const pages = await github.listPages();
-    res.render("dashboard", { pages, editorName: req.session.editorName, flash: req.query.flash });
+    res.render("dashboard", {
+      pages,
+      publicUrl,
+      editorName: req.session.editorName,
+      flash: req.query.flash,
+    });
   } catch (err) {
     next(err);
   }
