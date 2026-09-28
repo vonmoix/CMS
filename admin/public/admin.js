@@ -24,6 +24,10 @@
     const keys = path.split(".");
     let target = obj;
     for (let i = 0; i < keys.length - 1; i++) {
+      // Crea los objetos/arrays intermedios que falten (p. ej. un botón o una
+      // imagen opcional que la página guardada no tenía): si no, la edición
+      // lanza un error y se pierde sin avisar.
+      if (target[keys[i]] == null) target[keys[i]] = /^\d+$/.test(keys[i + 1]) ? [] : {};
       target = target[keys[i]];
     }
     target[keys[keys.length - 1]] = value;

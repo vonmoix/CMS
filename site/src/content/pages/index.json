@@ -27,7 +27,7 @@
       "type": "cta",
       "heading": "¿Listos para empezar?",
       "body": "Entra al panel de administración para crear tu primera página.",
-      "button": { "label": "Ir al panel", "href": "/admin" }
+      "button": { "label": "Ir al panel", "href": "https://cms-admin-p0mg.onrender.com" }
     }
   ],
   "updatedAt": "2026-09-04T00:00:00.000Z",
