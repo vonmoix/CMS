@@ -198,25 +198,28 @@
 
   /* ===== tokens - typography ===== */
 
-  --font-size-display-2xl: 76px;
-  --font-size-display-xl: 57px;
-  --font-size-heading-l: 43px;
-  --font-size-heading-m: 32px;
-  --font-size-heading-s: 24px;
-  --font-size-body-xl: 22px;
-  --font-size-body-l: 20px;
-  --font-size-body-m: 18px;
-  --font-size-body-s: 16px;
+  /* Modos Viewport/Min y Viewport/Max de Figma: interpolación lineal entre 500px y 1200px
+     de ancho (los de layout Mobile/Desktop). clamp(min, min + (max-min)·(100vw-500px)/700, max) */
 
-  --line-height-display-2xl: 81px;
-  --line-height-display-xl: 57px;
-  --line-height-heading-l: 43px;
-  --line-height-heading-m: 32px;
-  --line-height-heading-s: 24px;
-  --line-height-body-xl: 31px;
-  --line-height-body-l: 27px;
-  --line-height-body-m: 27px;
-  --line-height-body-s: 25px;
+  --font-size-display-2xl: clamp(50px, calc(50px + 26 * (100vw - 500px) / 700), 76px);
+  --font-size-display-xl: clamp(51px, calc(51px + 6 * (100vw - 500px) / 700), 57px);
+  --font-size-heading-l: clamp(38px, calc(38px + 5 * (100vw - 500px) / 700), 43px);
+  --font-size-heading-m: clamp(28px, calc(28px + 4 * (100vw - 500px) / 700), 32px);
+  --font-size-heading-s: clamp(21px, calc(21px + 3 * (100vw - 500px) / 700), 24px);
+  --font-size-body-xl: clamp(20px, calc(20px + 2 * (100vw - 500px) / 700), 22px);
+  --font-size-body-l: clamp(18px, calc(18px + 2 * (100vw - 500px) / 700), 20px);
+  --font-size-body-m: clamp(16px, calc(16px + 2 * (100vw - 500px) / 700), 18px);
+  --font-size-body-s: clamp(14px, calc(14px + 2 * (100vw - 500px) / 700), 16px);
+
+  --line-height-display-2xl: clamp(52px, calc(52px + 29 * (100vw - 500px) / 700), 81px);
+  --line-height-display-xl: clamp(51px, calc(51px + 6 * (100vw - 500px) / 700), 57px);
+  --line-height-heading-l: clamp(38px, calc(38px + 5 * (100vw - 500px) / 700), 43px);
+  --line-height-heading-m: clamp(28px, calc(28px + 4 * (100vw - 500px) / 700), 32px);
+  --line-height-heading-s: clamp(21px, calc(21px + 3 * (100vw - 500px) / 700), 24px);
+  --line-height-body-xl: clamp(28px, calc(28px + 3 * (100vw - 500px) / 700), 31px);
+  --line-height-body-l: clamp(24px, calc(24px + 3 * (100vw - 500px) / 700), 27px);
+  --line-height-body-m: clamp(24px, calc(24px + 3 * (100vw - 500px) / 700), 27px);
+  --line-height-body-s: clamp(22px, calc(22px + 3 * (100vw - 500px) / 700), 25px);
 
   /* ===== tokens - layout ===== */
 
