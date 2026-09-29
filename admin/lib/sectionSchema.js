@@ -72,6 +72,14 @@ const SECTION_CATALOG = {
       { name: "description", label: "Descripción", type: "textarea" },
     ],
   },
+  introWhite: {
+    label: "Intro White Background",
+    fields: [
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "heading", label: "Título", type: "text", required: true },
+      { name: "description", label: "Descripción", type: "textarea" },
+    ],
+  },
 };
 
 const isBlank = (v) => v === undefined || v === null || String(v).trim() === "";

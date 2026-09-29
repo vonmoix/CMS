@@ -17,6 +17,7 @@ const requiredBySectionType = {
   gallery: ["images"],
   faq: ["items"],
   introDark: ["heading"],
+  introWhite: ["heading"],
 };
 
 const knownTypes = Object.keys(requiredBySectionType);
