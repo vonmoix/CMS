@@ -1,0 +1,223 @@
+/*
+ * Tokens de diseño — generados desde las variables de Figma (fichero "CMS").
+ * Los nombres son los de Figma con "/" y espacios cambiados por "-".
+ * No editar a mano: si cambia un valor, se cambia en Figma y se vuelve a exportar.
+ *
+ * Dos niveles:
+ *   - primitives: valores crudos. No se usan directamente en los componentes.
+ *   - tokens: semánticos (fill, text, stroke, gap, size, radius…), alias de primitives.
+ */
+
+:root {
+  /* ===== primitives ===== */
+
+  --color-neutral-0: #ffffff;
+  --color-neutral-100: #fefffc;
+  --color-neutral-200: #efefef;
+  --color-neutral-300: #b9bbb4;
+  --color-neutral-400: #898989;
+  --color-neutral-500: #5f5f5f;
+  --color-neutral-600: #343434;
+  --color-neutral-700: #1f1f1f;
+  --color-neutral-800: #0a0003;
+  --color-neutral-1000: #000000;
+
+  --color-red-100: #faebec;
+  --color-red-200: #f7c5ca;
+  --color-red-300: #ff5757;
+  --color-red-400: #f42a37;
+  --color-red-500: #e2001c;
+  --color-red-600: #a30200;
+  --color-red-700: #6d0306;
+  --color-red-800: #2c0204;
+
+  --color-alerts-error: #f83b3b;
+  --color-alerts-success: #32bf53;
+  --color-alerts-warning: #ffb000;
+
+  --opacity-white-0: #ffffff00;
+  --opacity-white-10: #ffffff1a;
+  --opacity-white-25: #ffffff40;
+  --opacity-white-40: #ffffff66;
+  --opacity-white-60: #ffffff99;
+  --opacity-white-80: #ffffffcc;
+
+  --opacity-black-05: #0000000d;
+  --opacity-black-10: #0000001a;
+  --opacity-black-25: #00000040;
+  --opacity-black-40: #00000066;
+  --opacity-black-60: #00000099;
+  --opacity-black-80: #000000cc;
+
+  /* ===== tokens - colors ===== */
+
+  --fill-page-grey-medium: var(--color-neutral-700);
+  --fill-surface-grey-dark: var(--color-neutral-800);
+  --fill-surface-black: var(--color-neutral-1000);
+  --fill-surface-white: var(--color-neutral-200);
+  --fill-surface-red: var(--color-red-500);
+
+  --text-primary: var(--color-neutral-100);
+  --text-secondary: var(--color-neutral-800);
+  --text-tertiary: var(--color-neutral-300);
+  --text-accent: var(--color-red-500);
+  --text-ghost: var(--color-neutral-200);
+
+  --stroke-br-100: var(--color-neutral-100);
+  --stroke-br-200: var(--color-neutral-200);
+  --stroke-br-300: var(--color-neutral-300);
+  --stroke-br-800: var(--color-neutral-800);
+
+  --icons-positive: var(--color-neutral-100);
+  --icons-negative: var(--color-red-500);
+  --icons-disabled: var(--color-neutral-300);
+
+  --opacity-white-opc-10: var(--opacity-white-10);
+  --opacity-white-opc-25: var(--opacity-white-25);
+  --opacity-white-opc-40: var(--opacity-white-40);
+  --opacity-white-opc-60: var(--opacity-white-60);
+  --opacity-white-opc-80: var(--opacity-white-80);
+
+  --opacity-black-opc-05: var(--opacity-black-05);
+  --opacity-black-opc-10: var(--opacity-black-10);
+  --opacity-black-opc-25: var(--opacity-black-25);
+  --opacity-black-opc-40: var(--opacity-black-40);
+  --opacity-black-opc-60: var(--opacity-black-60);
+  --opacity-black-opc-80: var(--opacity-black-80);
+
+  /* Botones: fill / text / stroke × tipo × estado */
+  --buttons-fill-primary-default: var(--color-red-500);
+  --buttons-fill-primary-hover: var(--color-red-600);
+  --buttons-fill-primary-disabled: var(--color-neutral-600);
+  --buttons-text-primary-default: var(--color-neutral-100);
+  --buttons-text-primary-hover: var(--color-neutral-100);
+  --buttons-text-primary-disabled: var(--color-neutral-500);
+  --buttons-stroke-primary-default: var(--opacity-white-0);
+  --buttons-stroke-primary-hover: var(--opacity-white-0);
+  --buttons-stroke-primary-disabled: var(--opacity-white-0);
+
+  --buttons-fill-secondary-default: var(--color-neutral-100);
+  --buttons-fill-secondary-hover: var(--color-neutral-200);
+  --buttons-fill-secondary-disabled: var(--color-neutral-600);
+  --buttons-text-secondary-default: var(--color-neutral-800);
+  --buttons-text-secondary-hover: var(--color-red-600);
+  --buttons-text-secondary-disabled: var(--color-neutral-500);
+  --buttons-stroke-secondary-default: var(--opacity-white-0);
+  --buttons-stroke-secondary-hover: var(--opacity-white-0);
+  --buttons-stroke-secondary-disabled: var(--opacity-white-0);
+
+  --buttons-fill-tertiary-default: var(--color-neutral-500);
+  --buttons-fill-tertiary-hover: var(--color-neutral-600);
+  --buttons-fill-tertiary-disabled: var(--color-neutral-300);
+  --buttons-text-tertiary-default: var(--color-neutral-100);
+  --buttons-text-tertiary-hover: var(--color-neutral-100);
+  --buttons-text-tertiary-disabled: var(--color-neutral-500);
+  --buttons-stroke-tertiary-default: var(--opacity-white-0);
+  --buttons-stroke-tertiary-hover: var(--opacity-white-0);
+  --buttons-stroke-tertiary-disabled: var(--opacity-white-0);
+
+  --buttons-fill-ghost-primary-default: var(--opacity-white-0);
+  --buttons-fill-ghost-primary-hover: var(--color-red-500);
+  --buttons-fill-ghost-primary-disabled: var(--opacity-white-opc-25);
+  --buttons-text-ghost-primary-default: var(--color-red-500);
+  --buttons-text-ghost-primary-hover: var(--color-neutral-100);
+  --buttons-text-ghost-primary-disabled: var(--color-neutral-300);
+  --buttons-stroke-ghost-primary-default: var(--color-red-500);
+  --buttons-stroke-ghost-primary-hover: var(--color-red-500);
+  --buttons-stroke-ghost-primary-disabled: var(--color-neutral-300);
+
+  --buttons-fill-ghost-secondary-default: var(--opacity-white-0);
+  --buttons-fill-ghost-secondary-hover: var(--color-neutral-100);
+  --buttons-fill-ghost-secondary-disabled: var(--opacity-white-0);
+  --buttons-text-ghost-secondary-default: var(--color-neutral-100);
+  --buttons-text-ghost-secondary-hover: var(--color-red-500);
+  --buttons-text-ghost-secondary-disabled: var(--color-neutral-300);
+  --buttons-stroke-ghost-secondary-default: var(--color-neutral-100);
+  --buttons-stroke-ghost-secondary-hover: var(--color-neutral-100);
+  --buttons-stroke-ghost-secondary-disabled: var(--color-neutral-300);
+
+  /* Campos de formulario */
+  --input-fill-default: var(--color-neutral-800);
+  --input-fill-focus: var(--color-neutral-800);
+  --input-fill-error: var(--color-neutral-800);
+  --input-fill-disabled: var(--color-neutral-500);
+  --input-text-default: var(--color-neutral-500);
+  --input-text-focus: var(--color-neutral-100);
+  --input-text-error: var(--color-neutral-100);
+  --input-text-disabled: var(--color-neutral-300);
+  --input-stroke-default: var(--color-neutral-500);
+  --input-stroke-focus: var(--color-neutral-100);
+  --input-stroke-error: var(--color-red-500);
+  --input-stroke-disabled: var(--color-neutral-200);
+
+  /* ===== tokens - sizes ===== */
+
+  /* gap: huecos y padding */
+  --gap-none: 0;
+  --gap-gap-4: 4px;
+  --gap-gap-8: 8px;
+  --gap-gap-12: 12px;
+  --gap-gap-16: 16px;
+  --gap-gap-24: 24px;
+  --gap-gap-32: 32px;
+  --gap-gap-40: 40px;
+  --gap-gap-48: 48px;
+  --gap-gap-64: 64px;
+  --gap-gap-128: 128px;
+  --gap-gap-256: 256px;
+
+  /* size: anchos y altos */
+  --size-none: 0;
+  --size-sp-2: 2px;
+  --size-sp-4: 4px;
+  --size-sp-8: 8px;
+  --size-sp-12: 12px;
+  --size-sp-16: 16px;
+  --size-sp-24: 24px;
+  --size-sp-32: 32px;
+  --size-sp-40: 40px;
+  --size-sp-48: 48px;
+  --size-sp-64: 64px;
+  --size-sp-128: 128px;
+  --size-sp-192: 192px;
+  --size-sp-256: 256px;
+
+  --border-none: 0;
+  --border-br-1: 1px;
+  --border-br-2: 2px;
+  --border-br-4: 4px;
+
+  --radius-none: 0;
+  --radius-rd-xs: 4px;
+  --radius-rd-sm: 8px;
+  --radius-rd-md: 16px;
+  --radius-rd-xl: 24px;
+  --radius-rd-xxl: 32px;
+  --radius-rd-full: 200px;
+
+  /* ===== tokens - typography ===== */
+
+  --font-size-display-2xl: 76px;
+  --font-size-display-xl: 57px;
+  --font-size-heading-l: 43px;
+  --font-size-heading-m: 32px;
+  --font-size-heading-s: 24px;
+  --font-size-body-xl: 22px;
+  --font-size-body-l: 20px;
+  --font-size-body-m: 18px;
+  --font-size-body-s: 16px;
+
+  --line-height-display-2xl: 81px;
+  --line-height-display-xl: 57px;
+  --line-height-heading-l: 43px;
+  --line-height-heading-m: 32px;
+  --line-height-heading-s: 24px;
+  --line-height-body-xl: 31px;
+  --line-height-body-l: 27px;
+  --line-height-body-m: 27px;
+  --line-height-body-s: 25px;
+
+  /* ===== tokens - layout ===== */
+
+  --layout-content-6col: 1200px;
+}
