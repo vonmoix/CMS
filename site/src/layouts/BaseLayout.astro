@@ -108,16 +108,15 @@ const currentPath = normalize(Astro.url.pathname);
 
 <style is:global>
   :root {
-    /* Neutros tintados hacia el azul marino de las ilustraciones (hue 265) */
-    --color-bg: oklch(0.17 0.025 265);
-    --color-surface: oklch(0.21 0.03 265);
-    --color-surface-2: oklch(0.25 0.035 265);
-    --color-border: oklch(0.31 0.03 265);
-    --color-text: oklch(0.94 0.012 265);
-    --color-muted: oklch(0.73 0.03 265);
-    /* Acento "señal de instrumento": se usa poco, a propósito */
-    --color-accent: oklch(0.82 0.14 75);
-    --color-accent-ink: oklch(0.2 0.04 75);
+    /* Alias de las variables antiguas hacia los tokens de Figma (styles/tokens.css) */
+    --color-bg: var(--fill-surface-grey-dark);
+    --color-surface: var(--fill-page-grey-medium);
+    --color-surface-2: var(--color-neutral-600);
+    --color-border: var(--color-neutral-600);
+    --color-text: var(--text-primary);
+    --color-muted: var(--text-tertiary);
+    --color-accent: var(--buttons-fill-primary-default);
+    --color-accent-ink: var(--buttons-text-primary-default);
 
     --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
     --font-sans: "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
