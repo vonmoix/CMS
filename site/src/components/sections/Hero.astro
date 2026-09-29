@@ -60,5 +60,11 @@ const { eyebrow, heading, subheading, image, button } = Astro.props;
     .hero-grid {
       grid-template-columns: 1fr minmax(0, 520px);
     }
+    /* Botón tamaño M en Desktop/Tablet (en Mobile queda el S por defecto) */
+    .btn {
+      height: 46px;
+      padding: var(--gap-gap-12) var(--gap-gap-48);
+      font-size: var(--font-size-body-m);
+    }
   }
 </style>
