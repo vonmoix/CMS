@@ -180,6 +180,7 @@
   --size-sp-64: 64px;
   --size-sp-128: 128px;
   --size-sp-192: 192px;
+  --size-sp-220: 220px;
   --size-sp-256: 256px;
 
   --border-none: 0;
@@ -220,4 +221,6 @@
   /* ===== tokens - layout ===== */
 
   --layout-content-6col: 1200px;
+  --layout-mobile: 375px;
+  --layout-mobile-content: 327px;
 }

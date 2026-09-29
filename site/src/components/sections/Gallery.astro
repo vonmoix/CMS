@@ -17,7 +17,7 @@ const { heading, images = [] } = Astro.props;
 <style>
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--size-sp-220), 1fr));
     gap: var(--gap-gap-16);
   }
   figure {

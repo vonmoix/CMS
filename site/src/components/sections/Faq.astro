@@ -37,8 +37,8 @@ const { heading, items = [] } = Astro.props;
   summary::before {
     content: "▼";
     flex: none;
-    width: 16px;
-    font-size: 12px;
+    width: var(--size-sp-16);
+    font-size: var(--size-sp-12);
     line-height: 1;
     text-align: center;
     transform: rotate(-90deg);
@@ -54,6 +54,6 @@ const { heading, items = [] } = Astro.props;
     color: var(--text-tertiary);
     font-size: var(--font-size-body-l);
     line-height: var(--line-height-body-l);
-    margin: 12px 0 0;
+    margin: var(--gap-gap-12) 0 0;
   }
 </style>
