@@ -16,6 +16,7 @@ const requiredBySectionType = {
   cta: ["heading", "button"],
   gallery: ["images"],
   faq: ["items"],
+  introDark: ["heading"],
 };
 
 const knownTypes = Object.keys(requiredBySectionType);

@@ -73,6 +73,13 @@ const faqSection = z.object({
     .min(1),
 });
 
+const introDarkSection = z.object({
+  type: z.literal("introDark"),
+  eyebrow: z.string().optional(),
+  heading: z.string().min(1),
+  description: z.string().optional(),
+});
+
 export const sectionSchema = z.discriminatedUnion("type", [
   heroSection,
   textImageSection,
@@ -80,6 +87,7 @@ export const sectionSchema = z.discriminatedUnion("type", [
   ctaSection,
   gallerySection,
   faqSection,
+  introDarkSection,
 ]);
 
 const pagesCollection = defineCollection({
