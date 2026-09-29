@@ -24,6 +24,12 @@
       }
     },
     {
+      "type": "introDark",
+      "eyebrow": "eyebrow",
+      "heading": "section title",
+      "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles."
+    },
+    {
       "type": "textImage",
       "heading": "Cómo funciona",
       "body": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
@@ -73,6 +79,6 @@
       }
     }
   ],
-  "updatedAt": "2026-09-28T18:04:41.416Z",
+  "updatedAt": "2026-09-29T17:49:40.632Z",
   "updatedBy": "admin"
 }
