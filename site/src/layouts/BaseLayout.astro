@@ -44,7 +44,7 @@ const currentPath = normalize(Astro.url.pathname);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap"
     />
     <!-- Sin JS el menú se muestra siempre; con JS se pliega en móvil. -->
     <script is:inline>document.documentElement.classList.add("js");</script>
@@ -54,11 +54,11 @@ const currentPath = normalize(Astro.url.pathname);
     <header class="site-header" data-nav>
       <nav class="site-nav" aria-label="Principal">
         <a class="brand" href={withBase("/")} aria-label="MoixCMS, ir a la portada">
-          Moix<span>CMS</span>
+          MoixCMS
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
           <span class="nav-toggle-label" data-nav-label>Menú</span>
-          <span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span></span>
+          <span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
         <ul class="nav-links" id="nav-menu">
           {navPages.map((p, i) => (
@@ -76,7 +76,13 @@ const currentPath = normalize(Astro.url.pathname);
       <slot />
     </main>
     <footer class="site-footer">
-      <p>© {new Date().getFullYear()} MoixCMS</p>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <p class="footer-brand">MoixCMS</p>
+          <p>Sitio construido con nuestro propio CMS</p>
+        </div>
+        <p>© {new Date().getFullYear()} MoixCMS. Todos los derechos reservados.</p>
+      </div>
     </footer>
 
     <script>
@@ -109,8 +115,8 @@ const currentPath = normalize(Astro.url.pathname);
 <style is:global>
   :root {
     /* Alias de las variables antiguas hacia los tokens de Figma (styles/tokens.css) */
-    --color-bg: var(--fill-surface-grey-dark);
-    --color-surface: var(--fill-page-grey-medium);
+    --color-bg: var(--fill-page-grey-medium);
+    --color-surface: var(--fill-surface-grey-dark);
     --color-surface-2: var(--color-neutral-600);
     --color-border: var(--color-neutral-600);
     --color-text: var(--text-primary);
@@ -118,8 +124,8 @@ const currentPath = normalize(Astro.url.pathname);
     --color-accent: var(--buttons-fill-primary-default);
     --color-accent-ink: var(--buttons-text-primary-default);
 
-    --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
-    --font-sans: "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Barlow Semi Condensed", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: var(--font-display);
 
     --space-xs: 4px;
     --space-sm: 8px;
@@ -129,6 +135,20 @@ const currentPath = normalize(Astro.url.pathname);
 
     --header-h: 64px;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Tamaños de texto en móvil (modo Mobile de las variables de Figma) */
+  @media (max-width: 719px) {
+    :root:root {
+      --font-size-heading-m: 28px;
+      --line-height-heading-m: 28px;
+      --font-size-heading-s: 21px;
+      --line-height-heading-s: 21px;
+      --font-size-body-l: 18px;
+      --line-height-body-l: 24px;
+      --font-size-body-s: 14px;
+      --line-height-body-s: 22px;
+    }
   }
 
   * {
@@ -148,7 +168,8 @@ const currentPath = normalize(Astro.url.pathname);
     font-family: var(--font-sans);
     color: var(--color-text);
     background: var(--color-bg);
-    line-height: 1.65;
+    font-size: var(--font-size-body-l);
+    line-height: var(--line-height-body-l);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -156,9 +177,15 @@ const currentPath = normalize(Astro.url.pathname);
   h2,
   h3 {
     font-family: var(--font-display);
-    font-stretch: 108%;
-    line-height: 1.12;
-    letter-spacing: -0.015em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    margin: 0 0 20px;
+    font-size: var(--font-size-heading-s);
+    line-height: var(--line-height-heading-s);
   }
 
   a {
@@ -172,9 +199,15 @@ const currentPath = normalize(Astro.url.pathname);
   }
 
   main {
-    max-width: 1100px;
+    max-width: var(--layout-content-6col);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--gap-gap-16);
+  }
+
+  @media (min-width: 720px) {
+    main {
+      padding: 0 var(--gap-gap-48);
+    }
   }
 
   img {
@@ -204,35 +237,35 @@ const currentPath = normalize(Astro.url.pathname);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--fill-page-grey-medium);
+    border-bottom: 1px solid var(--stroke-br-100);
   }
 
   .site-nav {
-    max-width: 1100px;
+    max-width: var(--layout-content-6col);
     height: var(--header-h);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--gap-gap-16);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-lg);
+    gap: var(--gap-gap-24);
+  }
+
+  @media (min-width: 720px) {
+    .site-nav {
+      padding: 0 var(--gap-gap-48);
+    }
   }
 
   .brand {
-    font-family: var(--font-display);
-    font-stretch: 112%;
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
-    color: var(--color-text);
+    font-weight: 700;
+    font-size: var(--font-size-heading-s);
+    line-height: var(--line-height-heading-s);
+    text-transform: uppercase;
+    color: var(--buttons-text-primary-default);
     text-decoration: none;
     white-space: nowrap;
-  }
-
-  .brand span {
-    font-weight: 500;
-    color: var(--color-muted);
   }
 
   .nav-links {
@@ -241,7 +274,7 @@ const currentPath = normalize(Astro.url.pathname);
     padding: 0;
     display: flex;
     align-self: stretch;
-    gap: var(--space-lg);
+    gap: var(--gap-gap-24);
     min-width: 0;
   }
 
@@ -253,10 +286,10 @@ const currentPath = normalize(Astro.url.pathname);
     position: relative;
     display: flex;
     align-items: center;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--color-muted);
+    font-weight: 600;
+    font-size: var(--font-size-body-l);
+    line-height: var(--line-height-body-l);
+    color: var(--text-tertiary);
     text-decoration: none;
     white-space: nowrap;
     transition: color 160ms var(--ease-out);
@@ -301,40 +334,57 @@ const currentPath = normalize(Astro.url.pathname);
       padding: 0 var(--space-sm);
       background: none;
       border: 0;
-      color: var(--color-text);
-      font: 500 0.95rem var(--font-display);
+      color: var(--buttons-text-primary-default);
       cursor: pointer;
+    }
+
+    /* El texto Menú/Cerrar sigue disponible para lectores de pantalla; a la vista solo el icono */
+    .nav-toggle-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
 
     .nav-toggle-icon {
       position: relative;
-      width: 18px;
-      height: 10px;
+      width: 22px;
+      height: 14px;
     }
 
     .nav-toggle-icon span {
       position: absolute;
       left: 0;
       width: 100%;
-      height: 1.5px;
+      height: 2px;
       background: currentColor;
-      transition: transform 240ms var(--ease-out);
+      transition: transform 240ms var(--ease-out), opacity 160ms var(--ease-out);
     }
 
-    .nav-toggle-icon span:first-child {
+    .nav-toggle-icon span:nth-child(1) {
       top: 0;
     }
 
-    .nav-toggle-icon span:last-child {
+    .nav-toggle-icon span:nth-child(2) {
+      top: 6px;
+    }
+
+    .nav-toggle-icon span:nth-child(3) {
       bottom: 0;
     }
 
-    [data-open] .nav-toggle-icon span:first-child {
-      transform: translateY(4.25px) rotate(45deg);
+    [data-open] .nav-toggle-icon span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
     }
 
-    [data-open] .nav-toggle-icon span:last-child {
-      transform: translateY(-4.25px) rotate(-45deg);
+    [data-open] .nav-toggle-icon span:nth-child(2) {
+      opacity: 0;
+    }
+
+    [data-open] .nav-toggle-icon span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
     }
 
     /* Sin JS: los enlaces bajo la marca, en una fila que se puede deslizar */
@@ -355,9 +405,9 @@ const currentPath = normalize(Astro.url.pathname);
       inset: var(--header-h) 0 0 0;
       flex-direction: column;
       gap: 0;
-      padding: var(--space-lg) 1.5rem var(--space-xl);
+      padding: var(--space-lg) var(--gap-gap-16) var(--space-xl);
       overflow-y: auto;
-      background: var(--color-bg);
+      background: var(--fill-page-grey-medium);
       visibility: hidden;
       opacity: 0;
       transition: opacity 200ms var(--ease-out), visibility 0s linear 200ms;
@@ -387,9 +437,10 @@ const currentPath = normalize(Astro.url.pathname);
       align-items: baseline;
       gap: var(--space-md);
       padding: 18px 0;
-      font-size: 1.6rem;
-      font-weight: 600;
-      font-stretch: 108%;
+      font-size: var(--font-size-heading-m);
+      line-height: var(--line-height-heading-m);
+      font-weight: 700;
+      text-transform: uppercase;
       color: var(--color-text);
       white-space: normal;
     }
@@ -423,32 +474,81 @@ const currentPath = normalize(Astro.url.pathname);
   /* ---------- Pie ---------- */
 
   .site-footer {
-    margin-top: 4rem;
-    padding: 2rem 1.5rem;
-    border-top: 1px solid var(--color-border);
-    text-align: center;
-    color: var(--color-muted);
-    font-size: 0.875rem;
+    margin-top: var(--gap-gap-64);
+    background: var(--fill-page-grey-medium);
+    border-top: 1px solid var(--stroke-br-100);
+    color: var(--text-tertiary);
+    font-size: var(--font-size-body-s);
+    line-height: var(--line-height-body-s);
   }
 
+  .footer-inner {
+    max-width: var(--layout-content-6col);
+    margin: 0 auto;
+    padding: var(--gap-gap-24) var(--gap-gap-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-gap-8);
+  }
+
+  .footer-inner p {
+    margin: 0;
+  }
+
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-gap-8) var(--gap-gap-24);
+  }
+
+  .footer-inner .footer-brand {
+    font-weight: 700;
+    font-size: var(--font-size-heading-s);
+    line-height: var(--line-height-heading-s);
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  @media (min-width: 720px) {
+    .footer-inner {
+      padding: var(--gap-gap-24) var(--gap-gap-48);
+    }
+  }
+
+  /* Botón primario, tamaño S. .btn-l = tamaño L */
   .btn {
-    display: inline-block;
-    padding: 0.7rem 1.3rem;
-    background: var(--color-accent);
-    color: var(--color-accent-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    padding: var(--gap-gap-8) var(--gap-gap-32);
+    background: var(--buttons-fill-primary-default);
+    color: var(--buttons-text-primary-default);
     text-decoration: none;
-    border-radius: 6px;
-    font-family: var(--font-display);
-    font-weight: 600;
-    transition: background-color 160ms var(--ease-out);
+    text-transform: uppercase;
+    border-radius: var(--radius-rd-sm);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: normal;
+    white-space: nowrap;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
   }
 
   .btn:hover {
-    background: oklch(0.87 0.12 75);
+    background: var(--buttons-fill-primary-hover);
+    color: var(--buttons-text-primary-hover);
+  }
+
+  .btn-l {
+    height: 56px;
+    padding: var(--gap-gap-16) var(--gap-gap-64);
+    font-size: 20px;
   }
 
   section.block {
-    padding: 3rem 0;
+    padding: var(--gap-gap-48) 0;
   }
 
   section.block + section.block {

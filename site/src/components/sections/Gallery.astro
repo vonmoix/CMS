@@ -18,13 +18,13 @@ const { heading, images = [] } = Astro.props;
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+    gap: var(--gap-gap-16);
   }
   figure {
     margin: 0;
   }
   figure img {
-    border-radius: 8px;
+    border-radius: var(--radius-rd-sm);
     aspect-ratio: 4 / 3;
     object-fit: cover;
     width: 100%;

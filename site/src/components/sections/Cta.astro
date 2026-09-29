@@ -7,22 +7,28 @@ const { heading, body, button } = Astro.props;
   <div class="cta-box">
     <h2>{heading}</h2>
     {body && <p>{body}</p>}
-    <a class="btn" href={withBase(button.href)}>{button.label}</a>
+    <a class="btn btn-l" href={withBase(button.href)}>{button.label}</a>
   </div>
 </section>
 
 <style>
   .cta-box {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: var(--fill-surface-grey-dark);
+    border: var(--border-br-1) solid var(--opacity-white-opc-40);
     border-radius: 12px;
-    padding: 2.5rem;
+    padding: var(--gap-gap-40);
     text-align: center;
   }
   .cta-box h2 {
-    margin-top: 0;
+    margin: 0;
   }
   .cta-box p {
-    color: var(--color-muted);
+    margin: 0;
+    color: var(--text-tertiary);
   }
 </style>
