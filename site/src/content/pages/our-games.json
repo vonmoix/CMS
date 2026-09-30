@@ -1,0 +1,45 @@
+{
+  "title": "Our Games",
+  "description": "Our Games Catalog",
+  "slug": "our-games",
+  "order": 5,
+  "draft": false,
+  "seo": {
+    "title": "",
+    "description": ""
+  },
+  "sections": [
+    {
+      "type": "introText",
+      "surface": "grey-medium",
+      "title": "Our Games",
+      "copy": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
+      "size": "l",
+      "eyebrow": ""
+    },
+    {
+      "type": "introText",
+      "eyebrow": "",
+      "title": "Slot games",
+      "copy": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
+      "size": "xl",
+      "surface": "grey-medium"
+    },
+    {
+      "type": "gallery",
+      "title": "",
+      "images": [
+        {
+          "src": "/images/1790694719863-galeria-06-bruja-cuero.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/images/1790694729331-galeria-09-cyberpunk.jpg",
+          "alt": ""
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-30T13:56:53.916Z",
+  "updatedBy": "admin"
+}
