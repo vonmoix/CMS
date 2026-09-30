@@ -1,0 +1,53 @@
+{
+  "title": "Ernesto",
+  "description": "esta es la pagina de ernesto",
+  "slug": "ernesto",
+  "order": 4,
+  "draft": false,
+  "seo": {
+    "title": "",
+    "description": ""
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "eyebrow": "Ernesto Sin",
+      "heading": "sin cerveza nunca",
+      "subheading": "no quedaron cervezas",
+      "image": {
+        "src": "/images/1790667451724-02029-3282647358empty.png",
+        "alt": "texto alternativo de la imagen"
+      },
+      "button": {
+        "label": "texto del boton",
+        "href": "/paco"
+      },
+      "surface": "white"
+    },
+    {
+      "type": "richText",
+      "heading": "bloque de texto ",
+      "body": "dflkajfrlkjdslfkrjasdjf. adsklfj skldjf kladsjf "
+    },
+    {
+      "type": "gallery",
+      "heading": "",
+      "images": [
+        {
+          "src": "/images/1790667737986-00016-506007741empty-swapped.png",
+          "alt": ""
+        },
+        {
+          "src": "/images/1790667759124-00020-3762248647empty.png",
+          "alt": ""
+        },
+        {
+          "src": "/images/1790667751312-00007-186873875empty-swapped.png",
+          "alt": ""
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-30T10:37:38.252Z",
+  "updatedBy": "admin"
+}
