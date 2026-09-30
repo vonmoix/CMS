@@ -10,6 +10,12 @@
   },
   "sections": [
     {
+      "type": "introWhite",
+      "eyebrow": "eyebrow on white",
+      "heading": "titulo on white ",
+      "description": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service."
+    },
+    {
       "type": "hero",
       "eyebrow": "Nuevo",
       "heading": "Bienvenidos al nuevo sitio",
@@ -79,6 +85,6 @@
       }
     }
   ],
-  "updatedAt": "2026-09-29T17:49:40.632Z",
+  "updatedAt": "2026-09-30T09:20:18.560Z",
   "updatedBy": "admin"
 }
