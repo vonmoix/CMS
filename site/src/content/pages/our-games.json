@@ -11,19 +11,19 @@
   "sections": [
     {
       "type": "introText",
-      "surface": "grey-medium",
-      "title": "Our Games",
-      "copy": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
-      "size": "l",
-      "eyebrow": ""
-    },
-    {
-      "type": "introText",
       "eyebrow": "",
       "title": "Slot games",
       "copy": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
       "size": "xl",
       "surface": "grey-medium"
+    },
+    {
+      "type": "introText",
+      "surface": "grey-medium",
+      "title": "Our Games",
+      "copy": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
+      "size": "l",
+      "eyebrow": ""
     },
     {
       "type": "gallery",
@@ -40,6 +40,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-30T13:56:53.916Z",
+  "updatedAt": "2026-09-30T13:58:38.749Z",
   "updatedBy": "admin"
 }
