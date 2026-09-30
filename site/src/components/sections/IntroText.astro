@@ -1,6 +1,6 @@
 ---
 // Eyebrow + título + línea roja + texto, centrado. Sustituye a Intro y RichText.
-// size "xl" = título Display XL; size "l" = título Heading L.
+// size "xl" = título Display XL y texto Body XL; size "l" = título Heading L y texto Body L.
 // El color lo decide la franja (surface) y el espaciado vertical también:
 // el bloque no lleva fondo ni padding propio.
 const { eyebrow, title, copy, size = "xl" } = Astro.props;
@@ -93,5 +93,9 @@ const hasHeader = eyebrow || title;
   .intro-text[data-size="l"] h2 {
     font-size: var(--font-size-heading-l);
     line-height: var(--line-height-heading-l);
+  }
+  .intro-text[data-size="l"] .description {
+    font-size: var(--font-size-body-l);
+    line-height: var(--line-height-body-l);
   }
 </style>
