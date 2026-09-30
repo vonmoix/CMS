@@ -7,9 +7,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check-content": "node scripts/check-content.mjs"
+    "check-content": "node scripts/check-content.mjs",
+    "figma:publish": "figma connect publish --dir figma",
+    "figma:dry-run": "figma connect publish --dir figma --dry-run"
   },
   "dependencies": {
     "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@figma/code-connect": "^2.0.1"
   }
 }
