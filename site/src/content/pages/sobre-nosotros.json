@@ -10,9 +10,11 @@
   },
   "sections": [
     {
-      "type": "richText",
+      "type": "introText",
+      "surface": "grey-medium",
       "heading": "Quiénes somos",
-      "body": "Este es un texto de ejemplo editable. Sustituidlo por vuestro contenido real desde el panel."
+      "description": "Este es un texto de ejemplo editable. Sustituidlo por vuestro contenido real desde el panel.",
+      "size": "l"
     },
     {
       "type": "gallery",

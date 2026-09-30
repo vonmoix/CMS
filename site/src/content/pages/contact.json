@@ -16,9 +16,11 @@
       "subheading": ""
     },
     {
-      "type": "richText",
+      "type": "introText",
+      "surface": "grey-medium",
       "heading": "Rellena todos los campos",
-      "body": "blablabla"
+      "description": "blablabla",
+      "size": "l"
     },
     {
       "type": "cta",

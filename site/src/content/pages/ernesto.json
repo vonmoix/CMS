@@ -25,9 +25,11 @@
       "surface": "white"
     },
     {
-      "type": "richText",
+      "type": "introText",
+      "surface": "grey-medium",
       "heading": "bloque de texto ",
-      "body": "dflkajfrlkjdslfkrjasdjf. adsklfj skldjf kladsjf "
+      "description": "dflkajfrlkjdslfkrjasdjf. adsklfj skldjf kladsjf ",
+      "size": "l"
     },
     {
       "type": "gallery",

@@ -1,0 +1,97 @@
+---
+// Eyebrow + título + línea roja + texto, centrado. Sustituye a Intro y RichText.
+// size "xl" = título Display XL; size "l" = título Heading L.
+// El color lo decide la franja (surface) y el espaciado vertical también:
+// el bloque no lleva fondo ni padding propio.
+const { eyebrow, heading, description, size = "xl" } = Astro.props;
+const hasHeader = eyebrow || heading;
+---
+
+<section class="block intro-text" data-size={size}>
+  <div class="box">
+    {hasHeader && (
+      <div class="header">
+        <div class="copy">
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          {heading && <h2>{heading}</h2>}
+        </div>
+        <span class="underline" aria-hidden="true"></span>
+      </div>
+    )}
+    {description && <p class="description">{description}</p>}
+  </div>
+</section>
+
+<style>
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-gap-48);
+    max-width: var(--layout-content-6col);
+    margin: 0 auto;
+    text-align: center;
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+    width: 100%;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-none);
+    width: 100%;
+  }
+  .eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: var(--font-size-body-l);
+    line-height: var(--line-height-body-l);
+    color: var(--band-fg-muted);
+  }
+  h2 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: var(--font-size-display-xl);
+    line-height: var(--line-height-display-xl);
+    color: var(--band-fg);
+  }
+  .underline {
+    width: var(--size-sp-48);
+    height: var(--size-sp-2);
+    background: var(--fill-surface-red);
+  }
+  .description {
+    margin: 0;
+    width: 100%;
+    white-space: pre-line;
+    font-size: var(--font-size-body-xl);
+    line-height: var(--line-height-body-xl);
+    color: var(--band-fg);
+  }
+
+  /* L: título Heading L, eyebrow pequeño y espacios más cortos */
+  .intro-text[data-size="l"] .box {
+    gap: var(--gap-gap-24);
+  }
+  .intro-text[data-size="l"] .header {
+    gap: var(--gap-gap-12);
+  }
+  .intro-text[data-size="l"] .copy {
+    gap: var(--gap-gap-4);
+  }
+  .intro-text[data-size="l"] .eyebrow {
+    font-size: var(--font-size-body-s);
+    line-height: var(--line-height-body-s);
+  }
+  .intro-text[data-size="l"] h2 {
+    font-size: var(--font-size-heading-l);
+    line-height: var(--line-height-heading-l);
+  }
+</style>

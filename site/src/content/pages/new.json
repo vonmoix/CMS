@@ -24,9 +24,11 @@
       ]
     },
     {
-      "type": "richText",
+      "type": "introText",
+      "surface": "grey-medium",
       "heading": "this is the title",
-      "body": "this is the tklasdjflaksj fads jsdlf jalsk fjladksfj al "
+      "description": "this is the tklasdjflaksj fads jsdlf jalsk fjladksfj al ",
+      "size": "l"
     }
   ],
   "updatedAt": "2026-09-29T15:13:24.179Z",

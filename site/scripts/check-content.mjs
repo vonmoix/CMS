@@ -13,11 +13,10 @@ const requiredBySectionType = {
   hero: ["heading"],
   heroVideo: ["video"],
   textImage: ["heading", "body", "image"],
-  richText: ["body"],
   cta: ["heading", "button"],
   gallery: ["images"],
   faq: ["items"],
-  intro: ["heading"],
+  introText: [],
 };
 
 const knownTypes = Object.keys(requiredBySectionType);

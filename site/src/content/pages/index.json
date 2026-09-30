@@ -10,12 +10,12 @@
   },
   "sections": [
     {
-      "type": "intro",
+      "type": "introText",
+      "surface": "white",
       "eyebrow": "eyebrow on white",
       "heading": "titulo on white ",
       "description": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
-      "surface": "white",
-      "size": "l"
+      "size": "xl"
     },
     {
       "type": "hero",
@@ -44,12 +44,12 @@
       "surface": "grey-dark"
     },
     {
-      "type": "intro",
+      "type": "introText",
+      "surface": "grey-medium",
       "eyebrow": "eyebrow",
       "heading": "section title",
       "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
-      "surface": "grey-medium",
-      "size": "m"
+      "size": "xl"
     },
     {
       "type": "gallery",

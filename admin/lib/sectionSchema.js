@@ -42,14 +42,6 @@ const SECTION_CATALOG = {
       },
     ],
   },
-  richText: {
-    label: "Bloque de texto",
-    fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "heading", label: "Título (opcional)", type: "text" },
-      { name: "body", label: "Texto", type: "textarea", required: true },
-    ],
-  },
   cta: {
     label: "Llamada a la acción (CTA)",
     fields: [
@@ -72,21 +64,21 @@ const SECTION_CATALOG = {
       { name: "items", label: "Preguntas", type: "faqList", required: true },
     ],
   },
-  intro: {
-    label: "Intro (título centrado)",
+  introText: {
+    label: "Intro / bloque de texto",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "heading", label: "Título", type: "text", required: true },
-      { name: "description", label: "Descripción", type: "textarea" },
+      { name: "heading", label: "Título (opcional)", type: "text" },
+      { name: "description", label: "Texto", type: "textarea" },
       {
         name: "size",
-        label: "Tamaño",
+        label: "Tamaño del título",
         type: "select",
         options: [
-          { value: "l", label: "Grande" },
-          { value: "m", label: "Compacto" },
+          { value: "xl", label: "XL" },
+          { value: "l", label: "L" },
         ],
-        default: "l",
+        default: "xl",
       },
     ],
   },

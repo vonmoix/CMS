@@ -57,14 +57,6 @@ const textImageSection = z.object({
   imagePosition: z.enum(["left", "right"]).default("right"),
 });
 
-const richTextSection = z.object({
-  type: z.literal("richText"),
-  ...surfaceField,
-  eyebrow: z.string().optional(),
-  heading: z.string().optional(),
-  body: z.string().min(1),
-});
-
 const ctaSection = z.object({
   type: z.literal("cta"),
   ...surfaceField,
@@ -94,25 +86,24 @@ const faqSection = z.object({
     .min(1),
 });
 
-const introSection = z.object({
-  type: z.literal("intro"),
+const introTextSection = z.object({
+  type: z.literal("introText"),
   ...surfaceField,
   eyebrow: z.string().optional(),
-  heading: z.string().min(1),
+  heading: z.string().optional(),
   description: z.string().optional(),
-  // l = grande (padding 128), m = compacta (padding 64)
-  size: z.enum(["l", "m"]).default("l"),
+  // xl = título Display XL, l = título Heading L
+  size: z.enum(["xl", "l"]).default("xl"),
 });
 
 export const sectionSchema = z.discriminatedUnion("type", [
   heroSection,
   heroVideoSection,
   textImageSection,
-  richTextSection,
   ctaSection,
   gallerySection,
   faqSection,
-  introSection,
+  introTextSection,
 ]);
 
 const pagesCollection = defineCollection({
