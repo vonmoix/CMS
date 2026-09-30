@@ -37,7 +37,7 @@
       "eyebrow": "eyebrow",
       "heading": "section title",
       "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
-      "surface": "grey-dark",
+      "surface": "grey-medium",
       "size": "m"
     },
     {
@@ -93,6 +93,6 @@
       "surface": "white"
     }
   ],
-  "updatedAt": "2026-09-30T09:58:51.990Z",
+  "updatedAt": "2026-09-30T10:02:03.322Z",
   "updatedBy": "admin"
 }
