@@ -4,11 +4,11 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const heading = instance.getString('Heading')
+const title = instance.getString('Title')
 
 export default {
   example: figma.code`<Faq
-  heading="${heading}"
+  title="${title}"
   items={[
     { question: "¿Pregunta?", answer: "Respuesta." },
   ]}

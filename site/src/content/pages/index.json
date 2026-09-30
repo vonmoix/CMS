@@ -13,15 +13,15 @@
       "type": "introText",
       "surface": "white",
       "eyebrow": "eyebrow on white",
-      "heading": "titulo on white ",
-      "description": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
+      "title": "titulo on white ",
+      "copy": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
       "size": "xl"
     },
     {
       "type": "hero",
       "eyebrow": "Nuevo",
-      "heading": "Bienvenidos al nuevo sitio",
-      "subheading": "Este contenido lo edita el equipo de marketing desde el panel de administración, sin tocar código.",
+      "title": "Bienvenidos al nuevo sitio",
+      "copy": "Este contenido lo edita el equipo de marketing desde el panel de administración, sin tocar código.",
       "image": {
         "src": "/images/hero-bienvenida.svg",
         "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, Astro, HTML y CSS"
@@ -34,8 +34,8 @@
     },
     {
       "type": "textImage",
-      "heading": "Cómo funciona",
-      "body": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
+      "title": "Cómo funciona",
+      "copy": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
       "image": {
         "src": "/images/como-funciona.svg",
         "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
@@ -47,13 +47,13 @@
       "type": "introText",
       "surface": "grey-medium",
       "eyebrow": "eyebrow",
-      "heading": "section title",
-      "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
+      "title": "section title",
+      "copy": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
       "size": "xl"
     },
     {
       "type": "gallery",
-      "heading": "Galeria de Imagenes",
+      "title": "Galeria de Imagenes",
       "images": [
         {
           "src": "/images/1790598509272-playzzard-mascot.svg",
@@ -84,8 +84,8 @@
     },
     {
       "type": "cta",
-      "heading": "¿Listos para empezar?",
-      "body": "Entra al panel de administración para crear tu primera página.",
+      "title": "¿Listos para empezar?",
+      "copy": "Entra al panel de administración para crear tu primera página.",
       "button": {
         "label": "CONTROL PANEL",
         "href": "https://cms-admin-p0mg.onrender.com"

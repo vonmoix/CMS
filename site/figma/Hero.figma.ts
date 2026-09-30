@@ -4,11 +4,11 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const showEyebrow = instance.getBoolean('Eyebrow')
-const eyebrow = instance.getString('Eyebrow text')
-const heading = instance.getString('Heading')
-const subheading = instance.getString('Subheading')
-const showButton = instance.getBoolean('Button')
+const showEyebrow = instance.getBoolean('Show Eyebrow')
+const eyebrow = instance.getString('Eyebrow')
+const title = instance.getString('Title')
+const copy = instance.getString('Copy')
+const showButton = instance.getBoolean('Show Button')
 const button = instance.findInstance('Button')
 let label = ''
 if (button && button.type === 'INSTANCE') {
@@ -18,8 +18,8 @@ if (button && button.type === 'INSTANCE') {
 export default {
   example: figma.code`<Hero
   ${showEyebrow ? figma.code`eyebrow="${eyebrow}"` : ''}
-  heading="${heading}"
-  subheading="${subheading}"
+  title="${title}"
+  copy="${copy}"
   ${showButton ? figma.code`button={{ href: "/", label: "${label}" }}` : ''}
   image={{ src: "/images/hero-bienvenida.svg", alt: "" }}
 />`,

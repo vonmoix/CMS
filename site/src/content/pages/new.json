@@ -11,7 +11,7 @@
   "sections": [
     {
       "type": "gallery",
-      "heading": "Kornel super hero",
+      "title": "Kornel super hero",
       "images": [
         {
           "src": "/images/1790694719863-galeria-06-bruja-cuero.jpg",
@@ -26,8 +26,8 @@
     {
       "type": "introText",
       "surface": "grey-medium",
-      "heading": "this is the title",
-      "description": "this is the tklasdjflaksj fads jsdlf jalsk fjladksfj al ",
+      "title": "this is the title",
+      "copy": "this is the tklasdjflaksj fads jsdlf jalsk fjladksfj al ",
       "size": "l"
     }
   ],

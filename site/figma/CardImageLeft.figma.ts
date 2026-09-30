@@ -5,13 +5,13 @@ import figma from 'figma'
 const instance = figma.selectedInstance
 
 const title = instance.getString('Title')
-const content = instance.getString('Content')
+const copy = instance.getString('Copy')
 const showImage = instance.getBoolean('Show Image')
 
 export default {
   example: figma.code`<CardImageLeft
   title="${title}"
-  content="${content}"
+  copy="${copy}"
   image={{ src: "/images/imagen.png", alt: "" }}
   showImage={${showImage}}
 />`,

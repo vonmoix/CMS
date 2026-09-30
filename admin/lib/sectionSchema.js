@@ -11,8 +11,8 @@ const SECTION_CATALOG = {
     label: "Hero (cabecera grande)",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "heading", label: "Título", type: "text", required: true },
-      { name: "subheading", label: "Subtítulo", type: "textarea" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "copy", label: "Subtítulo", type: "textarea" },
       { name: "image", label: "Imagen", type: "image" },
       { name: "button", label: "Botón", type: "button" },
     ],
@@ -27,8 +27,8 @@ const SECTION_CATALOG = {
   textImage: {
     label: "Texto + imagen",
     fields: [
-      { name: "heading", label: "Título", type: "text", required: true },
-      { name: "body", label: "Texto", type: "textarea", required: true },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "copy", label: "Texto", type: "textarea", required: true },
       { name: "image", label: "Imagen", type: "image", required: true },
       {
         name: "imagePosition",
@@ -45,22 +45,22 @@ const SECTION_CATALOG = {
   cta: {
     label: "Llamada a la acción (CTA)",
     fields: [
-      { name: "heading", label: "Título", type: "text", required: true },
-      { name: "body", label: "Texto (opcional)", type: "textarea" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "copy", label: "Texto (opcional)", type: "textarea" },
       { name: "button", label: "Botón", type: "button", required: true },
     ],
   },
   gallery: {
     label: "Galería de imágenes",
     fields: [
-      { name: "heading", label: "Título (opcional)", type: "text" },
+      { name: "title", label: "Título (opcional)", type: "text" },
       { name: "images", label: "Imágenes", type: "imageList", required: true },
     ],
   },
   faq: {
     label: "Preguntas frecuentes",
     fields: [
-      { name: "heading", label: "Título (opcional)", type: "text" },
+      { name: "title", label: "Título (opcional)", type: "text" },
       { name: "items", label: "Preguntas", type: "faqList", required: true },
     ],
   },
@@ -68,8 +68,8 @@ const SECTION_CATALOG = {
     label: "Intro / bloque de texto",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "heading", label: "Título (opcional)", type: "text" },
-      { name: "description", label: "Texto", type: "textarea" },
+      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "copy", label: "Texto", type: "textarea" },
       {
         name: "size",
         label: "Tamaño del título",

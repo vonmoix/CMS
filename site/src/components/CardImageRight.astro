@@ -6,11 +6,11 @@ interface Props {
   title: string;
   /** Fragmento del título que se resalta en rojo */
   highlight?: string;
-  body: string;
+  copy: string;
   image?: { src: string; alt?: string };
 }
 
-const { eyebrow, title, highlight, body, image } = Astro.props as Props;
+const { eyebrow, title, highlight, copy, image } = Astro.props as Props;
 const at = highlight ? title.indexOf(highlight) : -1;
 const before = at >= 0 ? title.slice(0, at) : title;
 const marked = at >= 0 ? highlight : "";
@@ -23,7 +23,7 @@ const after = at >= 0 ? title.slice(at + highlight!.length) : "";
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h2>{before}{marked && <span class="accent">{marked}</span>}{after}</h2>
     </div>
-    <p class="body">{body}</p>
+    <p class="body">{copy}</p>
   </div>
   {image?.src && <img src={withBase(image.src)} alt={image.alt || ""} />}
 </article>

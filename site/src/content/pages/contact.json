@@ -12,20 +12,20 @@
     {
       "type": "hero",
       "eyebrow": "",
-      "heading": "Contact Form",
-      "subheading": ""
+      "title": "Contact Form",
+      "copy": ""
     },
     {
       "type": "introText",
       "surface": "grey-medium",
-      "heading": "Rellena todos los campos",
-      "description": "blablabla",
+      "title": "Rellena todos los campos",
+      "copy": "blablabla",
       "size": "l"
     },
     {
       "type": "cta",
-      "heading": "Send",
-      "body": "",
+      "title": "Send",
+      "copy": "",
       "button": {
         "label": "Send",
         "href": "www.google.es"

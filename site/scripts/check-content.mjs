@@ -10,10 +10,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const contentDir = join(__dirname, "..", "src", "content", "pages");
 
 const requiredBySectionType = {
-  hero: ["heading"],
+  hero: ["title"],
   heroVideo: ["video"],
-  textImage: ["heading", "body", "image"],
-  cta: ["heading", "button"],
+  textImage: ["title", "copy", "image"],
+  cta: ["title", "button"],
   gallery: ["images"],
   faq: ["items"],
   introText: [],

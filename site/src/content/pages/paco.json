@@ -12,8 +12,8 @@
     {
       "type": "hero",
       "eyebrow": "Paco",
-      "heading": "The IT Admin of the Hell",
-      "subheading": "lo que sea que quieras abre un ticket",
+      "title": "The IT Admin of the Hell",
+      "copy": "lo que sea que quieras abre un ticket",
       "image": {
         "src": "/images/banner.jpg",
         "alt": ""

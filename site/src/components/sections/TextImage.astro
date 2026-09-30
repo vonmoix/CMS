@@ -1,13 +1,13 @@
 ---
 import { withBase } from "../../lib/url.js";
-const { heading, body, image, imagePosition = "right" } = Astro.props;
+const { title, copy, image, imagePosition = "right" } = Astro.props;
 ---
 
 <section class="block text-image" data-position={imagePosition}>
   <div class="grid">
     <div class="text">
-      <h2>{heading}</h2>
-      <p>{body}</p>
+      <h2>{title}</h2>
+      <p>{copy}</p>
     </div>
     {image?.src && (
       <div class="image">

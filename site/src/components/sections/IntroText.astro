@@ -3,8 +3,8 @@
 // size "xl" = título Display XL; size "l" = título Heading L.
 // El color lo decide la franja (surface) y el espaciado vertical también:
 // el bloque no lleva fondo ni padding propio.
-const { eyebrow, heading, description, size = "xl" } = Astro.props;
-const hasHeader = eyebrow || heading;
+const { eyebrow, title, copy, size = "xl" } = Astro.props;
+const hasHeader = eyebrow || title;
 ---
 
 <section class="block intro-text" data-size={size}>
@@ -13,12 +13,12 @@ const hasHeader = eyebrow || heading;
       <div class="header">
         <div class="copy">
           {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-          {heading && <h2>{heading}</h2>}
+          {title && <h2>{title}</h2>}
         </div>
         <span class="underline" aria-hidden="true"></span>
       </div>
     )}
-    {description && <p class="description">{description}</p>}
+    {copy && <p class="description">{copy}</p>}
   </div>
 </section>
 

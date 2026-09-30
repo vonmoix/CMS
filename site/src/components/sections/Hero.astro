@@ -1,14 +1,14 @@
 ---
 import { withBase } from "../../lib/url.js";
-const { eyebrow, heading, subheading, image, button } = Astro.props;
+const { eyebrow, title, copy, image, button } = Astro.props;
 ---
 
 <section class="block hero">
   <div class="hero-grid">
     <div class="text">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h1>{heading}</h1>
-      {subheading && <p class="subheading">{subheading}</p>}
+      <h1>{title}</h1>
+      {copy && <p class="copy">{copy}</p>}
       {button?.href && (
         <a class="btn" href={withBase(button.href)}>
           {button.label}
@@ -44,7 +44,7 @@ const { eyebrow, heading, subheading, image, button } = Astro.props;
     line-height: var(--line-height-heading-m);
     margin: 0;
   }
-  .subheading {
+  .copy {
     color: var(--band-fg);
     font-size: var(--font-size-body-l);
     line-height: var(--line-height-body-l);

@@ -4,8 +4,8 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const heading = instance.getString('Heading')
-const body = instance.getString('Body')
+const title = instance.getString('Title')
+const copy = instance.getString('Copy')
 const imagePosition = instance.getEnum('Align', {
   'Right': 'right',
   'Left': 'left',
@@ -14,8 +14,8 @@ const imagePosition = instance.getEnum('Align', {
 
 export default {
   example: figma.code`<TextImage
-  heading="${heading}"
-  body="${body}"
+  title="${title}"
+  copy="${copy}"
   imagePosition="${imagePosition}"
   image={{ src: "/images/como-funciona.svg", alt: "" }}
 />`,

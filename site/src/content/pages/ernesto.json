@@ -12,8 +12,8 @@
     {
       "type": "hero",
       "eyebrow": "Ernesto Sin",
-      "heading": "sin cerveza nunca",
-      "subheading": "no quedaron cervezas",
+      "title": "sin cerveza nunca",
+      "copy": "no quedaron cervezas",
       "image": {
         "src": "/images/1790667451724-02029-3282647358empty.png",
         "alt": "texto alternativo de la imagen"
@@ -27,13 +27,13 @@
     {
       "type": "introText",
       "surface": "grey-medium",
-      "heading": "bloque de texto ",
-      "description": "dflkajfrlkjdslfkrjasdjf. adsklfj skldjf kladsjf ",
+      "title": "bloque de texto ",
+      "copy": "dflkajfrlkjdslfkrjasdjf. adsklfj skldjf kladsjf ",
       "size": "l"
     },
     {
       "type": "gallery",
-      "heading": "",
+      "title": "",
       "images": [
         {
           "src": "/images/1790667737986-00016-506007741empty-swapped.png",

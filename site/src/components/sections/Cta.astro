@@ -1,12 +1,12 @@
 ---
 import { withBase } from "../../lib/url.js";
-const { heading, body, button } = Astro.props;
+const { title, copy, button } = Astro.props;
 ---
 
 <section class="block cta">
   <div class="cta-box">
-    <h2>{heading}</h2>
-    {body && <p>{body}</p>}
+    <h2>{title}</h2>
+    {copy && <p>{copy}</p>}
     <a class="btn btn-l" href={withBase(button.href)}>{button.label}</a>
   </div>
 </section>

@@ -4,7 +4,7 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const heading = instance.getString('Heading')
+const title = instance.getString('Title')
 const button = instance.findInstance('Button')
 let label = ''
 if (button && button.type === 'INSTANCE') {
@@ -13,7 +13,7 @@ if (button && button.type === 'INSTANCE') {
 
 export default {
   example: figma.code`<Cta
-  heading="${heading}"
+  title="${title}"
   button={{ href: "/", label: "${label}" }}
 />`,
   imports: ['import Cta from "../components/sections/Cta.astro"'],

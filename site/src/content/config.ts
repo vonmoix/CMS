@@ -34,8 +34,8 @@ const heroSection = z.object({
   type: z.literal("hero"),
   ...surfaceField,
   eyebrow: z.string().optional(),
-  heading: z.string().min(1),
-  subheading: z.string().optional(),
+  title: z.string().min(1),
+  copy: z.string().optional(),
   image: imageSchema.optional(),
   button: buttonSchema.optional(),
 });
@@ -51,8 +51,8 @@ const heroVideoSection = z.object({
 const textImageSection = z.object({
   type: z.literal("textImage"),
   ...surfaceField,
-  heading: z.string().min(1),
-  body: z.string().min(1),
+  title: z.string().min(1),
+  copy: z.string().min(1),
   image: imageSchema,
   imagePosition: z.enum(["left", "right"]).default("right"),
 });
@@ -60,22 +60,22 @@ const textImageSection = z.object({
 const ctaSection = z.object({
   type: z.literal("cta"),
   ...surfaceField,
-  heading: z.string().min(1),
-  body: z.string().optional(),
+  title: z.string().min(1),
+  copy: z.string().optional(),
   button: buttonSchema,
 });
 
 const gallerySection = z.object({
   type: z.literal("gallery"),
   ...surfaceField,
-  heading: z.string().optional(),
+  title: z.string().optional(),
   images: z.array(imageSchema).min(1),
 });
 
 const faqSection = z.object({
   type: z.literal("faq"),
   ...surfaceField,
-  heading: z.string().optional(),
+  title: z.string().optional(),
   items: z
     .array(
       z.object({
@@ -90,8 +90,8 @@ const introTextSection = z.object({
   type: z.literal("introText"),
   ...surfaceField,
   eyebrow: z.string().optional(),
-  heading: z.string().optional(),
-  description: z.string().optional(),
+  title: z.string().optional(),
+  copy: z.string().optional(),
   // xl = título Display XL, l = título Heading L
   size: z.enum(["xl", "l"]).default("xl"),
 });

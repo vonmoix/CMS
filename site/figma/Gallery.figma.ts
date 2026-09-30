@@ -4,11 +4,11 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const heading = instance.getString('Heading')
+const title = instance.getString('Title')
 
 export default {
   example: figma.code`<Gallery
-  heading="${heading}"
+  title="${title}"
   images={[{ src: "/images/placeholder-content.svg", alt: "" }]}
 />`,
   imports: ['import Gallery from "../components/sections/Gallery.astro"'],

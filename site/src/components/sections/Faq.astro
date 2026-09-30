@@ -1,9 +1,9 @@
 ---
-const { heading, items = [] } = Astro.props;
+const { title, items = [] } = Astro.props;
 ---
 
 <section class="block faq">
-  {heading && <h2>{heading}</h2>}
+  {title && <h2>{title}</h2>}
   <div class="items">
     {items.map((item) => (
       <details>

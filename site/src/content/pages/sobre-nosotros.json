@@ -12,13 +12,13 @@
     {
       "type": "introText",
       "surface": "grey-medium",
-      "heading": "Quiénes somos",
-      "description": "Este es un texto de ejemplo editable. Sustituidlo por vuestro contenido real desde el panel.",
+      "title": "Quiénes somos",
+      "copy": "Este es un texto de ejemplo editable. Sustituidlo por vuestro contenido real desde el panel.",
       "size": "l"
     },
     {
       "type": "gallery",
-      "heading": "Nuestro equipo",
+      "title": "Nuestro equipo",
       "images": [
         {
           "src": "/images/placeholder-hero.svg",
@@ -32,7 +32,7 @@
     },
     {
       "type": "faq",
-      "heading": "Preguntas frecuentes",
+      "title": "Preguntas frecuentes",
       "items": [
         {
           "question": "¿Quién puede editar el sitio?",
