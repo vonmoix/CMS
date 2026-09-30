@@ -87,12 +87,12 @@
       "heading": "¿Listos para empezar?",
       "body": "Entra al panel de administración para crear tu primera página.",
       "button": {
-        "label": "Ir al panel",
+        "label": "CONTROL PANEL",
         "href": "https://cms-admin-p0mg.onrender.com"
       },
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-09-30T10:39:26.663Z",
+  "updatedAt": "2026-09-30T10:46:22.307Z",
   "updatedBy": "admin"
 }
