@@ -28,9 +28,9 @@
       },
       "button": {
         "label": "Saber más",
-        "href": "paco"
+        "href": "ernesto"
       },
-      "surface": "grey-dark"
+      "surface": "grey-medium"
     },
     {
       "type": "textImage",
@@ -93,6 +93,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-09-30T10:17:52.523Z",
+  "updatedAt": "2026-09-30T10:35:42.622Z",
   "updatedBy": "admin"
 }
