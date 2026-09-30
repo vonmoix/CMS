@@ -10,14 +10,6 @@
   },
   "sections": [
     {
-      "type": "heroVideo",
-      "video": "/videos/hero-video.mp4",
-      "poster": {
-        "src": "/images/hero-video-poster.png",
-        "alt": ""
-      }
-    },
-    {
       "type": "intro",
       "eyebrow": "eyebrow on white",
       "heading": "titulo on white ",
@@ -101,6 +93,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-09-30T09:20:18.560Z",
+  "updatedAt": "2026-09-30T09:57:18.035Z",
   "updatedBy": "admin"
 }
