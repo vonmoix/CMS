@@ -1,8 +1,11 @@
 ---
-const { eyebrow, heading, description } = Astro.props;
+// size "l" = intro grande (padding 128, la del Figma "intro-white");
+// size "m" = intro compacta (padding 64, la del Figma "intro-dark").
+// El color lo decide la franja (surface), no el bloque.
+const { eyebrow, heading, description, size = "l" } = Astro.props;
 ---
 
-<section class="block intro-white">
+<section class="block intro" data-size={size}>
   <div class="intro-box">
     <div class="content">
       <div class="title-section">
@@ -25,7 +28,6 @@ const { eyebrow, heading, description } = Astro.props;
     justify-content: center;
     gap: var(--gap-gap-40);
     padding: var(--gap-gap-128) var(--gap-gap-64);
-    background: var(--fill-surface-white);
     text-align: center;
   }
   .content {
@@ -58,14 +60,14 @@ const { eyebrow, heading, description } = Astro.props;
     font-weight: 600;
     font-size: var(--font-size-body-l);
     line-height: var(--line-height-body-l);
-    color: var(--text-secondary);
+    color: var(--band-fg);
   }
   h2 {
     margin: 0;
     text-transform: uppercase;
     font-size: var(--font-size-display-xl);
     line-height: var(--line-height-display-xl);
-    color: var(--text-secondary);
+    color: var(--band-fg);
   }
   .underline {
     width: var(--size-sp-48);
@@ -78,23 +80,41 @@ const { eyebrow, heading, description } = Astro.props;
     white-space: pre-line;
     font-size: var(--font-size-body-xl);
     line-height: var(--line-height-body-xl);
-    color: var(--text-secondary);
+    color: var(--band-fg);
   }
+
+  /* Compacta */
+  .intro[data-size="m"] .intro-box {
+    gap: var(--gap-gap-32);
+    padding: var(--gap-gap-64);
+  }
+  .intro[data-size="m"] .content {
+    gap: var(--gap-gap-32);
+  }
+  .intro[data-size="m"] .eyebrow {
+    font-size: var(--font-size-body-m);
+    line-height: var(--line-height-body-m);
+    color: var(--band-fg-muted);
+  }
+  .intro[data-size="m"] .description {
+    font-weight: 600;
+  }
+
   /* Tablet: gap 48 y contenido máx. 700px */
   @media (min-width: 768px) {
-    .intro-box {
+    .intro[data-size="l"] .intro-box {
       gap: var(--gap-gap-48);
     }
-    .content {
+    .intro[data-size="l"] .content {
       max-width: 700px;
     }
   }
   /* Desktop: padding 128 en todos los lados y contenido máx. 1200px */
   @media (min-width: 1024px) {
-    .intro-box {
+    .intro[data-size="l"] .intro-box {
       padding: var(--gap-gap-128);
     }
-    .content {
+    .intro[data-size="l"] .content {
       max-width: var(--layout-content-6col);
     }
   }

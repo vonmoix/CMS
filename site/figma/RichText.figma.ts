@@ -4,11 +4,12 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const heading = instance.getString('Heading')
-const body = instance.getString('Body')
+const eyebrow = instance.getString('Eyebrow')
+const heading = instance.getString('Title')
+const body = instance.getString('Text')
 
 export default {
-  example: figma.code`<RichText heading="${heading}" body="${body}" />`,
+  example: figma.code`<RichText eyebrow="${eyebrow}" heading="${heading}" body="${body}" />`,
   imports: ['import RichText from "../components/sections/RichText.astro"'],
   id: 'rich-text',
   metadata: { nestable: false }

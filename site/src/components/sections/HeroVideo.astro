@@ -1,0 +1,222 @@
+---
+import { withBase } from "../../lib/url.js";
+const { video, poster } = Astro.props;
+---
+
+<section class="block hero-video">
+  <video
+    class="video"
+    playsinline
+    autoplay
+    muted
+    preload="metadata"
+    poster={poster?.src ? withBase(poster.src) : undefined}
+    aria-hidden="true"
+    src={withBase(video)}></video>
+  {poster?.src && <img class="poster" src={withBase(poster.src)} alt={poster.alt || ""} aria-hidden="true" />}
+  <div class="scrim" aria-hidden="true"></div>
+  <button class="play-btn" type="button" aria-label="Reproducir vídeo">
+    <span class="play-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+  </button>
+  <button class="mute-btn" type="button" aria-label="Activar sonido" data-muted="true">
+    <span class="mute-icon mute-icon--muted" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M16.5 12A4.5 4.5 0 0 0 14 8.03v2.2l2.45 2.45c.03-.22.05-.45.05-.68Z"></path>
+        <path d="M19 12c0 .94-.2 1.82-.54 2.63l1.51 1.51A8.94 8.94 0 0 0 21 12c0-4.28-3-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71Z"></path>
+        <path d="M4.27 3 3 4.27l6.73 6.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.95 8.95 0 0 0 3.69-1.81L20.73 22 22 20.73l-9-9L4.27 3ZM12 4 9.91 6.09 12 8.18V4Z"></path>
+      </svg>
+    </span>
+    <span class="mute-icon mute-icon--unmuted" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M3 9v6h4l5 5V4L7 9H3Zm13.5 3A4.5 4.5 0 0 0 14 8.03v7.94A4.5 4.5 0 0 0 16.5 12ZM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4-.91 7-4.49 7-8.77s-3-7.86-7-8.77Z"></path>
+      </svg>
+    </span>
+  </button>
+</section>
+
+<style>
+  .hero-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: min(88dvh, 900px);
+    min-height: 420px;
+    overflow: hidden;
+    background: var(--fill-surface-black);
+  }
+  .video,
+  .poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s var(--ease-out);
+  }
+  .poster {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hero-video:global(.is-ended) .video {
+    opacity: 0;
+  }
+  .hero-video:global(.is-ended) .poster {
+    opacity: 1;
+  }
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0.3) 62%, rgba(0, 0, 0, 0.92) 100%);
+    pointer-events: none;
+  }
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.25s var(--ease-out);
+  }
+  .play-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    transition: background 0.25s var(--ease-out);
+  }
+  .hero-video:hover .play-btn::before {
+    background: rgba(0, 0, 0, 0.45);
+  }
+  .play-icon {
+    position: relative;
+    z-index: 1;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--buttons-fill-primary-default);
+    color: var(--buttons-text-primary-default);
+    box-shadow: 0 4px 24px rgba(226, 0, 28, 0.4);
+    transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
+  }
+  .play-btn:hover .play-icon,
+  .play-btn:focus-visible .play-icon {
+    transform: scale(1.1);
+    background: var(--buttons-fill-primary-hover);
+  }
+  .play-btn:focus-visible .play-icon {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+  }
+  /* Con el vídeo en marcha el overlay se oculta */
+  .hero-video:global(.is-playing) .play-btn {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .mute-btn {
+    position: absolute;
+    right: var(--gap-gap-16);
+    bottom: var(--gap-gap-16);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+  }
+  .mute-btn:hover,
+  .mute-btn:focus-visible {
+    background: var(--fill-surface-red);
+    transform: scale(1.08);
+  }
+  .mute-btn:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+  }
+  .mute-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+  }
+  .mute-btn[data-muted="true"] .mute-icon--muted,
+  .mute-btn[data-muted="false"] .mute-icon--unmuted {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".hero-video").forEach((hero) => {
+    const video = hero.querySelector<HTMLVideoElement>(".video");
+    const playBtn = hero.querySelector<HTMLButtonElement>(".play-btn");
+    const muteBtn = hero.querySelector<HTMLButtonElement>(".mute-btn");
+    if (!video || !playBtn || !muteBtn) return;
+
+    // Quien pide menos movimiento no recibe un vídeo a pantalla completa
+    // en autoplay (WCAG 2.2.2): queda el póster y el botón de play.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      video.removeAttribute("autoplay");
+    }
+
+    const togglePlay = () => (video.paused ? video.play() : video.pause());
+
+    video.addEventListener("play", () => {
+      hero.classList.add("is-playing");
+      hero.classList.remove("is-ended");
+      playBtn.setAttribute("aria-label", "Pausar vídeo");
+    });
+    video.addEventListener("pause", () => {
+      if (video.ended) return;
+      hero.classList.remove("is-playing");
+      playBtn.setAttribute("aria-label", "Reproducir vídeo");
+    });
+    video.addEventListener("ended", () => {
+      hero.classList.remove("is-playing");
+      hero.classList.add("is-ended");
+      playBtn.setAttribute("aria-label", "Reproducir vídeo");
+    });
+
+    playBtn.addEventListener("click", togglePlay);
+    video.addEventListener("click", togglePlay);
+
+    muteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      muteBtn.dataset.muted = String(video.muted);
+      muteBtn.setAttribute("aria-label", video.muted ? "Activar sonido" : "Silenciar vídeo");
+    });
+
+    // El autoplay puede arrancar antes de enganchar los listeners
+    if (!video.paused) hero.classList.add("is-playing");
+
+    // Red de seguridad: si el autoplay se bloquea, se muestra el botón de play
+    setTimeout(() => {
+      if (video.paused && video.currentTime === 0) hero.classList.remove("is-playing");
+    }, 2500);
+  });
+</script>

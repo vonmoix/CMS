@@ -11,13 +11,13 @@ const contentDir = join(__dirname, "..", "src", "content", "pages");
 
 const requiredBySectionType = {
   hero: ["heading"],
+  heroVideo: ["video"],
   textImage: ["heading", "body", "image"],
   richText: ["body"],
   cta: ["heading", "button"],
   gallery: ["images"],
   faq: ["items"],
-  introDark: ["heading"],
-  introWhite: ["heading"],
+  intro: ["heading"],
 };
 
 const knownTypes = Object.keys(requiredBySectionType);

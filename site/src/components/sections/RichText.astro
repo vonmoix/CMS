@@ -1,19 +1,74 @@
 ---
-const { heading, body } = Astro.props;
+const { eyebrow, heading, body } = Astro.props;
+const hasHeader = eyebrow || heading;
 ---
 
 <section class="block rich-text">
-  {heading && <h2>{heading}</h2>}
-  <p>{body}</p>
+  <div class="box">
+    {hasHeader && (
+      <div class="header">
+        <div class="copy">
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          {heading && <h2>{heading}</h2>}
+        </div>
+        <span class="underline" aria-hidden="true"></span>
+      </div>
+    )}
+    <p class="text">{body}</p>
+  </div>
 </section>
 
 <style>
-  p {
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-gap-24);
+    max-width: var(--layout-content-6col);
+    margin: 0 auto;
+    padding: var(--gap-gap-48) var(--gap-gap-64);
+    text-align: center;
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-12);
+    width: 100%;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-4);
+    width: 100%;
+  }
+  .eyebrow {
     margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: var(--font-size-body-s);
+    line-height: var(--line-height-body-s);
+    color: var(--band-fg-muted);
+  }
+  h2 {
+    margin: 0;
+    font-size: var(--font-size-heading-l);
+    line-height: var(--line-height-heading-l);
+    color: var(--band-fg);
+  }
+  .underline {
+    width: var(--size-sp-48);
+    height: var(--size-sp-2);
+    background: var(--fill-surface-red);
+  }
+  .text {
+    margin: 0;
+    width: 100%;
     white-space: pre-line;
-    max-width: 600px;
     font-size: var(--font-size-body-xl);
     line-height: var(--line-height-body-xl);
-    color: var(--text-primary);
+    color: var(--band-fg);
   }
 </style>

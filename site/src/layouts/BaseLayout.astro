@@ -141,16 +141,10 @@ const currentPath = normalize(Astro.url.pathname);
     border-radius: 2px;
   }
 
+  /* Sin ancho máximo: las franjas de color (.band) llegan al borde de la
+     pantalla y el ancho del contenido lo pone .wrapper */
   main {
-    max-width: var(--layout-content-6col);
-    margin: 0 auto;
-    padding: 0 var(--gap-gap-16);
-  }
-
-  @media (min-width: 720px) {
-    main {
-      padding: 0 var(--gap-gap-48);
-    }
+    margin: 0;
   }
 
   img {
@@ -488,6 +482,39 @@ const currentPath = normalize(Astro.url.pathname);
     height: 56px;
     padding: var(--gap-gap-16) var(--gap-gap-64);
     font-size: var(--font-size-body-l);
+  }
+
+  /* ---------- Franjas de fondo ---------- */
+
+  .band {
+    --band-bg: var(--fill-page-grey-medium);
+    --band-fg: var(--text-primary);
+    --band-fg-muted: var(--text-tertiary);
+    padding: var(--gap-gap-32) 0;
+    background: var(--band-bg);
+    color: var(--band-fg);
+  }
+
+  .band[data-surface="grey-dark"] {
+    --band-bg: var(--fill-surface-grey-dark);
+  }
+
+  .band[data-surface="white"] {
+    --band-bg: var(--fill-surface-white);
+    --band-fg: var(--text-secondary);
+    --band-fg-muted: var(--text-secondary);
+  }
+
+  .wrapper {
+    max-width: var(--layout-content-6col);
+    margin: 0 auto;
+    padding: 0 var(--gap-gap-16);
+  }
+
+  @media (min-width: 720px) {
+    .wrapper {
+      padding: 0 var(--gap-gap-48);
+    }
   }
 
   section.block {

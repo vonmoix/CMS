@@ -17,6 +17,13 @@ const SECTION_CATALOG = {
       { name: "button", label: "Botón", type: "button" },
     ],
   },
+  heroVideo: {
+    label: "Hero con vídeo",
+    fields: [
+      { name: "video", label: "Vídeo (ruta o URL, p. ej. /videos/hero.mp4)", type: "text", required: true },
+      { name: "poster", label: "Póster (imagen antes/después del vídeo)", type: "image" },
+    ],
+  },
   textImage: {
     label: "Texto + imagen",
     fields: [
@@ -38,6 +45,7 @@ const SECTION_CATALOG = {
   richText: {
     label: "Bloque de texto",
     fields: [
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
       { name: "heading", label: "Título (opcional)", type: "text" },
       { name: "body", label: "Texto", type: "textarea", required: true },
     ],
@@ -64,23 +72,43 @@ const SECTION_CATALOG = {
       { name: "items", label: "Preguntas", type: "faqList", required: true },
     ],
   },
-  introDark: {
-    label: "Intro Dark Background",
+  intro: {
+    label: "Intro (título centrado)",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
       { name: "heading", label: "Título", type: "text", required: true },
       { name: "description", label: "Descripción", type: "textarea" },
-    ],
-  },
-  introWhite: {
-    label: "Intro White Background",
-    fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "heading", label: "Título", type: "text", required: true },
-      { name: "description", label: "Descripción", type: "textarea" },
+      {
+        name: "size",
+        label: "Tamaño",
+        type: "select",
+        options: [
+          { value: "l", label: "Grande" },
+          { value: "m", label: "Compacto" },
+        ],
+        default: "l",
+      },
     ],
   },
 };
+
+// Franja de fondo a ancho completo en la que se coloca la sección. Las
+// consecutivas con el mismo valor comparten franja. heroVideo va a sangre y
+// no lo lleva.
+const SURFACE_FIELD = {
+  name: "surface",
+  label: "Color de fondo de la franja",
+  type: "select",
+  options: [
+    { value: "grey-medium", label: "Gris medio" },
+    { value: "grey-dark", label: "Gris oscuro" },
+    { value: "white", label: "Blanco" },
+  ],
+  default: "grey-medium",
+};
+for (const [type, def] of Object.entries(SECTION_CATALOG)) {
+  if (type !== "heroVideo") def.fields.push(SURFACE_FIELD);
+}
 
 const isBlank = (v) => v === undefined || v === null || String(v).trim() === "";
 

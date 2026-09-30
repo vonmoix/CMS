@@ -3,34 +3,67 @@
 // Añadir un tipo de sección nuevo = añadir una línea aquí + el componente
 // en ./sections/ + la definición en src/content/config.ts.
 import Hero from "./sections/Hero.astro";
+import HeroVideo from "./sections/HeroVideo.astro";
 import TextImage from "./sections/TextImage.astro";
 import RichText from "./sections/RichText.astro";
 import Cta from "./sections/Cta.astro";
 import Gallery from "./sections/Gallery.astro";
 import Faq from "./sections/Faq.astro";
-import IntroDark from "./sections/IntroDark.astro";
-import IntroWhite from "./sections/IntroWhite.astro";
+import Intro from "./sections/Intro.astro";
 
 const componentsByType = {
   hero: Hero,
+  heroVideo: HeroVideo,
   textImage: TextImage,
   richText: RichText,
   cta: Cta,
   gallery: Gallery,
   faq: Faq,
-  introDark: IntroDark,
-  introWhite: IntroWhite,
+  intro: Intro,
 };
 
+// Tipos que van a sangre, fuera de las franjas de color (heroVideo).
+const fullBleed = new Set(["heroVideo"]);
+
 const { sections = [] } = Astro.props;
+
+// Estructura resultante:
+//   div.band[data-surface]  → fondo a ancho completo
+//     div.wrapper           → ancho máximo y padding lateral
+//       section.block.<tipo>  (sin fondo propio)
+// Las secciones consecutivas con el mismo "surface" comparten franja.
+const groups = [];
+for (const section of sections) {
+  if (!componentsByType[section.type]) continue;
+  if (fullBleed.has(section.type)) {
+    groups.push({ bleed: true, items: [section] });
+    continue;
+  }
+  const surface = section.surface ?? "grey-medium";
+  const last = groups[groups.length - 1];
+  if (last && !last.bleed && last.surface === surface) {
+    last.items.push(section);
+  } else {
+    groups.push({ surface, items: [section] });
+  }
+}
 ---
 
 {
-  sections.map((section) => {
-    const Component = componentsByType[section.type];
-    if (!Component) {
-      return null;
+  groups.map((group) => {
+    if (group.bleed) {
+      const Component = componentsByType[group.items[0].type];
+      return <Component {...group.items[0]} />;
     }
-    return <Component {...section} />;
+    return (
+      <div class="band" data-surface={group.surface}>
+        <div class="wrapper">
+          {group.items.map((section) => {
+            const Component = componentsByType[section.type];
+            return <Component {...section} />;
+          })}
+        </div>
+      </div>
+    );
   })
 }

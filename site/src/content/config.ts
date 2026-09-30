@@ -24,8 +24,15 @@ const buttonSchema = z.object({
   href: z.string().min(1),
 });
 
+// Color de fondo de la franja a ancho completo donde se coloca la sección.
+// Las secciones consecutivas con el mismo valor comparten franja (ver
+// SectionRenderer.astro). La sección en sí no lleva fondo.
+export const SURFACES = ["grey-medium", "grey-dark", "white"] as const;
+const surfaceField = { surface: z.enum(SURFACES).default("grey-medium") };
+
 const heroSection = z.object({
   type: z.literal("hero"),
+  ...surfaceField,
   eyebrow: z.string().optional(),
   heading: z.string().min(1),
   subheading: z.string().optional(),
@@ -33,8 +40,17 @@ const heroSection = z.object({
   button: buttonSchema.optional(),
 });
 
+const heroVideoSection = z.object({
+  type: z.literal("heroVideo"),
+  // ruta (/videos/x.mp4) o URL del vídeo
+  video: z.string().min(1, "El vídeo es obligatorio"),
+  // imagen que se ve antes de cargar y al terminar el vídeo
+  poster: imageSchema.optional(),
+});
+
 const textImageSection = z.object({
   type: z.literal("textImage"),
+  ...surfaceField,
   heading: z.string().min(1),
   body: z.string().min(1),
   image: imageSchema,
@@ -43,12 +59,15 @@ const textImageSection = z.object({
 
 const richTextSection = z.object({
   type: z.literal("richText"),
+  ...surfaceField,
+  eyebrow: z.string().optional(),
   heading: z.string().optional(),
   body: z.string().min(1),
 });
 
 const ctaSection = z.object({
   type: z.literal("cta"),
+  ...surfaceField,
   heading: z.string().min(1),
   body: z.string().optional(),
   button: buttonSchema,
@@ -56,12 +75,14 @@ const ctaSection = z.object({
 
 const gallerySection = z.object({
   type: z.literal("gallery"),
+  ...surfaceField,
   heading: z.string().optional(),
   images: z.array(imageSchema).min(1),
 });
 
 const faqSection = z.object({
   type: z.literal("faq"),
+  ...surfaceField,
   heading: z.string().optional(),
   items: z
     .array(
@@ -73,29 +94,25 @@ const faqSection = z.object({
     .min(1),
 });
 
-const introDarkSection = z.object({
-  type: z.literal("introDark"),
+const introSection = z.object({
+  type: z.literal("intro"),
+  ...surfaceField,
   eyebrow: z.string().optional(),
   heading: z.string().min(1),
   description: z.string().optional(),
-});
-
-const introWhiteSection = z.object({
-  type: z.literal("introWhite"),
-  eyebrow: z.string().optional(),
-  heading: z.string().min(1),
-  description: z.string().optional(),
+  // l = grande (padding 128), m = compacta (padding 64)
+  size: z.enum(["l", "m"]).default("l"),
 });
 
 export const sectionSchema = z.discriminatedUnion("type", [
   heroSection,
+  heroVideoSection,
   textImageSection,
   richTextSection,
   ctaSection,
   gallerySection,
   faqSection,
-  introDarkSection,
-  introWhiteSection,
+  introSection,
 ]);
 
 const pagesCollection = defineCollection({

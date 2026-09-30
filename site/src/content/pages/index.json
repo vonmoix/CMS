@@ -10,10 +10,20 @@
   },
   "sections": [
     {
-      "type": "introWhite",
+      "type": "heroVideo",
+      "video": "/videos/hero-video.mp4",
+      "poster": {
+        "src": "/images/hero-video-poster.png",
+        "alt": ""
+      }
+    },
+    {
+      "type": "intro",
       "eyebrow": "eyebrow on white",
       "heading": "titulo on white ",
-      "description": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service."
+      "description": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
+      "surface": "white",
+      "size": "l"
     },
     {
       "type": "hero",
@@ -27,13 +37,16 @@
       "button": {
         "label": "Saber más",
         "href": "paco"
-      }
+      },
+      "surface": "grey-dark"
     },
     {
-      "type": "introDark",
+      "type": "intro",
       "eyebrow": "eyebrow",
       "heading": "section title",
-      "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles."
+      "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
+      "surface": "grey-dark",
+      "size": "m"
     },
     {
       "type": "textImage",
@@ -43,7 +56,8 @@
         "src": "/images/como-funciona.svg",
         "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
       },
-      "imagePosition": "left"
+      "imagePosition": "left",
+      "surface": "grey-medium"
     },
     {
       "type": "gallery",
@@ -73,7 +87,8 @@
           "src": "/images/1790618674875-galeria-04-armadura-azul.jpg",
           "alt": ""
         }
-      ]
+      ],
+      "surface": "grey-medium"
     },
     {
       "type": "cta",
@@ -82,7 +97,8 @@
       "button": {
         "label": "Ir al panel",
         "href": "https://cms-admin-p0mg.onrender.com"
-      }
+      },
+      "surface": "grey-medium"
     }
   ],
   "updatedAt": "2026-09-30T09:20:18.560Z",

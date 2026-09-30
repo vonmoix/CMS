@@ -1,6 +1,6 @@
 // url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=50-4915
-// source=site/src/components/sections/IntroDark.astro
-// component=IntroDark
+// source=site/src/components/sections/Intro.astro
+// component=Intro
 import figma from 'figma'
 const instance = figma.selectedInstance
 
@@ -9,12 +9,13 @@ const heading = instance.getString('Title')
 const description = instance.getString('Description')
 
 export default {
-  example: figma.code`<IntroDark
+  example: figma.code`<Intro
+  size="m"
   eyebrow="${eyebrow}"
   heading="${heading}"
   description="${description}"
 />`,
-  imports: ['import IntroDark from "../components/sections/IntroDark.astro"'],
+  imports: ['import Intro from "../components/sections/Intro.astro"'],
   id: 'intro-dark',
   metadata: { nestable: false }
 }
