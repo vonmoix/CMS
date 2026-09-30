@@ -33,14 +33,6 @@
       "surface": "grey-dark"
     },
     {
-      "type": "intro",
-      "eyebrow": "eyebrow",
-      "heading": "section title",
-      "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
-      "surface": "grey-medium",
-      "size": "m"
-    },
-    {
       "type": "textImage",
       "heading": "Cómo funciona",
       "body": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
@@ -49,7 +41,15 @@
         "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
       },
       "imagePosition": "left",
-      "surface": "grey-medium"
+      "surface": "grey-dark"
+    },
+    {
+      "type": "intro",
+      "eyebrow": "eyebrow",
+      "heading": "section title",
+      "description": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
+      "surface": "grey-medium",
+      "size": "m"
     },
     {
       "type": "gallery",
@@ -93,6 +93,6 @@
       "surface": "white"
     }
   ],
-  "updatedAt": "2026-09-30T10:02:03.322Z",
+  "updatedAt": "2026-09-30T10:03:43.008Z",
   "updatedBy": "admin"
 }
