@@ -28,7 +28,7 @@
       },
       "button": {
         "label": "Saber más",
-        "href": "ernesto"
+        "href": "esta-es-la-pagina-de-ernesto"
       },
       "surface": "grey-medium"
     },
@@ -93,6 +93,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-09-30T10:35:44.967Z",
+  "updatedAt": "2026-09-30T10:36:44.045Z",
   "updatedBy": "admin"
 }
