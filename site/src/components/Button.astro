@@ -1,0 +1,135 @@
+---
+import { withBase } from "../lib/url.js";
+
+interface Props {
+  label: string;
+  href?: string;
+  type?: "primary" | "secondary" | "tertiary" | "ghost-primary" | "ghost-secondary";
+  size?: "s" | "m" | "l";
+  disabled?: boolean;
+}
+
+const { label, href, type = "primary", size = "l", disabled = false } = Astro.props as Props;
+const Tag = href && !disabled ? "a" : "button";
+---
+
+<Tag
+  class="button"
+  data-type={type}
+  data-size={size}
+  href={Tag === "a" ? withBase(href!) : undefined}
+  type={Tag === "button" ? "button" : undefined}
+  disabled={Tag === "button" ? disabled : undefined}
+  aria-disabled={disabled ? "true" : undefined}
+>
+  {label}
+</Tag>
+
+<style>
+  .button {
+    --fill: var(--buttons-fill-primary-default);
+    --text: var(--buttons-text-primary-default);
+    --stroke: var(--opacity-white-0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-none);
+    padding: var(--gap-gap-16) var(--gap-gap-64);
+    background: var(--fill);
+    color: var(--text);
+    border: var(--border-br-1) solid var(--stroke);
+    border-radius: var(--radius-rd-8);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: var(--font-size-body-l);
+    line-height: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  }
+  .button[data-size="m"] {
+    padding: var(--gap-gap-12) var(--gap-gap-48);
+    font-size: var(--font-size-body-m);
+  }
+  .button[data-size="s"] {
+    padding: var(--gap-gap-8) var(--gap-gap-32);
+    font-size: var(--font-size-body-s);
+  }
+
+  .button[data-type="secondary"] {
+    --fill: var(--buttons-fill-secondary-default);
+    --text: var(--buttons-text-secondary-default);
+    --stroke: var(--buttons-stroke-secondary-default);
+  }
+  .button[data-type="tertiary"] {
+    --fill: var(--buttons-fill-tertiary-default);
+    --text: var(--buttons-text-tertiary-default);
+    --stroke: var(--buttons-stroke-tertiary-default);
+  }
+  .button[data-type="ghost-primary"] {
+    --fill: var(--buttons-fill-ghost-primary-default);
+    --text: var(--buttons-text-ghost-primary-default);
+    --stroke: var(--buttons-stroke-ghost-primary-default);
+  }
+  .button[data-type="ghost-secondary"] {
+    --fill: var(--buttons-fill-ghost-secondary-default);
+    --text: var(--buttons-text-ghost-secondary-default);
+    --stroke: var(--buttons-stroke-ghost-secondary-default);
+  }
+
+  .button:hover {
+    --fill: var(--buttons-fill-primary-hover);
+    --text: var(--buttons-text-primary-hover);
+    --stroke: var(--buttons-stroke-primary-hover);
+  }
+  .button[data-type="secondary"]:hover {
+    --fill: var(--buttons-fill-secondary-hover);
+    --text: var(--buttons-text-secondary-hover);
+    --stroke: var(--buttons-stroke-secondary-hover);
+  }
+  .button[data-type="tertiary"]:hover {
+    --fill: var(--buttons-fill-tertiary-hover);
+    --text: var(--buttons-text-tertiary-hover);
+    --stroke: var(--buttons-stroke-tertiary-hover);
+  }
+  .button[data-type="ghost-primary"]:hover {
+    --fill: var(--buttons-fill-ghost-primary-hover);
+    --text: var(--buttons-text-ghost-primary-hover);
+    --stroke: var(--buttons-stroke-ghost-primary-hover);
+  }
+  .button[data-type="ghost-secondary"]:hover {
+    --fill: var(--buttons-fill-ghost-secondary-hover);
+    --text: var(--buttons-text-ghost-secondary-hover);
+    --stroke: var(--buttons-stroke-ghost-secondary-hover);
+  }
+
+  .button[aria-disabled="true"] {
+    --fill: var(--buttons-fill-primary-disabled);
+    --text: var(--buttons-text-primary-disabled);
+    --stroke: var(--buttons-stroke-primary-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .button[data-type="secondary"][aria-disabled="true"] {
+    --fill: var(--buttons-fill-secondary-disabled);
+    --text: var(--buttons-text-secondary-disabled);
+    --stroke: var(--buttons-stroke-secondary-disabled);
+  }
+  .button[data-type="tertiary"][aria-disabled="true"] {
+    --fill: var(--buttons-fill-tertiary-disabled);
+    --text: var(--buttons-text-tertiary-disabled);
+    --stroke: var(--buttons-stroke-tertiary-disabled);
+  }
+  .button[data-type="ghost-primary"][aria-disabled="true"] {
+    --fill: var(--buttons-fill-ghost-primary-disabled);
+    --text: var(--buttons-fill-tertiary-disabled);
+    --stroke: var(--buttons-stroke-ghost-primary-disabled);
+  }
+  .button[data-type="ghost-secondary"][aria-disabled="true"] {
+    --fill: var(--buttons-fill-ghost-secondary-disabled);
+    --text: var(--buttons-text-ghost-secondary-disabled);
+    --stroke: var(--buttons-stroke-ghost-secondary-disabled);
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+  open?: boolean;
+}
+
+const { question, answer, open = false } = Astro.props as Props;
+---
+
+<details open={open}>
+  <summary>{question}</summary>
+  <p>{answer}</p>
+</details>
+
+<style>
+  details {
+    border-bottom: var(--border-br-1) solid var(--stroke-br-100);
+    padding: var(--gap-gap-16) 0;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-gap-8);
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    font-size: var(--font-size-body-xl);
+    line-height: var(--line-height-body-xl);
+    color: var(--text-primary);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  /* ▼ girado -90° = ▶ (cerrado); abierto = ▼ */
+  summary::before {
+    content: "▼";
+    flex: none;
+    width: var(--size-sp-16);
+    font-size: var(--size-sp-12);
+    line-height: 1;
+    text-align: center;
+    transform: rotate(-90deg);
+  }
+  details[open] summary {
+    gap: 13px;
+  }
+  details[open] summary::before {
+    width: auto;
+    transform: none;
+  }
+  p {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-body-l);
+    line-height: var(--line-height-body-l);
+    margin: var(--gap-gap-12) 0 0;
+  }
+</style>

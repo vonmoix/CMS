@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { withBase } from "../lib/url.js";
+import SiteHeader from "../components/SiteHeader.astro";
 import "../styles/tokens.css";
 
 interface Props {
@@ -51,27 +52,7 @@ const currentPath = normalize(Astro.url.pathname);
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <header class="site-header" data-nav>
-      <nav class="site-nav" aria-label="Principal">
-        <a class="brand" href={withBase("/")} aria-label="MoixCMS, ir a la portada">
-          MoixCMS
-        </a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
-          <span class="nav-toggle-label" data-nav-label>Menú</span>
-          <span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-        </button>
-        <ul class="nav-links" id="nav-menu">
-          {navPages.map((p, i) => (
-            <li style={`--i: ${i}`}>
-              <a href={p.href} aria-current={normalize(p.href) === currentPath ? "page" : undefined}>
-                <span class="nav-index" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                <span class="nav-title">{p.title}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+    <SiteHeader pages={navPages} currentPath={currentPath} />
     <main id="contenido">
       <slot />
     </main>
@@ -85,30 +66,6 @@ const currentPath = normalize(Astro.url.pathname);
       </div>
     </footer>
 
-    <script>
-      // Menú móvil: botón que despliega la lista a pantalla completa.
-      const header = document.querySelector<HTMLElement>("[data-nav]");
-      const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
-      const label = document.querySelector<HTMLElement>("[data-nav-label]");
-      const desktop = window.matchMedia("(min-width: 720px)");
-
-      function setOpen(open: boolean, { returnFocus = false } = {}) {
-        if (!header || !toggle) return;
-        header.toggleAttribute("data-open", open);
-        toggle.setAttribute("aria-expanded", String(open));
-        if (label) label.textContent = open ? "Cerrar" : "Menú";
-        document.documentElement.classList.toggle("nav-locked", open);
-        if (open) header.querySelector<HTMLElement>(".nav-links a")?.focus({ preventScroll: true });
-        else if (returnFocus) toggle.focus();
-      }
-
-      toggle?.addEventListener("click", () => setOpen(!header?.hasAttribute("data-open")));
-      header?.querySelectorAll(".nav-links a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && header?.hasAttribute("data-open")) setOpen(false, { returnFocus: true });
-      });
-      desktop.addEventListener("change", (e) => e.matches && setOpen(false));
-    </script>
   </body>
 </html>
 
@@ -514,7 +471,7 @@ const currentPath = normalize(Astro.url.pathname);
     color: var(--buttons-text-primary-default);
     text-decoration: none;
     text-transform: uppercase;
-    border-radius: var(--radius-rd-sm);
+    border-radius: var(--radius-rd-8);
     font-weight: 700;
     font-size: var(--font-size-body-s);
     line-height: normal;

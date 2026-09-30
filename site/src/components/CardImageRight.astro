@@ -1,0 +1,100 @@
+---
+import { withBase } from "../lib/url.js";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** Fragmento del título que se resalta en rojo */
+  highlight?: string;
+  body: string;
+  image?: { src: string; alt?: string };
+}
+
+const { eyebrow, title, highlight, body, image } = Astro.props as Props;
+const at = highlight ? title.indexOf(highlight) : -1;
+const before = at >= 0 ? title.slice(0, at) : title;
+const marked = at >= 0 ? highlight : "";
+const after = at >= 0 ? title.slice(at + highlight!.length) : "";
+---
+
+<article class="card card-image-right">
+  <div class="info">
+    <div class="header">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2>{before}{marked && <span class="accent">{marked}</span>}{after}</h2>
+    </div>
+    <p class="body">{body}</p>
+  </div>
+  {image?.src && <img src={withBase(image.src)} alt={image.alt || ""} />}
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--gap-gap-24);
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-gap-24);
+    flex: 1;
+    min-width: 0;
+    padding: var(--gap-gap-64) var(--size-sp-40) var(--size-sp-40);
+    background: var(--fill-surface-black);
+    border-radius: var(--radius-rd-16);
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-gap-8);
+  }
+  .eyebrow {
+    margin: 0;
+    font-weight: 600;
+    font-size: var(--font-size-body-m);
+    line-height: var(--line-height-body-m);
+    color: var(--text-tertiary);
+  }
+  h2 {
+    margin: 0;
+    font-size: var(--font-size-display-xl);
+    line-height: var(--line-height-display-xl);
+    color: var(--text-primary);
+  }
+  .accent {
+    color: var(--fill-surface-red);
+  }
+  .body {
+    margin: 0;
+    white-space: pre-line;
+    font-size: var(--font-size-body-m);
+    line-height: var(--line-height-body-m);
+    color: var(--text-primary);
+  }
+  img {
+    display: none;
+  }
+  /* Desktop: texto a la izquierda e imagen solapada a la derecha */
+  @media (min-width: 1024px) {
+    .card {
+      min-height: 436px;
+      padding: 0;
+    }
+    .info {
+      align-self: stretch;
+      justify-content: center;
+      padding: var(--size-sp-48) 420px var(--size-sp-48) var(--size-sp-48);
+    }
+    img {
+      display: block;
+      position: absolute;
+      right: 25px;
+      bottom: 0;
+      width: 346px;
+      height: 346px;
+      object-fit: cover;
+    }
+  }
+</style>

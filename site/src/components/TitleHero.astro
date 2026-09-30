@@ -1,0 +1,57 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+}
+
+const { eyebrow, title } = Astro.props as Props;
+---
+
+<div class="title-hero">
+  <div class="copy">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+  </div>
+  <span class="underline" aria-hidden="true"></span>
+</div>
+
+<style>
+  .title-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+    width: 100%;
+    text-align: center;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-4);
+    width: 100%;
+  }
+  .eyebrow {
+    margin: 0;
+    font-weight: 600;
+    font-size: var(--font-size-body-xl);
+    line-height: var(--line-height-body-xl);
+    color: var(--text-tertiary);
+  }
+  h1 {
+    margin: 0;
+    font-size: var(--font-size-display-2xl);
+    line-height: var(--line-height-display-2xl);
+    color: var(--text-primary);
+  }
+  .underline {
+    width: var(--size-sp-48);
+    height: var(--size-sp-2);
+    background: var(--fill-surface-red);
+  }
+  @media (min-width: 720px) {
+    .copy {
+      gap: var(--gap-none);
+    }
+  }
+</style>

@@ -4,14 +4,14 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const eyebrow = instance.findText('Eyebrow', { traverseInstances: true })
-const heading = instance.findText('Title', { traverseInstances: true })
+const eyebrow = instance.getString('Eyebrow')
+const heading = instance.getString('Title')
 const description = instance.getString('Description')
 
 export default {
   example: figma.code`<IntroDark
-  eyebrow="${eyebrow.textContent}"
-  heading="${heading.textContent}"
+  eyebrow="${eyebrow}"
+  heading="${heading}"
   description="${description}"
 />`,
   imports: ['import IntroDark from "../components/sections/IntroDark.astro"'],
