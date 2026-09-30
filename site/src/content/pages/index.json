@@ -14,7 +14,7 @@
       "eyebrow": "eyebrow on white",
       "heading": "titulo on white ",
       "description": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
-      "surface": "grey-dark",
+      "surface": "white",
       "size": "l"
     },
     {
@@ -93,6 +93,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-09-30T10:16:16.762Z",
+  "updatedAt": "2026-09-30T10:17:50.427Z",
   "updatedBy": "admin"
 }
