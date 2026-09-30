@@ -189,12 +189,12 @@
   --border-br-4: 4px;
 
   --radius-none: 0;
-  --radius-rd-xs: 4px;
-  --radius-rd-sm: 8px;
-  --radius-rd-md: 16px;
-  --radius-rd-xl: 24px;
-  --radius-rd-xxl: 32px;
-  --radius-rd-full: 200px;
+  --radius-rd-4: 4px;
+  --radius-rd-8: 8px;
+  --radius-rd-16: 16px;
+  --radius-rd-24: 24px;
+  --radius-rd-32: 32px;
+  --radius-rd-200: 200px;
 
   /* ===== tokens - typography ===== */
 
