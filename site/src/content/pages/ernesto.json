@@ -27,8 +27,8 @@
     {
       "type": "introText",
       "surface": "grey-medium",
-      "title": "bloque de texto ",
-      "copy": "dflkajfrlkjdslfkrjasdjf. adsklfj skldjf kladsjf ",
+      "title": "Gridlines",
+      "copy": "Spin and match to build gridlines, pushing you up the prize ladder. Simple to pick up, the skill's in the pattern.",
       "size": "l"
     },
     {
@@ -50,6 +50,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-30T10:37:38.252Z",
+  "updatedAt": "2026-09-30T13:11:18.138Z",
   "updatedBy": "admin"
 }
