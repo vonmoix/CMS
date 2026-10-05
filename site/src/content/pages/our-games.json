@@ -30,85 +30,85 @@
       "title": "",
       "cards": [
         {
-          "title": "Aliens",
+          "title": "Flaming Gridlines",
           "image": {
-            "src": "/images/games/aliens.jpg",
+            "src": "/images/games/flaming-gridlines.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
+          "sheetUrl": "/files/games/flaming-gridlines.pdf"
         },
         {
-          "title": "Big Bullion",
+          "title": "Super Surge Gridlines",
           "image": {
-            "src": "/images/games/bigbullion.jpg",
+            "src": "/images/games/super-surge-gridlines.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
+          "sheetUrl": "/files/games/super-surge-gridlines.pdf"
         },
         {
-          "title": "Coin Raider",
+          "title": "Big Bullion Gridlines",
           "image": {
-            "src": "/images/games/coin_raider.jpg",
+            "src": "/images/games/big-bullion-gridlines.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
-        },
-        {
-          "title": "Coins of the Deep",
-          "image": {
-            "src": "/images/games/coins_of_the_deep.jpg",
-            "alt": ""
-          },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
+          "sheetUrl": "/files/games/big-bullion-gridlines.pdf"
         },
         {
           "title": "Fishing 4 Life",
           "image": {
-            "src": "/images/games/fishing4life.jpg",
+            "src": "/images/games/fishing-4-life.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/casino-static/casino-fishing-4-life/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=Fishing4LifePZ&cdn=",
+          "sheetUrl": "/files/games/fishing-4-life.pdf"
         },
         {
-          "title": "Flaming Gridlines",
+          "title": "Coin Raider Piggy",
           "image": {
-            "src": "/images/games/flaming.jpg",
+            "src": "/images/games/coin-raider-piggy.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/casino-static/casino-coin-raider-piggy/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinRaiderPiggyPZ&cdn=",
+          "sheetUrl": "/files/games/coin-raider-piggy.pdf"
         },
         {
           "title": "Hoops on Fire",
           "image": {
-            "src": "/images/games/hoops_on_fire.jpg",
+            "src": "/images/games/hoops-on-fire.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
+          "sheetUrl": "/files/games/hoops-on-fire.pdf"
         },
         {
-          "title": "Panda",
+          "title": "Coins of the Deep",
           "image": {
-            "src": "/images/games/panda.jpg",
+            "src": "/images/games/coins-of-the-deep.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/static/casino/casino-coins-of-the-deep/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinsOfTheDeepPZ&cdn=",
+          "sheetUrl": "/files/games/coins-of-the-deep.pdf"
         },
         {
-          "title": "Super Forge",
+          "title": "Panda Bao Charms",
           "image": {
-            "src": "/images/games/superforge.jpg",
+            "src": "/images/games/panda-bao-charms.jpg",
             "alt": ""
           },
-          "playUrl": "#",
-          "sheetUrl": "#"
+          "playUrl": "https://games.playzaar.games/static/casino/casino-panda-bao-charms/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=PandaBaoCharmsPZ&cdn=",
+          "sheetUrl": "/files/games/panda-bao-charms.pdf"
+        },
+        {
+          "title": "Looting Vegas: Alien Heist",
+          "image": {
+            "src": "/images/games/looting-vegas-alien-heist.jpg",
+            "alt": ""
+          },
+          "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
+          "sheetUrl": "/files/games/looting-vegas-alien-heist.pdf"
         }
       ],
       "surface": "grey-medium"

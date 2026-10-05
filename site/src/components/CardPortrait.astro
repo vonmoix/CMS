@@ -14,6 +14,10 @@ const { title, image, playHref, sheetHref } = Astro.props as Props;
 // Defensa en profundidad: aunque el esquema ya lo valida, nunca pintamos un
 // href con un esquema no permitido (p. ej. javascript:).
 const safeHref = (href: string) => (/^(\/|#|https?:\/\/|mailto:|tel:)/i.test(href) ? href : "#");
+const resolve = (href: string) => withBase(safeHref(href));
+// La demo (externa) y la ficha (PDF) se abren en una pestaña nueva
+const opensNew = (href: string) => /^https?:\/\//i.test(href) || /\.pdf($|[?#])/i.test(href);
+const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noopener" } : {});
 ---
 
 <article class="card-portrait">
@@ -23,8 +27,8 @@ const safeHref = (href: string) => (/^(\/|#|https?:\/\/|mailto:|tel:)/i.test(hre
     <img src={withBase("/images/icon-play.svg")} alt="" />
   </span>
   <div class="actions">
-    <a class="btn" data-type="primary" href={safeHref(playHref)} aria-label={`Play demo – ${title}`}>Play Demo</a>
-    <a class="btn" data-type="secondary" href={safeHref(sheetHref)} aria-label={`Game sheet – ${title}`}>Game sheet</a>
+    <a class="btn" data-type="primary" href={resolve(playHref)} {...newTab(playHref)} aria-label={`Play demo – ${title}`}>Play Demo</a>
+    <a class="btn" data-type="secondary" href={resolve(sheetHref)} {...newTab(sheetHref)} aria-label={`Game sheet – ${title}`}>Game sheet</a>
   </div>
 </article>
 
