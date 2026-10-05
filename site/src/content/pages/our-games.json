@@ -26,6 +26,49 @@
       "eyebrow": ""
     },
     {
+      "type": "cardGallery",
+      "title": "",
+      "cards": [
+        {
+          "title": "Juego 1",
+          "image": {
+            "src": "/images/galeria/galeria-03-cuernos.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Juego 2",
+          "image": {
+            "src": "/images/galeria/galeria-04-armadura-azul.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Juego 3",
+          "image": {
+            "src": "/images/galeria/galeria-06-bruja-cuero.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Juego 4",
+          "image": {
+            "src": "/images/galeria/galeria-09-cyberpunk.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        }
+      ],
+      "surface": "grey-medium"
+    },
+    {
       "type": "gallery",
       "title": "",
       "images": [
