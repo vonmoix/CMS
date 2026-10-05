@@ -4,7 +4,8 @@
 //
 // Tipos de campo soportados por admin/public/admin.js:
 //   text, textarea, image, button ({label, href}),
-//   imageList (array de {src, alt}), faqList (array de {question, answer})
+//   imageList (array de {src, alt}), faqList (array de {question, answer}),
+//   cardList (array de {title, image, playUrl, sheetUrl})
 
 const SECTION_CATALOG = {
   hero: {
@@ -65,6 +66,13 @@ const SECTION_CATALOG = {
     fields: [
       { name: "title", label: "Título (opcional)", type: "text" },
       { name: "images", label: "Imágenes", type: "imageList", required: true },
+    ],
+  },
+  cardGallery: {
+    label: "Galería de cartas de juego",
+    fields: [
+      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "cards", label: "Cartas", type: "cardList", required: true },
     ],
   },
   faq: {
@@ -166,6 +174,17 @@ function cleanSections(sections) {
           const list = (Array.isArray(value) ? value : []).filter((img) => img && !isBlank(img.src));
           out[field.name] = list;
           if (field.required && list.length === 0) errors.push(`${where}: añade al menos una imagen.`);
+          break;
+        }
+        case "cardList": {
+          const list = (Array.isArray(value) ? value : []).filter(
+            (c) => c && !(isBlank(c.title) && isBlank(c.image && c.image.src) && isBlank(c.playUrl) && isBlank(c.sheetUrl))
+          );
+          if (list.some((c) => isBlank(c.title) || isBlank(c.image && c.image.src) || isBlank(c.playUrl) || isBlank(c.sheetUrl))) {
+            errors.push(`${where}: cada carta necesita nombre del juego, imagen, enlace de Play Demo y enlace de Game sheet.`);
+          }
+          out[field.name] = list;
+          if (field.required && list.length === 0) errors.push(`${where}: añade al menos una carta.`);
           break;
         }
         case "faqList": {

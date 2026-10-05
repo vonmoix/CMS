@@ -42,6 +42,7 @@
   --opacity-white-60: #ffffff99;
   --opacity-white-80: #ffffffcc;
 
+  --opacity-black-0: #00000000;
   --opacity-black-05: #0000000d;
   --opacity-black-10: #0000001a;
   --opacity-black-25: #00000040;
@@ -84,6 +85,11 @@
   --opacity-black-opc-40: var(--opacity-black-40);
   --opacity-black-opc-60: var(--opacity-black-60);
   --opacity-black-opc-80: var(--opacity-black-80);
+
+  /* Degradado bajo los botones de card-portrait en touch */
+  --overlay-scrim-start: var(--opacity-black-0);
+  --overlay-scrim-mid: var(--opacity-black-60);
+  --overlay-scrim-end: var(--opacity-black-80);
 
   /* Botones: fill / text / stroke × tipo × estado */
   --buttons-fill-primary-default: var(--color-red-500);

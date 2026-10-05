@@ -15,6 +15,7 @@ const requiredBySectionType = {
   textImage: ["title", "copy", "image"],
   cta: ["title", "button"],
   gallery: ["images"],
+  cardGallery: ["cards"],
   faq: ["items"],
   introText: [],
   titleHero: ["title"],

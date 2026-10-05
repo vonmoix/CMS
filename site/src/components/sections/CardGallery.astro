@@ -1,0 +1,23 @@
+---
+// Cuadrícula de card-portrait. El número de cartas es variable.
+import CardPortrait from "../CardPortrait.astro";
+
+const { title, cards = [] } = Astro.props;
+---
+
+<section class="block card-gallery">
+  {title && <h2>{title}</h2>}
+  <div class="grid">
+    {cards.map((card) => (
+      <CardPortrait title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--size-sp-220), 1fr));
+    gap: var(--gap-gap-16);
+  }
+</style>

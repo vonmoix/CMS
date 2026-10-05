@@ -73,6 +73,23 @@ const gallerySection = z.object({
   images: z.array(imageSchema).min(1),
 });
 
+const cardGallerySection = z.object({
+  type: z.literal("cardGallery"),
+  ...surfaceField,
+  title: z.string().optional(),
+  cards: z
+    .array(
+      z.object({
+        // nombre del juego: alt de la imagen y aria-label de los botones
+        title: z.string().min(1),
+        image: imageSchema,
+        playUrl: z.string().min(1),
+        sheetUrl: z.string().min(1),
+      })
+    )
+    .min(1),
+});
+
 const faqSection = z.object({
   type: z.literal("faq"),
   ...surfaceField,
@@ -110,6 +127,7 @@ export const sectionSchema = z.discriminatedUnion("type", [
   textImageSection,
   ctaSection,
   gallerySection,
+  cardGallerySection,
   faqSection,
   introTextSection,
   titleHeroSection,

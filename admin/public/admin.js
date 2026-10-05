@@ -59,6 +59,8 @@
         return [];
       case "faqList":
         return [];
+      case "cardList":
+        return [];
       case "select":
         return field.default || (field.options && field.options[0] && field.options[0].value) || "";
       default:
@@ -255,6 +257,50 @@
     return el("div", {}, [list, addBtn]);
   }
 
+  function cardListControl(path, values) {
+    values = values || [];
+    const list = el("div", { class: "repeat-list" });
+    values.forEach((item, idx) => {
+      const base = `${path}.${idx}`;
+      const textInput = (key, placeholder) => {
+        const i = el("input", { type: "text", placeholder });
+        i.value = item[key] || "";
+        i.addEventListener("input", () => setAt(state, `${base}.${key}`, i.value));
+        return i;
+      };
+      const row = el("div", { class: "repeat-item" }, [
+        el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
+        imageControl(`${base}.image`, item.image),
+        el("label", { class: "small-label", text: "Enlace del botón Play Demo" }, [
+          textInput("playUrl", "https:// o /ruta"),
+        ]),
+        el("label", { class: "small-label", text: "Enlace del botón Game sheet" }, [
+          textInput("sheetUrl", "https:// o /ruta"),
+        ]),
+        el("button", {
+          type: "button",
+          class: "link-btn danger",
+          text: "Quitar carta",
+          onclick: () => {
+            values.splice(idx, 1);
+            render();
+          },
+        }),
+      ]);
+      list.appendChild(row);
+    });
+    const addBtn = el("button", {
+      type: "button",
+      class: "btn btn-secondary btn-small",
+      text: "+ Añadir carta",
+      onclick: () => {
+        values.push({ title: "", image: { src: "", alt: "" }, playUrl: "", sheetUrl: "" });
+        render();
+      },
+    });
+    return el("div", {}, [list, addBtn]);
+  }
+
   function uploadImage(file, statusEl, onDone) {
     statusEl.textContent = "Subiendo…";
     const fd = new FormData();
@@ -287,6 +333,7 @@
       if (field.type === "image") control = imageControl(path, value);
       else if (field.type === "button") control = buttonControl(path, value);
       else if (field.type === "imageList") control = imageListControl(path, value);
+      else if (field.type === "cardList") control = cardListControl(path, value);
       else if (field.type === "faqList") control = faqListControl(path, value);
       else control = fieldControl(path, field, value);
 
