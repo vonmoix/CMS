@@ -97,6 +97,13 @@ const introTextSection = z.object({
   size: z.enum(["xl", "l"]).default("xl"),
 });
 
+const titleHeroSection = z.object({
+  type: z.literal("titleHero"),
+  ...surfaceField,
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+});
+
 export const sectionSchema = z.discriminatedUnion("type", [
   heroSection,
   heroVideoSection,
@@ -105,6 +112,7 @@ export const sectionSchema = z.discriminatedUnion("type", [
   gallerySection,
   faqSection,
   introTextSection,
+  titleHeroSection,
 ]);
 
 const pagesCollection = defineCollection({

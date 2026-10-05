@@ -1,0 +1,11 @@
+---
+// Eyebrow + título grande + línea roja, centrado. Solo cabecera, sin texto.
+// El color lo decide la franja (surface); el bloque no lleva fondo propio.
+import TitleHero from "../TitleHero.astro";
+
+const { eyebrow, title } = Astro.props;
+---
+
+<section class="block title-hero-section">
+  <TitleHero eyebrow={eyebrow} title={title} />
+</section>

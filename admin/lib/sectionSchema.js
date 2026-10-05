@@ -92,6 +92,13 @@ const SECTION_CATALOG = {
       },
     ],
   },
+  titleHero: {
+    label: "Título destacado con subrayado",
+    fields: [
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "title", label: "Título", type: "text", required: true },
+    ],
+  },
 };
 
 // Franja de fondo a ancho completo en la que se coloca la sección. Las
