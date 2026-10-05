@@ -28,7 +28,7 @@ const { eyebrow, title } = Astro.props as Props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--gap-gap-4);
+    gap: var(--gap-none);
     width: 100%;
   }
   .eyebrow {
@@ -48,10 +48,5 @@ const { eyebrow, title } = Astro.props as Props;
     width: var(--size-sp-48);
     height: var(--size-sp-2);
     background: var(--fill-surface-red);
-  }
-  @media (min-width: 720px) {
-    .copy {
-      gap: var(--gap-none);
-    }
   }
 </style>

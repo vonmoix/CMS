@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=74-4021
+// url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=55-1722
 // source=site/src/components/TitleHero.astro
 // component=TitleHero
 import figma from 'figma'
