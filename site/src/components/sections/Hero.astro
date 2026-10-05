@@ -1,9 +1,9 @@
 ---
 import { withBase } from "../../lib/url.js";
-const { eyebrow, title, copy, image, button } = Astro.props;
+const { eyebrow, title, copy, image, button, imagePosition = "right" } = Astro.props;
 ---
 
-<section class="block hero">
+<section class="block hero" data-position={imagePosition}>
   <div class="hero-grid">
     <div class="text">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
@@ -22,26 +22,27 @@ const { eyebrow, title, copy, image, button } = Astro.props;
 <style>
   .hero-grid {
     display: grid;
-    gap: var(--gap-gap-48);
+    gap: var(--gap-gap-32);
     align-items: center;
+    padding-block: var(--gap-gap-48);
   }
   .text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--gap-gap-16);
+    gap: var(--gap-gap-24);
   }
   .eyebrow {
-    text-transform: uppercase;
-    font-size: var(--font-size-body-s);
-    line-height: var(--line-height-body-s);
-    font-weight: 700;
-    color: var(--color-accent);
-    margin: 0;
+    color: var(--text-tertiary);
+    font-size: var(--font-size-body-xl);
+    line-height: var(--line-height-body-xl);
+    font-weight: 600;
+    margin: 0 0 calc(var(--gap-gap-8) * -1);
   }
   h1 {
-    font-size: var(--font-size-heading-m);
-    line-height: var(--line-height-heading-m);
+    font-size: var(--font-size-heading-l);
+    line-height: var(--line-height-heading-l);
+    text-transform: uppercase;
     margin: 0;
   }
   .copy {
@@ -52,13 +53,21 @@ const { eyebrow, title, copy, image, button } = Astro.props;
   }
   img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 379.5 / 262.7;
     object-fit: cover;
-    border-radius: var(--radius-rd-16);
+    background: var(--fill-surface-white);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-rd-8);
   }
   @media (min-width: 700px) {
     .hero-grid {
-      grid-template-columns: 1fr minmax(0, 520px);
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero[data-position="left"] .hero-grid {
+      direction: rtl;
+    }
+    .hero[data-position="left"] .hero-grid > * {
+      direction: ltr;
     }
     /* Botón tamaño M en Desktop/Tablet (en Mobile queda el S por defecto) */
     .btn {

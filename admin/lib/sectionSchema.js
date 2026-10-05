@@ -15,6 +15,16 @@ const SECTION_CATALOG = {
       { name: "copy", label: "Subtítulo", type: "textarea" },
       { name: "image", label: "Imagen", type: "image" },
       { name: "button", label: "Botón", type: "button" },
+      {
+        name: "imagePosition",
+        label: "Posición de la imagen",
+        type: "select",
+        options: [
+          { value: "right", label: "Derecha" },
+          { value: "left", label: "Izquierda" },
+        ],
+        default: "right",
+      },
     ],
   },
   heroVideo: {

@@ -38,6 +38,7 @@ const heroSection = z.object({
   copy: z.string().optional(),
   image: imageSchema.optional(),
   button: buttonSchema.optional(),
+  imagePosition: z.enum(["left", "right"]).default("right"),
 });
 
 const heroVideoSection = z.object({
