@@ -2,7 +2,7 @@
   "title": "Ernesto",
   "description": "esta es la pagina de ernesto",
   "slug": "ernesto",
-  "order": 4,
+  "order": 3,
   "draft": false,
   "seo": {
     "title": "",
@@ -50,6 +50,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-30T13:11:18.138Z",
+  "updatedAt": "2026-10-05T09:21:36.399Z",
   "updatedBy": "admin"
 }
