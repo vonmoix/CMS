@@ -8,7 +8,7 @@
 
 const SECTION_CATALOG = {
   hero: {
-    label: "Hero (cabecera grande)",
+    label: "Destacado: texto, imagen y botón",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
       { name: "title", label: "Título", type: "text", required: true },
@@ -28,14 +28,14 @@ const SECTION_CATALOG = {
     ],
   },
   heroVideo: {
-    label: "Hero con vídeo",
+    label: "Cabecera con vídeo",
     fields: [
       { name: "video", label: "Vídeo (ruta o URL, p. ej. /videos/hero.mp4)", type: "text", required: true },
       { name: "poster", label: "Póster (imagen antes/después del vídeo)", type: "image" },
     ],
   },
   textImage: {
-    label: "Texto + imagen",
+    label: "Texto con imagen",
     fields: [
       { name: "title", label: "Título", type: "text", required: true },
       { name: "copy", label: "Texto", type: "textarea", required: true },
@@ -53,7 +53,7 @@ const SECTION_CATALOG = {
     ],
   },
   cta: {
-    label: "Llamada a la acción (CTA)",
+    label: "Llamada a la acción (botón)",
     fields: [
       { name: "title", label: "Título", type: "text", required: true },
       { name: "copy", label: "Texto (opcional)", type: "textarea" },
@@ -75,7 +75,7 @@ const SECTION_CATALOG = {
     ],
   },
   introText: {
-    label: "Intro / bloque de texto",
+    label: "Título y texto de introducción",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
       { name: "title", label: "Título (opcional)", type: "text" },
