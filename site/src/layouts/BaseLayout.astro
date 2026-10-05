@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { withBase } from "../lib/url.js";
 import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import "../styles/tokens.css";
 
 interface Props {
@@ -56,16 +57,7 @@ const currentPath = normalize(Astro.url.pathname);
     <main id="contenido">
       <slot />
     </main>
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-top">
-          <p class="footer-brand">MoixCMS</p>
-          <p>Sitio construido con nuestro propio CMS</p>
-        </div>
-        <p>© {new Date().getFullYear()} MoixCMS. Todos los derechos reservados.</p>
-      </div>
-    </footer>
-
+    <SiteFooter />
   </body>
 </html>
 
@@ -405,52 +397,6 @@ const currentPath = normalize(Astro.url.pathname);
     .nav-links li,
     .nav-toggle-icon span {
       transition: none !important;
-    }
-  }
-
-  /* ---------- Pie ---------- */
-
-  .site-footer {
-    margin-top: var(--gap-gap-64);
-    background: var(--fill-page-grey-medium);
-    border-top: var(--border-br-1) solid var(--stroke-br-100);
-    color: var(--text-tertiary);
-    font-size: var(--font-size-body-s);
-    line-height: var(--line-height-body-s);
-  }
-
-  .footer-inner {
-    max-width: var(--layout-content-6col);
-    margin: 0 auto;
-    padding: var(--gap-gap-24) var(--gap-gap-16);
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-gap-8);
-  }
-
-  .footer-inner p {
-    margin: 0;
-  }
-
-  .footer-top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--gap-gap-8) var(--gap-gap-24);
-  }
-
-  .footer-inner .footer-brand {
-    font-weight: 700;
-    font-size: var(--font-size-heading-s);
-    line-height: var(--line-height-heading-s);
-    text-transform: uppercase;
-    color: var(--text-primary);
-  }
-
-  @media (min-width: 720px) {
-    .footer-inner {
-      padding: var(--gap-gap-24) var(--gap-gap-48);
     }
   }
 

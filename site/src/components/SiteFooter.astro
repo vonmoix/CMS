@@ -1,0 +1,199 @@
+---
+import { withBase } from "../lib/url.js";
+import Button from "./Button.astro";
+
+interface Props {
+  email?: string;
+  kitsLabel?: string;
+  kitsHref?: string;
+  social?: { name: string; href: string; icon: string }[];
+}
+
+const {
+  email = "commercial@playzaar.games",
+  kitsLabel = "Download",
+  kitsHref = "https://www.dropbox.com/scl/fo/l3lwncfi82zi9038n28j0/AF3EQPt48XDl5_haGoNZU1g?rlkey=9dnguwnfc9sozxhalz1r65r8p&st=8b96cls3&e=1&dl=0",
+  social = [
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/playzaar-games/home/", icon: "icon-linkedin.svg" },
+    { name: "YouTube", href: "https://www.youtube.com/@Playzaargames", icon: "icon-youtube.svg" },
+    { name: "Instagram", href: "https://www.instagram.com/playzaargames", icon: "icon-instagram.svg" },
+    { name: "X", href: "https://x.com/Playzaargames", icon: "icon-x.svg" },
+  ],
+} = Astro.props as Props;
+
+const asset = (file: string) => withBase(`/images/footer/${file}`);
+---
+
+<footer class="site-footer">
+  <div class="info">
+    <div class="header">
+      <img class="glasses" src={asset("glasses.png")} alt="" width="178" height="96" />
+      <p class="heading">Ready to do things<br />the Playzaar way?</p>
+    </div>
+    <div class="contact">
+      <div class="contact-us">
+        <p class="label">Contact us</p>
+        <a href={`mailto:${email}`}>{email}</a>
+      </div>
+      <div class="kits">
+        <p class="label">Marketing kits</p>
+        <Button label={kitsLabel} href={kitsHref} type="secondary" size="m" />
+      </div>
+    </div>
+  </div>
+
+  <div class="social">
+    <ul class="icons">
+      {social.map((s) => (
+        <li>
+          <a href={s.href} aria-label={s.name} target="_blank" rel="noopener noreferrer">
+            <img src={asset(s.icon)} alt="" width="24" height="24" />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="legal-logos">
+      <img class="begamble" src={asset("begambleaware.svg")} alt="BeGambleAware.org" />
+      <img class="plus18" src={asset("plus18.svg")} alt="Solo mayores de 18 años" />
+    </div>
+    <p class="copyright">© Copyright Playzaar {new Date().getFullYear()}. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--gap-gap-64);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-64);
+    padding: var(--gap-gap-48) var(--gap-gap-16);
+    background: var(--fill-surface-red);
+    color: var(--text-primary);
+    text-align: center;
+  }
+  .site-footer p {
+    margin: 0;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-64);
+    width: 100%;
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+  }
+  .glasses {
+    width: 178px;
+    height: 96px;
+    object-fit: cover;
+  }
+  .heading {
+    font-weight: 700;
+    font-size: var(--font-size-heading-m);
+    line-height: var(--line-height-heading-m);
+    text-transform: uppercase;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-32);
+  }
+  .contact-us,
+  .kits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-us {
+    gap: var(--gap-gap-12);
+  }
+  .kits {
+    gap: var(--gap-gap-16);
+  }
+  .label {
+    font-weight: 700;
+    font-size: var(--font-size-heading-s);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .contact-us a {
+    color: inherit;
+    font-size: var(--font-size-body-m);
+    line-height: var(--line-height-body-m);
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+  }
+  .contact-us a:focus-visible,
+  .icons a:focus-visible {
+    outline-color: var(--text-primary);
+  }
+
+  .social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+  }
+  .icons {
+    display: flex;
+    gap: var(--gap-gap-24);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .icons a {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transition: opacity 160ms var(--ease-out);
+  }
+  .icons a:hover {
+    opacity: 0.75;
+  }
+  .icons img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .legal-logos {
+    position: relative;
+    width: 170px;
+    height: 23.611px;
+  }
+  .legal-logos img {
+    position: absolute;
+    max-width: none;
+    height: auto;
+  }
+  .begamble {
+    inset: 19.15% 17.63% 0 0;
+    width: 82.37%;
+    height: 80.85%;
+  }
+  .plus18 {
+    inset: 0 0 0.2% 86.33%;
+    width: 13.67%;
+    height: 99.8%;
+  }
+
+  .copyright {
+    font-size: var(--font-size-body-m);
+    line-height: var(--line-height-body-m);
+  }
+
+  @media (min-width: 720px) {
+    .site-footer {
+      gap: var(--gap-gap-128);
+      padding: var(--gap-gap-48) var(--gap-gap-64);
+    }
+  }
+</style>
