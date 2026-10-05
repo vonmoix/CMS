@@ -81,13 +81,21 @@ h1 { font-size: 1.4rem; }
 .link-btn.danger { color: var(--danger); }
 
 .icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 6px;
+  color: var(--text);
   cursor: pointer;
   width: 2rem;
   height: 2rem;
+  padding: 0;
 }
+
+.icon-btn.danger { color: var(--danger); }
+.icon-btn.danger:hover { background: #fef2f2; border-color: #fecaca; }
 
 .icon-btn:disabled { opacity: 0.35; cursor: default; }
 
@@ -98,7 +106,7 @@ h1 { font-size: 1.4rem; }
   border-bottom: 1px solid var(--border);
   font-size: 0.9rem;
 }
-.row-actions { display: flex; gap: 0.75rem; }
+.row-actions { display: flex; gap: 0.35rem; }
 .order-controls { display: flex; gap: 0.35rem; }
 
 .badge {
