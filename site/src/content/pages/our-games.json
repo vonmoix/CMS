@@ -30,36 +30,81 @@
       "title": "",
       "cards": [
         {
-          "title": "Juego 1",
+          "title": "Aliens",
           "image": {
-            "src": "/images/galeria/galeria-03-cuernos.jpg",
+            "src": "/images/games/aliens.jpg",
             "alt": ""
           },
           "playUrl": "#",
           "sheetUrl": "#"
         },
         {
-          "title": "Juego 2",
+          "title": "Big Bullion",
           "image": {
-            "src": "/images/galeria/galeria-04-armadura-azul.jpg",
+            "src": "/images/games/bigbullion.jpg",
             "alt": ""
           },
           "playUrl": "#",
           "sheetUrl": "#"
         },
         {
-          "title": "Juego 3",
+          "title": "Coin Raider",
           "image": {
-            "src": "/images/galeria/galeria-06-bruja-cuero.jpg",
+            "src": "/images/games/coin_raider.jpg",
             "alt": ""
           },
           "playUrl": "#",
           "sheetUrl": "#"
         },
         {
-          "title": "Juego 4",
+          "title": "Coins of the Deep",
           "image": {
-            "src": "/images/galeria/galeria-09-cyberpunk.jpg",
+            "src": "/images/games/coins_of_the_deep.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Fishing 4 Life",
+          "image": {
+            "src": "/images/games/fishing4life.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Flaming Gridlines",
+          "image": {
+            "src": "/images/games/flaming.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Hoops on Fire",
+          "image": {
+            "src": "/images/games/hoops_on_fire.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Panda",
+          "image": {
+            "src": "/images/games/panda.jpg",
+            "alt": ""
+          },
+          "playUrl": "#",
+          "sheetUrl": "#"
+        },
+        {
+          "title": "Super Forge",
+          "image": {
+            "src": "/images/games/superforge.jpg",
             "alt": ""
           },
           "playUrl": "#",

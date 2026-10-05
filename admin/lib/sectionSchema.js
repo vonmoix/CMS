@@ -127,6 +127,10 @@ for (const [type, def] of Object.entries(SECTION_CATALOG)) {
   if (type !== "heroVideo") def.fields.push(SURFACE_FIELD);
 }
 
+// Mismo criterio que safeLinkSchema en site/src/content/config.ts
+const SAFE_LINK = /^(\/|#|https?:\/\/|mailto:|tel:)/i;
+const isSafeLink = (v) => SAFE_LINK.test(String(v));
+
 const isBlank = (v) => v === undefined || v === null || String(v).trim() === "";
 
 // Limpia y valida las secciones antes de guardarlas, para no hacer commit de
@@ -182,6 +186,9 @@ function cleanSections(sections) {
           );
           if (list.some((c) => isBlank(c.title) || isBlank(c.image && c.image.src) || isBlank(c.playUrl) || isBlank(c.sheetUrl))) {
             errors.push(`${where}: cada carta necesita nombre del juego, imagen, enlace de Play Demo y enlace de Game sheet.`);
+          }
+          if (list.some((c) => (!isBlank(c.playUrl) && !isSafeLink(c.playUrl)) || (!isBlank(c.sheetUrl) && !isSafeLink(c.sheetUrl)))) {
+            errors.push(`${where}: los enlaces de las cartas deben empezar por /, #, http(s)://, mailto: o tel:.`);
           }
           out[field.name] = list;
           if (field.required && list.length === 0) errors.push(`${where}: añade al menos una carta.`);

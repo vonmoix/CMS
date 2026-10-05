@@ -19,6 +19,14 @@ const imageSchema = z.object({
   alt: z.string().default(""),
 });
 
+// Enlaces de las cartas: solo rutas, anclas, http(s), mailto y tel. Una lista
+// de permitidos descarta javascript:, data: y similares, también con
+// espacios o mayúsculas delante.
+const safeLinkSchema = z
+  .string()
+  .min(1)
+  .regex(/^(\/|#|https?:\/\/|mailto:|tel:)/i, "El enlace debe empezar por /, #, http(s)://, mailto: o tel:");
+
 const buttonSchema = z.object({
   label: z.string().min(1),
   href: z.string().min(1),
@@ -83,8 +91,8 @@ const cardGallerySection = z.object({
         // nombre del juego: alt de la imagen y aria-label de los botones
         title: z.string().min(1),
         image: imageSchema,
-        playUrl: z.string().min(1),
-        sheetUrl: z.string().min(1),
+        playUrl: safeLinkSchema,
+        sheetUrl: safeLinkSchema,
       })
     )
     .min(1),
