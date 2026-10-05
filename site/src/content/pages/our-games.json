@@ -2,7 +2,7 @@
   "title": "Our Games",
   "description": "Our Games Catalog",
   "slug": "our-games",
-  "order": 3,
+  "order": 4,
   "draft": false,
   "seo": {
     "title": "",
@@ -40,6 +40,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-05T09:21:34.249Z",
+  "updatedAt": "2026-10-05T09:21:36.399Z",
   "updatedBy": "admin"
 }
