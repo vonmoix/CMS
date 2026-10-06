@@ -27,7 +27,7 @@
     },
     {
       "type": "cardGallery",
-      "title": "Optional Title",
+      "title": "",
       "cards": [
         {
           "title": "Flaming Gridlines",
@@ -72,15 +72,15 @@
       "title": "",
       "images": [
         {
-          "src": "/images/fishing-4-life.jpg",
+          "src": "/images/games/fishing-4-life.jpg",
           "alt": "Fishing 4 Life"
         },
         {
-          "src": "/images/coin-raider-piggy.jpg",
+          "src": "/images/games/coin-raider-piggy.jpg",
           "alt": "Coin Raider Piggy"
         },
         {
-          "src": "/images/hoops-on-fire.jpg",
+          "src": "/images/games/hoops-on-fire.jpg",
           "alt": ""
         }
       ],
@@ -129,6 +129,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-10-06T10:30:45.022Z",
+  "updatedAt": "2026-10-06T10:54:51.508Z",
   "updatedBy": "admin"
 }
