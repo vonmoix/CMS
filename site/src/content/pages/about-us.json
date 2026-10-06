@@ -1,0 +1,54 @@
+{
+  "title": "About Us",
+  "description": "Quiénes somos",
+  "slug": "about-us",
+  "order": 3,
+  "draft": false,
+  "seo": {
+    "title": "Sobre nosotros",
+    "description": "Página de ejemplo con preguntas frecuentes y galería."
+  },
+  "sections": [
+    {
+      "type": "introText",
+      "surface": "grey-medium",
+      "title": "WHO WE ARE",
+      "copy": "We’re experts in developing high quality casino products, from games to back end\ntechnology. With a stellar team of creative designers and experienced developers\nusing cutting edge technology, we offer an unparalleled level of service.",
+      "size": "l"
+    },
+    {
+      "type": "gallery",
+      "title": "We Are Expert Game Makers",
+      "images": [
+        {
+          "src": "/images/placeholder-hero.svg",
+          "alt": "Equipo 1"
+        },
+        {
+          "src": "/images/placeholder-content.svg",
+          "alt": "Equipo 2"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Quién puede editar el sitio?",
+          "answer": "Cualquier persona del equipo de marketing con acceso al panel de administración."
+        },
+        {
+          "question": "¿Hace falta saber programar?",
+          "answer": "No, todo se edita con formularios."
+        },
+        {
+          "question": "Quien ha desarrollado el Codigo",
+          "answer": "Moises Clemente con sus dedos gordos. Despues de un After......"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-06T12:05:50.147Z",
+  "updatedBy": "sharlene"
+}
