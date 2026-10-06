@@ -13,14 +13,15 @@ interface Props {
 
 const { title, description = "", ogImage } = Astro.props as Props;
 
-// Menú: todas las páginas publicadas, en el orden fijado desde el panel de
+// Menú: todas las páginas publicadas salvo la home (se vuelve a ella con el
+// logo), en el orden fijado desde el panel de
 // administración (campo "order"; a igualdad, por título). Se genera solo,
 // así que una página nueva creada desde el panel aparece en la cabecera sin
 // tocar código.
-const navPages = (await getCollection("pages", (p) => !p.data.draft))
+const navPages = (await getCollection("pages", (p) => !p.data.draft && p.data.slug !== "index"))
   .map((p) => ({
     title: p.data.title,
-    href: withBase(p.data.slug === "index" ? "/" : `/${p.data.slug}/`),
+    href: withBase(`/${p.data.slug}/`),
     order: p.data.order,
   }))
   .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, "es"));
