@@ -35,6 +35,19 @@ try {
 let errors = [];
 const slugs = new Map();
 
+// "¤" casi nunca es intencionado: suele ser "&curren" (de "&currency=") que
+// una entidad HTML mal decodificada convirtió en "¤cy" y rompe el enlace.
+function findCurrencySign(value, path, found = []) {
+  if (typeof value === "string") {
+    if (value.includes("¤")) found.push(path);
+  } else if (Array.isArray(value)) {
+    value.forEach((v, i) => findCurrencySign(v, `${path}[${i}]`, found));
+  } else if (value && typeof value === "object") {
+    for (const [k, v] of Object.entries(value)) findCurrencySign(v, path ? `${path}.${k}` : k, found);
+  }
+  return found;
+}
+
 for (const file of files) {
   const fullPath = join(contentDir, file);
   let data;
@@ -53,6 +66,10 @@ for (const file of files) {
     } else {
       slugs.set(data.slug, file);
     }
+  }
+
+  for (const path of findCurrencySign(data, "")) {
+    errors.push(`${file}: "${path}" contiene "¤" (¿"&currency" mal decodificado a "¤cy"?)`);
   }
 
   if (!Array.isArray(data.sections)) {
