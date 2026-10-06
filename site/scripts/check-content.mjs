@@ -16,6 +16,7 @@ const requiredBySectionType = {
   cta: ["title", "button"],
   gallery: ["images"],
   cardGallery: ["cards"],
+  carousel: ["cards"],
   faq: ["items"],
   introText: [],
   titleHero: ["title"],

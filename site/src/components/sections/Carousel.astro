@@ -1,0 +1,140 @@
+---
+// Carrusel horizontal de card-portrait. El número de cartas es variable.
+// Las flechas desplazan la fila de carta en carta; el scroll táctil y el
+// teclado siguen funcionando porque la fila es un contenedor con scroll nativo.
+import CardPortrait from "../CardPortrait.astro";
+
+const { title, cards = [] } = Astro.props;
+---
+
+<section class="block carousel" data-carousel>
+  <div class="head">
+    {title && <h2>{title}</h2>}
+    <div class="arrows">
+      <button type="button" class="arrow" data-dir="-1" aria-label="Anterior" disabled>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <button type="button" class="arrow" data-dir="1" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <ul class="track" role="list">
+    {cards.map((card) => (
+      <li>
+        <CardPortrait title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-gap-16);
+    margin-bottom: var(--gap-gap-24);
+  }
+  .head h2 {
+    margin: 0;
+    font-size: var(--font-size-heading-m);
+    line-height: var(--line-height-heading-m);
+  }
+  .arrows {
+    display: flex;
+    gap: var(--gap-gap-8);
+  }
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-sp-40);
+    height: var(--size-sp-40);
+    padding: 0;
+    border: var(--border-br-1) solid var(--opacity-white-opc-25);
+    border-radius: var(--radius-rd-8);
+    background: var(--fill-page-grey-medium);
+    color: var(--icons-positive);
+    cursor: pointer;
+    transition: transform 160ms var(--ease-out), filter 160ms var(--ease-out);
+  }
+  .arrow:hover:not(:disabled) {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+  }
+  .arrow:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+  .arrow:disabled {
+    background: var(--buttons-fill-primary-disabled);
+    color: var(--icons-disabled);
+    cursor: default;
+  }
+  /* Sin desbordamiento no hay nada que desplazar */
+  .carousel[data-static] .arrows {
+    display: none;
+  }
+
+  .track {
+    display: flex;
+    gap: var(--gap-gap-16);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+  .track li {
+    flex: 0 0 270px;
+    scroll-snap-align: start;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .arrow {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((root) => {
+    const track = root.querySelector<HTMLElement>(".track");
+    const prev = root.querySelector<HTMLButtonElement>('.arrow[data-dir="-1"]');
+    const next = root.querySelector<HTMLButtonElement>('.arrow[data-dir="1"]');
+    if (!track || !prev || !next) return;
+
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      root.toggleAttribute("data-static", max <= 1);
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= max - 1;
+    };
+
+    const step = () => {
+      const first = track.firstElementChild as HTMLElement | null;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return first ? first.offsetWidth + gap : track.clientWidth;
+    };
+
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    [prev, next].forEach((btn) =>
+      btn.addEventListener("click", () => {
+        track.scrollBy({ left: Number(btn.dataset.dir) * step(), behavior: smooth ? "smooth" : "auto" });
+      })
+    );
+
+    track.addEventListener("scroll", update, { passive: true });
+    new ResizeObserver(update).observe(track);
+    update();
+  });
+</script>

@@ -75,6 +75,13 @@ const SECTION_CATALOG = {
       { name: "cards", label: "Cartas", type: "cardList", required: true },
     ],
   },
+  carousel: {
+    label: "Carrusel de cartas de juego",
+    fields: [
+      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "cards", label: "Cartas", type: "cardList", required: true },
+    ],
+  },
   faq: {
     label: "Preguntas frecuentes",
     fields: [

@@ -81,21 +81,31 @@ const gallerySection = z.object({
   images: z.array(imageSchema).min(1),
 });
 
+// Cartas de juego (card-portrait): las usan cardGallery y carousel
+const gameCardsSchema = z
+  .array(
+    z.object({
+      // nombre del juego: alt de la imagen y aria-label de los botones
+      title: z.string().min(1),
+      image: imageSchema,
+      playUrl: safeLinkSchema,
+      sheetUrl: safeLinkSchema,
+    })
+  )
+  .min(1);
+
 const cardGallerySection = z.object({
   type: z.literal("cardGallery"),
   ...surfaceField,
   title: z.string().optional(),
-  cards: z
-    .array(
-      z.object({
-        // nombre del juego: alt de la imagen y aria-label de los botones
-        title: z.string().min(1),
-        image: imageSchema,
-        playUrl: safeLinkSchema,
-        sheetUrl: safeLinkSchema,
-      })
-    )
-    .min(1),
+  cards: gameCardsSchema,
+});
+
+const carouselSection = z.object({
+  type: z.literal("carousel"),
+  ...surfaceField,
+  title: z.string().optional(),
+  cards: gameCardsSchema,
 });
 
 const faqSection = z.object({
@@ -136,6 +146,7 @@ export const sectionSchema = z.discriminatedUnion("type", [
   ctaSection,
   gallerySection,
   cardGallerySection,
+  carouselSection,
   faqSection,
   introTextSection,
   titleHeroSection,
