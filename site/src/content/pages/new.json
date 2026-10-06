@@ -2,7 +2,7 @@
   "title": "Sara",
   "description": "la pagina de prueba de sara",
   "slug": "new",
-  "order": 5,
+  "order": 4,
   "draft": false,
   "seo": {
     "title": "esto es lo que sale en las cartitas esas de cuando se envia una url por whatsaup",
@@ -41,6 +41,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-10-06T09:37:41.430Z",
+  "updatedAt": "2026-10-06T09:37:56.789Z",
   "updatedBy": "sara"
 }
