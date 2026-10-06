@@ -31,7 +31,7 @@ const SECTION_CATALOG = {
   heroVideo: {
     label: "Cabecera con vídeo",
     fields: [
-      { name: "video", label: "Vídeo (ruta o URL, p. ej. /videos/hero.mp4)", type: "text", required: true },
+      { name: "video", label: "Vídeo (ruta o URL, p. ej. /videos/hero-video.mp4)", type: "text", required: true },
       { name: "poster", label: "Póster (imagen antes/después del vídeo)", type: "image" },
     ],
   },
