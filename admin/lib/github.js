@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const { Octokit } = require("@octokit/rest");
 
 /**
@@ -159,6 +160,12 @@ async function uploadAsset({ filename, buffer, editorName, dir, publicBase, labe
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
     .replace(/[^a-z0-9.\-]+/g, "-");
+
+  // Si ya existe un archivo idéntico en el repo, se reutiliza en lugar de
+  // subir otra copia con marca de tiempo.
+  const existing = await findIdenticalFile({ octokit, owner, repo, branch, dir, buffer });
+  if (existing) return { path: `${publicBase}/${existing}`, reused: true };
+
   const unique = `${Date.now()}-${safeName}`;
   const path = `${dir}/${unique}`;
 
@@ -172,6 +179,25 @@ async function uploadAsset({ filename, buffer, editorName, dir, publicBase, labe
   });
 
   return { path: `${publicBase}/${unique}` };
+}
+
+// Busca en el árbol de git (subcarpetas incluidas) un archivo bajo "dir" con
+// el mismo contenido, comparando el sha de blob de git. Devuelve su ruta
+// relativa a "dir", o null. Si la consulta falla, se sube como siempre.
+async function findIdenticalFile({ octokit, owner, repo, branch, dir, buffer }) {
+  try {
+    const sha = crypto
+      .createHash("sha1")
+      .update(`blob ${buffer.length}\0`)
+      .update(buffer)
+      .digest("hex");
+    const { data } = await octokit.rest.git.getTree({ owner, repo, tree_sha: branch, recursive: "1" });
+    const prefix = `${dir}/`;
+    const match = data.tree.find((n) => n.type === "blob" && n.sha === sha && n.path.startsWith(prefix));
+    return match ? match.path.slice(prefix.length) : null;
+  } catch {
+    return null;
+  }
 }
 
 // El panel no sirve las imágenes subidas (viven solo en el repo de GitHub
