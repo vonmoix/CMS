@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const multer = require("multer");
+const crypto = require("crypto");
 const path = require("node:path");
 
 const github = require("./lib/github");
@@ -63,12 +64,31 @@ app.get("/login", (req, res) => {
   res.render("login", { error: null });
 });
 
+// Usuarios con contraseña propia: ADMIN_USERS="sara:clave1,sharlene:clave2".
+// Si el nombre coincide con uno de ellos se exige SU contraseña; para el resto
+// de nombres sigue valiendo la contraseña compartida ADMIN_PASSWORD.
+function getNamedUsers() {
+  const users = new Map();
+  (process.env.ADMIN_USERS || "").split(",").forEach((pair) => {
+    const i = pair.indexOf(":");
+    if (i > 0) users.set(pair.slice(0, i).trim().toLowerCase(), pair.slice(i + 1).trim());
+  });
+  return users;
+}
+
+function safeEqual(a, b) {
+  const ha = crypto.createHash("sha256").update(String(a)).digest();
+  const hb = crypto.createHash("sha256").update(String(b)).digest();
+  return crypto.timingSafeEqual(ha, hb);
+}
+
 app.post("/login", (req, res) => {
   const { name, password } = req.body;
   if (!name || !name.trim()) {
     return res.render("login", { error: "Indica tu nombre." });
   }
-  if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
+  const expected = getNamedUsers().get(name.trim().toLowerCase()) ?? process.env.ADMIN_PASSWORD;
+  if (!expected || !safeEqual(password || "", expected)) {
     return res.render("login", { error: "Contraseña incorrecta." });
   }
   req.session.editorName = name.trim();
@@ -346,10 +366,14 @@ app.post("/api/upload", upload.single("image"), async (req, res, next) => {
 app.post("/api/upload-document", upload.single("document"), async (req, res, next) => {
   try {
     if (!req.file) return res.status(400).json({ error: "No se recibió ningún archivo." });
-    const isPdf = req.file.mimetype === "application/pdf" || /\.pdf$/i.test(req.file.originalname);
+    const isPdf =
+      req.file.mimetype === "application/pdf" &&
+      /\.pdf$/i.test(req.file.originalname) &&
+      req.file.buffer.subarray(0, 5).toString("latin1") === "%PDF-";
     if (!isPdf) return res.status(400).json({ error: "El archivo debe ser un PDF." });
+    const baseName = req.file.originalname.replace(/\.pdf$/i, "").replace(/\./g, "-");
     const { path: publicPath } = await github.uploadDocument({
-      filename: req.file.originalname,
+      filename: `${baseName}.pdf`,
       buffer: req.file.buffer,
       editorName: req.session.editorName,
     });

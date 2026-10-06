@@ -267,8 +267,10 @@
       if (rawFilesBase && publicFilesBase && href.startsWith(publicFilesBase + "/")) {
         href = rawFilesBase + href.slice(publicFilesBase.length);
       }
-      link.hidden = !href;
-      if (href) link.href = href;
+      const safe = /^(https?:\/\/|\/(?!\/))/i.test(href);
+      link.hidden = !safe;
+      if (safe) link.href = href;
+      else link.removeAttribute("href");
     }
     updateLink(urlInput.value);
     urlInput.addEventListener("input", () => {
