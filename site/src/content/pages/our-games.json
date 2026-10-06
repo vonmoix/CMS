@@ -35,7 +35,7 @@
             "src": "/images/games/flaming-gridlines.jpg",
             "alt": "Flaming Gridlines"
           },
-          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
           "sheetUrl": "/files/games/flaming-gridlines.pdf"
         },
         {
@@ -44,7 +44,7 @@
             "src": "/images/games/super-surge-gridlines.jpg",
             "alt": "Super Surge Gridlines"
           },
-          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
           "sheetUrl": "/files/games/super-surge-gridlines.pdf"
         },
         {
@@ -53,7 +53,7 @@
             "src": "/images/games/big-bullion-gridlines.jpg",
             "alt": "Big Bullion Gridlines"
           },
-          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en¤cy=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
           "sheetUrl": "/files/games/big-bullion-gridlines.pdf"
         }
       ],
