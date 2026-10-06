@@ -101,7 +101,7 @@
         {
           "title": "Coins of the Deep",
           "image": {
-            "src": "/images/coins-of-the-deep.jpg",
+            "src": "/images/games/coins-of-the-deep.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-coins-of-the-deep/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinsOfTheDeepPZ&cdn=",
@@ -110,7 +110,7 @@
         {
           "title": "Panda Bao Charms",
           "image": {
-            "src": "/images/panda-bao-charms.jpg",
+            "src": "/images/games/panda-bao-charms.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-panda-bao-charms/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=PandaBaoCharmsPZ&cdn=",
@@ -119,7 +119,7 @@
         {
           "title": "Looting Vegas Alien Heist",
           "image": {
-            "src": "/images/panda-bao-charms.jpg",
+            "src": "/images/games/looting-vegas-alien-heist.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
