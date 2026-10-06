@@ -11,7 +11,10 @@
   "sections": [
     {
       "type": "heroVideo",
-      "video": "/videos/hero-video.mp4"
+      "video": "/videos/hero-video.mp4",
+      "poster": {
+        "src": "/images/1791283752700-hero-video-poster.png"
+      }
     },
     {
       "type": "introText",
@@ -154,6 +157,6 @@
       "surface": "grey-dark"
     }
   ],
-  "updatedAt": "2026-10-06T09:59:45.216Z",
-  "updatedBy": "sara"
+  "updatedAt": "2026-10-06T10:49:17.093Z",
+  "updatedBy": "admin"
 }
