@@ -1,5 +1,5 @@
 {
-  "title": "Sobre nosotros",
+  "title": "About Us",
   "description": "Quiénes somos",
   "slug": "sobre-nosotros",
   "order": 3,
@@ -12,13 +12,13 @@
     {
       "type": "introText",
       "surface": "grey-medium",
-      "title": "Quiénes somos",
-      "copy": "Este es un texto de ejemplo editable. Sustituidlo por vuestro contenido real desde el panel.",
+      "title": "WHO WE ARE",
+      "copy": "We’re experts in developing high quality casino products, from games to back end\ntechnology. With a stellar team of creative designers and experienced developers\nusing cutting edge technology, we offer an unparalleled level of service.",
       "size": "l"
     },
     {
       "type": "gallery",
-      "title": "Nuestro equipo",
+      "title": "We Are Expert Game Makers",
       "images": [
         {
           "src": "/images/placeholder-hero.svg",
@@ -49,6 +49,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-05T09:21:46.535Z",
-  "updatedBy": "admin"
+  "updatedAt": "2026-10-06T11:59:20.216Z",
+  "updatedBy": "Admin"
 }
