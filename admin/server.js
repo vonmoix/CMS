@@ -343,6 +343,22 @@ app.post("/api/upload", upload.single("image"), async (req, res, next) => {
   }
 });
 
+app.post("/api/upload-document", upload.single("document"), async (req, res, next) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: "No se recibió ningún archivo." });
+    const isPdf = req.file.mimetype === "application/pdf" || /\.pdf$/i.test(req.file.originalname);
+    if (!isPdf) return res.status(400).json({ error: "El archivo debe ser un PDF." });
+    const { path: publicPath } = await github.uploadDocument({
+      filename: req.file.originalname,
+      buffer: req.file.buffer,
+      editorName: req.session.editorName,
+    });
+    res.json({ path: publicPath });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // -------------------- Errores --------------------
 
 app.use((err, req, res, next) => {

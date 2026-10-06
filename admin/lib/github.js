@@ -24,7 +24,10 @@ function getConfig() {
     throw new Error("Falta GITHUB_TOKEN en la configuración (.env).");
   }
 
-  return { owner, repo, branch, contentPath, imagesPath, publicImagesBase };
+  const filesPath = (process.env.FILES_PATH || "site/public/files/games").replace(/\/$/, "");
+  const publicFilesBase = (process.env.PUBLIC_FILES_BASE || "/files/games").replace(/\/$/, "");
+
+  return { owner, repo, branch, contentPath, imagesPath, publicImagesBase, filesPath, publicFilesBase };
 }
 
 function getClient() {
@@ -138,8 +141,18 @@ async function deletePage({ slug, sha, editorName }) {
 }
 
 async function uploadImage({ filename, buffer, editorName }) {
+  const { imagesPath, publicImagesBase } = getConfig();
+  return uploadAsset({ filename, buffer, editorName, dir: imagesPath, publicBase: publicImagesBase, label: "imagen" });
+}
+
+async function uploadDocument({ filename, buffer, editorName }) {
+  const { filesPath, publicFilesBase } = getConfig();
+  return uploadAsset({ filename, buffer, editorName, dir: filesPath, publicBase: publicFilesBase, label: "documento" });
+}
+
+async function uploadAsset({ filename, buffer, editorName, dir, publicBase, label }) {
   const octokit = getClient();
-  const { owner, repo, branch, imagesPath, publicImagesBase } = getConfig();
+  const { owner, repo, branch } = getConfig();
 
   const safeName = filename
     .toLowerCase()
@@ -147,18 +160,18 @@ async function uploadImage({ filename, buffer, editorName }) {
     .replace(/[̀-ͯ]/g, "")
     .replace(/[^a-z0-9.\-]+/g, "-");
   const unique = `${Date.now()}-${safeName}`;
-  const path = `${imagesPath}/${unique}`;
+  const path = `${dir}/${unique}`;
 
   await octokit.rest.repos.createOrUpdateFileContents({
     owner,
     repo,
     path,
     branch,
-    message: `Sube imagen "${unique}" (${editorName || "panel"})`,
+    message: `Sube ${label} "${unique}" (${editorName || "panel"})`,
     content: buffer.toString("base64"),
   });
 
-  return { path: `${publicImagesBase}/${unique}` };
+  return { path: `${publicBase}/${unique}` };
 }
 
 // El panel no sirve las imágenes subidas (viven solo en el repo de GitHub
@@ -166,11 +179,14 @@ async function uploadImage({ filename, buffer, editorName }) {
 // carga directamente desde raw.githubusercontent.com en vez de la ruta
 // pública "/images/..." (que solo existe una vez desplegado el sitio).
 function getImagePreviewConfig() {
-  const { owner, repo, branch, imagesPath, publicImagesBase } = getConfig();
+  const { owner, repo, branch, imagesPath, publicImagesBase, filesPath, publicFilesBase } = getConfig();
+  const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}`;
   return {
     publicImagesBase,
-    rawImageBase: `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${imagesPath}`,
+    rawImageBase: `${raw}/${imagesPath}`,
+    publicFilesBase,
+    rawFilesBase: `${raw}/${filesPath}`,
   };
 }
 
-module.exports = { listPages, getPage, savePage, deletePage, uploadImage, getConfig, getImagePreviewConfig };
+module.exports = { listPages, getPage, savePage, deletePage, uploadImage, uploadDocument, getConfig, getImagePreviewConfig };

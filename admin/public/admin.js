@@ -257,6 +257,43 @@
     return el("div", {}, [list, addBtn]);
   }
 
+  function documentControl(path, value) {
+    const link = el("a", { class: "doc-preview", target: "_blank", rel: "noopener", text: "Ver PDF actual" });
+    const urlInput = el("input", { type: "text", placeholder: "https:// o /files/games/archivo.pdf" });
+    urlInput.value = value || "";
+    function updateLink(v) {
+      const { publicFilesBase, rawFilesBase } = IMAGE_PREVIEW_CONFIG;
+      let href = v || "";
+      if (rawFilesBase && publicFilesBase && href.startsWith(publicFilesBase + "/")) {
+        href = rawFilesBase + href.slice(publicFilesBase.length);
+      }
+      link.hidden = !href;
+      if (href) link.href = href;
+    }
+    updateLink(urlInput.value);
+    urlInput.addEventListener("input", () => {
+      setAt(state, path, urlInput.value);
+      updateLink(urlInput.value);
+    });
+    const fileInput = el("input", { type: "file", accept: "application/pdf,.pdf", class: "file-input" });
+    const status = el("span", { class: "muted upload-status" });
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      uploadFile("/api/upload-document", "document", "Documento", file, status, (uploadedPath) => {
+        urlInput.value = uploadedPath;
+        setAt(state, path, uploadedPath);
+        updateLink(uploadedPath);
+      });
+    });
+    return el("div", { class: "doc-field" }, [
+      el("label", { class: "small-label", text: "Enlace del botón Game sheet" }, [urlInput]),
+      el("label", { class: "small-label", text: "Subir nuevo documento (PDF)" }, [fileInput]),
+      status,
+      link,
+    ]);
+  }
+
   function cardListControl(path, values) {
     values = values || [];
     const list = el("div", { class: "repeat-list" });
@@ -274,9 +311,7 @@
         el("label", { class: "small-label", text: "Enlace del botón Play Demo" }, [
           textInput("playUrl", "https:// o /ruta"),
         ]),
-        el("label", { class: "small-label", text: "Enlace del botón Game sheet" }, [
-          textInput("sheetUrl", "https:// o /ruta"),
-        ]),
+        documentControl(`${base}.sheetUrl`, item.sheetUrl),
         el("button", {
           type: "button",
           class: "link-btn danger",
@@ -302,14 +337,18 @@
   }
 
   function uploadImage(file, statusEl, onDone) {
+    uploadFile("/api/upload", "image", "Imagen", file, statusEl, onDone);
+  }
+
+  function uploadFile(url, field, noun, file, statusEl, onDone) {
     statusEl.textContent = "Subiendo…";
     const fd = new FormData();
-    fd.append("image", file);
-    fetch("/api/upload", { method: "POST", body: fd })
+    fd.append(field, file);
+    fetch(url, { method: "POST", body: fd })
       .then((r) => r.json().then((body) => ({ ok: r.ok, body })))
       .then(({ ok, body }) => {
-        if (!ok) throw new Error(body.error || "Error al subir la imagen");
-        statusEl.textContent = "Imagen subida ✓";
+        if (!ok) throw new Error(body.error || "Error al subir el archivo");
+        statusEl.textContent = noun === "Imagen" ? "Imagen subida ✓" : `${noun} subido ✓`;
         onDone(body.path);
       })
       .catch((err) => {
