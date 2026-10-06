@@ -123,7 +123,7 @@
       },
       "button": {
         "label": "Saber más",
-        "href": "ernesto"
+        "href": "our-games"
       },
       "surface": "grey-medium"
     },
@@ -157,6 +157,6 @@
       "surface": "grey-dark"
     }
   ],
-  "updatedAt": "2026-10-06T10:49:17.093Z",
+  "updatedAt": "2026-10-06T10:56:56.102Z",
   "updatedBy": "admin"
 }
