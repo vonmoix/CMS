@@ -11,9 +11,9 @@
   "sections": [
     {
       "type": "introText",
-      "surface": "white",
-      "eyebrow": "eyebrow on white",
-      "title": "titulo on white ",
+      "surface": "grey-dark",
+      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
+      "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
       "copy": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
       "size": "xl"
     },
@@ -93,6 +93,6 @@
       "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-09-30T10:46:22.307Z",
-  "updatedBy": "admin"
+  "updatedAt": "2026-10-06T09:40:12.601Z",
+  "updatedBy": "sara"
 }
