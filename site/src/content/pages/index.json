@@ -10,8 +10,12 @@
   },
   "sections": [
     {
+      "type": "heroVideo",
+      "video": "/videos/hero.mp4"
+    },
+    {
       "type": "introText",
-      "surface": "grey-dark",
+      "surface": "grey-medium",
       "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
       "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
       "copy": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
@@ -19,9 +23,9 @@
     },
     {
       "type": "hero",
-      "eyebrow": "Nuevo",
-      "title": "Bienvenidos al nuevo sitio",
-      "copy": "Este contenido lo edita el equipo de marketing desde el panel de administración, sin tocar código.",
+      "eyebrow": "A PORTFOLIO THAT DOESN’T BLEND IN",
+      "title": "DESIGNED TO KEEP PLAYERS ENTERTAINED",
+      "copy": "Players crave a legit reason to hit that spin button. We’re talking about the meta-hunters, who can’t resist geeking out over the mechanics, and the laid-back crew just vibing after work. They want games that actually get them; from that first cheeky spin right up to the big win moment.",
       "image": {
         "src": "/images/hero-bienvenida.svg",
         "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, Astro, HTML y CSS"
@@ -34,53 +38,22 @@
     },
     {
       "type": "textImage",
-      "title": "Cómo funciona",
-      "copy": "Cada página se compone de bloques (secciones) que el equipo añade, reordena o edita desde el panel: texto, imágenes, llamadas a la acción, galerías o preguntas frecuentes. Al guardar, el sitio se reconstruye y publica automáticamente.",
+      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
+      "copy": "Fierce look, zero attitude.\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
       "image": {
         "src": "/images/como-funciona.svg",
         "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
       },
       "imagePosition": "left",
-      "surface": "grey-dark"
+      "surface": "grey-medium"
     },
     {
       "type": "introText",
-      "surface": "grey-medium",
-      "eyebrow": "eyebrow",
-      "title": "section title",
+      "surface": "grey-dark",
+      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
+      "title": "We take our games seriously — but never ourselves",
       "copy": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
       "size": "xl"
-    },
-    {
-      "type": "gallery",
-      "title": "Galeria de Imagenes",
-      "images": [
-        {
-          "src": "/images/1790598509272-playzzard-mascot.svg",
-          "alt": ""
-        },
-        {
-          "src": "/images/1790598959562-erneslarion.png",
-          "alt": ""
-        },
-        {
-          "src": "/images/1790618653808-galeria-01-hojas.jpg",
-          "alt": ""
-        },
-        {
-          "src": "/images/1790618661448-galeria-02-mariposas.jpg",
-          "alt": ""
-        },
-        {
-          "src": "/images/1790618667657-galeria-03-cuernos.jpg",
-          "alt": ""
-        },
-        {
-          "src": "/images/1790618674875-galeria-04-armadura-azul.jpg",
-          "alt": ""
-        }
-      ],
-      "surface": "grey-medium"
     },
     {
       "type": "cta",
@@ -90,9 +63,9 @@
         "label": "CONTROL PANEL",
         "href": "https://cms-admin-p0mg.onrender.com"
       },
-      "surface": "grey-medium"
+      "surface": "grey-dark"
     }
   ],
-  "updatedAt": "2026-10-06T09:40:12.601Z",
+  "updatedAt": "2026-10-06T09:58:34.217Z",
   "updatedBy": "sara"
 }
