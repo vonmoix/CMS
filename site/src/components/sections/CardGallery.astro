@@ -7,17 +7,52 @@ const { title, cards = [] } = Astro.props;
 
 <section class="block card-gallery">
   {title && <h2>{title}</h2>}
-  <div class="grid">
-    {cards.map((card) => (
-      <CardPortrait title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
-    ))}
+  <div class="cards">
+    <div class="grid">
+      {cards.map((card) => (
+        <div class="item">
+          <CardPortrait title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
+  /* Las cartas mantienen el ancho de una fila completa; las filas que no se
+     llenan (3 o menos cartas con 4 columnas) quedan centradas. */
+  .cards {
+    container-type: inline-size;
+  }
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--size-sp-220), 1fr));
+    --cols: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--gap-gap-16);
+  }
+  .item {
+    flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap-gap-16)) / var(--cols));
+  }
+  /* Columnas de mínimo --size-sp-220 (220px) por carta */
+  @container (min-width: 456px) {
+    .grid {
+      --cols: 2;
+    }
+  }
+  @container (min-width: 692px) {
+    .grid {
+      --cols: 3;
+    }
+  }
+  @container (min-width: 928px) {
+    .grid {
+      --cols: 4;
+    }
+  }
+  @container (min-width: 1164px) {
+    .grid {
+      --cols: 5;
+    }
   }
 </style>
