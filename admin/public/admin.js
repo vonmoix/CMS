@@ -351,7 +351,17 @@
     const fd = new FormData();
     fd.append(field, file);
     fetch(url, { method: "POST", body: fd })
-      .then((r) => r.json().then((body) => ({ ok: r.ok, body })))
+      .then((r) =>
+        r.text().then((text) => {
+          let body;
+          try {
+            body = JSON.parse(text);
+          } catch {
+            body = { error: `Error del servidor (HTTP ${r.status}). Mira los logs del panel.` };
+          }
+          return { ok: r.ok, body };
+        })
+      )
       .then(({ ok, body }) => {
         if (!ok) throw new Error(body.error || "Error al subir el archivo");
         statusEl.textContent = noun === "Imagen" ? "Imagen subida ✓" : `${noun} subido ✓`;

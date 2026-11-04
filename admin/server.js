@@ -408,6 +408,16 @@ app.post("/api/upload-document", upload.single("document"), async (req, res, nex
 
 app.use((err, req, res, next) => {
   console.error(err);
+  // Las llamadas del editor (fetch) esperan JSON, no una página HTML.
+  if (req.path.startsWith("/api/")) {
+    let message = err.message || "Error al subir el archivo";
+    if (err.status === 401 || err.status === 403 || err.status === 404) {
+      message =
+        `GitHub rechazó la subida (HTTP ${err.status}). Revisa que el token tenga permiso de escritura ` +
+        "sobre el repositorio de destino (MEDIA_REPO) y que el nombre del repo sea correcto.";
+    }
+    return res.status(500).json({ error: message });
+  }
   res.status(500).send(`
     <h1>Error</h1>
     <p>${err.message}</p>
