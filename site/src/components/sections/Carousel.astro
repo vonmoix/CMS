@@ -1,8 +1,8 @@
 ---
-// Carrusel horizontal de card-portrait. El número de cartas es variable.
+// Carrusel horizontal de card-pt. El número de cartas es variable.
 // Las flechas desplazan la fila de carta en carta; el scroll táctil y el
 // teclado siguen funcionando porque la fila es un contenedor con scroll nativo.
-import CardPortrait from "../CardPortrait.astro";
+import CardPt from "../CardPt.astro";
 
 const { title, cards = [] } = Astro.props;
 ---
@@ -26,7 +26,7 @@ const { title, cards = [] } = Astro.props;
   <ul class="track" role="list">
     {cards.map((card) => (
       <li>
-        <CardPortrait title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
+        <CardPt title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
       </li>
     ))}
   </ul>
@@ -60,6 +60,7 @@ const { title, cards = [] } = Astro.props;
     border-radius: var(--radius-rd-sm);
     background: var(--fill-page-bg);
     color: var(--icons-positive);
+    box-shadow: 0 var(--spacing-sp-4) 0 var(--opacity-black-opc-40);
     cursor: pointer;
     transition: transform 160ms var(--ease-out), filter 160ms var(--ease-out);
   }

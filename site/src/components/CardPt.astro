@@ -20,7 +20,7 @@ const opensNew = (href: string) => /^https?:\/\//i.test(href) || /\.pdf($|[?#])/
 const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noopener" } : {});
 ---
 
-<article class="card-portrait">
+<article class="card-pt">
   <img class="cover" src={withBase(image.src)} alt={image.alt || title} />
   <div class="overlay" aria-hidden="true"></div>
   <span class="hint" aria-hidden="true">
@@ -33,7 +33,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
 </article>
 
 <style>
-  .card-portrait {
+  .card-pt {
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --dur-in: 450ms;
@@ -137,7 +137,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
   .actions .btn {
     flex: 1 1 0;
     min-width: 0;
-    height: 46px;
+    height: 44px;
     padding: var(--gap-gap-12) var(--gap-gap-16);
     font-size: var(--font-size-body-m);
   }
@@ -177,7 +177,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     .actions .btn {
       flex: none;
       width: 100%;
-      height: 56px;
+      height: 52px;
       padding: var(--gap-gap-16) var(--gap-gap-24);
       font-size: var(--font-size-body-l);
       opacity: 0;
@@ -194,20 +194,20 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
       translate: 0 48px;
     }
 
-    .card-portrait:is(:hover, :focus-within) .cover {
+    .card-pt:is(:hover, :focus-within) .cover {
       transform: scale(1.08);
       filter: blur(4px);
       transition: transform 500ms var(--ease-out), filter 500ms var(--ease-out);
     }
-    .card-portrait:is(:hover, :focus-within) .hint {
+    .card-pt:is(:hover, :focus-within) .hint {
       opacity: 0;
       scale: 0.6;
     }
-    .card-portrait:is(:hover, :focus-within) .overlay {
+    .card-pt:is(:hover, :focus-within) .overlay {
       opacity: 1;
       transition: opacity 250ms var(--ease-out);
     }
-    .card-portrait:is(:hover, :focus-within) .actions .btn {
+    .card-pt:is(:hover, :focus-within) .actions .btn {
       opacity: 1;
       translate: 0 0;
       scale: 1;
@@ -225,24 +225,24 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
       --d: calc(80ms + var(--stagger));
     }
   }
-  .card-portrait:focus-within {
+  .card-pt:focus-within {
     border-color: var(--buttons-secondary-default);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .card-portrait,
-    .card-portrait * {
+    .card-pt,
+    .card-pt * {
       transition-duration: 120ms !important;
       transition-delay: 0ms !important;
     }
-    .card-portrait .cover {
+    .card-pt .cover {
       transform: none !important;
       filter: none !important;
     }
-    .card-portrait .hint {
+    .card-pt .hint {
       scale: 1 !important;
     }
-    .card-portrait .actions .btn {
+    .card-pt .actions .btn {
       translate: 0 0 !important;
       scale: 1 !important;
     }

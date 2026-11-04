@@ -81,7 +81,7 @@ const gallerySection = z.object({
   images: z.array(imageSchema).min(1),
 });
 
-// Cartas de juego (card-portrait): las usan cardGallery y carousel
+// Cartas de juego (card-pt): las usan cardGallery y carousel
 const gameCardsSchema = z
   .array(
     z.object({

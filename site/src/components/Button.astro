@@ -5,7 +5,7 @@ interface Props {
   label: string;
   href?: string;
   type?: "primary" | "secondary" | "tertiary" | "ghost-primary" | "ghost-secondary";
-  size?: "s" | "m" | "l";
+  size?: "m" | "l";
   disabled?: boolean;
 }
 
@@ -52,10 +52,6 @@ const Tag = href && !disabled ? "a" : "button";
   .button[data-size="m"] {
     padding: var(--gap-gap-12) var(--gap-gap-48);
     font-size: var(--font-size-body-m);
-  }
-  .button[data-size="s"] {
-    padding: var(--gap-gap-8) var(--gap-gap-32);
-    font-size: var(--font-size-body-s);
   }
 
   .button[data-type="secondary"] {

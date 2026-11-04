@@ -32,7 +32,7 @@ const fullBleed = new Set(["heroVideo"]);
 const { sections = [] } = Astro.props;
 
 // Estructura resultante:
-//   div.band[data-surface]  → fondo a ancho completo
+//   div.section-content[data-surface]  → fondo a ancho completo
 //     div.wrapper           → ancho máximo y padding lateral
 //       section.block.<tipo>  (sin fondo propio)
 // Las secciones consecutivas con el mismo "surface" comparten franja.
@@ -60,7 +60,7 @@ for (const section of sections) {
       return <Component {...group.items[0]} />;
     }
     return (
-      <div class="band" data-surface={group.surface}>
+      <div class="section-content" data-surface={group.surface}>
         <div class="wrapper">
           {group.items.map((section) => {
             const Component = componentsByType[section.type];

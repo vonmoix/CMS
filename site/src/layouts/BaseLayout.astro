@@ -134,7 +134,7 @@ const currentPath = normalize(Astro.url.pathname);
     border-radius: 2px;
   }
 
-  /* Sin ancho máximo: las franjas de color (.band) llegan al borde de la
+  /* Sin ancho máximo: las franjas de color (.section-content) llegan al borde de la
      pantalla y el ancho del contenido lo pone .wrapper */
   main {
     margin: 0;
@@ -401,39 +401,49 @@ const currentPath = normalize(Astro.url.pathname);
     }
   }
 
-  /* Botón primario, tamaño S. .btn-l = tamaño L */
+  /* Botón primario, tamaño M (44px). .btn-l = tamaño L (52px). El tamaño S se eliminó en Figma */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 35px;
-    padding: var(--gap-gap-8) var(--gap-gap-32);
+    height: 44px;
+    padding: var(--gap-gap-12) var(--gap-gap-48);
     background: var(--buttons-primary-default);
     color: var(--text-buttons-primary-default);
     text-decoration: none;
     text-transform: uppercase;
     border-radius: var(--radius-rd-sm);
     font-weight: 700;
-    font-size: var(--font-size-body-s);
+    font-size: var(--font-size-body-m);
     line-height: normal;
     white-space: nowrap;
-    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
   }
 
   .btn:hover {
     background: var(--buttons-primary-hover);
     color: var(--text-buttons-primary-hover);
+    transform: scale(1.03);
+  }
+
+  .btn:active {
+    transform: scale(0.96);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--buttons-secondary-default);
+    outline-offset: 2px;
   }
 
   .btn-l {
-    height: 56px;
+    height: 52px;
     padding: var(--gap-gap-16) var(--gap-gap-64);
     font-size: var(--font-size-body-l);
   }
 
   /* ---------- Franjas de fondo ---------- */
 
-  .band {
+  .section-content {
     --band-bg: var(--fill-page-bg);
     --band-fg: var(--text-primary);
     --band-fg-muted: var(--text-tertiary);
@@ -442,11 +452,11 @@ const currentPath = normalize(Astro.url.pathname);
     color: var(--band-fg);
   }
 
-  .band[data-surface="grey-dark"] {
+  .section-content[data-surface="grey-dark"] {
     --band-bg: var(--fill-surface-dark);
   }
 
-  .band[data-surface="white"] {
+  .section-content[data-surface="white"] {
     --band-bg: var(--fill-surface-white);
     --band-fg: var(--text-secondary);
     --band-fg-muted: var(--color-neutral-500);
