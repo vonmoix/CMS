@@ -2,7 +2,7 @@
   "title": "About Us",
   "description": "Quiénes somos",
   "slug": "about-us",
-  "order": 1,
+  "order": 2,
   "draft": false,
   "seo": {
     "title": "Sobre nosotros",
@@ -49,6 +49,6 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-04T13:09:35.672Z",
+  "updatedAt": "2026-11-04T15:32:57.557Z",
   "updatedBy": "admin"
 }
