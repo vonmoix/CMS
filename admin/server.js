@@ -410,8 +410,12 @@ app.use((err, req, res, next) => {
   console.error(err);
   // Las llamadas del editor (fetch) esperan JSON, no una página HTML.
   if (req.path.startsWith("/api/")) {
-    let message = err.message || "Error al subir el archivo";
-    if (err.status === 401 || err.status === 403 || err.status === 404) {
+    // Solo se enseñan mensajes pensados para el usuario; el detalle técnico
+    // se queda en el log del servidor (console.error de arriba).
+    let message = err.userFacing ? err.message : "Error interno al subir el archivo. Inténtalo de nuevo o avisa al equipo técnico.";
+    if (err.code === "LIMIT_FILE_SIZE") {
+      message = "El archivo supera el tamaño máximo (5 MB).";
+    } else if (err.status === 401 || err.status === 403 || err.status === 404) {
       message =
         `GitHub rechazó la subida (HTTP ${err.status}). Revisa que el token tenga permiso de escritura ` +
         "sobre el repositorio de destino (MEDIA_REPO) y que el nombre del repo sea correcto.";
