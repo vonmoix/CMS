@@ -1,27 +1,15 @@
 /*
- * Tokens de diseño — generados desde las variables de Figma (fichero "CMS").
- * Los nombres son los de Figma con "/" y espacios cambiados por "-".
- * No editar a mano: si cambia un valor, se cambia en Figma y se vuelve a exportar.
- *
- * Dos niveles:
- *   - primitives: valores crudos. No se usan directamente en los componentes.
- *   - tokens: semánticos (fill, text, stroke, gap, size, radius…), alias de primitives.
+ * tokens.css — copia EXACTA de landing/tokens.css (repo vonmoix/landing), que es la referencia.
+ * No editar aquí: cambiar en la landing (y en Figma) y volver a copiar.
  */
 
+/* ============================================================
+   tokens.css — Playzaar Design Tokens
+   ============================================================ */
+
 :root {
-  /* ===== primitives ===== */
 
-  --color-neutral-0: #ffffff;
-  --color-neutral-100: #fefffc;
-  --color-neutral-200: #efefef;
-  --color-neutral-300: #b9bbb4;
-  --color-neutral-400: #898989;
-  --color-neutral-500: #5f5f5f;
-  --color-neutral-600: #343434;
-  --color-neutral-700: #1f1f1f;
-  --color-neutral-800: #0a0003;
-  --color-neutral-1000: #000000;
-
+  /* Core Colors -- color/red/* (100-800 scale) */
   --color-red-100: #faebec;
   --color-red-200: #f7c5ca;
   --color-red-300: #ff5757;
@@ -31,203 +19,423 @@
   --color-red-700: #6d0306;
   --color-red-800: #2c0204;
 
-  --color-alerts-error: #f83b3b;
+  --color-neutral-1000: #000000;
+  /* color/neutral/1000 (ex black) */
+  --color-neutral-800: #0a0003;
+  /* color/neutral/800 */
+  --color-neutral-700: #1f1f1f;
+  /* color/neutral/700 */
+  --color-neutral-600: #343434;
+  /* color/neutral/600 */
+  --color-neutral-500: #5f5f5f;
+  /* color/neutral/500 */
+  --color-neutral-400: #898989;
+  /* color/neutral/400 */
+  --color-neutral-300: #b9bbb4;
+  /* color/neutral/300 */
+  --color-neutral-200: #efefef;
+  /* color/neutral/200 */
+  --color-neutral-100: #fefffc;
+  /* color/neutral/100 */
+  --color-neutral-0: #ffffff;
+  /* color/neutral/0 (ex white) */
+
   --color-alerts-success: #32bf53;
+  /* color/alerts/success */
   --color-alerts-warning: #ffb000;
+  /* color/alerts/warning */
+  --color-alerts-error: #f83b3b;
+  /* color/alerts/error   */
 
-  --opacity-white-0: #ffffff00;
-  --opacity-white-10: #ffffff1a;
-  --opacity-white-25: #ffffff40;
-  --opacity-white-40: #ffffff66;
-  --opacity-white-60: #ffffff99;
-  --opacity-white-80: #ffffffcc;
+  --black: #000000;
+  /* color/neutral/1000 */
 
-  --opacity-black-0: #00000000;
-  --opacity-black-05: #0000000d;
-  --opacity-black-10: #0000001a;
-  --opacity-black-25: #00000040;
-  --opacity-black-40: #00000066;
-  --opacity-black-60: #00000099;
-  --opacity-black-80: #000000cc;
+  /* Opacity -- opacity/black/opc-* + opacity/white/opc-* */
+  --opacity-black-opc-05: rgba(0, 0, 0, 0.05);
+  /* opacity/black/opc-05 */
+  --opacity-black-opc-10: rgba(0, 0, 0, 0.1);
+  /* opacity/black/opc-10 */
+  --opacity-black-opc-25: rgba(0, 0, 0, 0.25);
+  /* opacity/black/opc-25 */
+  --opacity-black-opc-40: rgba(0, 0, 0, 0.4);
+  /* opacity/black/opc-40 */
+  --opacity-black-opc-60: rgba(0, 0, 0, 0.6);
+  /* opacity/black/opc-60 */
+  --opacity-black-opc-80: rgba(0, 0, 0, 0.8);
+  --opacity-black-0: rgba(0, 0, 0, 0); /* Figma opacity/black/0 */
+  /* opacity/black/opc-80 */
+  --opacity-white-opc-10: rgba(255, 255, 255, 0.1);
+  /* opacity/white/opc-10 */
+  --opacity-white-opc-20: rgba(255, 255, 255, 0.2);
+  /* not yet a Figma variable -- added 2026-09-16 to match the exact color
+     used on form-input-center/-left's Focus-state ring effect in Figma
+     (node 3546:1434 / 3481:1262), which is currently set as a raw
+     unbound color rather than a bound variable */
+  --opacity-white-opc-25: rgba(255, 255, 255, 0.25);
+  /* opacity/white/opc-25 */
+  --opacity-white-opc-40: rgba(255, 255, 255, 0.4);
+  /* opacity/white/opc-40 */
+  --opacity-white-opc-60: rgba(255, 255, 255, 0.6);
+  /* opacity/white/opc-60 */
+  --opacity-white-opc-80: rgba(255, 255, 255, 0.8);
+  --opacity-white-0: rgba(255, 255, 255, 0); /* Figma opacity/white/0 */
+  /* opacity/white/opc-80 */
 
-  /* ===== tokens - colors ===== */
+  /* Fill */
+  --fill-page-bg: #1f1f1f;
+  /* fill/page-bg */
+  --fill-surface-dark: #0a0003;
+  /* fill/surface-dark */
+  --fill-surface-black: #000000;
+  /* fill/surface-black */
+  --fill-surface-white: #efefef;
+  /* fill/surface-white */
+  --fill-surface-red: #e2001c;
+  /* fill/surface-red — antes "surface/surface-red" (y, más atrás,
+     "surface/brand"); Figma renombró la categoría "surface" a "fill",
+     este token pasó de llamarse --surface-red a --fill-surface-red */
 
-  --fill-page-grey-medium: var(--color-neutral-700);
-  --fill-surface-grey-dark: var(--color-neutral-800);
-  --fill-surface-black: var(--color-neutral-1000);
-  --fill-surface-white: var(--color-neutral-200);
-  --fill-surface-red: var(--color-red-500);
+  /* Stroke -- stroke/br-* (colores de borde de uso general) */
+  --stroke-br-100: #fefffc;
+  /* stroke/br-100 */
+  --stroke-br-200: #efefef;
+  /* stroke/br-200 */
+  --stroke-br-300: #b9bbb4;
+  /* stroke/br-300 */
+  --stroke-br-800: #0a0003;
+  /* stroke/br-800 */
 
-  --text-primary: var(--color-neutral-100);
-  --text-secondary: var(--color-neutral-800);
-  --text-tertiary: var(--color-neutral-300);
-  --text-accent: var(--color-red-500);
-  --text-ghost: var(--color-neutral-200);
+  /* ── Text semantic colors ────────────────────────────────── */
+  --text-primary: #fefffc;
+  /* text/primary */
+  --text-secondary: #0a0003;
+  /* text/secondary */
+  --text-tertiary: #b9bbb4;
+  /* text/tertiary */
+  --text-accent: #e2001c;
+  /* text/accent — antes "text/surface/accent"; renombrado en Figma,
+     este token pasó de llamarse --color-text-surface-accent */
+  --text-ghost: #efefef;
+  /* text/ghost */
 
-  --stroke-br-100: var(--color-neutral-100);
-  --stroke-br-200: var(--color-neutral-200);
-  --stroke-br-300: var(--color-neutral-300);
-  --stroke-br-800: var(--color-neutral-800);
+  /* ── Semantic Button Colors ── buttons/fill·stroke·text/* ──
+     Figma's Tokens page groups these as Button - Fill/Stroke/Text -
+     <Type>, one trio per button type (Primary, Secondary, Tertiary,
+     Ghost Primary, Ghost Secondary). Primary/Secondary/Tertiary are
+     borderless buttons — their buttons/stroke/* variables exist in
+     Figma but alias to opacity/white/0 (transparent) in every state. */
+  --buttons-primary-default: #e2001c;
+  /* buttons/fill/primary/default */
+  --buttons-primary-hover: #a30200;
+  /* buttons/fill/primary/hover */
+  --buttons-primary-disabled: #343434;
+  /* buttons/fill/primary/disabled */
+  --stroke-buttons-primary-default: transparent;
+  /* buttons/stroke/primary/default */
+  --stroke-buttons-primary-hover: transparent;
+  /* buttons/stroke/primary/hover */
+  --stroke-buttons-primary-disabled: transparent;
+  /* buttons/stroke/primary/disabled */
+  --text-buttons-primary-default: #fefffc;
+  /* buttons/text/primary/default */
+  --text-buttons-primary-hover: #fefffc;
+  /* buttons/text/primary/hover */
+  --text-buttons-primary-disabled: #5f5f5f;
+  /* buttons/text/primary/disabled */
 
-  --icons-positive: var(--color-neutral-100);
-  --icons-negative: var(--color-red-500);
-  --icons-disabled: var(--color-neutral-300);
+  --buttons-secondary-default: #fefffc;
+  /* buttons/fill/secondary/default */
+  --buttons-secondary-hover: #efefef;
+  /* buttons/fill/secondary/hover */
+  --buttons-secondary-disabled: #343434;
+  /* buttons/fill/secondary/disabled */
+  --stroke-buttons-secondary-default: transparent;
+  /* buttons/stroke/secondary/default */
+  --stroke-buttons-secondary-hover: transparent;
+  /* buttons/stroke/secondary/hover */
+  --stroke-buttons-secondary-disabled: transparent;
+  /* buttons/stroke/secondary/disabled */
+  --text-buttons-secondary-default: #0a0003;
+  /* buttons/text/secondary/default */
+  --text-buttons-secondary-hover: #a30200;
+  /* buttons/text/secondary/hover */
+  --text-buttons-secondary-disabled: #5f5f5f;
+  /* buttons/text/secondary/disabled */
 
-  --opacity-white-opc-10: var(--opacity-white-10);
-  --opacity-white-opc-25: var(--opacity-white-25);
-  --opacity-white-opc-40: var(--opacity-white-40);
-  --opacity-white-opc-60: var(--opacity-white-60);
-  --opacity-white-opc-80: var(--opacity-white-80);
+  --buttons-tertiary-default: #5f5f5f;
+  /* buttons/fill/tertiary/default (ex "primary inverse" in Figma too —
+     renamed there to match) */
+  --buttons-tertiary-hover: #343434;
+  /* buttons/fill/tertiary/hover */
+  --buttons-tertiary-disabled: #b9bbb4;
+  /* buttons/fill/tertiary/disabled */
+  --stroke-buttons-tertiary-default: transparent;
+  /* buttons/stroke/tertiary/default */
+  --stroke-buttons-tertiary-hover: transparent;
+  /* buttons/stroke/tertiary/hover */
+  --stroke-buttons-tertiary-disabled: transparent;
+  /* buttons/stroke/tertiary/disabled */
+  --text-buttons-tertiary-default: #fefffc;
+  /* buttons/text/tertiary/default */
+  --text-buttons-tertiary-hover: #fefffc;
+  /* buttons/text/tertiary/hover */
+  --text-buttons-tertiary-disabled: #5f5f5f;
+  /* buttons/text/tertiary/disabled */
 
-  --opacity-black-opc-05: var(--opacity-black-05);
-  --opacity-black-opc-10: var(--opacity-black-10);
-  --opacity-black-opc-25: var(--opacity-black-25);
-  --opacity-black-opc-40: var(--opacity-black-40);
-  --opacity-black-opc-60: var(--opacity-black-60);
-  --opacity-black-opc-80: var(--opacity-black-80);
+  --buttons-ghost-primary-default: transparent;
+  /* buttons/fill/ghost primary/default (ex "tertiary inverse" then
+     "ghost" in Figma — renamed there to match) */
+  --buttons-ghost-primary-hover: #e2001c;
+  /* buttons/fill/ghost primary/hover */
+  --buttons-ghost-primary-disabled: rgba(255, 255, 255, 0.25);
+  /* buttons/fill/ghost primary/disabled */
+  --stroke-buttons-ghost-primary-default: #e2001c;
+  /* buttons/stroke/ghost primary/default */
+  --stroke-buttons-ghost-primary-hover: #e2001c;
+  /* buttons/stroke/ghost primary/hover */
+  --stroke-buttons-ghost-primary-disabled: #b9bbb4;
+  /* buttons/stroke/ghost primary/disabled */
+  --text-buttons-ghost-primary-default: #e2001c;
+  /* buttons/text/ghost primary/default */
+  --text-buttons-ghost-primary-hover: #fefffc;
+  /* buttons/text/ghost primary/hover — not currently wired to
+     .btn--ghost:hover, which intentionally uses
+     --text-buttons-primary-hover instead (see common.css) */
+  --text-buttons-ghost-primary-disabled: #b9bbb4;
+  /* buttons/text/ghost primary/disabled */
 
-  /* Degradado bajo los botones de card-portrait en touch */
-  --overlay-scrim-start: var(--opacity-black-0);
-  --overlay-scrim-mid: var(--opacity-black-60);
-  --overlay-scrim-end: var(--opacity-black-80);
+  --buttons-ghost-secondary-default: transparent;
+  /* buttons/fill/ghost secondary/default (ex "tertiary" in Figma —
+     renamed there to match) */
+  --buttons-ghost-secondary-hover: #fefffc;
+  /* buttons/fill/ghost secondary/hover */
+  --buttons-ghost-secondary-disabled: transparent;
+  /* buttons/fill/ghost secondary/disabled */
+  --stroke-buttons-ghost-secondary-default: #fefffc;
+  /* buttons/stroke/ghost secondary/default */
+  --stroke-buttons-ghost-secondary-hover: #fefffc;
+  /* buttons/stroke/ghost secondary/hover */
+  --stroke-buttons-ghost-secondary-disabled: #b9bbb4;
+  /* buttons/stroke/ghost secondary/disabled */
+  --text-buttons-ghost-secondary-default: #fefffc;
+  /* buttons/text/ghost secondary/default */
+  --text-buttons-ghost-secondary-hover: #e2001c;
+  /* buttons/text/ghost secondary/hover */
+  --text-buttons-ghost-secondary-disabled: #b9bbb4;
+  /* buttons/text/ghost secondary/disabled */
 
-  /* Botones: fill / text / stroke × tipo × estado */
-  --buttons-fill-primary-default: var(--color-red-500);
-  --buttons-fill-primary-hover: var(--color-red-600);
-  --buttons-fill-primary-disabled: var(--color-neutral-600);
-  --buttons-text-primary-default: var(--color-neutral-100);
-  --buttons-text-primary-hover: var(--color-neutral-100);
-  --buttons-text-primary-disabled: var(--color-neutral-500);
-  --buttons-stroke-primary-default: var(--opacity-white-0);
-  --buttons-stroke-primary-hover: var(--opacity-white-0);
-  --buttons-stroke-primary-disabled: var(--opacity-white-0);
-
-  --buttons-fill-secondary-default: var(--color-neutral-100);
-  --buttons-fill-secondary-hover: var(--color-neutral-200);
-  --buttons-fill-secondary-disabled: var(--color-neutral-600);
-  --buttons-text-secondary-default: var(--color-neutral-800);
-  --buttons-text-secondary-hover: var(--color-red-600);
-  --buttons-text-secondary-disabled: var(--color-neutral-500);
-  --buttons-stroke-secondary-default: var(--opacity-white-0);
-  --buttons-stroke-secondary-hover: var(--opacity-white-0);
-  --buttons-stroke-secondary-disabled: var(--opacity-white-0);
-
-  --buttons-fill-tertiary-default: var(--color-neutral-500);
-  --buttons-fill-tertiary-hover: var(--color-neutral-600);
-  --buttons-fill-tertiary-disabled: var(--color-neutral-300);
-  --buttons-text-tertiary-default: var(--color-neutral-100);
-  --buttons-text-tertiary-hover: var(--color-neutral-100);
-  --buttons-text-tertiary-disabled: var(--color-neutral-500);
-  --buttons-stroke-tertiary-default: var(--opacity-white-0);
-  --buttons-stroke-tertiary-hover: var(--opacity-white-0);
-  --buttons-stroke-tertiary-disabled: var(--opacity-white-0);
-
-  --buttons-fill-ghost-primary-default: var(--opacity-white-0);
-  --buttons-fill-ghost-primary-hover: var(--color-red-500);
-  --buttons-fill-ghost-primary-disabled: var(--opacity-white-opc-25);
-  --buttons-text-ghost-primary-default: var(--color-red-500);
-  --buttons-text-ghost-primary-hover: var(--color-neutral-100);
-  --buttons-text-ghost-primary-disabled: var(--color-neutral-300);
-  --buttons-stroke-ghost-primary-default: var(--color-red-500);
-  --buttons-stroke-ghost-primary-hover: var(--color-red-500);
-  --buttons-stroke-ghost-primary-disabled: var(--color-neutral-300);
-
-  --buttons-fill-ghost-secondary-default: var(--opacity-white-0);
-  --buttons-fill-ghost-secondary-hover: var(--color-neutral-100);
-  --buttons-fill-ghost-secondary-disabled: var(--opacity-white-0);
-  --buttons-text-ghost-secondary-default: var(--color-neutral-100);
-  --buttons-text-ghost-secondary-hover: var(--color-red-500);
-  --buttons-text-ghost-secondary-disabled: var(--color-neutral-300);
-  --buttons-stroke-ghost-secondary-default: var(--color-neutral-100);
-  --buttons-stroke-ghost-secondary-hover: var(--color-neutral-100);
-  --buttons-stroke-ghost-secondary-disabled: var(--color-neutral-300);
-
-  /* Campos de formulario */
+  /* ── Input ── input/fill·stroke·text/* (form-input-left/-center
+     components, Figma node 3482:1263 / 3546:1431) — cada uno es alias
+     de la colección base, igual que las variables input/* en Figma.
+     Actualizado 2026-09-10 tras revisar valores contra Figma: foco de
+     stroke corregido a gris medio (ya no casi blanco) ──────────────── */
   --input-fill-default: var(--color-neutral-800);
+  /* input/fill/default */
   --input-fill-focus: var(--color-neutral-800);
+  /* input/fill/focus */
   --input-fill-error: var(--color-neutral-800);
+  /* input/fill/error */
   --input-fill-disabled: var(--color-neutral-500);
-  --input-text-default: var(--color-neutral-500);
-  --input-text-focus: var(--color-neutral-100);
-  --input-text-error: var(--color-neutral-100);
-  --input-text-disabled: var(--color-neutral-300);
+  /* input/fill/disabled */
   --input-stroke-default: var(--color-neutral-500);
+  /* input/stroke/default */
   --input-stroke-focus: var(--color-neutral-100);
+  /* input/stroke/focus -- updated 2026-09-16 to match Figma's
+     form-input-center/-left Focus-state stroke, changed there from
+     neutral-400 (#898989) to neutral-100 (#fefffc) */
   --input-stroke-error: var(--color-red-500);
+  /* input/stroke/error */
   --input-stroke-disabled: var(--color-neutral-200);
+  /* input/stroke/disabled */
+  --input-text-default: var(--color-neutral-400);
+  /* input/text/default -- bumped from neutral-500 (2026-09-15): placeholder
+     text on --input-fill-default (neutral-800) only hit ~3.25:1, failing
+     AA; neutral-400 gives ~5.9:1. Figma's input/text/default variable
+     still points at neutral-500 -- needs the same bump to stay in sync. */
+  --input-text-focus: var(--color-neutral-100);
+  /* input/text/focus */
+  --input-text-error: var(--color-neutral-100);
+  /* input/text/error */
+  --input-text-disabled: var(--color-neutral-300);
+  /* input/text/disabled */
 
-  /* ===== tokens - sizes ===== */
+  /* ── Icons ──────────────────────────────────────────────── */
+  --icons-positive: #fefffc;
+  /* icons/positive */
+  --icons-negative: #e2001c;
+  /* icons/negative */
+  --icons-disabled: #b9bbb4;
+  /* icons/disabled */
 
-  /* gap: huecos y padding */
-  --gap-none: 0;
+  /* ── Sizes / Gap ── gap/* ───────────────────────────────── */
   --gap-gap-4: 4px;
+  /* gap/gap-4    */
   --gap-gap-8: 8px;
+  /* gap/gap-8    */
   --gap-gap-12: 12px;
+  /* gap/gap-12   */
   --gap-gap-16: 16px;
+  /* gap/gap-16   */
   --gap-gap-24: 24px;
+  /* gap/gap-24   */
   --gap-gap-32: 32px;
+  /* gap/gap-32   */
   --gap-gap-40: 40px;
+  /* gap/gap-40   */
   --gap-gap-48: 48px;
+  /* gap/gap-48   */
   --gap-gap-64: 64px;
+  /* gap/gap-64   */
   --gap-gap-128: 128px;
+  /* gap/gap-128  */
   --gap-gap-256: 256px;
+  /* gap/gap-256  */
+  --gap-none: 0px;
+  /* gap/none     */
 
-  /* size: anchos y altos */
-  --size-none: 0;
-  --size-sp-2: 2px;
-  --size-sp-4: 4px;
-  --size-sp-8: 8px;
-  --size-sp-12: 12px;
-  --size-sp-16: 16px;
-  --size-sp-24: 24px;
-  --size-sp-32: 32px;
-  --size-sp-40: 40px;
-  --size-sp-48: 48px;
-  --size-sp-64: 64px;
-  --size-sp-128: 128px;
-  --size-sp-192: 192px;
-  --size-sp-220: 220px;
-  --size-sp-256: 256px;
+  /* ── Sizes / Spacing ── spacing/* ───────────────────────── */
+  --spacing-none: 0px;
+  /* spacing/none  */
+  --spacing-sp-2: 2px;
+  /* spacing/sp-2  */
+  --spacing-sp-4: 4px;
+  /* spacing/sp-4  */
+  --spacing-sp-8: 8px;
+  /* spacing/sp-8  */
+  --spacing-sp-12: 12px;
+  /* spacing/sp-12 */
+  --spacing-sp-16: 16px;
+  /* spacing/sp-16 */
+  --spacing-sp-24: 24px;
+  /* spacing/sp-24 */
+  --spacing-sp-32: 32px;
+  /* spacing/sp-32 */
+  --spacing-sp-40: 40px;
+  /* spacing/sp-40 */
+  --spacing-sp-48: 48px;
+  /* spacing/sp-48 */
+  --spacing-sp-64: 64px;
+  /* spacing/sp-64 */
+  --spacing-sp-128: 128px;
+  /* spacing/sp-128 */
+  --spacing-sp-192: 192px;
+  /* spacing/sp-192 */
+  --spacing-sp-256: 256px;
+  --spacing-sp-220: 220px; /* Figma spacing/sp-220 (gallery min width) */
+  /* spacing/sp-256 */
 
-  --border-none: 0;
+  /* ── Border width ── border/* ───────────────────────────── */
+  --border-none: 0px;
+  /* border/none */
   --border-br-1: 1px;
+  /* border/br-1 */
   --border-br-2: 2px;
+  /* border/br-2 */
   --border-br-4: 4px;
+  /* border/br-4 */
 
-  --radius-none: 0;
-  --radius-rd-4: 4px;
-  --radius-rd-8: 8px;
-  --radius-rd-16: 16px;
-  --radius-rd-24: 24px;
-  --radius-rd-32: 32px;
-  --radius-rd-200: 200px;
+  /* ── Border Radius ── sizes/radius/* ────────────────────── */
+  --radius-rd-xs: 4px;
+  /* radius/rd-xs */
+  --radius-rd-sm: 8px;
+  /* sizes/radius/rd-sm */
+  --radius-rd-md: 16px;
+  /* rd-md / rd-16 */
+  --radius-rd-xl: 24px;
+  /* rd-xl  */
+  --radius-rd-xxl: 32px;
+  /* radius/rd-xxl */
+  --radius-rd-full: 200px;
+  /* rd-200 — circular elements */
+  --radius-none: 0px;
+  /* radius/none */
 
-  /* ===== tokens - typography ===== */
+  /* ── Typography ── Figma text styles (headings/*, body/*) ── */
+  --font-main: 'Barlow Semi Condensed', sans-serif;
 
-  /* Modos Viewport/Min y Viewport/Max de Figma: interpolación lineal entre 500px y 1200px
-     de ancho (los de layout Mobile/Desktop). clamp(min, min + (max-min)·(100vw-500px)/700, max) */
+  /* ── Fluid type scale ── Figma tokens - typography (Viewport/Min 375px → Viewport/Max 1440px)
+     Headings/Display: Major Third (1.25) at Min, Perfect Fourth (1.333) at Max. Body: Major Second (1.125).
+     Values = Figma variables font-size/* and line-height/*; clamp() interpolates linearly between them. */
+  --font-size-display-2xl: clamp(3.062rem, 2.468rem + 2.535vw, 4.75rem); /* 49→76px */
+  --line-height-display-2xl: clamp(3.25rem, 2.612rem + 2.723vw, 5.062rem); /* 52→81px */
+  --font-size-display-xl: clamp(2.438rem, 2.041rem + 1.69vw, 3.562rem); /* 39→57px */
+  --line-height-display-xl: clamp(2.438rem, 2.041rem + 1.69vw, 3.562rem); /* 39→57px */
+  --font-size-heading-l: clamp(1.938rem, 1.673rem + 1.127vw, 2.688rem); /* 31→43px */
+  --line-height-heading-l: clamp(1.938rem, 1.673rem + 1.127vw, 2.688rem); /* 31→43px */
+  --font-size-heading-m: clamp(1.562rem, 1.408rem + 0.6573vw, 2rem); /* 25→32px */
+  --line-height-heading-m: clamp(1.562rem, 1.408rem + 0.6573vw, 2rem); /* 25→32px */
+  --font-size-heading-s: clamp(1.25rem, 1.162rem + 0.3756vw, 1.5rem); /* 20→24px */
+  --line-height-heading-s: clamp(1.25rem, 1.162rem + 0.3756vw, 1.5rem); /* 20→24px */
+  --font-size-body-xl: clamp(1.25rem, 1.206rem + 0.1878vw, 1.375rem); /* 20→22px */
+  --line-height-body-xl: clamp(1.75rem, 1.684rem + 0.2817vw, 1.938rem); /* 28→31px */
+  --font-size-body-l: clamp(1.125rem, 1.081rem + 0.1878vw, 1.25rem); /* 18→20px */
+  --line-height-body-l: clamp(1.5rem, 1.434rem + 0.2817vw, 1.688rem); /* 24→27px */
+  --font-size-body-m: clamp(1rem, 0.956rem + 0.1878vw, 1.125rem); /* 16→18px */
+  --line-height-body-m: clamp(1.5rem, 1.434rem + 0.2817vw, 1.688rem); /* 24→27px */
+  --font-size-body-s: clamp(0.875rem, 0.831rem + 0.1878vw, 1rem); /* 14→16px */
+  --line-height-body-s: clamp(1.375rem, 1.309rem + 0.2817vw, 1.562rem); /* 22→25px */
 
-  --font-size-display-2xl: clamp(50px, calc(50px + 26 * (100vw - 500px) / 700), 76px);
-  --font-size-display-xl: clamp(51px, calc(51px + 6 * (100vw - 500px) / 700), 57px);
-  --font-size-heading-l: clamp(38px, calc(38px + 5 * (100vw - 500px) / 700), 43px);
-  --font-size-heading-m: clamp(28px, calc(28px + 4 * (100vw - 500px) / 700), 32px);
-  --font-size-heading-s: clamp(21px, calc(21px + 3 * (100vw - 500px) / 700), 24px);
-  --font-size-body-xl: clamp(20px, calc(20px + 2 * (100vw - 500px) / 700), 22px);
-  --font-size-body-l: clamp(18px, calc(18px + 2 * (100vw - 500px) / 700), 20px);
-  --font-size-body-m: clamp(16px, calc(16px + 2 * (100vw - 500px) / 700), 18px);
-  --font-size-body-s: clamp(14px, calc(14px + 2 * (100vw - 500px) / 700), 16px);
+  /* Text styles (Figma name → token). Display/Heading are Bold + uppercase in Figma (text-transform set per component). */
+  --text-display-2xl: 700 var(--font-size-display-2xl)/var(--line-height-display-2xl) var(--font-main);
+  --text-display-xl: 700 var(--font-size-display-xl)/var(--line-height-display-xl) var(--font-main);
+  --text-heading-l: 700 var(--font-size-heading-l)/var(--line-height-heading-l) var(--font-main);
+  --text-heading-m: 700 var(--font-size-heading-m)/var(--line-height-heading-m) var(--font-main);
+  --text-heading-s: 700 var(--font-size-heading-s)/var(--line-height-heading-s) var(--font-main);
+  --text-body-xl: 400 var(--font-size-body-xl)/var(--line-height-body-xl) var(--font-main);
+  --text-body-xl-semibold: 600 var(--font-size-body-xl)/var(--line-height-body-xl) var(--font-main);
+  --text-body-l: 400 var(--font-size-body-l)/var(--line-height-body-l) var(--font-main);
+  --text-body-l-medium: 500 var(--font-size-body-l)/var(--line-height-body-l) var(--font-main);
+  --text-body-l-semibold: 600 var(--font-size-body-l)/var(--line-height-body-l) var(--font-main);
+  --text-body-m: 400 var(--font-size-body-m)/var(--line-height-body-m) var(--font-main);
+  --text-body-m-medium: 500 var(--font-size-body-m)/var(--line-height-body-m) var(--font-main);
+  --text-body-m-semibold: 600 var(--font-size-body-m)/var(--line-height-body-m) var(--font-main);
+  --text-body-s: 400 var(--font-size-body-s)/var(--line-height-body-s) var(--font-main);
+  --text-body-s-medium: 500 var(--font-size-body-s)/var(--line-height-body-s) var(--font-main);
+  --text-body-s-semibold: 600 var(--font-size-body-s)/var(--line-height-body-s) var(--font-main);
 
-  --line-height-display-2xl: clamp(52px, calc(52px + 29 * (100vw - 500px) / 700), 81px);
-  --line-height-display-xl: clamp(51px, calc(51px + 6 * (100vw - 500px) / 700), 57px);
-  --line-height-heading-l: clamp(38px, calc(38px + 5 * (100vw - 500px) / 700), 43px);
-  --line-height-heading-m: clamp(28px, calc(28px + 4 * (100vw - 500px) / 700), 32px);
-  --line-height-heading-s: clamp(21px, calc(21px + 3 * (100vw - 500px) / 700), 24px);
-  --line-height-body-xl: clamp(28px, calc(28px + 3 * (100vw - 500px) / 700), 31px);
-  --line-height-body-l: clamp(24px, calc(24px + 3 * (100vw - 500px) / 700), 27px);
-  --line-height-body-m: clamp(24px, calc(24px + 3 * (100vw - 500px) / 700), 27px);
-  --line-height-body-s: clamp(22px, calc(22px + 3 * (100vw - 500px) / 700), 25px);
+  /* buttons/BUTTON-L-BOLD, BUTTON-M-BOLD, BUTTON-S-BOLD */
+  --text-button-l-bold: 700 20px/1 var(--font-main);
+  --text-button-m-bold: 700 16px/1 var(--font-main);
+  --text-button-s-bold: 700 14px/1 var(--font-main);
 
-  /* ===== tokens - layout ===== */
+  /* ── Z-index scale ───────────────────────────────────────── */
+  --z-card: 1;
+  --z-card-inner: 2;
+  --z-mascot-sig: 3;
+  --z-header: 100;
+  --z-overlay: 200;
 
-  --layout-content-6col: 1200px;
+  /* ── Animation Easing ───────────────────────────────────── */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* ── Header ─────────────────────────────────────────────── */
+  --header-height-mobile: 62px;
+  --header-height-desktop: 89px;
+
+  /* ── Overlay ─────────────────────────────────────────────── */
+  --overlay-bg: rgba(0, 0, 0, 0.8);
+  --hero-overlay: rgba(0, 0, 0, 0.35);
+  --hero-overlay-hover: rgba(0, 0, 0, 0.45);
+  --hero-glow: rgba(226, 0, 28, 0.4);
+
+  /* Figma overlay/scrim/* — card-pt Touch strip gradient (start → mid 45% → end) */
+  --overlay-scrim-start: var(--opacity-black-0);
+  --overlay-scrim-mid: var(--opacity-black-opc-60);
+  --overlay-scrim-end: var(--opacity-black-opc-80);
+
+  color-scheme: dark;
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  --max-width: 1440px;
+  --content-width: 1056px;
+  --layout-content-6col: 1200px; /* Figma layout/content-6col (Desktop) */
+  --pad-x: var(--spacing-sp-48);
+
+}
+
+@media (max-width: 768px) {
+  :root {
+    --pad-x: var(--spacing-sp-24);
+  }
 }

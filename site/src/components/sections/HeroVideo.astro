@@ -106,15 +106,15 @@ const { video, poster } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--buttons-fill-primary-default);
-    color: var(--buttons-text-primary-default);
+    background: var(--buttons-primary-default);
+    color: var(--text-buttons-primary-default);
     box-shadow: 0 4px 24px rgba(226, 0, 28, 0.4);
     transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
   }
   .play-btn:hover .play-icon,
   .play-btn:focus-visible .play-icon {
     transform: scale(1.1);
-    background: var(--buttons-fill-primary-hover);
+    background: var(--buttons-primary-hover);
   }
   .play-btn:focus-visible .play-icon {
     outline: 2px solid var(--text-primary);

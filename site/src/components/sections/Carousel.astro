@@ -53,12 +53,12 @@ const { title, cards = [] } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--size-sp-40);
-    height: var(--size-sp-40);
+    width: var(--spacing-sp-40);
+    height: var(--spacing-sp-40);
     padding: 0;
     border: var(--border-br-1) solid var(--opacity-white-opc-25);
-    border-radius: var(--radius-rd-8);
-    background: var(--fill-page-grey-medium);
+    border-radius: var(--radius-rd-sm);
+    background: var(--fill-page-bg);
     color: var(--icons-positive);
     cursor: pointer;
     transition: transform 160ms var(--ease-out), filter 160ms var(--ease-out);
@@ -71,7 +71,7 @@ const { title, cards = [] } = Astro.props;
     transform: scale(0.96);
   }
   .arrow:disabled {
-    background: var(--buttons-fill-primary-disabled);
+    background: var(--buttons-primary-disabled);
     color: var(--icons-disabled);
     cursor: default;
   }

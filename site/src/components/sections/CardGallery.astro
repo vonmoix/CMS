@@ -34,7 +34,7 @@ const { title, cards = [] } = Astro.props;
   .item {
     flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap-gap-16)) / var(--cols));
   }
-  /* Columnas de mínimo --size-sp-220 (220px) por carta */
+  /* Columnas de mínimo --spacing-sp-220 (220px) por carta */
   @container (min-width: 456px) {
     .grid {
       --cols: 2;

@@ -46,7 +46,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     isolation: isolate;
     container-type: inline-size;
     border: var(--border-br-1) solid var(--opacity-white-opc-25);
-    border-radius: var(--radius-rd-16);
+    border-radius: var(--radius-rd-md);
     transition: border-color var(--dur-out) var(--ease-in);
   }
   .cover {
@@ -73,10 +73,10 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     bottom: var(--gap-gap-16);
     align-items: center;
     justify-content: center;
-    width: var(--size-sp-40);
-    height: var(--size-sp-40);
+    width: var(--spacing-sp-40);
+    height: var(--spacing-sp-40);
     border: var(--border-br-1) solid var(--opacity-white-opc-25);
-    border-radius: var(--radius-rd-200);
+    border-radius: var(--radius-rd-full);
     background: var(--opacity-black-opc-60);
     backdrop-filter: blur(8px);
     transition: opacity 150ms var(--ease-out), scale 150ms var(--ease-out);
@@ -94,7 +94,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     align-items: center;
     justify-content: center;
     border: 0;
-    border-radius: var(--radius-rd-8);
+    border-radius: var(--radius-rd-sm);
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1;
@@ -102,13 +102,13 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
-    background: var(--buttons-fill-primary-default);
-    color: var(--buttons-text-primary-default);
+    background: var(--buttons-primary-default);
+    color: var(--text-buttons-primary-default);
     transition: transform 160ms var(--ease-out), filter 160ms var(--ease-out);
   }
   .btn[data-type="secondary"] {
-    background: var(--buttons-fill-secondary-default);
-    color: var(--buttons-text-secondary-default);
+    background: var(--buttons-secondary-default);
+    color: var(--text-buttons-secondary-default);
   }
   .btn:hover {
     filter: brightness(1.08);
@@ -118,7 +118,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     transform: scale(0.96);
   }
   .btn:focus-visible {
-    outline: 3px solid var(--buttons-fill-secondary-default);
+    outline: 3px solid var(--buttons-secondary-default);
     outline-offset: 3px;
   }
 
@@ -226,7 +226,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     }
   }
   .card-portrait:focus-within {
-    border-color: var(--buttons-fill-secondary-default);
+    border-color: var(--buttons-secondary-default);
   }
 
   @media (prefers-reduced-motion: reduce) {

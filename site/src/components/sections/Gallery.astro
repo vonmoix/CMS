@@ -17,14 +17,14 @@ const { title, images = [] } = Astro.props;
 <style>
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--size-sp-220), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--spacing-sp-220), 1fr));
     gap: var(--gap-gap-16);
   }
   figure {
     margin: 0;
   }
   figure img {
-    border-radius: var(--radius-rd-8);
+    border-radius: var(--radius-rd-sm);
     aspect-ratio: 4 / 3;
     object-fit: cover;
     width: 100%;

@@ -27,8 +27,8 @@ const Tag = href && !disabled ? "a" : "button";
 
 <style>
   .button {
-    --fill: var(--buttons-fill-primary-default);
-    --text: var(--buttons-text-primary-default);
+    --fill: var(--buttons-primary-default);
+    --text: var(--text-buttons-primary-default);
     --stroke: var(--opacity-white-0);
     display: inline-flex;
     align-items: center;
@@ -38,7 +38,7 @@ const Tag = href && !disabled ? "a" : "button";
     background: var(--fill);
     color: var(--text);
     border: var(--border-br-1) solid var(--stroke);
-    border-radius: var(--radius-rd-8);
+    border-radius: var(--radius-rd-sm);
     font-family: inherit;
     font-weight: 700;
     font-size: var(--font-size-body-l);
@@ -59,77 +59,77 @@ const Tag = href && !disabled ? "a" : "button";
   }
 
   .button[data-type="secondary"] {
-    --fill: var(--buttons-fill-secondary-default);
-    --text: var(--buttons-text-secondary-default);
-    --stroke: var(--buttons-stroke-secondary-default);
+    --fill: var(--buttons-secondary-default);
+    --text: var(--text-buttons-secondary-default);
+    --stroke: var(--stroke-buttons-secondary-default);
   }
   .button[data-type="tertiary"] {
-    --fill: var(--buttons-fill-tertiary-default);
-    --text: var(--buttons-text-tertiary-default);
-    --stroke: var(--buttons-stroke-tertiary-default);
+    --fill: var(--buttons-tertiary-default);
+    --text: var(--text-buttons-tertiary-default);
+    --stroke: var(--stroke-buttons-tertiary-default);
   }
   .button[data-type="ghost-primary"] {
-    --fill: var(--buttons-fill-ghost-primary-default);
-    --text: var(--buttons-text-ghost-primary-default);
-    --stroke: var(--buttons-stroke-ghost-primary-default);
+    --fill: var(--buttons-ghost-primary-default);
+    --text: var(--text-buttons-ghost-primary-default);
+    --stroke: var(--stroke-buttons-ghost-primary-default);
   }
   .button[data-type="ghost-secondary"] {
-    --fill: var(--buttons-fill-ghost-secondary-default);
-    --text: var(--buttons-text-ghost-secondary-default);
-    --stroke: var(--buttons-stroke-ghost-secondary-default);
+    --fill: var(--buttons-ghost-secondary-default);
+    --text: var(--text-buttons-ghost-secondary-default);
+    --stroke: var(--stroke-buttons-ghost-secondary-default);
   }
 
   .button:hover {
-    --fill: var(--buttons-fill-primary-hover);
-    --text: var(--buttons-text-primary-hover);
-    --stroke: var(--buttons-stroke-primary-hover);
+    --fill: var(--buttons-primary-hover);
+    --text: var(--text-buttons-primary-hover);
+    --stroke: var(--stroke-buttons-primary-hover);
   }
   .button[data-type="secondary"]:hover {
-    --fill: var(--buttons-fill-secondary-hover);
-    --text: var(--buttons-text-secondary-hover);
-    --stroke: var(--buttons-stroke-secondary-hover);
+    --fill: var(--buttons-secondary-hover);
+    --text: var(--text-buttons-secondary-hover);
+    --stroke: var(--stroke-buttons-secondary-hover);
   }
   .button[data-type="tertiary"]:hover {
-    --fill: var(--buttons-fill-tertiary-hover);
-    --text: var(--buttons-text-tertiary-hover);
-    --stroke: var(--buttons-stroke-tertiary-hover);
+    --fill: var(--buttons-tertiary-hover);
+    --text: var(--text-buttons-tertiary-hover);
+    --stroke: var(--stroke-buttons-tertiary-hover);
   }
   .button[data-type="ghost-primary"]:hover {
-    --fill: var(--buttons-fill-ghost-primary-hover);
-    --text: var(--buttons-text-ghost-primary-hover);
-    --stroke: var(--buttons-stroke-ghost-primary-hover);
+    --fill: var(--buttons-ghost-primary-hover);
+    --text: var(--text-buttons-ghost-primary-hover);
+    --stroke: var(--stroke-buttons-ghost-primary-hover);
   }
   .button[data-type="ghost-secondary"]:hover {
-    --fill: var(--buttons-fill-ghost-secondary-hover);
-    --text: var(--buttons-text-ghost-secondary-hover);
-    --stroke: var(--buttons-stroke-ghost-secondary-hover);
+    --fill: var(--buttons-ghost-secondary-hover);
+    --text: var(--text-buttons-ghost-secondary-hover);
+    --stroke: var(--stroke-buttons-ghost-secondary-hover);
   }
 
   .button[aria-disabled="true"] {
-    --fill: var(--buttons-fill-primary-disabled);
-    --text: var(--buttons-text-primary-disabled);
-    --stroke: var(--buttons-stroke-primary-disabled);
+    --fill: var(--buttons-primary-disabled);
+    --text: var(--text-buttons-primary-disabled);
+    --stroke: var(--stroke-buttons-primary-disabled);
     cursor: not-allowed;
     pointer-events: none;
   }
   .button[data-type="secondary"][aria-disabled="true"] {
-    --fill: var(--buttons-fill-secondary-disabled);
-    --text: var(--buttons-text-secondary-disabled);
-    --stroke: var(--buttons-stroke-secondary-disabled);
+    --fill: var(--buttons-secondary-disabled);
+    --text: var(--text-buttons-secondary-disabled);
+    --stroke: var(--stroke-buttons-secondary-disabled);
   }
   .button[data-type="tertiary"][aria-disabled="true"] {
-    --fill: var(--buttons-fill-tertiary-disabled);
-    --text: var(--buttons-text-tertiary-disabled);
-    --stroke: var(--buttons-stroke-tertiary-disabled);
+    --fill: var(--buttons-tertiary-disabled);
+    --text: var(--text-buttons-tertiary-disabled);
+    --stroke: var(--stroke-buttons-tertiary-disabled);
   }
   .button[data-type="ghost-primary"][aria-disabled="true"] {
-    --fill: var(--buttons-fill-ghost-primary-disabled);
-    --text: var(--buttons-fill-tertiary-disabled);
-    --stroke: var(--buttons-stroke-ghost-primary-disabled);
+    --fill: var(--buttons-ghost-primary-disabled);
+    --text: var(--buttons-tertiary-disabled);
+    --stroke: var(--stroke-buttons-ghost-primary-disabled);
   }
   .button[data-type="ghost-secondary"][aria-disabled="true"] {
-    --fill: var(--buttons-fill-ghost-secondary-disabled);
-    --text: var(--buttons-text-ghost-secondary-disabled);
-    --stroke: var(--buttons-stroke-ghost-secondary-disabled);
+    --fill: var(--buttons-ghost-secondary-disabled);
+    --text: var(--text-buttons-ghost-secondary-disabled);
+    --stroke: var(--stroke-buttons-ghost-secondary-disabled);
   }
 </style>

@@ -65,14 +65,14 @@ const currentPath = normalize(Astro.url.pathname);
 <style is:global>
   :root {
     /* Alias de las variables antiguas hacia los tokens de Figma (styles/tokens.css) */
-    --color-bg: var(--fill-page-grey-medium);
-    --color-surface: var(--fill-surface-grey-dark);
+    --color-bg: var(--fill-page-bg);
+    --color-surface: var(--fill-surface-dark);
     --color-surface-2: var(--color-neutral-600);
     --color-border: var(--color-neutral-600);
     --color-text: var(--text-primary);
     --color-muted: var(--text-tertiary);
-    --color-accent: var(--buttons-fill-primary-default);
-    --color-accent-ink: var(--buttons-text-primary-default);
+    --color-accent: var(--buttons-primary-default);
+    --color-accent-ink: var(--text-buttons-primary-default);
 
     --font-display: "Barlow Semi Condensed", ui-sans-serif, system-ui, sans-serif;
     --font-sans: var(--font-display);
@@ -83,7 +83,7 @@ const currentPath = normalize(Astro.url.pathname);
     --space-lg: 24px;
     --space-xl: 48px;
 
-    --header-h: var(--size-sp-64);
+    --header-h: var(--spacing-sp-64);
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -193,7 +193,7 @@ const currentPath = normalize(Astro.url.pathname);
     font-size: var(--font-size-heading-s);
     line-height: var(--line-height-heading-s);
     text-transform: uppercase;
-    color: var(--buttons-text-primary-default);
+    color: var(--text-buttons-primary-default);
     text-decoration: none;
     white-space: nowrap;
   }
@@ -264,7 +264,7 @@ const currentPath = normalize(Astro.url.pathname);
       padding: 0 var(--space-sm);
       background: none;
       border: 0;
-      color: var(--buttons-text-primary-default);
+      color: var(--text-buttons-primary-default);
       cursor: pointer;
     }
 
@@ -280,15 +280,15 @@ const currentPath = normalize(Astro.url.pathname);
 
     .nav-toggle-icon {
       position: relative;
-      width: var(--size-sp-24);
-      height: calc(var(--size-sp-2) * 3 + var(--gap-gap-4) * 2);
+      width: var(--spacing-sp-24);
+      height: calc(var(--spacing-sp-2) * 3 + var(--gap-gap-4) * 2);
     }
 
     .nav-toggle-icon span {
       position: absolute;
       left: 0;
       width: 100%;
-      height: var(--size-sp-2);
+      height: var(--spacing-sp-2);
       background: currentColor;
       transition: transform 240ms var(--ease-out), opacity 160ms var(--ease-out);
     }
@@ -298,7 +298,7 @@ const currentPath = normalize(Astro.url.pathname);
     }
 
     .nav-toggle-icon span:nth-child(2) {
-      top: calc(var(--size-sp-2) + var(--gap-gap-4));
+      top: calc(var(--spacing-sp-2) + var(--gap-gap-4));
     }
 
     .nav-toggle-icon span:nth-child(3) {
@@ -306,7 +306,7 @@ const currentPath = normalize(Astro.url.pathname);
     }
 
     [data-open] .nav-toggle-icon span:nth-child(1) {
-      transform: translateY(calc(var(--size-sp-2) + var(--gap-gap-4))) rotate(45deg);
+      transform: translateY(calc(var(--spacing-sp-2) + var(--gap-gap-4))) rotate(45deg);
     }
 
     [data-open] .nav-toggle-icon span:nth-child(2) {
@@ -314,7 +314,7 @@ const currentPath = normalize(Astro.url.pathname);
     }
 
     [data-open] .nav-toggle-icon span:nth-child(3) {
-      transform: translateY(calc((var(--size-sp-2) + var(--gap-gap-4)) * -1)) rotate(-45deg);
+      transform: translateY(calc((var(--spacing-sp-2) + var(--gap-gap-4)) * -1)) rotate(-45deg);
     }
 
     /* Sin JS: los enlaces bajo la marca, en una fila que se puede deslizar */
@@ -337,7 +337,7 @@ const currentPath = normalize(Astro.url.pathname);
       gap: 0;
       padding: var(--space-lg) var(--gap-gap-16) var(--space-xl);
       overflow-y: auto;
-      background: var(--fill-page-grey-medium);
+      background: var(--fill-page-bg);
       visibility: hidden;
       opacity: 0;
       transition: opacity 200ms var(--ease-out), visibility 0s linear 200ms;
@@ -408,11 +408,11 @@ const currentPath = normalize(Astro.url.pathname);
     justify-content: center;
     height: 35px;
     padding: var(--gap-gap-8) var(--gap-gap-32);
-    background: var(--buttons-fill-primary-default);
-    color: var(--buttons-text-primary-default);
+    background: var(--buttons-primary-default);
+    color: var(--text-buttons-primary-default);
     text-decoration: none;
     text-transform: uppercase;
-    border-radius: var(--radius-rd-8);
+    border-radius: var(--radius-rd-sm);
     font-weight: 700;
     font-size: var(--font-size-body-s);
     line-height: normal;
@@ -421,8 +421,8 @@ const currentPath = normalize(Astro.url.pathname);
   }
 
   .btn:hover {
-    background: var(--buttons-fill-primary-hover);
-    color: var(--buttons-text-primary-hover);
+    background: var(--buttons-primary-hover);
+    color: var(--text-buttons-primary-hover);
   }
 
   .btn-l {
@@ -434,7 +434,7 @@ const currentPath = normalize(Astro.url.pathname);
   /* ---------- Franjas de fondo ---------- */
 
   .band {
-    --band-bg: var(--fill-page-grey-medium);
+    --band-bg: var(--fill-page-bg);
     --band-fg: var(--text-primary);
     --band-fg-muted: var(--text-tertiary);
     padding: var(--gap-gap-32) 0;
@@ -443,7 +443,7 @@ const currentPath = normalize(Astro.url.pathname);
   }
 
   .band[data-surface="grey-dark"] {
-    --band-bg: var(--fill-surface-grey-dark);
+    --band-bg: var(--fill-surface-dark);
   }
 
   .band[data-surface="white"] {
