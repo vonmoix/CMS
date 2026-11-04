@@ -1,16 +1,15 @@
-// url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=50-3539
+// url=https://www.figma.com/design/X5HoVxlC6u3yLP1tqkLpN9/Playzaar-Webs-1.0?node-id=663-4382
 // source=site/src/components/CardImageRight.astro
 // component=CardImageRight
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const eyebrow = instance.getString('Eyebrow')
+// Figma card-right: Title + Content (sin eyebrow), Breakpoint lo resuelve el CSS
 const title = instance.getString('Title')
-const copy = instance.getString('Copy')
+const copy = instance.getString('Content')
 
 export default {
   example: figma.code`<CardImageRight
-  eyebrow="${eyebrow}"
   title="${title}"
   copy="${copy}"
   image={{ src: "/images/imagen.png", alt: "" }}

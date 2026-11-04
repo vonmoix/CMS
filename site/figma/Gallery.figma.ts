@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=8-26
+// url=https://www.figma.com/design/X5HoVxlC6u3yLP1tqkLpN9/Playzaar-Webs-1.0?node-id=5178-180
 // source=site/src/components/sections/Gallery.astro
 // component=Gallery
 import figma from 'figma'

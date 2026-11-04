@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=50-4946
+// url=https://www.figma.com/design/X5HoVxlC6u3yLP1tqkLpN9/Playzaar-Webs-1.0?node-id=3071-128
 // source=site/src/components/Button.astro
 // component=Button
 import figma from 'figma'

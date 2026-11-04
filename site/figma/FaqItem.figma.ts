@@ -1,11 +1,11 @@
-// url=https://www.figma.com/design/wYCxI2epUKcZdjPse5nAIV/CMS?node-id=20-12
+// url=https://www.figma.com/design/X5HoVxlC6u3yLP1tqkLpN9/Playzaar-Webs-1.0?node-id=5177-170
 // source=site/src/components/FaqItem.astro
 // component=FaqItem
 import figma from 'figma'
 const instance = figma.selectedInstance
 
-const question = instance.getString('Title')
-const answer = instance.getString('Copy')
+const question = instance.getString('Question')
+const answer = instance.getString('Answer')
 const open = instance.getEnum('State', { 'Collapsed': false, 'Expanded': true })
 
 export default {
