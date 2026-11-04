@@ -5,7 +5,7 @@
   "order": 0,
   "draft": false,
   "seo": {
-    "title": "MoixCMS — Inicio",
+    "title": "Playzaar — Follow the Rabbit",
     "description": "Ejemplo de página de inicio generada por el sistema de gestión de contenido."
   },
   "sections": [
@@ -13,7 +13,7 @@
       "type": "sectionVideo",
       "video": "https://pzlanding-sigma.vercel.app/videos/cms/hero-video.mp4",
       "poster": {
-        "src": "https://pzlanding-sigma.vercel.app/images/cms/hero-video-poster.png"
+        "src": "https://pzlanding-sigma.vercel.app/images/img_video_cover.png"
       }
     },
     {
@@ -111,52 +111,8 @@
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Looting_Vegas_Alien_Heist_PDS.pdf"
         }
       ]
-    },
-    {
-      "type": "hero",
-      "eyebrow": "A PORTFOLIO THAT DOESN’T BLEND IN",
-      "title": "DESIGNED TO KEEP PLAYERS ENTERTAINED",
-      "copy": "Players crave a legit reason to hit that spin button. We’re talking about the meta-hunters, who can’t resist geeking out over the mechanics, and the laid-back crew just vibing after work. They want games that actually get them; from that first cheeky spin right up to the big win moment.",
-      "image": {
-        "src": "https://pzlanding-sigma.vercel.app/images/cms/hero-bienvenida.svg",
-        "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, Astro, HTML y CSS"
-      },
-      "button": {
-        "label": "Saber más",
-        "href": "our-games"
-      },
-      "surface": "grey-medium"
-    },
-    {
-      "type": "textImage",
-      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
-      "copy": "Fierce look, zero attitude.\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
-      "image": {
-        "src": "https://pzlanding-sigma.vercel.app/images/cms/como-funciona.svg",
-        "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
-      },
-      "imagePosition": "left",
-      "surface": "grey-medium"
-    },
-    {
-      "type": "introText",
-      "surface": "grey-dark",
-      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
-      "title": "We take our games seriously — but never ourselves",
-      "copy": "From fast-paced, feature-packed games to themes for every mood, our marketplace features slots, strategy-based games, branded content and sweepstakes-ready titles.",
-      "size": "xl"
-    },
-    {
-      "type": "cta",
-      "title": "¿Listos para empezar?",
-      "copy": "Entra al panel de administración para crear tu primera página.",
-      "button": {
-        "label": "CONTROL PANEL",
-        "href": "https://cms-admin-p0mg.onrender.com"
-      },
-      "surface": "grey-dark"
     }
   ],
-  "updatedAt": "2026-11-04T15:21:35.438Z",
+  "updatedAt": "2026-11-04T15:32:47.111Z",
   "updatedBy": "admin"
 }
