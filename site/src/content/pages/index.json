@@ -13,7 +13,7 @@
       "type": "sectionVideo",
       "video": "/videos/hero-video.mp4",
       "poster": {
-        "src": "/images/hero-video-poster.png"
+        "src": "https://pzlanding-sigma.vercel.app/images/cms/hero-video-poster.png"
       }
     },
     {
@@ -32,7 +32,7 @@
         {
           "title": "Flaming Gridlines",
           "image": {
-            "src": "/images/games/flaming-gridlines.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_flaming_gridlines.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
@@ -41,7 +41,7 @@
         {
           "title": "Super Surge Gridlines",
           "image": {
-            "src": "/images/games/super-surge-gridlines.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_super_surge_gridlines.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
@@ -50,7 +50,7 @@
         {
           "title": "Big Bullion Gridlines",
           "image": {
-            "src": "/images/games/big-bullion-gridlines.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_big_bullion_gridlines.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
@@ -59,7 +59,7 @@
         {
           "title": "Fishing 4 Life",
           "image": {
-            "src": "/images/games/fishing-4-life.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_fishing_4_life_mighty.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-fishing-4-life/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=Fishing4LifePZ&cdn=",
@@ -68,7 +68,7 @@
         {
           "title": "Coin Raider Piggy",
           "image": {
-            "src": "/images/games/coin-raider-piggy.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_coin_raider_piggy_mighty.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-coin-raider-piggy/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinRaiderPiggyPZ&cdn=",
@@ -77,7 +77,7 @@
         {
           "title": "Hoops on Fire",
           "image": {
-            "src": "/images/games/hoops-on-fire.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_hoops_on_fire_mighty.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
@@ -86,7 +86,7 @@
         {
           "title": "Coins of the Deep",
           "image": {
-            "src": "/images/games/coins-of-the-deep.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_coins_of_the_deep.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-coins-of-the-deep/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinsOfTheDeepPZ&cdn=",
@@ -95,7 +95,7 @@
         {
           "title": "Panda Bao Charms",
           "image": {
-            "src": "/images/games/panda-bao-charms.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_panda_bao_charms.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-panda-bao-charms/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=PandaBaoCharmsPZ&cdn=",
@@ -104,7 +104,7 @@
         {
           "title": "Looting Vegas: Alien Heist",
           "image": {
-            "src": "/images/games/looting-vegas-alien-heist.jpg",
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_looting_vegas_alien_heist.jpg",
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
@@ -118,7 +118,7 @@
       "title": "DESIGNED TO KEEP PLAYERS ENTERTAINED",
       "copy": "Players crave a legit reason to hit that spin button. We’re talking about the meta-hunters, who can’t resist geeking out over the mechanics, and the laid-back crew just vibing after work. They want games that actually get them; from that first cheeky spin right up to the big win moment.",
       "image": {
-        "src": "/images/hero-bienvenida.svg",
+        "src": "https://pzlanding-sigma.vercel.app/images/cms/hero-bienvenida.svg",
         "alt": "Ilustración de las herramientas del nuevo sitio: Claude, Figma, Git, Render, Astro, HTML y CSS"
       },
       "button": {
@@ -132,7 +132,7 @@
       "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
       "copy": "Fierce look, zero attitude.\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
       "image": {
-        "src": "/images/como-funciona.svg",
+        "src": "https://pzlanding-sigma.vercel.app/images/cms/como-funciona.svg",
         "alt": "Diagrama del flujo: editar en el panel, commit en Git, build con Astro y publicación en GitHub Pages"
       },
       "imagePosition": "left",
