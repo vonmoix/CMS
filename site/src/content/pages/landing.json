@@ -11,8 +11,8 @@
   "sections": [
     {
       "type": "sectionVideo",
-      "video": "/videos/video_landing.mp4",
-      "videoWebm": "/videos/video_landing.webm",
+      "video": "https://pzlanding-sigma.vercel.app/videos/video_landing.mp4",
+      "videoWebm": "https://pzlanding-sigma.vercel.app/videos/video_landing.webm",
       "poster": {
         "src": "/images/landing/img_video_cover.png",
         "alt": ""
