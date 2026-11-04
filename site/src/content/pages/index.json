@@ -111,8 +111,20 @@
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Looting_Vegas_Alien_Heist_PDS.pdf"
         }
       ]
+    },
+    {
+      "type": "hero",
+      "eyebrow": "Hola",
+      "title": "hola`",
+      "copy": "caracola",
+      "button": {
+        "label": "boton",
+        "href": "https://www.google.com"
+      },
+      "imagePosition": "right",
+      "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-11-04T15:32:47.111Z",
+  "updatedAt": "2026-11-04T15:34:49.838Z",
   "updatedBy": "admin"
 }
