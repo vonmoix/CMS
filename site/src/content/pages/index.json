@@ -122,9 +122,12 @@
         "href": "https://www.google.com"
       },
       "imagePosition": "right",
-      "surface": "grey-medium"
+      "surface": "grey-medium",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/cms/1793808160628-1790694729331-galeria-09-cyberpunk.jpg"
+      }
     }
   ],
-  "updatedAt": "2026-11-04T16:02:21.069Z",
+  "updatedAt": "2026-11-04T16:02:47.654Z",
   "updatedBy": "admin"
 }
