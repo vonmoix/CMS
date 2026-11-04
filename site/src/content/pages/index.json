@@ -113,21 +113,17 @@
       ]
     },
     {
-      "type": "hero",
-      "eyebrow": "Hola",
-      "title": "hola`",
-      "copy": "caracola",
-      "button": {
-        "label": "boton",
-        "href": "https://www.google.com"
-      },
-      "imagePosition": "right",
-      "surface": "grey-medium",
-      "image": {
-        "src": "https://pzlanding-sigma.vercel.app/images/cms/1793808160628-1790694729331-galeria-09-cyberpunk.jpg"
-      }
+      "type": "gallery",
+      "title": "opcional",
+      "images": [
+        {
+          "src": "https://pzlanding-sigma.vercel.app/images/cms/1793808160628-1790694729331-galeria-09-cyberpunk.jpg",
+          "alt": "alternate"
+        }
+      ],
+      "surface": "grey-medium"
     }
   ],
-  "updatedAt": "2026-11-04T16:02:47.654Z",
+  "updatedAt": "2026-11-04T16:04:39.559Z",
   "updatedBy": "admin"
 }
