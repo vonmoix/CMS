@@ -1,0 +1,123 @@
+---
+// Figma section-image-card (5200:1897): imagen ancha del catálogo + card-left
+// (CardSide "image-right") solapada. A sangre, fuera de las franjas.
+// Marcado, clases y CSS copiados de la landing (.section-image-card).
+import CardSide from "../CardSide.astro";
+import { withBase } from "../../lib/url.js";
+import { splitHighlight } from "../../lib/highlight.js";
+
+interface Img { src: string; alt?: string }
+interface Props {
+  background: Img;
+  backgroundMobile?: Img;
+  eyebrow?: string;
+  title: string;
+  highlight?: string;
+  copy?: string;
+  image?: Img;
+}
+
+const { background, backgroundMobile, eyebrow, title, highlight, copy, image } = Astro.props as Props;
+const [before, marked, after] = splitHighlight(title, highlight);
+---
+
+<section class="section-image-card">
+  <div class="section-image-card__bg">
+    <picture>
+      {backgroundMobile?.src && <source media="(max-width: 768px)" srcset={withBase(backgroundMobile.src)} />}
+      <img src={withBase(background.src)} alt={background.alt || ""} class="section-image-card__carousel-img" loading="lazy" />
+    </picture>
+    <div class="section-image-card__gradient" aria-hidden="true"></div>
+  </div>
+
+  <div class="section-image-card__content">
+    <CardSide variant="image-right">
+      <div class="section-image-card__text">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2 class="section-image-card__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</h2>
+        {copy && <p class="section-image-card__body">{copy}</p>}
+      </div>
+      {image?.src && <img slot="mockup" src={withBase(image.src)} alt="" loading="lazy" />}
+    </CardSide>
+  </div>
+</section>
+
+<style is:global>
+  .section-image-card {
+    position: relative;
+    padding-top: var(--spacing-sp-32);
+    padding-bottom: var(--spacing-sp-48);
+  }
+  .section-image-card__bg {
+    position: relative;
+    line-height: 0;
+    max-width: 1441px;
+    margin: 0 auto;
+  }
+  .section-image-card__carousel-img {
+    width: 100%;
+    max-width: 1441px;
+    display: block;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  .section-image-card__gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65%;
+    background: linear-gradient(to top, var(--fill-page-bg) 19%, transparent 98%);
+    pointer-events: none;
+  }
+  .section-image-card__content {
+    margin-top: -80px;
+    padding: 0 var(--pad-x);
+    position: relative;
+    z-index: 2;
+  }
+  .section-image-card .eyebrow {
+    margin: 0;
+    font: var(--text-body-m-semibold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+  .section-image-card .text--primary {
+    color: var(--text-accent);
+  }
+  .section-image-card__heading {
+    margin: var(--spacing-sp-8) 0 0;
+    font: var(--text-display-xl);
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .section-image-card__body {
+    margin: var(--spacing-sp-24) 0 0;
+    font: var(--text-body-l-medium);
+    color: var(--text-primary);
+    white-space: pre-line;
+  }
+
+  @media (min-width: 769px) {
+    .section-image-card {
+      padding-top: var(--spacing-sp-64);
+      padding-bottom: var(--gap-gap-128);
+    }
+    .section-image-card__content {
+      /* tarjeta máx. 1024 (Figma card-left) + --pad-x a cada lado */
+      max-width: calc(1024px + 2 * var(--pad-x));
+      margin: -200px auto 0;
+      padding: 0 var(--pad-x);
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .section-image-card {
+      padding-top: var(--spacing-sp-48);
+      padding-bottom: var(--gap-gap-64);
+    }
+    .section-image-card__content {
+      margin-top: -120px;
+    }
+  }
+</style>

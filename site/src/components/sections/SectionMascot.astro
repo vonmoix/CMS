@@ -1,0 +1,145 @@
+---
+// Figma section-mascot (5200:1972): firma (signature) + card-right
+// (CardSide "image-left") con la mascota. A sangre, fuera de las franjas.
+// Marcado, clases y CSS copiados de la landing (.section-mascot).
+import CardSide from "../CardSide.astro";
+import { withBase } from "../../lib/url.js";
+import { splitHighlight } from "../../lib/highlight.js";
+
+interface Img { src: string; alt?: string }
+interface Props {
+  eyebrow?: string;
+  signature?: Img;
+  title: string;
+  highlight?: string;
+  copy?: string;
+  image?: Img;
+}
+
+const { eyebrow, signature, title, highlight, copy, image } = Astro.props as Props;
+const [before, marked, after] = splitHighlight(title, highlight);
+const icon = withBase("/images/landing/icon_mascot.svg");
+---
+
+<section class="section-mascot">
+  <!-- Firma en móvil -->
+  <div class="section-mascot__intro section-mascot__intro--mobile">
+    <div class="section-mascot__intro-head">
+      <img src={icon} alt="" class="section-mascot__icon" width="30" height="39" aria-hidden="true" />
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    </div>
+    {signature?.src && (
+      <img src={withBase(signature.src)} alt={signature.alt || ""} class="section-mascot__graf section-mascot__graf--mobile" width="241" height="64" loading="lazy" />
+    )}
+  </div>
+
+  <!-- Firma en desktop (componente signature) -->
+  <div class="section-mascot__intro section-mascot__intro--desktop">
+    <div class="section-mascot__intro-head">
+      <img src={icon} alt="" class="section-mascot__icon" width="30" height="39" aria-hidden="true" />
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    </div>
+    {signature?.src && (
+      <img src={withBase(signature.src)} alt={signature.alt || ""} class="section-mascot__graf" width="344" height="92" loading="lazy" />
+    )}
+  </div>
+
+  <CardSide variant="image-left">
+    <h2 class="section-mascot__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</h2>
+    {copy && <p class="section-mascot__body">{copy}</p>}
+    {image?.src && <img slot="mockup" src={withBase(image.src)} alt="" loading="lazy" />}
+  </CardSide>
+</section>
+
+<style is:global>
+  .section-mascot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 80px;
+  }
+  .section-mascot__intro {
+    display: none;
+  }
+  .section-mascot__intro-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-8);
+  }
+  .section-mascot__intro--mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding-top: var(--spacing-sp-64);
+    padding-bottom: var(--spacing-none);
+  }
+  .section-mascot__graf--mobile {
+    width: 241px;
+    height: 64px;
+  }
+  .section-mascot__icon {
+    width: 30px;
+    height: 39px;
+    object-fit: contain;
+  }
+  .section-mascot__graf {
+    width: 100%;
+    max-width: 344px;
+    height: auto;
+  }
+  .section-mascot .eyebrow {
+    margin: 0;
+    font: var(--text-body-m-semibold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+  .section-mascot .text--primary {
+    color: var(--text-accent);
+  }
+  .section-mascot__heading {
+    margin: var(--spacing-sp-8) 0 0;
+    font: var(--text-display-xl);
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .section-mascot__body {
+    margin: var(--spacing-sp-24) 0 0;
+    font: var(--text-body-l-medium);
+    color: var(--text-primary);
+    white-space: pre-line;
+  }
+
+  @media (min-width: 769px) {
+    .section-mascot {
+      padding: 0 var(--pad-x) var(--gap-gap-128);
+    }
+    .section-mascot__intro--mobile {
+      display: none;
+    }
+    .section-mascot__intro--desktop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--gap-gap-16);
+      /* 64 desde la sección anterior hasta la firma (Figma section-mascot) */
+      padding: var(--spacing-sp-64) 0 var(--spacing-sp-48);
+      margin-bottom: -165px;
+      position: relative;
+      z-index: var(--z-mascot-sig);
+    }
+    .section-mascot__body {
+      max-width: 491px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .section-mascot {
+      padding-bottom: var(--gap-gap-64);
+    }
+    .section-mascot__intro--desktop {
+      margin-bottom: -95px;
+    }
+  }
+</style>

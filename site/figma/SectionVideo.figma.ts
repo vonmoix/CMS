@@ -3,13 +3,12 @@
 // component=SectionVideo
 import figma from 'figma'
 
-// section-video: portada a sangre con vídeo. Play/pausa, mute y HD no son props:
+// section-video: portada a sangre con vídeo. Play/pausa y mute no son props:
 // los gestiona el script del componente (igual que landing/main.js).
 export default {
   example: figma.code`<SectionVideo
   video="/videos/hero-video.mp4"
   videoWebm="/videos/hero-video.webm"
-  hdVideo="/videos/hero-video-hd.mp4"
   poster={{ src: "/images/hero-video-poster.png", alt: "" }}
 />`,
   imports: ['import SectionVideo from "../components/sections/SectionVideo.astro"'],

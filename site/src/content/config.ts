@@ -53,10 +53,8 @@ const sectionVideoSection = z.object({
   type: z.literal("sectionVideo"),
   // ruta (/videos/x.mp4) o URL del vídeo (mp4, calidad estándar)
   video: z.string().min(1, "El vídeo es obligatorio"),
-  // opcionales: versión webm y versión HD (si hay hdVideo aparece el botón HD)
+  // opcional: versión webm (más ligera)
   videoWebm: z.string().optional(),
-  hdVideo: z.string().optional(),
-  hdVideoWebm: z.string().optional(),
   // imagen que se ve antes de cargar y al terminar el vídeo
   poster: imageSchema.optional(),
 });
@@ -85,7 +83,7 @@ const gallerySection = z.object({
   images: z.array(imageSchema).min(1),
 });
 
-// Cartas de juego (card-pt): las usan cardGallery y carousel
+// Cartas de juego (card-pt): las usan gamesGroup y carousel
 const gameCardsSchema = z
   .array(
     z.object({
@@ -98,10 +96,36 @@ const gameCardsSchema = z
   )
   .min(1);
 
-const cardGallerySection = z.object({
-  type: z.literal("cardGallery"),
-  ...surfaceField,
+// games-group (Figma 5218:452). Los consecutivos se agrupan en una section-games
+// a sangre, así que no llevan surface.
+// section-image-card (Figma 5200:1897) y section-mascot (5200:1972): a sangre,
+// sin surface. "highlight" = fragmento del título que va en rojo.
+const sectionImageCardSection = z.object({
+  type: z.literal("sectionImageCard"),
+  background: imageSchema,
+  backgroundMobile: imageSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+  highlight: z.string().optional(),
+  copy: z.string().optional(),
+  image: imageSchema.optional(),
+});
+
+const sectionMascotSection = z.object({
+  type: z.literal("sectionMascot"),
+  eyebrow: z.string().optional(),
+  signature: imageSchema.optional(),
+  title: z.string().min(1),
+  highlight: z.string().optional(),
+  copy: z.string().optional(),
+  image: imageSchema.optional(),
+});
+
+const gamesGroupSection = z.object({
+  type: z.literal("gamesGroup"),
+  eyebrow: z.string().optional(),
   title: z.string().optional(),
+  description: z.string().optional(),
   cards: gameCardsSchema,
 });
 
@@ -131,8 +155,9 @@ const introTextSection = z.object({
   ...surfaceField,
   eyebrow: z.string().optional(),
   title: z.string().optional(),
+  highlight: z.string().optional(),
   copy: z.string().optional(),
-  // xl = título Display XL, l = título Heading L
+  // xl = header-hero (título Display/2XL), l = header-section (título Display/XL)
   size: z.enum(["xl", "l"]).default("xl"),
 });
 
@@ -149,7 +174,9 @@ export const sectionSchema = z.discriminatedUnion("type", [
   textImageSection,
   ctaSection,
   gallerySection,
-  cardGallerySection,
+  gamesGroupSection,
+  sectionImageCardSection,
+  sectionMascotSection,
   carouselSection,
   faqSection,
   introTextSection,

@@ -33,8 +33,6 @@ const SECTION_CATALOG = {
     fields: [
       { name: "video", label: "Vídeo mp4 (ruta o URL, p. ej. /videos/hero-video.mp4)", type: "text", required: true },
       { name: "videoWebm", label: "Vídeo webm (opcional, más ligero)", type: "text" },
-      { name: "hdVideo", label: "Vídeo HD mp4 (opcional: activa el botón HD)", type: "text" },
-      { name: "hdVideoWebm", label: "Vídeo HD webm (opcional)", type: "text" },
       { name: "poster", label: "Póster (imagen antes/después del vídeo)", type: "image" },
     ],
   },
@@ -71,10 +69,35 @@ const SECTION_CATALOG = {
       { name: "images", label: "Imágenes", type: "imageList", required: true },
     ],
   },
-  cardGallery: {
-    label: "Galería de cartas de juego",
+  sectionImageCard: {
+    label: "Imagen con tarjeta (section-image-card)",
     fields: [
-      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "background", label: "Imagen ancha (escritorio)", type: "image", required: true },
+      { name: "backgroundMobile", label: "Imagen ancha (móvil, opcional)", type: "image" },
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
+      { name: "copy", label: "Texto", type: "textarea" },
+      { name: "image", label: "Imagen de la tarjeta (solo escritorio)", type: "image" },
+    ],
+  },
+  sectionMascot: {
+    label: "Mascota con firma (section-mascot)",
+    fields: [
+      { name: "eyebrow", label: "Texto sobre la firma (opcional)", type: "text" },
+      { name: "signature", label: "Firma (imagen o GIF)", type: "image" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
+      { name: "copy", label: "Texto", type: "textarea" },
+      { name: "image", label: "Imagen de la mascota", type: "image" },
+    ],
+  },
+  gamesGroup: {
+    label: "Grupo de juegos (games-group)",
+    fields: [
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "title", label: "Título", type: "text" },
+      { name: "description", label: "Descripción", type: "textarea" },
       { name: "cards", label: "Cartas", type: "cardList", required: true },
     ],
   },
@@ -93,18 +116,19 @@ const SECTION_CATALOG = {
     ],
   },
   introText: {
-    label: "Título y texto de introducción",
+    label: "Título y texto de introducción (header-hero / header-section)",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
       { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
       { name: "copy", label: "Texto", type: "textarea" },
       {
         name: "size",
-        label: "Tamaño del título",
+        label: "Tipo",
         type: "select",
         options: [
-          { value: "xl", label: "XL" },
-          { value: "l", label: "L" },
+          { value: "xl", label: "Hero (header-hero)" },
+          { value: "l", label: "Sección (header-section)" },
         ],
         default: "xl",
       },
@@ -134,7 +158,8 @@ const SURFACE_FIELD = {
   default: "grey-medium",
 };
 for (const [type, def] of Object.entries(SECTION_CATALOG)) {
-  if (type !== "sectionVideo") def.fields.push(SURFACE_FIELD);
+  // Los tipos a sangre van fuera de las franjas: sin surface
+  if (!["sectionVideo", "gamesGroup", "sectionImageCard", "sectionMascot"].includes(type)) def.fields.push(SURFACE_FIELD);
 }
 
 // Mismo criterio que safeLinkSchema en site/src/content/config.ts

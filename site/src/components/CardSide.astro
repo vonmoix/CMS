@@ -1,0 +1,128 @@
+---
+// Figma card-left (662:4954) = variant "image-right" · card-right (663:4382) = variant "image-left".
+// Tarjeta oscura con el texto (slot por defecto) y una imagen que sobresale
+// (slot "mockup"). Marcado, clases y CSS copiados de la landing (.card-side).
+// Sustituye a CardImageLeft.astro / CardImageRight.astro.
+interface Props {
+  variant: "image-right" | "image-left";
+}
+const { variant } = Astro.props as Props;
+---
+
+<div class={`card-side card-side--${variant}`}>
+  <div class="card-side__info">
+    <slot />
+  </div>
+  <div class="card-side__mockups" aria-hidden="true">
+    <slot name="mockup" />
+  </div>
+</div>
+
+<style is:global>
+  .card-side {
+    position: relative;
+  }
+  .card-side__info {
+    background-color: var(--fill-surface-dark);
+    border-radius: var(--radius-rd-md);
+    padding: var(--spacing-sp-40);
+  }
+  .card-side__mockups img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  /* image-right (card-left): en móvil, sin imagen */
+  .card-side--image-right {
+    padding-top: 0;
+  }
+  .card-side--image-right .card-side__info {
+    padding: var(--spacing-sp-40);
+  }
+  .card-side--image-right .card-side__mockups {
+    display: none;
+  }
+
+  /* image-left (card-right): en móvil, la imagen asoma por encima */
+  .card-side--image-left {
+    position: relative;
+    padding: 256px var(--pad-x) 0;
+    width: 100%;
+    max-width: var(--content-width);
+    z-index: var(--z-card-inner);
+  }
+  .card-side--image-left .card-side__info {
+    padding: var(--gap-gap-64) var(--spacing-sp-40) var(--spacing-sp-40);
+    display: flex;
+    flex-direction: column;
+  }
+  .card-side--image-left .card-side__mockups {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 110px);
+    width: 220px;
+    height: 308px;
+  }
+
+  /* Desktop ≥ 769: tarjetas fluidas. La columna de la imagen encoge para que el
+     texto nunca baje de 400 px (cqw = ancho de la tarjeta). */
+  @media (min-width: 769px) {
+    .card-side--image-right,
+    .card-side--image-left {
+      container-type: inline-size;
+    }
+
+    .card-side--image-right {
+      /* 48 izq + 24 hueco + 24 der + 400 texto = 496 */
+      --img-w: clamp(240px, 100cqw - 496px, 346px);
+      height: auto;
+      isolation: isolate;
+      padding-top: 0;
+    }
+    .card-side--image-right .card-side__info {
+      position: relative;
+      min-height: var(--img-w);
+      padding: var(--spacing-sp-48) calc(var(--img-w) + var(--gap-gap-48)) var(--spacing-sp-48) var(--spacing-sp-48);
+      z-index: var(--z-card);
+    }
+    .card-side--image-right .card-side__mockups {
+      display: block;
+      position: absolute;
+      right: var(--gap-gap-24);
+      bottom: 0;
+      width: var(--img-w);
+      height: var(--img-w);
+      pointer-events: none;
+      z-index: var(--z-card-inner);
+    }
+
+    .card-side--image-left {
+      /* 24 izq + 40 hueco + 48 der + 400 texto = 512 */
+      --img-w: clamp(200px, 100cqw - 512px, 288px);
+      --img-h: calc(var(--img-w) * 403 / 288);
+      height: auto;
+      max-width: 1024px;
+      /* 32 px por donde la imagen asoma por encima de la tarjeta */
+      padding: var(--gap-gap-32) 0 0;
+    }
+    .card-side--image-left .card-side__mockups {
+      position: absolute;
+      bottom: 0;
+      left: var(--gap-gap-24);
+      top: auto;
+      width: var(--img-w);
+      height: var(--img-h);
+      z-index: 1;
+    }
+    .card-side--image-left .card-side__info {
+      position: relative;
+      min-height: calc(var(--img-h) - var(--gap-gap-32));
+      padding: var(--spacing-sp-48) var(--spacing-sp-48) var(--spacing-sp-48) calc(var(--img-w) + var(--gap-gap-64));
+      justify-content: flex-end;
+    }
+  }
+</style>

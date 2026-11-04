@@ -1,0 +1,45 @@
+---
+// Figma games-group (5218:452): title-section + descripción + fila de card-pt.
+// Mismo marcado y clases que la landing (.games-group). No lleva estilos
+// propios: los pone SectionGames.astro, que es quien agrupa los games-group
+// consecutivos en una sola section-games (igual que en Figma y en la landing).
+import CardPt from "../CardPt.astro";
+
+interface Card {
+  title: string;
+  image: { src: string; alt?: string };
+  playUrl: string;
+  sheetUrl: string;
+}
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  cards: Card[];
+}
+
+const { eyebrow, title, description, cards = [] } = Astro.props as Props;
+const hasHeader = eyebrow || title || description;
+---
+
+<div class="games-group">
+  {hasHeader && (
+    <div class="games-group__header">
+      {(eyebrow || title) && (
+        <div class="section-title">
+          <div class="section-title__copy">
+            {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+            {title && <h3 class="section-title__heading">{title}</h3>}
+          </div>
+          <span class="section-title__underline" aria-hidden="true"></span>
+        </div>
+      )}
+      {description && <p class="games-group__subtitle">{description}</p>}
+    </div>
+  )}
+  <div class="game-cards">
+    {cards.map((card) => (
+      <CardPt title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
+    ))}
+  </div>
+</div>

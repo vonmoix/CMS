@@ -1,101 +1,122 @@
 ---
-// Eyebrow + título + línea roja + texto, centrado. Sustituye a Intro y RichText.
-// size "xl" = título Display XL y texto Body XL; size "l" = título Heading L y texto Body L.
-// El color lo decide la franja (surface) y el espaciado vertical también:
-// el bloque no lleva fondo ni padding propio.
-const { eyebrow, title, copy, size = "xl" } = Astro.props;
+// Figma header-hero (size "xl") y header-section (size "l"): título + descripción,
+// centrados. Mismo marcado, clases y valores que la landing (.title-hero /
+// .section-title) y que Figma Playzaar-Webs-1.0:
+//   header-hero    (5108:1176): title-hero  + Description Body/XL (máx. 800), hueco 32, máx. 1200
+//   header-section (3459:4347): title-section + Description Body/XL,           hueco 32, máx. 900
+// No es un section.block: no lleva padding propio. El padding vertical lo pone
+// la franja (.section-content, 48 cuando solo lleva intros) y el color la
+// superficie (--band-fg / --band-fg-muted).
+import { splitHighlight } from "../../lib/highlight.js";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  /** Parte del título que va en rojo (.text--primary) */
+  highlight?: string;
+  copy?: string;
+  size?: "xl" | "l";
+}
+
+const { eyebrow, title, highlight, copy, size = "xl" } = Astro.props as Props;
+const [before, marked, after] = splitHighlight(title ?? "", highlight);
+const hero = size === "xl";
 const hasHeader = eyebrow || title;
 ---
 
-<section class="block intro-text" data-size={size}>
-  <div class="box">
-    {hasHeader && (
-      <div class="header">
-        <div class="copy">
+<section class={hero ? "header-hero" : "header-section"}>
+  {hasHeader && (
+    hero ? (
+      <div class="title-hero">
+        <div class="title-hero__copy">
           {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-          {title && <h2>{title}</h2>}
+          {title && <h2 class="title-hero__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</h2>}
         </div>
-        <span class="underline" aria-hidden="true"></span>
+        <span class="title-hero__underline" aria-hidden="true"></span>
       </div>
-    )}
-    {copy && <p class="description">{copy}</p>}
-  </div>
+    ) : (
+      <div class="section-title">
+        <div class="section-title__copy">
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          {title && <h2 class="section-title__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</h2>}
+        </div>
+        <span class="section-title__underline" aria-hidden="true"></span>
+      </div>
+    )
+  )}
+  {copy && <p class="description">{copy}</p>}
 </section>
 
 <style>
-  .box {
+  .header-hero,
+  .header-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: var(--gap-gap-48);
-    max-width: var(--layout-content-6col);
+    gap: var(--gap-gap-32);
+    width: 100%;
     margin: 0 auto;
     text-align: center;
   }
-  .header {
+  .header-hero { max-width: 1200px; }
+  .header-section { max-width: 900px; }
+
+  .title-hero,
+  .section-title {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--gap-gap-16);
     width: 100%;
   }
-  .copy {
+  .title-hero__copy {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--gap-none);
+    gap: 0;
     width: 100%;
   }
+  .section-title__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-8);
+    width: 100%;
+  }
+
   .eyebrow {
     margin: 0;
+    font: var(--text-body-l-semibold);
     text-transform: uppercase;
-    font-weight: 600;
-    font-size: var(--font-size-body-l);
-    line-height: var(--line-height-body-l);
     color: var(--band-fg-muted);
   }
-  h2 {
+  .title-hero__heading,
+  .section-title__heading {
     margin: 0;
     text-transform: uppercase;
-    font-size: var(--font-size-display-xl);
-    line-height: var(--line-height-display-xl);
     color: var(--band-fg);
   }
-  .underline {
+  .title-hero__heading { font: var(--text-display-2xl); }
+  .section-title__heading { font: var(--text-display-xl); }
+
+  .text--primary {
+    color: var(--text-accent);
+  }
+
+  .title-hero__underline,
+  .section-title__underline {
+    flex-shrink: 0;
     width: var(--spacing-sp-48);
-    height: var(--spacing-sp-2);
+    height: 2px;
     background: var(--fill-surface-red);
   }
+
   .description {
     margin: 0;
     width: 100%;
     white-space: pre-line;
-    font-size: var(--font-size-body-xl);
-    line-height: var(--line-height-body-xl);
+    font: var(--text-body-xl);
     color: var(--band-fg);
   }
-
-  /* L: título Heading L, eyebrow pequeño y espacios más cortos */
-  .intro-text[data-size="l"] .box {
-    gap: var(--gap-gap-24);
-  }
-  .intro-text[data-size="l"] .header {
-    gap: var(--gap-gap-12);
-  }
-  .intro-text[data-size="l"] .copy {
-    gap: var(--gap-gap-4);
-  }
-  .intro-text[data-size="l"] .eyebrow {
-    font-size: var(--font-size-body-s);
-    line-height: var(--line-height-body-s);
-  }
-  .intro-text[data-size="l"] h2 {
-    font-size: var(--font-size-heading-l);
-    line-height: var(--line-height-heading-l);
-  }
-  .intro-text[data-size="l"] .description {
-    font-size: var(--font-size-body-l);
-    line-height: var(--line-height-body-l);
-  }
+  .header-hero .description { max-width: 800px; }
 </style>

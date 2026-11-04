@@ -1,0 +1,148 @@
+---
+// Figma section-games (3459:1781): franja a sangre (fill/surface-dark) con un
+// panel negro (fill/surface-black, máx. 2004) que contiene los games-group.
+// SectionRenderer agrupa aquí los "gamesGroup" consecutivos del JSON.
+// CSS copiado de landing/common.css (bloque "section-games"). Va como global
+// porque se aplica a los games-group hijos (GamesGroup.astro) y a sus card-pt.
+---
+
+<section class="section-games">
+  <div class="games-groups">
+    <slot />
+  </div>
+</section>
+
+<style is:global>
+  .section-games {
+    background: var(--fill-surface-dark);
+    padding: var(--gap-gap-64) var(--gap-gap-16) var(--gap-gap-128);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-64);
+  }
+
+  .section-games .games-groups {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-128);
+    background: var(--fill-surface-black);
+    max-width: 2004px;
+    width: calc(100% + 2 * var(--gap-gap-16));
+    margin-inline: calc(-1 * var(--gap-gap-16));
+  }
+
+  .section-games .games-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-32);
+    width: 100%;
+    padding-inline: var(--gap-gap-16);
+  }
+
+  .section-games .games-group__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+    width: 100%;
+  }
+
+  /* title-section (Figma 3124:8606): eyebrow Body/L SemiBold, título Display/XL,
+     huecos 8 y 16, máx. 900 */
+  .section-games .section-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+  }
+  .section-games .section-title__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-8);
+  }
+  .section-games .eyebrow {
+    margin: 0;
+    font: var(--text-body-l-semibold);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .section-games .section-title__heading {
+    margin: 0;
+    font: var(--text-display-xl);
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .section-games .section-title__underline {
+    flex-shrink: 0;
+    width: var(--spacing-sp-48);
+    height: 2px;
+    background: var(--fill-surface-red);
+  }
+
+  .section-games .games-group__subtitle {
+    margin: 0;
+    font: var(--text-body-l);
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  .section-games .game-cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--gap-gap-32);
+    width: 100%;
+  }
+
+  /* card-pt: 348 (Mobile/Tablet) y 300 (Desktop), como en la landing */
+  .section-games .game-cards .card-pt {
+    width: 348px;
+    max-width: 100%;
+  }
+
+  @media (min-width: 769px) {
+    .section-games {
+      padding: var(--spacing-sp-64) var(--gap-gap-48) var(--gap-gap-128);
+      gap: var(--gap-gap-128);
+    }
+    .section-games .games-group {
+      gap: var(--gap-gap-48);
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .section-games {
+      padding-left: var(--gap-gap-24);
+      padding-right: var(--gap-gap-24);
+    }
+    .section-games .games-groups {
+      width: calc(100% + 2 * var(--gap-gap-24));
+      margin-inline: calc(-1 * var(--gap-gap-24));
+    }
+    .section-games .games-group {
+      padding-inline: var(--gap-gap-24);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-games .games-groups {
+      width: 100%;
+      margin-inline: 0;
+    }
+    .section-games .games-group {
+      padding-inline: 0;
+      gap: var(--gap-gap-64);
+    }
+    .section-games .game-cards .card-pt {
+      width: 300px;
+    }
+  }
+</style>

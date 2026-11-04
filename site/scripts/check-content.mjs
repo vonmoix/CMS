@@ -11,11 +11,13 @@ const contentDir = join(__dirname, "..", "src", "content", "pages");
 
 const requiredBySectionType = {
   hero: ["title"],
-  heroVideo: ["video"],
+  sectionVideo: ["video"],
   textImage: ["title", "copy", "image"],
   cta: ["title", "button"],
   gallery: ["images"],
-  cardGallery: ["cards"],
+  gamesGroup: ["cards"],
+  sectionImageCard: ["background", "title"],
+  sectionMascot: ["title"],
   carousel: ["cards"],
   faq: ["items"],
   introText: [],

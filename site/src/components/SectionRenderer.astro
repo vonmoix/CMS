@@ -7,7 +7,10 @@ import SectionVideo from "./sections/SectionVideo.astro";
 import TextImage from "./sections/TextImage.astro";
 import Cta from "./sections/Cta.astro";
 import Gallery from "./sections/Gallery.astro";
-import CardGallery from "./sections/CardGallery.astro";
+import GamesGroup from "./sections/GamesGroup.astro";
+import SectionGames from "./sections/SectionGames.astro";
+import SectionImageCard from "./sections/SectionImageCard.astro";
+import SectionMascot from "./sections/SectionMascot.astro";
 import Carousel from "./sections/Carousel.astro";
 import Faq from "./sections/Faq.astro";
 import IntroText from "./sections/IntroText.astro";
@@ -19,15 +22,20 @@ const componentsByType = {
   textImage: TextImage,
   cta: Cta,
   gallery: Gallery,
-  cardGallery: CardGallery,
+  gamesGroup: GamesGroup,
+  sectionImageCard: SectionImageCard,
+  sectionMascot: SectionMascot,
   carousel: Carousel,
   faq: Faq,
   introText: IntroText,
   titleHero: TitleHeroSection,
 };
 
-// Tipos que van a sangre, fuera de las franjas de color (sectionVideo).
-const fullBleed = new Set(["sectionVideo"]);
+// Tipos que van a sangre, fuera de las franjas de color.
+const fullBleed = new Set(["sectionVideo", "sectionImageCard", "sectionMascot"]);
+// Franjas de intro: si solo llevan estos tipos, padding 48 (como en Figma y en
+// la landing, .section-content--intro); el resto de franjas, 32.
+const introTypes = new Set(["introText", "titleHero"]);
 
 const { sections = [] } = Astro.props;
 
@@ -43,6 +51,13 @@ for (const section of sections) {
     groups.push({ bleed: true, items: [section] });
     continue;
   }
+  // Los games-group consecutivos van juntos en una sola section-games (a sangre)
+  if (section.type === "gamesGroup") {
+    const last = groups[groups.length - 1];
+    if (last && last.games) last.items.push(section);
+    else groups.push({ games: true, items: [section] });
+    continue;
+  }
   const surface = section.surface ?? "grey-medium";
   const last = groups[groups.length - 1];
   if (last && !last.bleed && last.surface === surface) {
@@ -55,12 +70,22 @@ for (const section of sections) {
 
 {
   groups.map((group) => {
+    if (group.games) {
+      return (
+        <SectionGames>
+          {group.items.map((section) => <GamesGroup {...section} />)}
+        </SectionGames>
+      );
+    }
     if (group.bleed) {
       const Component = componentsByType[group.items[0].type];
       return <Component {...group.items[0]} />;
     }
     return (
-      <div class="section-content" data-surface={group.surface}>
+      <div
+        class:list={["section-content", { "section-content--intro": group.items.every((section) => introTypes.has(section.type)) }]}
+        data-surface={group.surface}
+      >
         <div class="wrapper">
           {group.items.map((section) => {
             const Component = componentsByType[section.type];

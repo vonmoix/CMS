@@ -452,6 +452,11 @@ const currentPath = normalize(Astro.url.pathname);
     color: var(--band-fg);
   }
 
+  /* Franjas que solo llevan intros (header-hero / header-section): 48 arriba y abajo */
+  .section-content--intro {
+    padding: var(--gap-gap-48) 0;
+  }
+
   .section-content[data-surface="grey-dark"] {
     --band-bg: var(--fill-surface-dark);
   }

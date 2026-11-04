@@ -18,16 +18,9 @@
       "surface": "grey-medium"
     },
     {
-      "type": "introText",
-      "surface": "grey-medium",
+      "type": "gamesGroup",
       "title": "Gridlines",
-      "copy": "Spin and match to build gridlines, pushing you up the prize ladder. Simple to pick up, the skill's in the pattern.",
-      "size": "l",
-      "eyebrow": ""
-    },
-    {
-      "type": "cardGallery",
-      "title": "",
+      "description": "Spin and match to build gridlines, pushing you up the prize ladder. Simple to pick up, the skill's in the pattern.",
       "cards": [
         {
           "title": "Flaming Gridlines",
@@ -56,47 +49,46 @@
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
           "sheetUrl": "/files/games/big-bullion-gridlines.pdf"
         }
-      ],
-      "surface": "grey-medium"
+      ]
     },
     {
-      "type": "introText",
-      "eyebrow": "",
+      "type": "gamesGroup",
       "title": "Turbo taps",
-      "copy": "High-energy, short sharp sessions built for mobile. Free Taps with multipliers can trigger, stacking on extra fun.",
-      "size": "l",
-      "surface": "grey-medium"
-    },
-    {
-      "type": "gallery",
-      "title": "",
-      "images": [
+      "description": "High-energy, short sharp sessions built for mobile. Free Taps with multipliers can trigger, stacking on extra fun.",
+      "cards": [
         {
-          "src": "/images/games/fishing-4-life.jpg",
-          "alt": "Fishing 4 Life"
+          "title": "Fishing 4 Life",
+          "image": {
+            "src": "/images/games/fishing-4-life.jpg",
+            "alt": "Fishing 4 Life"
+          },
+          "playUrl": "https://games.playzaar.games/casino-static/casino-fishing-4-life/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=Fishing4LifePZ&cdn=",
+          "sheetUrl": "/files/games/fishing-4-life.pdf"
         },
         {
-          "src": "/images/games/coin-raider-piggy.jpg",
-          "alt": "Coin Raider Piggy"
+          "title": "Coin Raider Piggy",
+          "image": {
+            "src": "/images/games/coin-raider-piggy.jpg",
+            "alt": "Coin Raider Piggy"
+          },
+          "playUrl": "https://games.playzaar.games/casino-static/casino-coin-raider-piggy/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinRaiderPiggyPZ&cdn=",
+          "sheetUrl": "/files/games/coin-raider-piggy.pdf"
         },
         {
-          "src": "/images/games/hoops-on-fire.jpg",
-          "alt": ""
+          "title": "Hoops on Fire",
+          "image": {
+            "src": "/images/games/hoops-on-fire.jpg",
+            "alt": "Hoops on Fire"
+          },
+          "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
+          "sheetUrl": "/files/games/hoops-on-fire.pdf"
         }
-      ],
-      "surface": "grey-medium"
+      ]
     },
     {
-      "type": "introText",
-      "eyebrow": "",
+      "type": "gamesGroup",
       "title": "Slot games",
-      "copy": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
-      "size": "l",
-      "surface": "grey-medium"
-    },
-    {
-      "type": "cardGallery",
-      "title": "",
+      "description": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
       "cards": [
         {
           "title": "Coins of the Deep",
@@ -125,8 +117,7 @@
           "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
           "sheetUrl": "/files/games/looting-vegas-alien-heist.pdf"
         }
-      ],
-      "surface": "grey-medium"
+      ]
     }
   ],
   "updatedAt": "2026-11-04T13:09:35.672Z",
