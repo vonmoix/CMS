@@ -41,10 +41,19 @@ function getConfig() {
         // https://pzlanding-sigma.vercel.app/images/cms
         publicBase: (process.env.MEDIA_PUBLIC_BASE || "").replace(/\/$/, ""),
         token: process.env.MEDIA_GITHUB_TOKEN || process.env.GITHUB_TOKEN,
+        // PDFs (fichas de juego): misma lógica que las imágenes
+        filesPath: (process.env.MEDIA_FILES_PATH || "files/cms").replace(/^\/|\/$/g, ""),
+        filesPublicBase: "",
       }
     : null;
   if (media && !media.publicBase) {
     throw new Error("Con MEDIA_REPO hay que definir también MEDIA_PUBLIC_BASE (URL pública de la carpeta de imágenes).");
+  }
+  if (media) {
+    // Por defecto: el mismo dominio que MEDIA_PUBLIC_BASE + la carpeta de PDFs
+    media.filesPublicBase = (
+      process.env.MEDIA_FILES_PUBLIC_BASE || `${new URL(media.publicBase).origin}/${media.filesPath}`
+    ).replace(/\/$/, "");
   }
 
   return { owner, repo, branch, contentPath, imagesPath, publicImagesBase, filesPath, publicFilesBase, media };
@@ -172,7 +181,13 @@ async function uploadImage({ filename, buffer, editorName }) {
 }
 
 async function uploadDocument({ filename, buffer, editorName }) {
-  const { filesPath, publicFilesBase } = getConfig();
+  const { filesPath, publicFilesBase, media } = getConfig();
+  if (media) {
+    return uploadAsset({
+      filename, buffer, editorName, dir: media.filesPath, publicBase: media.filesPublicBase, label: "documento",
+      target: { owner: media.owner, repo: media.repo, branch: media.branch, token: media.token },
+    });
+  }
   return uploadAsset({ filename, buffer, editorName, dir: filesPath, publicBase: publicFilesBase, label: "documento" });
 }
 

@@ -58,7 +58,7 @@
             "alt": "Flaming Gridlines"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
-          "sheetUrl": "/files/games/flaming-gridlines.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Flaming_Gridlines_PDS.pdf"
         },
         {
           "title": "Super Surge Gridlines",
@@ -67,7 +67,7 @@
             "alt": "Super Surge Gridlines"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
-          "sheetUrl": "/files/games/super-surge-gridlines.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Super_Surge_Gridlines_PDS.pdf"
         },
         {
           "title": "Big Bullion Gridlines",
@@ -76,7 +76,7 @@
             "alt": "Big Bullion Gridlines"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
-          "sheetUrl": "/files/games/big-bullion-gridlines.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Big_Buillion_Gridlines_PDS.pdf"
         }
       ]
     },
@@ -92,7 +92,7 @@
             "alt": "Fishing 4 Life"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-fishing-4-life/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=Fishing4LifePZ&cdn=",
-          "sheetUrl": "/files/games/fishing-4-life.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Fishing_4_Life_PDS.pdf"
         },
         {
           "title": "Coin Raider Piggy",
@@ -101,7 +101,7 @@
             "alt": "Coin Raider Piggy"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-coin-raider-piggy/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinRaiderPiggyPZ&cdn=",
-          "sheetUrl": "/files/games/coin-raider-piggy.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Coin_Raider_Piggy_PDS.pdf"
         },
         {
           "title": "Hoops on Fire",
@@ -110,7 +110,7 @@
             "alt": "Hoops on Fire"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
-          "sheetUrl": "/files/games/hoops-on-fire.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Hoops_On_Fire_PDS.pdf"
         }
       ]
     },
@@ -126,7 +126,7 @@
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-coins-of-the-deep/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinsOfTheDeepPZ&cdn=",
-          "sheetUrl": "/files/games/coins-of-the-deep.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Coins_Of_The_Deep_PDS.pdf"
         },
         {
           "title": "Panda Bao Charms",
@@ -135,7 +135,7 @@
             "alt": ""
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-panda-bao-charms/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=PandaBaoCharmsPZ&cdn=",
-          "sheetUrl": "/files/games/panda-bao-charms.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Panda_Bao_Charms_PDS.pdf"
         },
         {
           "title": "Looting Vegas: Alien Heist",
@@ -144,7 +144,7 @@
             "alt": "Looting Vegas: Alien Heist"
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
-          "sheetUrl": "/files/games/looting-vegas-alien-heist.pdf"
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Looting_Vegas_Alien_Heist_PDS.pdf"
         }
       ]
     },
