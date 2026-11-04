@@ -2,7 +2,7 @@
   "title": "Landing",
   "description": "Réplica de la landing (pzlanding-sigma.vercel.app) montada con las piezas del CMS, para compararlas.",
   "slug": "landing",
-  "order": 99,
+  "order": 3,
   "draft": false,
   "seo": {
     "title": "Playzaar — Follow the Rabbit",
@@ -163,5 +163,7 @@
         "alt": ""
       }
     }
-  ]
+  ],
+  "updatedAt": "2026-11-04T15:32:57.558Z",
+  "updatedBy": "admin"
 }
