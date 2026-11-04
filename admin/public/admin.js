@@ -18,6 +18,10 @@
   // al instante, las servimos desde raw.githubusercontent.com.
   function resolveImagePreviewSrc(src) {
     if (!src) return "";
+    const { mediaPublicBase, mediaRawBase } = IMAGE_PREVIEW_CONFIG;
+    if (mediaRawBase && mediaPublicBase && src.startsWith(mediaPublicBase + "/")) {
+      return mediaRawBase + src.slice(mediaPublicBase.length);
+    }
     if (/^https?:\/\//.test(src)) return src;
     const { publicImagesBase, rawImageBase } = IMAGE_PREVIEW_CONFIG;
     if (rawImageBase && publicImagesBase && src.startsWith(publicImagesBase)) {

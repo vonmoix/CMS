@@ -344,6 +344,27 @@ app.post("/pages/:slug/move", async (req, res, next) => {
   }
 });
 
+// -------------------- Vista previa de imágenes del repo de medios --------------------
+
+const MEDIA_TYPES = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", webp: "image/webp", svg: "image/svg+xml", avif: "image/avif" };
+
+app.get("/media/:name", async (req, res, next) => {
+  try {
+    const { name } = req.params;
+    const type = MEDIA_TYPES[(name.split(".").pop() || "").toLowerCase()];
+    if (!/^[a-z0-9][a-z0-9._-]*$/.test(name) || !type) return res.status(404).end();
+    const buffer = await github.getMediaFile(name);
+    if (!buffer) return res.status(404).end();
+    res.set({ "Content-Type": type, "Cache-Control": "private, max-age=300", "X-Content-Type-Options": "nosniff" });
+    // SVG no puede ejecutar scripts aunque se abra directamente
+    if (type === "image/svg+xml") res.set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'");
+    res.send(buffer);
+  } catch (err) {
+    if (err.status === 404) return res.status(404).end();
+    next(err);
+  }
+});
+
 // -------------------- Subida de imágenes --------------------
 
 app.post("/api/upload", upload.single("image"), async (req, res, next) => {
