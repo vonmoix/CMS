@@ -3,7 +3,7 @@
 // Añadir un tipo de sección nuevo = añadir una línea aquí + el componente
 // en ./sections/ + la definición en src/content/config.ts.
 import Hero from "./sections/Hero.astro";
-import HeroVideo from "./sections/HeroVideo.astro";
+import SectionVideo from "./sections/SectionVideo.astro";
 import TextImage from "./sections/TextImage.astro";
 import Cta from "./sections/Cta.astro";
 import Gallery from "./sections/Gallery.astro";
@@ -15,7 +15,7 @@ import TitleHeroSection from "./sections/TitleHeroSection.astro";
 
 const componentsByType = {
   hero: Hero,
-  heroVideo: HeroVideo,
+  sectionVideo: SectionVideo,
   textImage: TextImage,
   cta: Cta,
   gallery: Gallery,
@@ -26,8 +26,8 @@ const componentsByType = {
   titleHero: TitleHeroSection,
 };
 
-// Tipos que van a sangre, fuera de las franjas de color (heroVideo).
-const fullBleed = new Set(["heroVideo"]);
+// Tipos que van a sangre, fuera de las franjas de color (sectionVideo).
+const fullBleed = new Set(["sectionVideo"]);
 
 const { sections = [] } = Astro.props;
 

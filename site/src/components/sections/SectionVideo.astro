@@ -1,0 +1,350 @@
+---
+// section-video — portada a sangre con vídeo (Figma: section-video).
+// Copia de la landing (index.html + common.css + main.js): mismas clases BEM,
+// mismo comportamiento (play/pausa, mute, HD bajo demanda, póster al terminar).
+import { withBase } from "../../lib/url.js";
+const { video, videoWebm, hdVideo, hdVideoWebm, poster } = Astro.props;
+const posterSrc = poster?.src ? withBase(poster.src) : undefined;
+const sd = [videoWebm && { src: withBase(videoWebm), type: "video/webm" }, { src: withBase(video), type: "video/mp4" }].filter(Boolean);
+const hd = hdVideo ? [hdVideoWebm && { src: withBase(hdVideoWebm), type: "video/webm" }, { src: withBase(hdVideo), type: "video/mp4" }].filter(Boolean) : null;
+---
+
+<section class="section-video" data-sd={JSON.stringify(sd)} data-hd={hd ? JSON.stringify(hd) : undefined}>
+  <video class="section-video__video" poster={posterSrc} playsinline autoplay muted preload="metadata" aria-hidden="true">
+    {sd.map((s) => <source src={s.src} type={s.type} />)}
+  </video>
+  {posterSrc && <img src={posterSrc} alt="" class="section-video__poster" aria-hidden="true" />}
+  <div class="section-video__scrim" aria-hidden="true"></div>
+  <button class="section-video__play-btn" type="button" aria-label="Play video">
+    <span class="section-video__play-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+  </button>
+  {hd && <button class="section-video__hd-btn" type="button" aria-pressed="false" aria-label="Play in HD quality">HD</button>}
+  <button class="section-video__mute-btn" type="button" aria-label="Unmute video" data-muted="true">
+    <span class="section-video__mute-icon section-video__mute-icon--muted" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M16.5 12A4.5 4.5 0 0 0 14 8.03v2.2l2.45 2.45c.03-.22.05-.45.05-.68Z"></path>
+        <path d="M19 12c0 .94-.2 1.82-.54 2.63l1.51 1.51A8.94 8.94 0 0 0 21 12c0-4.28-3-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71Z"></path>
+        <path d="M4.27 3 3 4.27l6.73 6.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.95 8.95 0 0 0 3.69-1.81L20.73 22 22 20.73l-9-9L4.27 3ZM12 4 9.91 6.09 12 8.18V4Z"></path>
+      </svg>
+    </span>
+    <span class="section-video__mute-icon section-video__mute-icon--unmuted" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M3 9v6h4l5 5V4L7 9H3Zm13.5 3A4.5 4.5 0 0 0 14 8.03v7.94A4.5 4.5 0 0 0 16.5 12ZM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4-.91 7-4.49 7-8.77s-3-7.86-7-8.77Z"></path>
+      </svg>
+    </span>
+  </button>
+</section>
+
+<style>
+  /* Copiado de landing/common.css (bloque .section-video). Mantener igual que la landing. */
+  .section-video {
+    position: relative;
+    width: 100%;
+    height: min(88dvh, 900px);
+    min-height: 420px;
+    overflow: hidden;
+    background: var(--fill-surface-black);
+  }
+
+  .section-video__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s var(--ease-out-quart);
+  }
+
+  .section-video__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease-out-quart);
+  }
+
+  .section-video.is-ended .section-video__video {
+    opacity: 0;
+  }
+
+  .section-video.is-ended .section-video__poster {
+    opacity: 1;
+  }
+
+  .section-video__play-btn {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.25s var(--ease-out-quart);
+  }
+
+  .section-video__play-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--hero-overlay);
+    transition: background 0.25s var(--ease-out-quart);
+  }
+
+  .section-video:hover .section-video__play-btn::before {
+    background: var(--hero-overlay-hover);
+  }
+
+  .section-video__play-icon {
+    position: relative;
+    z-index: 1;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--buttons-primary-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icons-positive);
+    transition: transform 0.2s var(--ease-out-quart), background 0.2s var(--ease-out-quart);
+    box-shadow: 0 4px 24px var(--hero-glow);
+  }
+
+  .section-video__play-btn:hover .section-video__play-icon,
+  .section-video__play-btn:focus-visible .section-video__play-icon {
+    transform: scale(1.1);
+    background: var(--buttons-primary-hover);
+  }
+
+  /* Ring goes on the visible icon, not the full-bleed hit target — an
+     outward outline-offset on .section-video__play-btn itself would sit outside
+     .section-video's own box and get clipped by .section-video{overflow:hidden}. */
+  .section-video__play-btn:focus-visible .section-video__play-icon {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+  }
+
+  /* Hide overlay while the video is actively playing */
+  .section-video.is-playing .section-video__play-btn {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .section-video__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0.3) 62%, rgba(0, 0, 0, 0.92) 100%);
+    pointer-events: none;
+  }
+
+  .section-video__mute-btn {
+    position: absolute;
+    right: var(--spacing-sp-16);
+    bottom: var(--spacing-sp-16);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s var(--ease-out-quart), transform 0.2s var(--ease-out-quart);
+  }
+
+  .section-video__mute-btn:hover,
+  .section-video__mute-btn:focus-visible {
+    background: var(--fill-surface-red);
+    transform: scale(1.08);
+  }
+
+  .section-video__mute-btn:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+  }
+
+  /* HD quality toggle — sits left of the mute button, same height. */
+  .section-video__hd-btn {
+    position: absolute;
+    right: calc(var(--spacing-sp-16) + 44px + var(--spacing-sp-8));
+    bottom: var(--spacing-sp-16);
+    z-index: 2;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 var(--spacing-sp-12, 12px);
+    border-radius: 22px;
+    border: 2px solid transparent;
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--text-primary);
+    font: var(--text-button-s-bold);
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s var(--ease-out-quart), border-color 0.2s var(--ease-out-quart), transform 0.2s var(--ease-out-quart);
+  }
+
+  .section-video__hd-btn:hover,
+  .section-video__hd-btn:focus-visible {
+    border-color: var(--text-primary);
+    transform: scale(1.08);
+  }
+
+  .section-video__hd-btn:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+  }
+
+  .section-video__hd-btn[aria-pressed="true"] {
+    background: var(--fill-surface-red);
+  }
+
+  .section-video__hd-btn[data-loading="true"] {
+    animation: hd-loading 0.9s ease-in-out infinite alternate;
+    cursor: progress;
+  }
+
+  @keyframes hd-loading {
+    from { opacity: 1; }
+    to   { opacity: 0.45; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-video__hd-btn[data-loading="true"] { animation: none; opacity: 0.6; }
+  }
+
+  .section-video__mute-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart);
+  }
+
+  .section-video__mute-btn[data-muted="true"] .section-video__mute-icon--muted,
+  .section-video__mute-btn[data-muted="false"] .section-video__mute-icon--unmuted {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .section-video__content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: var(--spacing-sp-32) var(--pad-x) var(--spacing-sp-64);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  // Copiado de landing/main.js (reproductor, mute y HD), adaptado a varias instancias.
+  type Src = { src: string; type: string };
+  document.querySelectorAll<HTMLElement>(".section-video").forEach((hero) => {
+    const video = hero.querySelector<HTMLVideoElement>(".section-video__video");
+    const playBtn = hero.querySelector<HTMLButtonElement>(".section-video__play-btn");
+    const muteBtn = hero.querySelector<HTMLButtonElement>(".section-video__mute-btn");
+    const hdBtn = hero.querySelector<HTMLButtonElement>(".section-video__hd-btn");
+    if (!video || !playBtn) return;
+
+    // prefers-reduced-motion: sin autoplay de un vídeo a pantalla completa (WCAG 2.2.2)
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      video.removeAttribute("autoplay");
+    }
+
+    const togglePlay = () => (video.paused ? video.play() : video.pause());
+    video.addEventListener("play", () => {
+      hero.classList.add("is-playing");
+      hero.classList.remove("is-ended");
+      playBtn.setAttribute("aria-label", "Pause video");
+    });
+    video.addEventListener("pause", () => {
+      // Un cambio de calidad (HD) recarga el vídeo y dispara "pause": se mantiene la UI de reproducción
+      if (video.ended || hero.classList.contains("is-switching")) return;
+      hero.classList.remove("is-playing");
+      playBtn.setAttribute("aria-label", "Play video");
+    });
+    video.addEventListener("ended", () => {
+      hero.classList.remove("is-playing");
+      hero.classList.add("is-ended");
+      playBtn.setAttribute("aria-label", "Play video");
+    });
+    playBtn.addEventListener("click", togglePlay);
+    video.addEventListener("click", togglePlay);
+    if (!video.paused) hero.classList.add("is-playing");
+    setTimeout(() => {
+      if (video.paused && video.currentTime === 0) hero.classList.remove("is-playing");
+    }, 2500);
+
+    muteBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      muteBtn.setAttribute("data-muted", video.muted ? "true" : "false");
+      muteBtn.setAttribute("aria-label", video.muted ? "Unmute video" : "Mute video");
+    });
+
+    // HD bajo demanda: SD por defecto; HD cambia de fuente y reanuda en el mismo punto
+    if (!hdBtn || !hero.dataset.hd) return;
+    const SOURCES: { sd: Src[]; hd: Src[] } = { sd: JSON.parse(hero.dataset.sd || "[]"), hd: JSON.parse(hero.dataset.hd) };
+    let isHD = false;
+    const setSources = (list: Src[]) => {
+      while (video.firstChild) video.removeChild(video.firstChild);
+      list.forEach((s) => {
+        const el = document.createElement("source");
+        el.src = s.src;
+        el.type = s.type;
+        video.appendChild(el);
+      });
+    };
+    hdBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (hero.classList.contains("is-switching")) return;
+      const time = video.currentTime;
+      const wasPlaying = !video.paused && !video.ended;
+      const posterAttr = video.getAttribute("poster");
+      isHD = !isHD;
+      hdBtn.setAttribute("aria-pressed", isHD ? "true" : "false");
+      hdBtn.setAttribute("aria-label", isHD ? "Play in standard quality" : "Play in HD quality");
+      hero.classList.add("is-switching");
+      hdBtn.setAttribute("data-loading", "true");
+      video.removeAttribute("poster");
+      video.autoplay = wasPlaying;
+      setSources(isHD ? SOURCES.hd : SOURCES.sd);
+      video.load();
+      video.addEventListener("loadedmetadata", function onMeta() {
+        video.removeEventListener("loadedmetadata", onMeta);
+        video.currentTime = Math.min(time, video.duration || time);
+      });
+      video.addEventListener("canplay", function onReady() {
+        video.removeEventListener("canplay", onReady);
+        if (posterAttr) video.setAttribute("poster", posterAttr);
+        hero.classList.remove("is-switching");
+        hdBtn.removeAttribute("data-loading");
+        if (wasPlaying) video.play().catch(() => {});
+        else hero.classList.remove("is-playing");
+      });
+    });
+  });
+</script>

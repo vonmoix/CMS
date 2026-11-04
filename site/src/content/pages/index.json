@@ -10,7 +10,7 @@
   },
   "sections": [
     {
-      "type": "heroVideo",
+      "type": "sectionVideo",
       "video": "/videos/hero-video.mp4",
       "poster": {
         "src": "/images/hero-video-poster.png"

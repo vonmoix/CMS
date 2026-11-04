@@ -49,10 +49,14 @@ const heroSection = z.object({
   imagePosition: z.enum(["left", "right"]).default("right"),
 });
 
-const heroVideoSection = z.object({
-  type: z.literal("heroVideo"),
-  // ruta (/videos/x.mp4) o URL del vídeo
+const sectionVideoSection = z.object({
+  type: z.literal("sectionVideo"),
+  // ruta (/videos/x.mp4) o URL del vídeo (mp4, calidad estándar)
   video: z.string().min(1, "El vídeo es obligatorio"),
+  // opcionales: versión webm y versión HD (si hay hdVideo aparece el botón HD)
+  videoWebm: z.string().optional(),
+  hdVideo: z.string().optional(),
+  hdVideoWebm: z.string().optional(),
   // imagen que se ve antes de cargar y al terminar el vídeo
   poster: imageSchema.optional(),
 });
@@ -141,7 +145,7 @@ const titleHeroSection = z.object({
 
 export const sectionSchema = z.discriminatedUnion("type", [
   heroSection,
-  heroVideoSection,
+  sectionVideoSection,
   textImageSection,
   ctaSection,
   gallerySection,

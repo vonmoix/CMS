@@ -28,10 +28,13 @@ const SECTION_CATALOG = {
       },
     ],
   },
-  heroVideo: {
-    label: "Cabecera con vídeo",
+  sectionVideo: {
+    label: "Vídeo de cabecera (section-video)",
     fields: [
-      { name: "video", label: "Vídeo (ruta o URL, p. ej. /videos/hero-video.mp4)", type: "text", required: true },
+      { name: "video", label: "Vídeo mp4 (ruta o URL, p. ej. /videos/hero-video.mp4)", type: "text", required: true },
+      { name: "videoWebm", label: "Vídeo webm (opcional, más ligero)", type: "text" },
+      { name: "hdVideo", label: "Vídeo HD mp4 (opcional: activa el botón HD)", type: "text" },
+      { name: "hdVideoWebm", label: "Vídeo HD webm (opcional)", type: "text" },
       { name: "poster", label: "Póster (imagen antes/después del vídeo)", type: "image" },
     ],
   },
@@ -117,7 +120,7 @@ const SECTION_CATALOG = {
 };
 
 // Franja de fondo a ancho completo en la que se coloca la sección. Las
-// consecutivas con el mismo valor comparten franja. heroVideo va a sangre y
+// consecutivas con el mismo valor comparten franja. sectionVideo va a sangre y
 // no lo lleva.
 const SURFACE_FIELD = {
   name: "surface",
@@ -131,7 +134,7 @@ const SURFACE_FIELD = {
   default: "grey-medium",
 };
 for (const [type, def] of Object.entries(SECTION_CATALOG)) {
-  if (type !== "heroVideo") def.fields.push(SURFACE_FIELD);
+  if (type !== "sectionVideo") def.fields.push(SURFACE_FIELD);
 }
 
 // Mismo criterio que safeLinkSchema en site/src/content/config.ts
