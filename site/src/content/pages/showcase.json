@@ -11,6 +11,49 @@
   },
   "sections": [
     {
+      "type": "sectionVideo",
+      "video": "https://pzlanding-sigma.vercel.app/videos/video_landing.mp4",
+      "videoWebm": "https://pzlanding-sigma.vercel.app/videos/video_landing.webm",
+      "poster": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_video_cover.png",
+        "alt": ""
+      }
+    },
+    {
+      "type": "introText",
+      "surface": "grey-medium",
+      "size": "xl",
+      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
+      "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
+      "highlight": "GAMES",
+      "copy": "From fast-paced, feature-packed games to wildly diverse themes, our marketplace features slots, strategy-based games, branded content, and sweepstakes-ready titles.\n\nThere’s always something to hit the right mood."
+    },
+    {
+      "type": "titleHero",
+      "surface": "white",
+      "size": "xl",
+      "eyebrow": "EYEBROW",
+      "title": "Title, hero size",
+      "highlight": "hero"
+    },
+    {
+      "type": "introText",
+      "surface": "grey-medium",
+      "size": "l",
+      "eyebrow": "EYEBROW",
+      "title": "Intro title and text, section size",
+      "highlight": "section",
+      "copy": "Short sample copy to check spacing, line length and colour on this background."
+    },
+    {
+      "type": "titleHero",
+      "surface": "white",
+      "size": "l",
+      "eyebrow": "EYEBROW",
+      "title": "Title, section size",
+      "highlight": "section"
+    },
+    {
       "type": "hero",
       "surface": "grey-medium",
       "eyebrow": "EYEBROW",
@@ -25,59 +68,6 @@
         "href": "#"
       },
       "imagePosition": "right"
-    },
-    {
-      "type": "sectionVideo",
-      "video": "https://pzlanding-sigma.vercel.app/videos/video_landing.mp4",
-      "videoWebm": "https://pzlanding-sigma.vercel.app/videos/video_landing.webm",
-      "poster": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_video_cover.png",
-        "alt": ""
-      }
-    },
-    {
-      "type": "textImage",
-      "surface": "white",
-      "title": "Text with image",
-      "copy": "Short sample copy to check spacing, line length and colour on this background.",
-      "image": {
-        "src": "/images/placeholder-content.svg",
-        "alt": "Placeholder"
-      },
-      "imagePosition": "left"
-    },
-    {
-      "type": "cta",
-      "surface": "grey-dark",
-      "title": "Ready to get started?",
-      "copy": "Short sample copy to check spacing, line length and colour on this background.",
-      "button": {
-        "label": "Get started",
-        "href": "#"
-      }
-    },
-    {
-      "type": "gallery",
-      "surface": "grey-medium",
-      "title": "Image gallery",
-      "images": [
-        {
-          "src": "/images/placeholder-hero.svg",
-          "alt": "Image 1"
-        },
-        {
-          "src": "/images/placeholder-content.svg",
-          "alt": "Image 2"
-        },
-        {
-          "src": "/images/placeholder-hero.svg",
-          "alt": "Image 3"
-        },
-        {
-          "src": "/images/placeholder-content.svg",
-          "alt": "Image 4"
-        }
-      ]
     },
     {
       "type": "sectionImageCard",
@@ -95,21 +85,6 @@
       "copy": "Players crave a legit reason to hit that spin button. We’re talking about the meta-hunters, who can’t resist geeking out over the mechanics, and the laid-back crew just vibing after work. They want games that actually get them; from that first cheeky spin right up to the big win moment.",
       "image": {
         "src": "https://pzlanding-sigma.vercel.app/images/img_text_carrousel.png",
-        "alt": ""
-      }
-    },
-    {
-      "type": "sectionMascot",
-      "eyebrow": "INTRODUCING...",
-      "signature": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
-        "alt": "mr. zaar"
-      },
-      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
-      "highlight": "BRAINS",
-      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
-      "image": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
         "alt": ""
       }
     },
@@ -236,6 +211,55 @@
       ]
     },
     {
+      "type": "textImage",
+      "surface": "white",
+      "title": "Text with image",
+      "copy": "Short sample copy to check spacing, line length and colour on this background.",
+      "image": {
+        "src": "/images/placeholder-content.svg",
+        "alt": "Placeholder"
+      },
+      "imagePosition": "left"
+    },
+    {
+      "type": "gallery",
+      "surface": "grey-medium",
+      "title": "Image gallery",
+      "images": [
+        {
+          "src": "/images/placeholder-hero.svg",
+          "alt": "Image 1"
+        },
+        {
+          "src": "/images/placeholder-content.svg",
+          "alt": "Image 2"
+        },
+        {
+          "src": "/images/placeholder-hero.svg",
+          "alt": "Image 3"
+        },
+        {
+          "src": "/images/placeholder-content.svg",
+          "alt": "Image 4"
+        }
+      ]
+    },
+    {
+      "type": "sectionMascot",
+      "eyebrow": "INTRODUCING...",
+      "signature": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
+        "alt": "mr. zaar"
+      },
+      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
+      "highlight": "BRAINS",
+      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
+        "alt": ""
+      }
+    },
+    {
       "type": "faq",
       "surface": "white",
       "title": "Frequently asked questions",
@@ -255,38 +279,14 @@
       ]
     },
     {
-      "type": "introText",
-      "surface": "grey-medium",
-      "size": "xl",
-      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
-      "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
-      "highlight": "GAMES",
-      "copy": "From fast-paced, feature-packed games to wildly diverse themes, our marketplace features slots, strategy-based games, branded content, and sweepstakes-ready titles.\n\nThere’s always something to hit the right mood."
-    },
-    {
-      "type": "introText",
-      "surface": "white",
-      "size": "l",
-      "eyebrow": "EYEBROW",
-      "title": "Intro title and text, section size",
-      "highlight": "section",
-      "copy": "Short sample copy to check spacing, line length and colour on this background."
-    },
-    {
-      "type": "titleHero",
+      "type": "cta",
       "surface": "grey-dark",
-      "size": "xl",
-      "eyebrow": "EYEBROW",
-      "title": "Title, hero size",
-      "highlight": "hero"
-    },
-    {
-      "type": "titleHero",
-      "surface": "white",
-      "size": "l",
-      "eyebrow": "EYEBROW",
-      "title": "Title, section size",
-      "highlight": "section"
+      "title": "Ready to get started?",
+      "copy": "Short sample copy to check spacing, line length and colour on this background.",
+      "button": {
+        "label": "Get started",
+        "href": "#"
+      }
     }
   ],
   "updatedAt": "2026-11-05T08:20:55.000Z",

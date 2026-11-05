@@ -8,111 +8,14 @@
 //   cardList (array de {title, image, playUrl, sheetUrl})
 
 const SECTION_CATALOG = {
-  hero: {
-    label: "Destacado: texto, imagen y botón",
-    fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "title", label: "Título", type: "text", required: true },
-      { name: "copy", label: "Subtítulo", type: "textarea" },
-      { name: "image", label: "Imagen", type: "image" },
-      { name: "button", label: "Botón", type: "button" },
-      {
-        name: "imagePosition",
-        label: "Posición de la imagen",
-        type: "select",
-        options: [
-          { value: "right", label: "Derecha" },
-          { value: "left", label: "Izquierda" },
-        ],
-        default: "right",
-      },
-    ],
-  },
+  // Orden del selector "Añadir sección": como se maquetaría una página,
+  // de arriba abajo y de lo general a lo granular. Mantener igual en showcase.json.
   sectionVideo: {
     label: "Vídeo de cabecera (section-video)",
     fields: [
       { name: "video", label: "Vídeo mp4 (ruta o URL, p. ej. /videos/hero-video.mp4)", type: "text", required: true },
       { name: "videoWebm", label: "Vídeo webm (opcional, más ligero)", type: "text" },
       { name: "poster", label: "Póster (imagen antes/después del vídeo)", type: "image" },
-    ],
-  },
-  textImage: {
-    label: "Texto con imagen",
-    fields: [
-      { name: "title", label: "Título", type: "text", required: true },
-      { name: "copy", label: "Texto", type: "textarea", required: true },
-      { name: "image", label: "Imagen", type: "image", required: true },
-      {
-        name: "imagePosition",
-        label: "Posición de la imagen",
-        type: "select",
-        options: [
-          { value: "right", label: "Derecha" },
-          { value: "left", label: "Izquierda" },
-        ],
-        default: "right",
-      },
-    ],
-  },
-  cta: {
-    label: "Llamada a la acción (botón)",
-    fields: [
-      { name: "title", label: "Título", type: "text", required: true },
-      { name: "copy", label: "Texto (opcional)", type: "textarea" },
-      { name: "button", label: "Botón", type: "button", required: true },
-    ],
-  },
-  gallery: {
-    label: "Galería de imágenes",
-    fields: [
-      { name: "title", label: "Título (opcional)", type: "text" },
-      { name: "images", label: "Imágenes", type: "imageList", required: true },
-    ],
-  },
-  sectionImageCard: {
-    label: "Imagen con tarjeta (section-image-card)",
-    fields: [
-      { name: "background", label: "Imagen ancha (escritorio)", type: "image", required: true },
-      { name: "backgroundMobile", label: "Imagen ancha (móvil, opcional)", type: "image" },
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "title", label: "Título", type: "text", required: true },
-      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
-      { name: "copy", label: "Texto", type: "textarea" },
-      { name: "image", label: "Imagen de la tarjeta (solo escritorio)", type: "image" },
-    ],
-  },
-  sectionMascot: {
-    label: "Mascota con firma (section-mascot)",
-    fields: [
-      { name: "eyebrow", label: "Texto sobre la firma (opcional)", type: "text" },
-      { name: "signature", label: "Firma (imagen o GIF)", type: "image" },
-      { name: "title", label: "Título", type: "text", required: true },
-      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
-      { name: "copy", label: "Texto", type: "textarea" },
-      { name: "image", label: "Imagen de la mascota", type: "image" },
-    ],
-  },
-  gamesGroup: {
-    label: "Grupo de juegos (games-group)",
-    fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
-      { name: "title", label: "Título", type: "text" },
-      { name: "description", label: "Descripción", type: "textarea" },
-      { name: "cards", label: "Cartas", type: "cardList", required: true },
-    ],
-  },
-  carousel: {
-    label: "Carrusel de cartas de juego",
-    fields: [
-      { name: "title", label: "Título (opcional)", type: "text" },
-      { name: "cards", label: "Cartas", type: "cardList", required: true },
-    ],
-  },
-  faq: {
-    label: "Preguntas frecuentes",
-    fields: [
-      { name: "title", label: "Título (opcional)", type: "text" },
-      { name: "items", label: "Preguntas", type: "faqList", required: true },
     ],
   },
   introText: {
@@ -150,6 +53,105 @@ const SECTION_CATALOG = {
         ],
         default: "xl",
       },
+    ],
+  },
+  hero: {
+    label: "Destacado: texto, imagen y botón",
+    fields: [
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "copy", label: "Subtítulo", type: "textarea" },
+      { name: "image", label: "Imagen", type: "image" },
+      { name: "button", label: "Botón", type: "button" },
+      {
+        name: "imagePosition",
+        label: "Posición de la imagen",
+        type: "select",
+        options: [
+          { value: "right", label: "Derecha" },
+          { value: "left", label: "Izquierda" },
+        ],
+        default: "right",
+      },
+    ],
+  },
+  sectionImageCard: {
+    label: "Imagen con tarjeta (section-image-card)",
+    fields: [
+      { name: "background", label: "Imagen ancha (escritorio)", type: "image", required: true },
+      { name: "backgroundMobile", label: "Imagen ancha (móvil, opcional)", type: "image" },
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
+      { name: "copy", label: "Texto", type: "textarea" },
+      { name: "image", label: "Imagen de la tarjeta (solo escritorio)", type: "image" },
+    ],
+  },
+  gamesGroup: {
+    label: "Grupo de juegos (games-group)",
+    fields: [
+      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "title", label: "Título", type: "text" },
+      { name: "description", label: "Descripción", type: "textarea" },
+      { name: "cards", label: "Cartas", type: "cardList", required: true },
+    ],
+  },
+  carousel: {
+    label: "Carrusel de cartas de juego",
+    fields: [
+      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "cards", label: "Cartas", type: "cardList", required: true },
+    ],
+  },
+  textImage: {
+    label: "Texto con imagen",
+    fields: [
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "copy", label: "Texto", type: "textarea", required: true },
+      { name: "image", label: "Imagen", type: "image", required: true },
+      {
+        name: "imagePosition",
+        label: "Posición de la imagen",
+        type: "select",
+        options: [
+          { value: "right", label: "Derecha" },
+          { value: "left", label: "Izquierda" },
+        ],
+        default: "right",
+      },
+    ],
+  },
+  gallery: {
+    label: "Galería de imágenes",
+    fields: [
+      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "images", label: "Imágenes", type: "imageList", required: true },
+    ],
+  },
+  sectionMascot: {
+    label: "Mascota con firma (section-mascot)",
+    fields: [
+      { name: "eyebrow", label: "Texto sobre la firma (opcional)", type: "text" },
+      { name: "signature", label: "Firma (imagen o GIF)", type: "image" },
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
+      { name: "copy", label: "Texto", type: "textarea" },
+      { name: "image", label: "Imagen de la mascota", type: "image" },
+    ],
+  },
+  faq: {
+    label: "Preguntas frecuentes",
+    fields: [
+      { name: "title", label: "Título (opcional)", type: "text" },
+      { name: "items", label: "Preguntas", type: "faqList", required: true },
+    ],
+  },
+  cta: {
+    label: "Llamada a la acción (botón)",
+    fields: [
+      { name: "title", label: "Título", type: "text", required: true },
+      { name: "copy", label: "Texto (opcional)", type: "textarea" },
+      { name: "button", label: "Botón", type: "button", required: true },
     ],
   },
 };
