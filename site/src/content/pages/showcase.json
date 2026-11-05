@@ -70,6 +70,22 @@
       "imagePosition": "right"
     },
     {
+      "type": "hero",
+      "eyebrow": "EYEBROW",
+      "title": "Featured: text, image and button",
+      "copy": "Short sample copy to check spacing, line length and colour on this background.",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/cms/1793875665035-christmas-blast-game-card-1000x650-2x.jpg",
+        "alt": ""
+      },
+      "button": {
+        "label": "DEMO",
+        "href": "#"
+      },
+      "imagePosition": "left",
+      "surface": "grey-dark"
+    },
+    {
       "type": "sectionImageCard",
       "background": {
         "src": "https://pzlanding-sigma.vercel.app/images/img_carrousel_desktop.png",
@@ -289,6 +305,6 @@
       }
     }
   ],
-  "updatedAt": "2026-11-05T08:20:55.000Z",
+  "updatedAt": "2026-11-05T10:48:16.710Z",
   "updatedBy": "admin"
 }
