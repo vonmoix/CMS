@@ -140,7 +140,7 @@ app.get("/pages/new", (req, res) => {
   res.render("edit", {
     isNew: true,
     slug: "",
-    page: { title: "", description: "", slug: "", order: null, draft: false, seo: {}, sections: [] },
+    page: { title: "", description: "", slug: "", order: null, draft: false, hideFromNav: false, seo: {}, sections: [] },
     sha: null,
     sectionCatalog: SECTION_CATALOG,
     imagePreviewConfig: github.getImagePreviewConfig(),
@@ -230,6 +230,7 @@ app.post("/pages/:slugParam", async (req, res, next) => {
       slug,
       order,
       draft: req.body.draft === "on",
+      hideFromNav: req.body.hideFromNav === "on",
       seo: {
         title: req.body.seoTitle || "",
         description: req.body.seoDescription || "",

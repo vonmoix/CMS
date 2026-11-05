@@ -1,14 +1,31 @@
 {
-  "title": "Landing",
-  "description": "Réplica de la landing (pzlanding-sigma.vercel.app) montada con las piezas del CMS, para compararlas.",
-  "slug": "landing",
+  "title": "Showcase",
+  "description": "Component showcase: one section of each type, to compare with the \"Components showcase\" artboards in Figma. Hidden from the menu.",
+  "slug": "showcase",
   "order": 3,
   "draft": false,
+  "hideFromNav": true,
   "seo": {
-    "title": "Playzaar — Follow the Rabbit",
+    "title": "Playzaar — Showcase",
     "description": ""
   },
   "sections": [
+    {
+      "type": "hero",
+      "surface": "grey-medium",
+      "eyebrow": "EYEBROW",
+      "title": "Featured: text, image and button",
+      "copy": "Short sample copy to check spacing, line length and colour on this background.",
+      "image": {
+        "src": "/images/placeholder-hero.svg",
+        "alt": "Placeholder"
+      },
+      "button": {
+        "label": "Get started",
+        "href": "#"
+      },
+      "imagePosition": "right"
+    },
     {
       "type": "sectionVideo",
       "video": "https://pzlanding-sigma.vercel.app/videos/video_landing.mp4",
@@ -19,13 +36,48 @@
       }
     },
     {
-      "type": "introText",
+      "type": "textImage",
+      "surface": "white",
+      "title": "Text with image",
+      "copy": "Short sample copy to check spacing, line length and colour on this background.",
+      "image": {
+        "src": "/images/placeholder-content.svg",
+        "alt": "Placeholder"
+      },
+      "imagePosition": "left"
+    },
+    {
+      "type": "cta",
+      "surface": "grey-dark",
+      "title": "Ready to get started?",
+      "copy": "Short sample copy to check spacing, line length and colour on this background.",
+      "button": {
+        "label": "Get started",
+        "href": "#"
+      }
+    },
+    {
+      "type": "gallery",
       "surface": "grey-medium",
-      "size": "xl",
-      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
-      "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
-      "highlight": "GAMES",
-      "copy": "From fast-paced, feature-packed games to wildly diverse themes, our marketplace features slots, strategy-based games, branded content, and sweepstakes-ready titles.\n\nThere’s always something to hit the right mood."
+      "title": "Image gallery",
+      "images": [
+        {
+          "src": "/images/placeholder-hero.svg",
+          "alt": "Image 1"
+        },
+        {
+          "src": "/images/placeholder-content.svg",
+          "alt": "Image 2"
+        },
+        {
+          "src": "/images/placeholder-hero.svg",
+          "alt": "Image 3"
+        },
+        {
+          "src": "/images/placeholder-content.svg",
+          "alt": "Image 4"
+        }
+      ]
     },
     {
       "type": "sectionImageCard",
@@ -43,6 +95,21 @@
       "copy": "Players crave a legit reason to hit that spin button. We’re talking about the meta-hunters, who can’t resist geeking out over the mechanics, and the laid-back crew just vibing after work. They want games that actually get them; from that first cheeky spin right up to the big win moment.",
       "image": {
         "src": "https://pzlanding-sigma.vercel.app/images/img_text_carrousel.png",
+        "alt": ""
+      }
+    },
+    {
+      "type": "sectionMascot",
+      "eyebrow": "INTRODUCING...",
+      "signature": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
+        "alt": "mr. zaar"
+      },
+      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
+      "highlight": "BRAINS",
+      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
         "alt": ""
       }
     },
@@ -81,10 +148,37 @@
       ]
     },
     {
-      "type": "gamesGroup",
-      "title": "Turbo taps",
-      "description": "High-energy, short sharp sessions built for mobile. Free Taps with multipliers can trigger, stacking on extra fun.",
+      "type": "carousel",
+      "surface": "grey-medium",
+      "title": "Game card carousel",
       "cards": [
+        {
+          "title": "Flaming Gridlines",
+          "image": {
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_flaming_gridlines.jpg",
+            "alt": "Flaming Gridlines"
+          },
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Flaming_Gridlines_PDS.pdf"
+        },
+        {
+          "title": "Super Surge Gridlines",
+          "image": {
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_super_surge_gridlines.jpg",
+            "alt": "Super Surge Gridlines"
+          },
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Super_Surge_Gridlines_PDS.pdf"
+        },
+        {
+          "title": "Big Bullion Gridlines",
+          "image": {
+            "src": "https://pzlanding-sigma.vercel.app/images/img_game_big_bullion_gridlines.jpg",
+            "alt": "Big Bullion Gridlines"
+          },
+          "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
+          "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Big_Buillion_Gridlines_PDS.pdf"
+        },
         {
           "title": "Fishing 4 Life",
           "image": {
@@ -111,14 +205,7 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Hoops_On_Fire_PDS.pdf"
-        }
-      ]
-    },
-    {
-      "type": "gamesGroup",
-      "title": "Slot games",
-      "description": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
-      "cards": [
+        },
         {
           "title": "Coins of the Deep",
           "image": {
@@ -149,21 +236,49 @@
       ]
     },
     {
-      "type": "sectionMascot",
-      "eyebrow": "INTRODUCING...",
-      "signature": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
-        "alt": "mr. zaar"
-      },
-      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
-      "highlight": "BRAINS",
-      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
-      "image": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
-        "alt": ""
-      }
+      "type": "faq",
+      "surface": "white",
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "Sample question one?",
+          "answer": "Short sample copy to check spacing, line length and colour on this background."
+        },
+        {
+          "question": "Sample question two?",
+          "answer": "Short sample copy to check spacing, line length and colour on this background."
+        },
+        {
+          "question": "Sample question three?",
+          "answer": "Short sample copy to check spacing, line length and colour on this background."
+        }
+      ]
+    },
+    {
+      "type": "introText",
+      "surface": "grey-medium",
+      "size": "xl",
+      "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
+      "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
+      "highlight": "GAMES",
+      "copy": "From fast-paced, feature-packed games to wildly diverse themes, our marketplace features slots, strategy-based games, branded content, and sweepstakes-ready titles.\n\nThere’s always something to hit the right mood."
+    },
+    {
+      "type": "introText",
+      "surface": "white",
+      "size": "l",
+      "eyebrow": "EYEBROW",
+      "title": "Section intro (header-section)",
+      "highlight": "intro",
+      "copy": "Short sample copy to check spacing, line length and colour on this background."
+    },
+    {
+      "type": "titleHero",
+      "surface": "grey-dark",
+      "eyebrow": "EYEBROW",
+      "title": "Highlighted title with underline"
     }
   ],
-  "updatedAt": "2026-11-04T15:32:57.558Z",
+  "updatedAt": "2026-11-05T08:20:55.000Z",
   "updatedBy": "admin"
 }

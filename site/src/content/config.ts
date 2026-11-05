@@ -196,6 +196,9 @@ const pagesCollection = defineCollection({
     order: z.number().default(0),
     // oculta la página del sitio publicado sin borrar el contenido
     draft: z.boolean().default(false),
+    // publicada (accesible por URL) pero fuera del menú de cabecera/móvil;
+    // p. ej. la página "showcase" de prueba de componentes
+    hideFromNav: z.boolean().default(false),
     seo: z
       .object({
         title: z.string().optional(),

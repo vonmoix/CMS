@@ -6,34 +6,56 @@
   "draft": false,
   "seo": {
     "title": "Playzaar — Follow the Rabbit",
-    "description": "Ejemplo de página de inicio generada por el sistema de gestión de contenido."
+    "description": ""
   },
   "sections": [
     {
       "type": "sectionVideo",
-      "video": "https://pzlanding-sigma.vercel.app/videos/cms/hero-video.mp4",
+      "video": "https://pzlanding-sigma.vercel.app/videos/video_landing.mp4",
+      "videoWebm": "https://pzlanding-sigma.vercel.app/videos/video_landing.webm",
       "poster": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_video_cover.png"
+        "src": "https://pzlanding-sigma.vercel.app/images/img_video_cover.png",
+        "alt": ""
       }
     },
     {
       "type": "introText",
       "surface": "grey-medium",
+      "size": "xl",
       "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
       "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
-      "copy": "We’re experts in developing high quality casino products, from games to back end technology. With a stellar team of creative designers and experienced developers using cutting edge technology, we offer an unparalleled level of service.",
-      "size": "xl"
+      "highlight": "GAMES",
+      "copy": "From fast-paced, feature-packed games to wildly diverse themes, our marketplace features slots, strategy-based games, branded content, and sweepstakes-ready titles.\n\nThere’s always something to hit the right mood."
     },
     {
-      "type": "carousel",
-      "surface": "grey-medium",
-      "title": "Featured Games",
+      "type": "sectionImageCard",
+      "background": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_carrousel_desktop.png",
+        "alt": "Playzaar game catalogue"
+      },
+      "backgroundMobile": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_carrousel_mobile.png",
+        "alt": ""
+      },
+      "eyebrow": "A PORTFOLIO THAT DOESN’T BLEND IN",
+      "title": "DESIGNED TO KEEP PLAYERS ENTERTAINED",
+      "highlight": "ENTERTAINED",
+      "copy": "Players crave a legit reason to hit that spin button. We’re talking about the meta-hunters, who can’t resist geeking out over the mechanics, and the laid-back crew just vibing after work. They want games that actually get them; from that first cheeky spin right up to the big win moment.",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_text_carrousel.png",
+        "alt": ""
+      }
+    },
+    {
+      "type": "gamesGroup",
+      "title": "Gridlines",
+      "description": "Spin and match to build gridlines, pushing you up the prize ladder. Simple to pick up, the skill's in the pattern.",
       "cards": [
         {
           "title": "Flaming Gridlines",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_flaming_gridlines.jpg",
-            "alt": ""
+            "alt": "Flaming Gridlines"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Flaming_Gridlines_PDS.pdf"
@@ -42,7 +64,7 @@
           "title": "Super Surge Gridlines",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_super_surge_gridlines.jpg",
-            "alt": ""
+            "alt": "Super Surge Gridlines"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Super_Surge_Gridlines_PDS.pdf"
@@ -51,16 +73,23 @@
           "title": "Big Bullion Gridlines",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_big_bullion_gridlines.jpg",
-            "alt": ""
+            "alt": "Big Bullion Gridlines"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Big_Buillion_Gridlines_PDS.pdf"
-        },
+        }
+      ]
+    },
+    {
+      "type": "gamesGroup",
+      "title": "Turbo taps",
+      "description": "High-energy, short sharp sessions built for mobile. Free Taps with multipliers can trigger, stacking on extra fun.",
+      "cards": [
         {
           "title": "Fishing 4 Life",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_fishing_4_life_mighty.jpg",
-            "alt": ""
+            "alt": "Fishing 4 Life"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-fishing-4-life/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=Fishing4LifePZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Fishing_4_Life_PDS.pdf"
@@ -69,7 +98,7 @@
           "title": "Coin Raider Piggy",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_coin_raider_piggy_mighty.jpg",
-            "alt": ""
+            "alt": "Coin Raider Piggy"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-coin-raider-piggy/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinRaiderPiggyPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Coin_Raider_Piggy_PDS.pdf"
@@ -78,11 +107,18 @@
           "title": "Hoops on Fire",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_hoops_on_fire_mighty.jpg",
-            "alt": ""
+            "alt": "Hoops on Fire"
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Hoops_On_Fire_PDS.pdf"
-        },
+        }
+      ]
+    },
+    {
+      "type": "gamesGroup",
+      "title": "Slot games",
+      "description": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
+      "cards": [
         {
           "title": "Coins of the Deep",
           "image": {
@@ -105,7 +141,7 @@
           "title": "Looting Vegas: Alien Heist",
           "image": {
             "src": "https://pzlanding-sigma.vercel.app/images/img_game_looting_vegas_alien_heist.jpg",
-            "alt": ""
+            "alt": "Looting Vegas: Alien Heist"
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Looting_Vegas_Alien_Heist_PDS.pdf"
@@ -113,17 +149,21 @@
       ]
     },
     {
-      "type": "gallery",
-      "title": "opcional",
-      "images": [
-        {
-          "src": "https://pzlanding-sigma.vercel.app/images/cms/1793808160628-1790694729331-galeria-09-cyberpunk.jpg",
-          "alt": "alternate"
-        }
-      ],
-      "surface": "grey-medium"
+      "type": "sectionMascot",
+      "eyebrow": "INTRODUCING...",
+      "signature": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
+        "alt": "mr. zaar"
+      },
+      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
+      "highlight": "BRAINS",
+      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
+        "alt": ""
+      }
     }
   ],
-  "updatedAt": "2026-11-04T16:06:05.169Z",
+  "updatedAt": "2026-11-05T08:14:21.000Z",
   "updatedBy": "admin"
 }

@@ -58,6 +58,11 @@
           <input type="checkbox" name="draft" <%= page.draft ? 'checked' : '' %> />
           Borrador (no se publica todavía)
         </label>
+
+        <label class="checkbox">
+          <input type="checkbox" name="hideFromNav" <%= page.hideFromNav ? 'checked' : '' %> />
+          Ocultar del menú (se publica, pero solo se llega por su URL)
+        </label>
       </fieldset>
 
       <fieldset class="card">

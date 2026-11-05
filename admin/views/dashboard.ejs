@@ -68,6 +68,7 @@
                 <span class="badge">Borrador</span>
               <% } else { %>
                 <span class="badge badge-live">Publicada</span>
+                <% if (p.data && p.data.hideFromNav) { %><span class="badge">Fuera del menú</span><% } %>
               <% } %>
             </td>
             <td class="muted">
