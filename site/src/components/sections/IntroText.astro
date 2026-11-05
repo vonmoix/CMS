@@ -18,9 +18,11 @@ interface Props {
   highlight?: string;
   copy?: string;
   size?: "xl" | "l";
+  /** Etiqueta del título: h1 solo en el primer título de la página (lo decide SectionRenderer) */
+  as?: "h1" | "h2";
 }
 
-const { eyebrow, title, highlight, copy, size = "xl" } = Astro.props as Props;
+const { eyebrow, title, highlight, copy, size = "xl", as: Heading = "h2" } = Astro.props as Props;
 const [before, marked, after] = splitHighlight(title ?? "", highlight);
 const hero = size === "xl";
 const hasHeader = eyebrow || title;
@@ -32,7 +34,7 @@ const hasHeader = eyebrow || title;
       <div class="title-hero">
         <div class="title-hero__copy">
           {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-          {title && <h2 class="title-hero__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</h2>}
+          {title && <Heading class="title-hero__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</Heading>}
         </div>
         <span class="title-hero__underline" aria-hidden="true"></span>
       </div>
@@ -40,7 +42,7 @@ const hasHeader = eyebrow || title;
       <div class="section-title">
         <div class="section-title__copy">
           {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-          {title && <h2 class="section-title__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</h2>}
+          {title && <Heading class="section-title__heading">{before}{marked && <span class="text--primary">{marked}</span>}{after}</Heading>}
         </div>
         <span class="section-title__underline" aria-hidden="true"></span>
       </div>

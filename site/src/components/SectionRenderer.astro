@@ -39,6 +39,11 @@ const introTypes = new Set(["introText", "titleHero"]);
 
 const { sections = [] } = Astro.props;
 
+// Un solo h1 por página: el primer título de intro, title o hero. El resto, h2.
+const headingTypes = new Set(["introText", "titleHero", "hero"]);
+const firstHeading = sections.find((s) => headingTypes.has(s.type) && s.title);
+const extra = (section) => (section === firstHeading ? { as: "h1" } : {});
+
 // Estructura resultante:
 //   div.section-content[data-surface]  → fondo a ancho completo
 //     div.wrapper           → ancho máximo y padding lateral
@@ -79,7 +84,7 @@ for (const section of sections) {
     }
     if (group.bleed) {
       const Component = componentsByType[group.items[0].type];
-      return <Component {...group.items[0]} />;
+      return <Component {...group.items[0]} {...extra(group.items[0])} />;
     }
     return (
       <div
@@ -89,7 +94,7 @@ for (const section of sections) {
         <div class="wrapper">
           {group.items.map((section) => {
             const Component = componentsByType[section.type];
-            return <Component {...section} />;
+            return <Component {...section} {...extra(section)} />;
           })}
         </div>
       </div>

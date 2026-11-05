@@ -1,6 +1,8 @@
 ---
+// Pie de Playzaar. Copia del de la landing (index.html + common.css + main.js):
+// mismo marcado, clases BEM y valores. Figma: footer (661:4408).
+// Incluye el aviso "Copied!" (Figma Toast) que sale al copiar el email.
 import { withBase } from "../lib/url.js";
-import Button from "./Button.astro";
 
 interface Props {
   email?: string;
@@ -12,199 +14,328 @@ interface Props {
 const {
   email = "commercial@playzaar.games",
   kitsLabel = "Download",
-  kitsHref = "https://www.dropbox.com/scl/fo/l3lwncfi82zi9038n28j0/AF3EQPt48XDl5_haGoNZU1g?rlkey=9dnguwnfc9sozxhalz1r65r8p&st=8b96cls3&e=1&dl=0",
+  kitsHref = "https://www.dropbox.com/scl/fo/l3lwncfi82zi9038n28j0/AF3EQPt48XDl5_haGoNZU1g?rlkey=9dnguwnfc9sozxhalz1r65r8p&st=8b96cls3&dl=0",
   social = [
-    { name: "LinkedIn", href: "https://www.linkedin.com/company/playzaar-games/home/", icon: "icon-linkedin.svg" },
-    { name: "YouTube", href: "https://www.youtube.com/@Playzaargames", icon: "icon-youtube.svg" },
-    { name: "Instagram", href: "https://www.instagram.com/playzaargames", icon: "icon-instagram.svg" },
-    { name: "X", href: "https://x.com/Playzaargames", icon: "icon-x.svg" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/playzaar-games", icon: "icon_linkedin.svg" },
+    { name: "YouTube", href: "https://www.youtube.com/@Playzaargames", icon: "icon_youtube.svg" },
+    { name: "Instagram", href: "https://www.instagram.com/playzaargames", icon: "icon_instagram.svg" },
+    { name: "X", href: "https://x.com/Playzaargames", icon: "icon_x.svg" },
   ],
 } = Astro.props as Props;
 
 const asset = (file: string) => withBase(`/images/footer/${file}`);
 ---
 
-<footer class="site-footer">
-  <div class="info">
-    <div class="header">
-      <img class="glasses" src={asset("glasses.png")} alt="" width="178" height="96" />
-      <p class="heading">Ready to do things the Playzaar way?</p>
-    </div>
-    <div class="contact">
-      <div class="contact-us">
-        <p class="label">Contact us</p>
-        <a href={`mailto:${email}`}>{email}</a>
+<div class="toast" id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copied!</div>
+
+<footer class="footer">
+  <div class="footer__cta">
+    <img src={asset("img_glasses.png")} alt="" class="footer__glasses" aria-hidden="true" width="178" height="96" loading="lazy" />
+    <div class="footer__info">
+      <h2 class="footer__heading">Ready to do things the Playzaar way?</h2>
+      <div class="footer__contact">
+        <p class="footer__label">Contact Us</p>
+        <a href={`mailto:${email}`} class="footer__email-copy" data-email={email}
+          aria-label={`Email ${email} (also copies the address to your clipboard)`}>{email}</a>
       </div>
-      <div class="kits">
-        <p class="label">Marketing kits</p>
-        <Button label={kitsLabel} href={kitsHref} type="secondary" size="m" />
+      <div class="footer__assets">
+        <p class="footer__label">Marketing Kits</p>
+        <div class="footer__buttons">
+          <a href={kitsHref} class="btn btn--secondary" target="_blank" rel="noopener"
+            aria-label={`${kitsLabel} (opens in a new tab)`}>{kitsLabel}</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="social">
-    <ul class="icons">
+  <div class="footer__bottom">
+    <div class="footer__social">
       {social.map((s) => (
-        <li>
-          <a href={s.href} aria-label={s.name} target="_blank" rel="noopener noreferrer">
-            <img src={asset(s.icon)} alt="" width="24" height="24" />
-          </a>
-        </li>
+        <a href={s.href} class="footer__social-link footer__social-link--bg" aria-label={`${s.name} (opens in a new tab)`}
+          target="_blank" rel="noopener">
+          <img src={asset(s.icon)} alt="" width="16" height="16" />
+        </a>
       ))}
-    </ul>
-    <div class="legal-logos">
-      <img class="begamble" src={asset("begambleaware.svg")} alt="BeGambleAware.org" />
-      <img class="plus18" src={asset("plus18.svg")} alt="Solo mayores de 18 años" />
     </div>
-    <p class="copyright">© Copyright Playzaar {new Date().getFullYear()}. All rights reserved.</p>
+    <img src={asset("img_legal_logos.png")} alt="BeGambleAware.org, +18" class="footer__legal-logos" width="216" height="30" loading="lazy" />
+    <p class="footer__copy">© Copyright Playzaar {new Date().getFullYear()}. All rights reserved.</p>
   </div>
 </footer>
 
+<script>
+  // Copiar el email al portapapeles y mostrar el aviso (copiado de landing/main.js)
+  const toast = document.getElementById("copy-toast");
+  let toastTimer: ReturnType<typeof setTimeout> | undefined;
+
+  function showToast() {
+    if (!toast) return;
+    clearTimeout(toastTimer);
+    toast.classList.add("is-visible");
+    toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2000);
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-email]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const email = btn.dataset.email ?? "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showToast);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = email;
+        ta.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast();
+        } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+</script>
+
 <style>
-  .site-footer {
-    margin-top: var(--gap-gap-0);
+  /* Copiado de landing/common.css (bloques .footer, .btn, .toast). Mantener igual que la landing. */
+  p, h2 { margin: 0; }
+
+  .footer {
+    background-color: var(--fill-surface-red);
+    padding: var(--spacing-sp-40) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--gap-gap-64);
-    padding: var(--gap-gap-40) var(--spacing-sp-24);
-    background: var(--fill-surface-red);
-    color: var(--text-primary);
     text-align: center;
-  }
-  .site-footer p {
-    margin: 0;
+    color: var(--text-primary);
   }
 
-  .info {
+  .footer__cta {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 var(--pad-x);
     gap: var(--gap-gap-24);
-    width: 100%;
-  }
-  .header {
-    display: contents;
-  }
-  .glasses {
-    width: 178px;
-    height: 96px;
-    object-fit: cover;
-  }
-  .heading {
-    max-width: 316px;
-    font-weight: 700;
-    font-size: var(--font-size-display-xl);
-    line-height: var(--line-height-display-xl);
-    text-transform: uppercase;
-    text-wrap: balance;
   }
 
-  .contact {
+  .footer__glasses {
+    width: 178px;
+    height: 96px;
+    object-fit: contain;
+  }
+
+  .footer__info {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--gap-gap-32);
-    margin-top: var(--gap-gap-8); /* 24 (logo→título) + 8 = 32 entre título y contacto */
-  }
-  .contact-us,
-  .kits {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .contact-us {
-    gap: var(--gap-gap-16);
-  }
-  .kits {
-    gap: var(--gap-gap-16);
-  }
-  .label {
-    font-weight: 700;
-    font-size: var(--font-size-heading-s);
-    line-height: 1;
-    text-transform: uppercase;
-  }
-  .contact-us a {
-    color: inherit;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 27px;
-    text-decoration: underline;
-    overflow-wrap: anywhere;
-  }
-  .contact-us a:focus-visible,
-  .icons a:focus-visible {
-    outline-color: var(--text-primary);
   }
 
-  .social {
+  .footer__info .footer__heading {
+    font: var(--text-display-xl);
+    text-transform: uppercase;
+    letter-spacing: 0;
+    color: var(--text-primary);
+    max-width: 316px;
+    text-align: center;
+  }
+
+  .footer__contact {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--gap-gap-16);
   }
-  .icons {
-    display: flex;
-    gap: var(--gap-gap-16);
-    margin: 0;
-    padding: 0;
-    list-style: none;
+
+  .footer__contact .footer__email-copy {
+    margin-block: calc((var(--line-height-body-m) - 44px) / 2 - var(--spacing-sp-8));
   }
-  .icons a {
+
+  .footer__assets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+  }
+
+  .footer__label {
+    font: var(--text-heading-s);
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+
+  .footer__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+    width: 170px;
+  }
+
+  .footer__buttons .btn { width: 100%; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-gap-4);
+    padding: var(--spacing-sp-12) var(--gap-gap-32);
+    min-height: 44px;
+    border-radius: var(--radius-rd-sm);
+    font: var(--text-button-m-bold);
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.18s ease;
+    border: none;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn--secondary {
+    background-color: var(--buttons-secondary-default);
+    color: var(--text-buttons-secondary-default);
+  }
+
+  .footer__bottom {
+    padding: 0 var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-gap-16);
+  }
+
+  .footer__bottom .footer__social {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-gap-16);
+  }
+
+  .footer__social-link {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 9px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: var(--radius-rd-xs);
+    transition: opacity 0.18s ease;
+    flex-shrink: 0;
+  }
+  .footer__social-link:hover { opacity: 0.8; }
+  .footer__social-link:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-rd-xs);
+  }
+
+  .footer__social-link--bg {
+    position: relative;
+    isolation: isolate;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
     width: 44px;
     height: 44px;
-    transition: opacity 160ms var(--ease-out);
+    overflow: visible;
   }
-  .icons a:hover {
-    opacity: 0.75;
-  }
-  .icons img {
+  .footer__social-link--bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
     width: 24px;
     height: 24px;
+    background-color: var(--buttons-secondary-default);
+    border-radius: var(--radius-rd-xs);
+    z-index: -1;
+  }
+  .footer__social-link--bg img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
   }
 
-  .legal-logos {
-    position: relative;
-    width: 170px;
-    height: 23.611px;
-  }
-  .legal-logos img {
-    position: absolute;
-    max-width: none;
-    height: auto;
-  }
-  .begamble {
-    inset: 19.15% 17.63% 0 0;
-    width: 82.37%;
-    height: 80.85%;
-  }
-  .plus18 {
-    inset: 0 0 0.2% 86.33%;
-    width: 13.67%;
-    height: 99.8%;
-  }
+  .footer__legal-logos { width: 216px; height: 30px; }
 
-  .copyright {
+  .footer__bottom .footer__copy {
+    font: var(--text-body-m-medium);
+    color: var(--text-primary);
+    text-align: center;
     max-width: 240px;
-    font-weight: 500;
-    font-size: var(--font-size-body-m);
-    line-height: var(--line-height-body-m);
   }
 
-  @media (min-width: 720px) {
-    .site-footer {
+  .footer__email-copy {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--spacing-sp-8) var(--spacing-sp-4);
+    cursor: pointer;
+    font: var(--text-body-m-medium);
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  .footer__email-copy:hover { color: var(--text-ghost); }
+  .footer__email-copy:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-rd-xs);
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    translate: -50% 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--fill-page-bg);
+    color: var(--text-primary);
+    font: var(--text-body-s-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--radius-rd-full);
+    border: 1px solid var(--color-neutral-600);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+    opacity: 0;
+    translate: -50% 12px;
+    transition: opacity 0.22s var(--ease-out-quart), translate 0.22s var(--ease-out-quart);
+  }
+  .toast::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-alerts-success);
+    flex-shrink: 0;
+  }
+  .toast.is-visible {
+    opacity: 1;
+    translate: -50% 0;
+  }
+
+  @media (min-width: 769px) {
+    .footer {
+      padding: var(--spacing-sp-48) 0;
       gap: var(--gap-gap-128);
-      padding: var(--gap-gap-48) var(--gap-gap-64);
     }
-    .heading {
-      max-width: 541.5px;
-    }
-    .copyright {
+    .footer__info .footer__heading { max-width: 9.5em; }
+    .footer__bottom .footer__copy {
+      white-space: nowrap;
       max-width: none;
     }
+  }
+
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .footer { gap: var(--gap-gap-64); }
   }
 </style>
