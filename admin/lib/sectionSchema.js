@@ -5,7 +5,7 @@
 // Tipos de campo soportados por admin/public/admin.js:
 //   text, textarea, image, button ({label, href}),
 //   imageList (array de {src, alt}), faqList (array de {question, answer}),
-//   cardList (array de {title, image, playUrl, sheetUrl})
+//   cardList (array de {title, image, playUrl, sheetUrl, rtp?})
 
 const SECTION_CATALOG = {
   // Orden del selector "Añadir sección": como se maquetaría una página,

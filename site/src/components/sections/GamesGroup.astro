@@ -39,7 +39,7 @@ const hasHeader = eyebrow || title || description;
   )}
   <div class="game-cards">
     {cards.map((card) => (
-      <CardPt title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} />
+      <CardPt title={card.title} image={card.image} playHref={card.playUrl} sheetHref={card.sheetUrl} rtp={card.rtp} />
     ))}
   </div>
 </div>

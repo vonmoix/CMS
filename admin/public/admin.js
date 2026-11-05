@@ -318,6 +318,9 @@
           textInput("playUrl", "https:// o /ruta"),
         ]),
         documentControl(`${base}.sheetUrl`, item.sheetUrl),
+        el("label", { class: "small-label", text: "RTP (opcional, se ve en el reverso de la carta)" }, [
+          textInput("rtp", "96.20%"),
+        ]),
         el("button", {
           type: "button",
           class: "link-btn danger",

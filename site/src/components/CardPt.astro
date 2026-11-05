@@ -7,9 +7,11 @@ interface Props {
   image: { src: string; alt?: string };
   playHref: string;
   sheetHref: string;
+  /** RTP del juego (p. ej. "96.20%"). Opcional: solo se ve en el reverso (Pointer) */
+  rtp?: string;
 }
 
-const { title, image, playHref, sheetHref } = Astro.props as Props;
+const { title, image, playHref, sheetHref, rtp } = Astro.props as Props;
 
 // Defensa en profundidad: aunque el esquema ya lo valida, nunca pintamos un
 // href con un esquema no permitido (p. ej. javascript:).
@@ -21,33 +23,50 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
 ---
 
 <article class="card-pt">
-  <img class="cover" src={withBase(image.src)} alt={image.alt || title} />
-  <div class="overlay" aria-hidden="true"></div>
-  <span class="hint" aria-hidden="true">
-    <img src={withBase("/images/icon-play.svg")} alt="" />
-  </span>
-  <div class="actions">
-    <a class="btn" data-type="primary" href={resolve(playHref)} {...newTab(playHref)} aria-label={`Play demo – ${title}`}>Play Demo</a>
-    <a class="btn" data-type="secondary" href={resolve(sheetHref)} {...newTab(sheetHref)} aria-label={`Game sheet – ${title}`}>Game sheet</a>
+  <div class="flip">
+    <div class="face front">
+      <img class="cover" src={withBase(image.src)} alt={image.alt || title} />
+    </div>
+    <div class="face back">
+      <img class="cover back-cover" src={withBase(image.src)} alt="" aria-hidden="true" />
+      <div class="info">
+        <p class="name">{title}</p>
+        {rtp && <p class="rtp"><span class="rtp-label">RTP</span> {rtp}</p>}
+      </div>
+      <div class="actions">
+        <a class="btn" data-type="primary" href={resolve(playHref)} {...newTab(playHref)} aria-label={`Play demo – ${title}`}>Play Demo</a>
+        <a class="btn" data-type="secondary" href={resolve(sheetHref)} {...newTab(sheetHref)} aria-label={`Game sheet – ${title}`}>Game sheet</a>
+      </div>
+    </div>
   </div>
 </article>
 
 <style>
+  /* Figma card-pt (5172:90).
+     Touch (por defecto): portada con los dos botones en una franja inferior.
+     Pointer: la carta gira en 3D al pasar el ratón o con foco de teclado
+     (idea del CodePen "Flip Cards Responsive" de josetxu): delante la portada;
+     detrás la portada bajo negro al 80 %, el nombre, el RTP y los botones. */
   .card-pt {
-    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --dur-in: 450ms;
-    --dur-out: 180ms;
-    --stagger: 60ms;
+    --dur-flip: 400ms;
     position: relative;
     aspect-ratio: 3 / 4;
     width: 100%;
-    overflow: hidden;
-    isolation: isolate;
     container-type: inline-size;
+  }
+
+  /* Caras: llevan el borde y el radio de la carta */
+  .face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
     border: var(--border-br-1) solid var(--opacity-white-opc-25);
     border-radius: var(--radius-rd-md);
-    transition: border-color var(--dur-out) var(--ease-in);
+    transition: border-color 180ms var(--ease-in);
+  }
+  .card-pt:focus-within .face {
+    border-color: var(--buttons-secondary-default);
   }
   .cover {
     position: absolute;
@@ -56,37 +75,21 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--dur-out) var(--ease-in), filter var(--dur-out) var(--ease-in);
   }
-  .overlay {
+
+  /* Touch: el reverso no existe como cara; solo se ve la franja de botones sobre la portada */
+  .back {
+    border: 0;
+    border-radius: 0 0 var(--radius-rd-md) var(--radius-rd-md);
+    inset: auto 0 0 0;
+  }
+  .back-cover,
+  .info {
     display: none;
-    position: absolute;
-    inset: 0;
-    background: var(--opacity-black-opc-80);
-    opacity: 0;
-    transition: opacity var(--dur-out) var(--ease-in);
   }
-  .hint {
-    display: none;
-    position: absolute;
-    right: var(--gap-gap-16);
-    bottom: var(--gap-gap-16);
-    align-items: center;
-    justify-content: center;
-    width: var(--spacing-sp-40);
-    height: var(--spacing-sp-40);
-    border: var(--border-br-1) solid var(--opacity-white-opc-25);
-    border-radius: var(--radius-rd-full);
-    background: var(--opacity-black-opc-60);
-    backdrop-filter: blur(8px);
-    transition: opacity 150ms var(--ease-out), scale 150ms var(--ease-out);
-  }
-  .hint img {
-    width: 20px;
-    height: 20px;
-  }
+
   .actions {
-    position: absolute;
+    position: relative;
     display: flex;
   }
   .btn {
@@ -124,7 +127,6 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
 
   /* Touch (por defecto): botones siempre visibles sobre un degradado */
   .actions {
-    inset: auto 0 0 0;
     gap: var(--gap-gap-16);
     padding: var(--gap-gap-32) var(--gap-gap-16) var(--gap-gap-16);
     background: linear-gradient(
@@ -157,22 +159,83 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     }
   }
 
-  /* Pointer: botones aparecen al pasar el ratón o con foco de teclado */
+  /* Pointer: giro 3D. El hover va en .card-pt (que no gira) para que no se
+     pierda a mitad del giro; :focus-within lo activa también con teclado. */
   @media (hover: hover) and (pointer: fine) {
-    .overlay {
-      display: block;
+    .card-pt {
+      perspective: 800px;
     }
-    .hint {
+    .flip {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform var(--dur-flip) ease;
+    }
+    .card-pt:is(:hover, :focus-within) .flip {
+      transform: rotateY(180deg);
+    }
+    .face {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .back {
+      inset: 0;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--gap-gap-24);
+      padding: 0 var(--gap-gap-24);
+      border: var(--border-br-1) solid var(--opacity-white-opc-25);
+      border-radius: var(--radius-rd-md);
+      transform: rotateY(180deg);
+    }
+    .card-pt:focus-within .back {
+      border-color: var(--buttons-secondary-default);
+    }
+    /* Portada detrás del texto, bajo negro al 80 % (Figma: opacity/black/opc-80) */
+    .back-cover {
+      display: block;
+      z-index: -2;
+    }
+    .back::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--opacity-black-opc-80);
+    }
+    .back {
+      isolation: isolate;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--gap-gap-8);
+      text-align: center;
+    }
+    .name {
+      margin: 0;
+      font: var(--text-heading-m);
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .rtp {
+      margin: 0;
+      font: var(--text-body-m-semibold);
+      color: var(--text-primary);
+    }
+    .rtp-label {
+      margin-right: var(--gap-gap-8);
+      color: var(--text-tertiary);
     }
     .actions {
-      inset: 50% auto auto 50%;
       flex-direction: column;
       gap: var(--gap-gap-12);
-      width: min(230px, calc(100% - 48px));
+      width: min(230px, 100%);
       padding: 0;
       background: none;
-      transform: translate(-50%, -50%);
     }
     .actions .btn {
       flex: none;
@@ -180,71 +243,23 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
       height: 52px;
       padding: var(--gap-gap-16) var(--gap-gap-24);
       font-size: var(--font-size-body-l);
-      opacity: 0;
-      translate: 0 24px;
-      scale: 0.94;
-      transition:
-        opacity var(--dur-out) var(--ease-in),
-        translate var(--dur-out) var(--ease-in),
-        scale var(--dur-out) var(--ease-in),
-        transform 160ms var(--ease-out),
-        filter 160ms var(--ease-out);
-    }
-    .actions .btn + .btn {
-      translate: 0 48px;
-    }
-
-    .card-pt:is(:hover, :focus-within) .cover {
-      transform: scale(1.08);
-      filter: blur(4px);
-      transition: transform 500ms var(--ease-out), filter 500ms var(--ease-out);
-    }
-    .card-pt:is(:hover, :focus-within) .hint {
-      opacity: 0;
-      scale: 0.6;
-    }
-    .card-pt:is(:hover, :focus-within) .overlay {
-      opacity: 1;
-      transition: opacity 250ms var(--ease-out);
-    }
-    .card-pt:is(:hover, :focus-within) .actions .btn {
-      opacity: 1;
-      translate: 0 0;
-      scale: 1;
-      transition:
-        opacity 220ms var(--ease-out) var(--d),
-        translate var(--dur-in) var(--ease-spring) var(--d),
-        scale var(--dur-in) var(--ease-spring) var(--d),
-        transform 160ms var(--ease-out),
-        filter 160ms var(--ease-out);
-    }
-    .actions .btn:nth-child(1) {
-      --d: 80ms;
-    }
-    .actions .btn:nth-child(2) {
-      --d: calc(80ms + var(--stagger));
     }
   }
-  .card-pt:focus-within {
-    border-color: var(--buttons-secondary-default);
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .card-pt,
-    .card-pt * {
-      transition-duration: 120ms !important;
-      transition-delay: 0ms !important;
+  /* Sin movimiento: sin giro, el reverso aparece con un fundido */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+    .flip,
+    .card-pt:is(:hover, :focus-within) .flip {
+      transform: none;
+      transition: none;
     }
-    .card-pt .cover {
-      transform: none !important;
-      filter: none !important;
+    .back {
+      transform: none;
+      opacity: 0;
+      transition: opacity 120ms ease;
     }
-    .card-pt .hint {
-      scale: 1 !important;
-    }
-    .card-pt .actions .btn {
-      translate: 0 0 !important;
-      scale: 1 !important;
+    .card-pt:is(:hover, :focus-within) .back {
+      opacity: 1;
     }
   }
 </style>

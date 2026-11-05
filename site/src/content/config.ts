@@ -92,6 +92,8 @@ const gameCardsSchema = z
       image: imageSchema,
       playUrl: safeLinkSchema,
       sheetUrl: safeLinkSchema,
+      // RTP del juego (p. ej. "96.20%"); se ve en el reverso de la carta
+      rtp: z.string().optional(),
     })
   )
   .min(1);
