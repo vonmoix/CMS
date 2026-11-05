@@ -48,9 +48,24 @@
       }
     },
     {
-      "type": "gamesGroup",
-      "title": "Gridlines",
-      "description": "Spin and match to build gridlines, pushing you up the prize ladder. Simple to pick up, the skill's in the pattern.",
+      "type": "sectionMascot",
+      "eyebrow": "INTRODUCING...",
+      "signature": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
+        "alt": "mr. zaar"
+      },
+      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
+      "highlight": "BRAINS",
+      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
+      "image": {
+        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
+        "alt": ""
+      }
+    },
+    {
+      "type": "carousel",
+      "surface": "grey-medium",
+      "title": "Featured Games",
       "cards": [
         {
           "title": "Flaming Gridlines",
@@ -84,14 +99,7 @@
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Big_Buillion_Gridlines_PDS.pdf",
           "hitRate": "1 in 751",
           "rtp": "96.5%"
-        }
-      ]
-    },
-    {
-      "type": "gamesGroup",
-      "title": "Turbo taps",
-      "description": "High-energy, short sharp sessions built for mobile. Free Taps with multipliers can trigger, stacking on extra fun.",
-      "cards": [
+        },
         {
           "title": "Fishing 4 Life",
           "image": {
@@ -124,14 +132,7 @@
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Hoops_On_Fire_PDS.pdf",
           "hitRate": "1 in 220",
           "rtp": "95.5%"
-        }
-      ]
-    },
-    {
-      "type": "gamesGroup",
-      "title": "Slot games",
-      "description": "Hold 'n' Win, Pot Collection, Fixed Jackpots. Player-favourite, familiar gameplay, themes that keep players coming back.",
-      "cards": [
+        },
         {
           "title": "Coins of the Deep",
           "image": {
@@ -166,21 +167,6 @@
           "rtp": "96%"
         }
       ]
-    },
-    {
-      "type": "sectionMascot",
-      "eyebrow": "INTRODUCING...",
-      "signature": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_mrzaar_sign.gif",
-        "alt": "mr. zaar"
-      },
-      "title": "THERE ARE BRAINS BEHIND THOSE SHADES.",
-      "highlight": "BRAINS",
-      "copy": "Fierce look, zero attitude.\n\nHe's here to listen, refine, and deliver the variety and quality players actually trust. Street-smart, straight-talking, and permanently plugged into the culture, he values truth over jargon, with his focus firmly on the community.",
-      "image": {
-        "src": "https://pzlanding-sigma.vercel.app/images/img_mascot.png",
-        "alt": ""
-      }
     }
   ],
   "updatedAt": "2026-11-05T15:33:07.963Z",
