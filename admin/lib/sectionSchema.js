@@ -5,7 +5,7 @@
 // Tipos de campo soportados por admin/public/admin.js:
 //   text, textarea, image, button ({label, href}),
 //   imageList (array de {src, alt}), faqList (array de {question, answer}),
-//   cardList (array de {title, image, playUrl, sheetUrl, rtp?})
+//   cardList (array de {title, image, playUrl, sheetUrl, hitRate?, rtp?})
 
 const SECTION_CATALOG = {
   // Orden del selector "Añadir sección": como se maquetaría una página,
@@ -233,7 +233,7 @@ function cleanSections(sections) {
             (c) => c && !(isBlank(c.title) && isBlank(c.image && c.image.src) && isBlank(c.playUrl) && isBlank(c.sheetUrl))
           );
           if (list.some((c) => isBlank(c.title) || isBlank(c.image && c.image.src) || isBlank(c.playUrl) || isBlank(c.sheetUrl))) {
-            errors.push(`${where}: cada carta necesita nombre del juego, imagen, enlace de Play Demo y enlace de Game sheet.`);
+            errors.push(`${where}: cada carta necesita nombre del juego, imagen, enlace del botón Play y enlace del botón Info.`);
           }
           if (list.some((c) => (!isBlank(c.playUrl) && !isSafeLink(c.playUrl)) || (!isBlank(c.sheetUrl) && !isSafeLink(c.sheetUrl)))) {
             errors.push(`${where}: los enlaces de las cartas deben empezar por /, #, http(s)://, mailto: o tel:.`);

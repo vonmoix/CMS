@@ -117,7 +117,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Flaming_Gridlines_PDS.pdf",
-          "rtp": "96.20%"
+          "hitRate": "1 in 325",
+          "rtp": "96%"
         },
         {
           "title": "Super Surge Gridlines",
@@ -127,7 +128,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Super_Surge_Gridlines_PDS.pdf",
-          "rtp": "95.80%"
+          "hitRate": "1 in 410",
+          "rtp": "95.8%"
         },
         {
           "title": "Big Bullion Gridlines",
@@ -137,7 +139,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Big_Buillion_Gridlines_PDS.pdf",
-          "rtp": "96.50%"
+          "hitRate": "1 in 751",
+          "rtp": "96.5%"
         }
       ]
     },
@@ -154,7 +157,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-flaming/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesFlamingPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Flaming_Gridlines_PDS.pdf",
-          "rtp": "96.20%"
+          "hitRate": "1 in 325",
+          "rtp": "96%"
         },
         {
           "title": "Super Surge Gridlines",
@@ -164,7 +168,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-supersurge/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesSuperSurgePZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Super_Surge_Gridlines_PDS.pdf",
-          "rtp": "95.80%"
+          "hitRate": "1 in 410",
+          "rtp": "95.8%"
         },
         {
           "title": "Big Bullion Gridlines",
@@ -174,7 +179,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-gridlines-bigbullion/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1872&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=GridlinesBigBullionPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Big_Buillion_Gridlines_PDS.pdf",
-          "rtp": "96.50%"
+          "hitRate": "1 in 751",
+          "rtp": "96.5%"
         },
         {
           "title": "Fishing 4 Life",
@@ -184,7 +190,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-fishing-4-life/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=Fishing4LifePZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Fishing_4_Life_PDS.pdf",
-          "rtp": "94.90%"
+          "hitRate": "1 in 180",
+          "rtp": "94.9%"
         },
         {
           "title": "Coin Raider Piggy",
@@ -194,7 +201,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-coin-raider-piggy/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinRaiderPiggyPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Coin_Raider_Piggy_PDS.pdf",
-          "rtp": "96.10%"
+          "hitRate": "1 in 265",
+          "rtp": "96.1%"
         },
         {
           "title": "Hoops on Fire",
@@ -204,7 +212,8 @@
           },
           "playUrl": "https://games.playzaar.games/casino-static/casino-hoops-on-fire/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=HoopsOnFireNinetyFourPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Hoops_On_Fire_PDS.pdf",
-          "rtp": "95.50%"
+          "hitRate": "1 in 220",
+          "rtp": "95.5%"
         },
         {
           "title": "Coins of the Deep",
@@ -214,7 +223,8 @@
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-coins-of-the-deep/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=CoinsOfTheDeepPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Coins_Of_The_Deep_PDS.pdf",
-          "rtp": "96.30%"
+          "hitRate": "1 in 540",
+          "rtp": "96.3%"
         },
         {
           "title": "Panda Bao Charms",
@@ -224,7 +234,8 @@
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-panda-bao-charms/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=PandaBaoCharmsPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Panda_Bao_Charms_PDS.pdf",
-          "rtp": "95.70%"
+          "hitRate": "1 in 380",
+          "rtp": "95.7%"
         },
         {
           "title": "Looting Vegas: Alien Heist",
@@ -234,7 +245,8 @@
           },
           "playUrl": "https://games.playzaar.games/static/casino/casino-looting-vegas-alien-heist/index.html?mode=fun&lang=en&currency=USD&token=&siteId=1871&homeUrl=&cashierUrl=&loginUrl=&signupUrl=&documentDomainExclude=games&vendorGameId=LootingVegasAlienHeistPZ&cdn=",
           "sheetUrl": "https://pzlanding-sigma.vercel.app/files/PZ_Looting_Vegas_Alien_Heist_PDS.pdf",
-          "rtp": "96.00%"
+          "hitRate": "1 in 625",
+          "rtp": "96%"
         }
       ]
     },

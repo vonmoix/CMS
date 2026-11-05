@@ -293,7 +293,7 @@
       });
     });
     return el("div", { class: "doc-field" }, [
-      el("label", { class: "small-label", text: "Enlace del botón Game sheet" }, [urlInput]),
+      el("label", { class: "small-label", text: "Enlace del botón Info (ficha del juego)" }, [urlInput]),
       el("label", { class: "small-label", text: "Subir nuevo documento (PDF)" }, [fileInput]),
       status,
       link,
@@ -314,12 +314,15 @@
       const row = el("div", { class: "repeat-item" }, [
         el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
         imageControl(`${base}.image`, item.image),
-        el("label", { class: "small-label", text: "Enlace del botón Play Demo" }, [
+        el("label", { class: "small-label", text: "Enlace del botón Play (demo)" }, [
           textInput("playUrl", "https:// o /ruta"),
         ]),
         documentControl(`${base}.sheetUrl`, item.sheetUrl),
+        el("label", { class: "small-label", text: "Feature hit rate (opcional, se ve en el reverso de la carta)" }, [
+          textInput("hitRate", "1 in 325"),
+        ]),
         el("label", { class: "small-label", text: "RTP (opcional, se ve en el reverso de la carta)" }, [
-          textInput("rtp", "96.20%"),
+          textInput("rtp", "96%"),
         ]),
         el("button", {
           type: "button",

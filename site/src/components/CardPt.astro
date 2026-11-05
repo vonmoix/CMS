@@ -7,11 +7,13 @@ interface Props {
   image: { src: string; alt?: string };
   playHref: string;
   sheetHref: string;
-  /** RTP del juego (p. ej. "96.20%"). Opcional: solo se ve en el reverso (Pointer) */
+  /** Feature hit rate (p. ej. "1 in 325"). Opcional: solo se ve en el reverso (Pointer) */
+  hitRate?: string;
+  /** RTP del juego (p. ej. "96%"). Opcional: solo se ve en el reverso (Pointer) */
   rtp?: string;
 }
 
-const { title, image, playHref, sheetHref, rtp } = Astro.props as Props;
+const { title, image, playHref, sheetHref, hitRate, rtp } = Astro.props as Props;
 
 // Defensa en profundidad: aunque el esquema ya lo valida, nunca pintamos un
 // href con un esquema no permitido (p. ej. javascript:).
@@ -26,16 +28,18 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
   <div class="flip">
     <div class="face front">
       <img class="cover" src={withBase(image.src)} alt={image.alt || title} />
+      {rtp && <p class="rtp-chip"><span class="stat-label">RTP</span> {rtp}</p>}
     </div>
     <div class="face back">
       <img class="cover back-cover" src={withBase(image.src)} alt="" aria-hidden="true" />
       <div class="info">
         <p class="name">{title}</p>
-        {rtp && <p class="rtp"><span class="rtp-label">RTP</span> {rtp}</p>}
+        {hitRate && <p class="stat"><span class="stat-label">Feature hit rate</span> {hitRate}</p>}
+        {rtp && <p class="stat"><span class="stat-label">RTP</span> {rtp}</p>}
       </div>
       <div class="actions">
-        <a class="btn" data-type="primary" href={resolve(playHref)} {...newTab(playHref)} aria-label={`Play demo – ${title}`}>Play Demo</a>
-        <a class="btn" data-type="secondary" href={resolve(sheetHref)} {...newTab(sheetHref)} aria-label={`Game sheet – ${title}`}>Game sheet</a>
+        <a class="btn" data-type="primary" href={resolve(playHref)} {...newTab(playHref)} aria-label={`Play – ${title} (demo)`}>Play</a>
+        <a class="btn" data-type="secondary" href={resolve(sheetHref)} {...newTab(sheetHref)} aria-label={`Info – ${title} (game sheet)`}>Info</a>
       </div>
     </div>
   </div>
@@ -46,7 +50,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
      Touch (por defecto): portada con los dos botones en una franja inferior.
      Pointer: la carta gira en 3D al pasar el ratón o con foco de teclado
      (idea del CodePen "Flip Cards Responsive" de josetxu): delante la portada;
-     detrás la portada bajo negro al 80 %, el nombre, el RTP y los botones. */
+     detrás la portada bajo negro al 80 %, el nombre, feature hit rate, RTP y los botones. */
   .card-pt {
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --dur-flip: 400ms;
@@ -75,6 +79,27 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  /* Touch: RTP en un chip arriba a la derecha (Figma rtp-chip). En Pointer se oculta: el RTP va en el reverso */
+  .rtp-chip {
+    position: absolute;
+    top: var(--gap-gap-16);
+    right: var(--gap-gap-16);
+    display: flex;
+    align-items: center;
+    gap: var(--gap-gap-4);
+    margin: 0;
+    padding: var(--gap-gap-4) 10px;
+    border: var(--border-br-1) solid var(--opacity-white-opc-25);
+    border-radius: var(--radius-rd-full);
+    background: var(--opacity-black-opc-60);
+    font: var(--text-body-s-semibold);
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  .rtp-chip .stat-label {
+    color: var(--text-tertiary);
   }
 
   /* Touch: el reverso no existe como cara; solo se ve la franja de botones sobre la portada */
@@ -146,6 +171,10 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
 
   /* Touch compact: card estrecha, botones apilados */
   @container (max-width: 200px) {
+    .rtp-chip {
+      top: var(--gap-gap-8);
+      right: var(--gap-gap-8);
+    }
     .actions {
       flex-direction: column;
       gap: var(--gap-gap-8);
@@ -164,6 +193,9 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
   @media (hover: hover) and (pointer: fine) {
     .card-pt {
       perspective: 800px;
+    }
+    .rtp-chip {
+      display: none;
     }
     .flip {
       position: absolute;
@@ -221,12 +253,12 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
       text-transform: uppercase;
       color: var(--text-primary);
     }
-    .rtp {
+    .stat {
       margin: 0;
       font: var(--text-body-m-semibold);
       color: var(--text-primary);
     }
-    .rtp-label {
+    .stat-label {
       margin-right: var(--gap-gap-8);
       color: var(--text-tertiary);
     }
