@@ -23,7 +23,7 @@ const {
   ],
 } = Astro.props as Props;
 
-const asset = (file: string) => withBase(`/images/footer/${file}`);
+const asset = (file: string) => `https://pzlanding-sigma.vercel.app/images/${file}`;
 ---
 
 <div class="toast" id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copied!</div>

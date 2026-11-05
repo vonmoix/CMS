@@ -21,11 +21,11 @@
       "title": "We Are Expert Game Makers",
       "images": [
         {
-          "src": "/images/placeholder-hero.svg",
+          "src": "https://pzlanding-sigma.vercel.app/images/placeholder-hero.svg",
           "alt": "Equipo 1"
         },
         {
-          "src": "/images/placeholder-content.svg",
+          "src": "https://pzlanding-sigma.vercel.app/images/placeholder-content.svg",
           "alt": "Equipo 2"
         }
       ]

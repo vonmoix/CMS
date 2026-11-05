@@ -18,7 +18,7 @@ interface Props {
 
 const { eyebrow, signature, title, highlight, copy, image } = Astro.props as Props;
 const [before, marked, after] = splitHighlight(title, highlight);
-const icon = withBase("/images/landing/icon_mascot.svg");
+const icon = "https://pzlanding-sigma.vercel.app/images/icon_mascot.svg";
 ---
 
 <section class="section-mascot">

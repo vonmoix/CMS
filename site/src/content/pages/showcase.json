@@ -60,7 +60,7 @@
       "title": "Featured: text, image and button",
       "copy": "Short sample copy to check spacing, line length and colour on this background.",
       "image": {
-        "src": "/images/placeholder-hero.svg",
+        "src": "https://pzlanding-sigma.vercel.app/images/placeholder-hero.svg",
         "alt": "Placeholder"
       },
       "button": {
@@ -232,7 +232,7 @@
       "title": "Text with image",
       "copy": "Short sample copy to check spacing, line length and colour on this background.",
       "image": {
-        "src": "/images/placeholder-content.svg",
+        "src": "https://pzlanding-sigma.vercel.app/images/placeholder-content.svg",
         "alt": "Placeholder"
       },
       "imagePosition": "left"
@@ -243,19 +243,19 @@
       "title": "Image gallery",
       "images": [
         {
-          "src": "/images/placeholder-hero.svg",
+          "src": "https://pzlanding-sigma.vercel.app/images/placeholder-hero.svg",
           "alt": "Image 1"
         },
         {
-          "src": "/images/placeholder-content.svg",
+          "src": "https://pzlanding-sigma.vercel.app/images/placeholder-content.svg",
           "alt": "Image 2"
         },
         {
-          "src": "/images/placeholder-hero.svg",
+          "src": "https://pzlanding-sigma.vercel.app/images/placeholder-hero.svg",
           "alt": "Image 3"
         },
         {
-          "src": "/images/placeholder-content.svg",
+          "src": "https://pzlanding-sigma.vercel.app/images/placeholder-content.svg",
           "alt": "Image 4"
         }
       ]
