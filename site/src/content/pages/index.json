@@ -4,6 +4,7 @@
   "slug": "index",
   "order": 0,
   "draft": false,
+  "hideFromNav": false,
   "seo": {
     "title": "Playzaar — Follow the Rabbit",
     "description": ""
@@ -24,7 +25,7 @@
       "size": "xl",
       "eyebrow": "WELCOME TO THE PLAYZAAR WAY",
       "title": "WE TAKE OUR GAMES SERIOUSLY — BUT NEVER OURSELVES",
-      "highlight": "GAMES",
+      "highlight": "SERIOUSLY",
       "copy": "From fast-paced, feature-packed games to wildly diverse themes, our marketplace features slots, strategy-based games, branded content, and sweepstakes-ready titles.\n\nThere’s always something to hit the right mood."
     },
     {
@@ -164,6 +165,6 @@
       }
     }
   ],
-  "updatedAt": "2026-11-05T08:14:21.000Z",
+  "updatedAt": "2026-11-05T15:33:07.963Z",
   "updatedBy": "admin"
 }
