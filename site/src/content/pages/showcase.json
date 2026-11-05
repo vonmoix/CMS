@@ -268,15 +268,25 @@
       "surface": "white",
       "size": "l",
       "eyebrow": "EYEBROW",
-      "title": "Section intro (header-section)",
-      "highlight": "intro",
+      "title": "Intro title and text, section size",
+      "highlight": "section",
       "copy": "Short sample copy to check spacing, line length and colour on this background."
     },
     {
       "type": "titleHero",
       "surface": "grey-dark",
+      "size": "xl",
       "eyebrow": "EYEBROW",
-      "title": "Highlighted title with underline"
+      "title": "Title, hero size",
+      "highlight": "hero"
+    },
+    {
+      "type": "titleHero",
+      "surface": "white",
+      "size": "l",
+      "eyebrow": "EYEBROW",
+      "title": "Title, section size",
+      "highlight": "section"
     }
   ],
   "updatedAt": "2026-11-05T08:20:55.000Z",

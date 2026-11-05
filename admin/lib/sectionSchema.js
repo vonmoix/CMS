@@ -135,10 +135,21 @@ const SECTION_CATALOG = {
     ],
   },
   titleHero: {
-    label: "Título destacado con subrayado",
+    label: "Título con subrayado (title-hero / title-section)",
     fields: [
       { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
       { name: "title", label: "Título", type: "text", required: true },
+      { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
+      {
+        name: "size",
+        label: "Tipo",
+        type: "select",
+        options: [
+          { value: "xl", label: "Hero (title-hero)" },
+          { value: "l", label: "Sección (title-section)" },
+        ],
+        default: "xl",
+      },
     ],
   },
 };

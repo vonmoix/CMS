@@ -14,7 +14,6 @@ import SectionMascot from "./sections/SectionMascot.astro";
 import Carousel from "./sections/Carousel.astro";
 import Faq from "./sections/Faq.astro";
 import IntroText from "./sections/IntroText.astro";
-import TitleHeroSection from "./sections/TitleHeroSection.astro";
 
 const componentsByType = {
   hero: Hero,
@@ -28,7 +27,8 @@ const componentsByType = {
   carousel: Carousel,
   faq: Faq,
   introText: IntroText,
-  titleHero: TitleHeroSection,
+  // "Title": IntroText sin texto (title-hero o title-section según size)
+  titleHero: IntroText,
 };
 
 // Tipos que van a sangre, fuera de las franjas de color.

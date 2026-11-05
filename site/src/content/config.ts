@@ -161,11 +161,16 @@ const introTextSection = z.object({
   size: z.enum(["xl", "l"]).default("xl"),
 });
 
+// "Title": solo cabecera (eyebrow + título + subrayado), sin texto.
+// xl = title-hero (Display/2XL), l = title-section (Display/XL).
+// Se pinta con IntroText sin copy.
 const titleHeroSection = z.object({
   type: z.literal("titleHero"),
   ...surfaceField,
   eyebrow: z.string().optional(),
   title: z.string().min(1),
+  highlight: z.string().optional(),
+  size: z.enum(["xl", "l"]).default("xl"),
 });
 
 export const sectionSchema = z.discriminatedUnion("type", [
