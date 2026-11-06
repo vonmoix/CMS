@@ -8,6 +8,7 @@
   /* Superficies */
   --paper: #f5f3ee;            /* lienzo: papel de prueba */
   --sheet: #ffffff;            /* hoja elevada */
+  --tray: #fbfaf7;             /* contenedor dentro de una hoja: los campos resaltan sobre él */
   --well: #efece6;             /* campos: hundidos, algo más oscuros */
   --well-hover: #e9e6df;
 
@@ -221,6 +222,8 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
 .confirm-body { display: grid; gap: 12px; padding: 24px; }
 .confirm-body h2 { font-weight: 700; font-size: 20px; line-height: 1.2; }
 .confirm-body p { margin: 0; color: var(--graphite); }
+.confirm-word { display: grid; gap: 12px; }
+.confirm-word[hidden] { display: none; }
 .confirm-label { margin-top: 4px; font-weight: 500; font-size: 13px; color: var(--graphite); }
 .confirm-label code { padding: 1px 6px; border-radius: 4px; background: var(--proof-wash); color: var(--proof); }
 .confirm-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
@@ -465,12 +468,8 @@ select { appearance: none; padding-right: 36px; cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235c584f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 12px center; }
 
-input[type="file"] { display: block; margin-top: 6px; font: inherit; font-size: 13px; color: var(--graphite); max-width: 100%; }
-input[type="file"]::file-selector-button {
-  margin-right: 10px; min-height: 32px; padding: 0 12px; border: 0; border-radius: var(--r-control);
-  background: var(--sheet); box-shadow: 0 0 0 1px var(--rule-strong); color: var(--ink);
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; cursor: pointer;
-}
+.file-input { display: none; }
+.image-upload { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-bottom: 16px; }
 
 small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-size: 12px; color: var(--pencil); line-height: 1.45; }
 
@@ -548,7 +547,7 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 
 .small-label { font-weight: 500; font-size: 12px; color: var(--graphite); margin-bottom: 10px; }
 
-.image-field, .button-field, .doc-field {
+.image-field, .button-field, .card-back {
   margin-top: 6px;
   padding: 12px;
   border-radius: var(--r-control);
@@ -565,17 +564,19 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
   outline: 1px solid rgba(0, 0, 0, 0.1);
   outline-offset: -1px;
 }
-.doc-preview { display: inline-block; margin-top: 4px; font-size: 13px; }
-.upload-status { display: block; margin: -4px 0 10px; font-size: 12px; color: var(--graphite); }
+.upload-status { font-size: 12px; color: var(--graphite); }
 
 .repeat-list { display: grid; gap: 10px; margin: 6px 0 10px; }
 .repeat-item {
   padding: 12px;
   border-radius: var(--r-control);
-  background: var(--paper);
+  background: var(--tray);
   box-shadow: inset 0 0 0 1px var(--rule);
 }
-.repeat-item .image-field { background: var(--sheet); }
+.repeat-item .image-field, .repeat-item .card-back { background: var(--sheet); }
+.card-back { margin: 12px 0; }
+.card-back .label { display: block; margin-bottom: 12px; }
+.card-back .small-label:last-child { margin-bottom: 0; }
 
 .section-empty {
   padding: 28px 16px;

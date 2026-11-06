@@ -25,9 +25,6 @@ function getConfig() {
     throw new Error("Falta GITHUB_TOKEN en la configuración (.env).");
   }
 
-  const filesPath = (process.env.FILES_PATH || "site/public/files/games").replace(/\/$/, "");
-  const publicFilesBase = (process.env.PUBLIC_FILES_BASE || "/files/games").replace(/\/$/, "");
-
   // Destino opcional para las imágenes: otro repo (p. ej. el de la web/landing)
   // donde se commitean las subidas y desde cuyo dominio se sirven. Si MEDIA_REPO
   // no está definido, las imágenes siguen yendo al repo del sitio (IMAGES_PATH).
@@ -41,22 +38,13 @@ function getConfig() {
         // https://pzlanding-sigma.vercel.app/images/cms
         publicBase: (process.env.MEDIA_PUBLIC_BASE || "").replace(/\/$/, ""),
         token: process.env.MEDIA_GITHUB_TOKEN || process.env.GITHUB_TOKEN,
-        // PDFs (fichas de juego): misma lógica que las imágenes
-        filesPath: (process.env.MEDIA_FILES_PATH || "files/cms").replace(/^\/|\/$/g, ""),
-        filesPublicBase: "",
       }
     : null;
   if (media && !media.publicBase) {
     throw new Error("Con MEDIA_REPO hay que definir también MEDIA_PUBLIC_BASE (URL pública de la carpeta de imágenes).");
   }
-  if (media) {
-    // Por defecto: el mismo dominio que MEDIA_PUBLIC_BASE + la carpeta de PDFs
-    media.filesPublicBase = (
-      process.env.MEDIA_FILES_PUBLIC_BASE || `${new URL(media.publicBase).origin}/${media.filesPath}`
-    ).replace(/\/$/, "");
-  }
 
-  return { owner, repo, branch, contentPath, imagesPath, publicImagesBase, filesPath, publicFilesBase, media };
+  return { owner, repo, branch, contentPath, imagesPath, publicImagesBase, media };
 }
 
 function getClient(token) {
@@ -180,17 +168,6 @@ async function uploadImage({ filename, buffer, editorName }) {
   return uploadAsset({ filename, buffer, editorName, dir: imagesPath, publicBase: publicImagesBase, label: "imagen" });
 }
 
-async function uploadDocument({ filename, buffer, editorName }) {
-  const { filesPath, publicFilesBase, media } = getConfig();
-  if (media) {
-    return uploadAsset({
-      filename, buffer, editorName, dir: media.filesPath, publicBase: media.filesPublicBase, label: "documento",
-      target: { owner: media.owner, repo: media.repo, branch: media.branch, token: media.token },
-    });
-  }
-  return uploadAsset({ filename, buffer, editorName, dir: filesPath, publicBase: publicFilesBase, label: "documento" });
-}
-
 async function uploadAsset({ filename, buffer, editorName, dir, publicBase, label, target }) {
   const cfg = getConfig();
   const { owner, repo, branch } = target || cfg;
@@ -261,13 +238,11 @@ async function getMediaFile(name) {
 // carga directamente desde raw.githubusercontent.com en vez de la ruta
 // pública "/images/..." (que solo existe una vez desplegado el sitio).
 function getImagePreviewConfig() {
-  const { owner, repo, branch, imagesPath, publicImagesBase, filesPath, publicFilesBase, media } = getConfig();
+  const { owner, repo, branch, imagesPath, publicImagesBase, media } = getConfig();
   const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}`;
   const config = {
     publicImagesBase,
     rawImageBase: `${raw}/${imagesPath}`,
-    publicFilesBase,
-    rawFilesBase: `${raw}/${filesPath}`,
   };
   if (media) {
     // Las imágenes subidas a la web tardan en estar en su dominio hasta que
@@ -279,4 +254,4 @@ function getImagePreviewConfig() {
   return config;
 }
 
-module.exports = { listPages, getPage, savePage, deletePage, uploadImage, uploadDocument, getMediaFile, getConfig, getImagePreviewConfig };
+module.exports = { listPages, getPage, savePage, deletePage, uploadImage, getMediaFile, getConfig, getImagePreviewConfig };

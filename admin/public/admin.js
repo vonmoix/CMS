@@ -165,13 +165,20 @@
         setAt(state, `${path}.src`, uploadedPath);
         updatePreview(uploadedPath);
       });
+      fileInput.value = ""; // permite volver a elegir el mismo archivo
+    });
+    // El botón nativo sale en el idioma del navegador y no se puede maquetar
+    const uploadBtn = el("button", {
+      type: "button",
+      class: "btn btn-secondary btn-small",
+      text: "Subir nueva imagen",
+      onclick: () => fileInput.click(),
     });
 
     return el("div", { class: "image-field" }, [
       preview,
       el("label", { class: "small-label", text: "Ruta de la imagen" }, [srcInput]),
-      el("label", { class: "small-label", text: "Subir nueva imagen" }, [fileInput]),
-      status,
+      el("div", { class: "image-upload" }, [uploadBtn, fileInput, status]),
       el("label", { class: "small-label", text: "Texto alternativo" }, [altInput]),
     ]);
   }
@@ -261,45 +268,6 @@
     return el("div", {}, [list, addBtn]);
   }
 
-  function documentControl(path, value) {
-    const link = el("a", { class: "doc-preview", target: "_blank", rel: "noopener", text: "Ver PDF actual" });
-    const urlInput = el("input", { type: "text", placeholder: "https:// o /files/games/archivo.pdf" });
-    urlInput.value = value || "";
-    function updateLink(v) {
-      const { publicFilesBase, rawFilesBase } = IMAGE_PREVIEW_CONFIG;
-      let href = v || "";
-      if (rawFilesBase && publicFilesBase && href.startsWith(publicFilesBase + "/")) {
-        href = rawFilesBase + href.slice(publicFilesBase.length);
-      }
-      const safe = /^(https?:\/\/|\/(?!\/))/i.test(href);
-      link.hidden = !safe;
-      if (safe) link.href = href;
-      else link.removeAttribute("href");
-    }
-    updateLink(urlInput.value);
-    urlInput.addEventListener("input", () => {
-      setAt(state, path, urlInput.value);
-      updateLink(urlInput.value);
-    });
-    const fileInput = el("input", { type: "file", accept: "application/pdf,.pdf", class: "file-input" });
-    const status = el("span", { class: "muted upload-status" });
-    fileInput.addEventListener("change", () => {
-      const file = fileInput.files[0];
-      if (!file) return;
-      uploadFile("/api/upload-document", "document", "Documento", file, status, (uploadedPath) => {
-        urlInput.value = uploadedPath;
-        setAt(state, path, uploadedPath);
-        updateLink(uploadedPath);
-      });
-    });
-    return el("div", { class: "doc-field" }, [
-      el("label", { class: "small-label", text: "Enlace del botón Info (ficha del juego)" }, [urlInput]),
-      el("label", { class: "small-label", text: "Subir nuevo documento (PDF)" }, [fileInput]),
-      status,
-      link,
-    ]);
-  }
-
   function cardListControl(path, values) {
     values = values || [];
     const list = el("div", { class: "repeat-list" });
@@ -314,23 +282,31 @@
       const row = el("div", { class: "repeat-item" }, [
         el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
         imageControl(`${base}.image`, item.image),
-        el("label", { class: "small-label", text: "Enlace del botón Play (demo)" }, [
-          textInput("playUrl", "https:// o /ruta"),
-        ]),
-        documentControl(`${base}.sheetUrl`, item.sheetUrl),
-        el("label", { class: "small-label", text: "Feature hit rate (opcional, se ve en el reverso de la carta)" }, [
-          textInput("hitRate", "1 in 325"),
-        ]),
-        el("label", { class: "small-label", text: "RTP (opcional, se ve en el reverso de la carta)" }, [
-          textInput("rtp", "96%"),
+        el("div", { class: "card-back", role: "group", "aria-label": "Parte trasera de la carta" }, [
+          el("span", { class: "label", text: "Parte trasera de la carta" }),
+          el("label", { class: "small-label", text: "Enlace botón Play" }, [textInput("playUrl", "https://")]),
+          el("label", { class: "small-label", text: "Enlace botón Info (PDF)" }, [textInput("sheetUrl", "https://")]),
+          el("label", { class: "small-label", text: "Feature Hit Rate (opcional)" }, [textInput("hitRate", "1 in 325")]),
+          el("label", { class: "small-label", text: "RTP (opcional)" }, [textInput("rtp", "96%")]),
         ]),
         el("button", {
           type: "button",
           class: "link-btn danger",
           text: "Quitar carta",
-          onclick: () => {
+          "data-remove-card": base,
+          onclick: async () => {
+            const name = (item.title || "").trim();
+            const ok = await window.confirmDelete({
+              title: name ? `¿Quitar la carta «${name}»?` : "¿Quitar esta carta?",
+              message: "Se quita de la sección. No se publica hasta que pulses «Guardar y publicar».",
+              typed: false,
+            });
+            if (!ok) return;
             values.splice(idx, 1);
             render();
+            // el botón ya no existe: el foco pasa a la carta que ocupa su sitio
+            const next = root.querySelector(`[data-remove-card="${path}.${Math.min(idx, values.length - 1)}"]`);
+            if (next) next.focus({ preventScroll: true });
           },
         }),
       ]);
