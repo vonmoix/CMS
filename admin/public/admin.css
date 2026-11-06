@@ -670,7 +670,23 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 /* El personaje asoma por detrás de la tarjeta y la sujeta con los dedos por arriba */
 .login-stage { position: relative; width: 100%; max-width: 360px; }
 .login-stage::before { content: ""; display: block; aspect-ratio: 360 / 338; }
-.login-mascot { position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; user-select: none; }
+.login-mascot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+  /* --look-x y --look-y (de -1 a 1) los pone login-mascot.js; el giro nace en el cuello */
+  transform-origin: 50% 88%;
+  /* sin esto, la manga asoma por las esquinas redondeadas de la tarjeta al girar */
+  clip-path: inset(0 0 3.5% 0);
+  transform:
+    translateY(var(--shift, 0))
+    perspective(700px)
+    rotateY(calc(var(--look-x, 0) * var(--turn, 0deg)))
+    rotateX(calc(var(--look-y, 0) * var(--nod, 0deg) * -1));
+}
 .login-hand { position: absolute; top: -16px; width: 19%; pointer-events: none; filter: drop-shadow(0 2px 2px rgba(23, 21, 15, 0.22)); }
 .login-hand-left { left: 7%; }
 .login-hand-right { right: 7%; transform: scaleX(-1); }
@@ -707,7 +723,7 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 /* Pantallas bajas: el personaje sube para que el formulario quepa sin scroll */
 @media (max-height: 720px) {
   .login-stage::before { aspect-ratio: 360 / 140; }
-  .login-mascot { transform: translateY(-54.4%); }
+  .login-mascot { --shift: -54.4%; }
 }
 
 /* ---------- Móvil ---------- */
