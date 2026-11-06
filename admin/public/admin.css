@@ -86,26 +86,22 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
 
 .muted { color: var(--graphite); font-size: 13px; }
 
-/* ---------- Estructura: raíl + mesa ---------- */
-.app {
-  display: grid;
-  grid-template-columns: 216px minmax(0, 1fr);
-  min-height: 100vh;
-}
+/* ---------- Estructura: cabecera + mesa ---------- */
+.app { min-height: 100vh; }
 
+/* No es fija: al bajar se va y deja toda la pantalla a la mesa.
+   El relleno lateral alinea su contenido con el de .desk */
 .rail {
-  position: sticky;
-  top: 0;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-  border-right: 1px solid var(--rule);
+  align-items: center;
+  gap: 24px;
+  min-height: 56px;
+  padding: 0 max(40px, calc((100% - 1280px) / 2 + 40px));
+  border-bottom: 1px solid var(--rule);
 }
 
 .brand {
   display: block;
-  padding: 0 20px 24px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 16px;
@@ -114,14 +110,14 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
 }
 .brand span { color: var(--proof); }
 
-.rail-nav { display: flex; flex-direction: column; }
+.rail-nav { display: flex; flex: 1; min-width: 0; gap: 4px; }
 .rail-link {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: 40px;
-  padding: 0 20px;
+  gap: 6px;
+  min-height: 56px;
+  padding: 0 12px;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 15px;
@@ -133,8 +129,8 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
 .rail-link[aria-current="page"] {
   color: var(--ink);
   font-weight: 600;
-  background: var(--sheet);
-  box-shadow: inset 2px 0 0 var(--proof);
+  background: none;
+  box-shadow: inset 0 -2px 0 var(--proof);
 }
 .rail-link.is-soon { color: var(--faint); cursor: default; }
 .rail-link.is-soon:hover { background: none; color: var(--faint); }
@@ -145,21 +141,15 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
   text-transform: none;
 }
 
-.rail-foot {
-  margin-top: auto;
-  padding: 16px 20px 0;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  gap: 4px;
-  font-size: 13px;
-}
+.rail-foot { display: flex; align-items: center; gap: 16px; font-size: 13px; }
 .rail-foot .who { font-weight: 500; }
 .rail-foot a { color: var(--graphite); text-decoration: none; }
 .rail-foot a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
 .desk {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 32px 40px 64px;
 }
 
@@ -677,25 +667,10 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 }
 
 @media (max-width: 760px) {
-  .app { grid-template-columns: minmax(0, 1fr); }
-  .rail {
-    position: sticky;
-    z-index: 2;
-    height: auto;
-    flex-direction: row;
-    align-items: center;
-    gap: 4px;
-    padding: 0 8px 0 0;
-    background: var(--paper);
-    border-right: 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .brand { padding: 0 12px 0 16px; font-size: 15px; }
-  .rail-nav { flex-direction: row; flex: 1; min-width: 0; }
+  .rail { gap: 4px; min-height: 48px; padding: 0 8px 0 16px; }
+  .brand { margin-right: 12px; font-size: 15px; }
   .rail-link { min-height: 48px; padding: 0 10px; font-size: 14px; }
-  .rail-link[aria-current="page"] { background: none; box-shadow: inset 0 -2px 0 var(--proof); }
   .rail-link.is-soon { display: none; }
-  .rail-foot { margin: 0; padding: 0; border: 0; }
   .rail-foot .who, .rail-foot .site { display: none; }
 
   .desk { padding: 20px 16px 48px; }
