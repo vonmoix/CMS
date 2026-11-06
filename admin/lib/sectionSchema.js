@@ -21,7 +21,7 @@ const SECTION_CATALOG = {
   introText: {
     label: "Título y texto de introducción (header-hero / header-section)",
     fields: [
-      { name: "eyebrow", label: "Eyebrow (optional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (opcional)", type: "text" },
       { name: "title", label: "Título (opcional)", type: "text" },
       { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
       { name: "copy", label: "Texto", type: "textarea" },
@@ -41,7 +41,7 @@ const SECTION_CATALOG = {
   titleHero: {
     label: "Título con subrayado (title-hero / title-section)",
     fields: [
-      { name: "eyebrow", label: "Eyebrow (optional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (opcional)", type: "text" },
       { name: "title", label: "Título", type: "text", required: true },
       { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
       {
@@ -60,7 +60,7 @@ const SECTION_CATALOG = {
   hero: {
     label: "Destacado: texto, imagen y botón",
     fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (opcional)", type: "text" },
       { name: "title", label: "Título", type: "text", required: true },
       { name: "copy", label: "Subtítulo", type: "textarea" },
       { name: "image", label: "Imagen", type: "image" },
@@ -82,7 +82,7 @@ const SECTION_CATALOG = {
     fields: [
       { name: "background", label: "Imagen ancha (escritorio)", type: "image", required: true },
       { name: "backgroundMobile", label: "Imagen ancha (móvil, opcional)", type: "image" },
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (opcional)", type: "text" },
       { name: "title", label: "Título", type: "text", required: true },
       { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
       { name: "copy", label: "Texto", type: "textarea" },
@@ -92,7 +92,7 @@ const SECTION_CATALOG = {
   gamesGroup: {
     label: "Grupo de juegos (games-group)",
     fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (opcional)", type: "text" },
       { name: "title", label: "Título", type: "text" },
       { name: "description", label: "Descripción", type: "textarea" },
       { name: "cards", label: "Cartas", type: "cardList", required: true },
