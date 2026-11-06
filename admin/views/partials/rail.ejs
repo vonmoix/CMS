@@ -4,6 +4,12 @@
     editorName  — nombre con el que se ha iniciado sesión
     siteUrl     — URL pública del sitio (opcional)
 %>
+<%
+  const words = editorName.trim().split(/\s+/);
+  const initial = (word) => Array.from(word)[0].toLocaleUpperCase("es");
+  const initials = initial(words[0]) + (words.length > 1 ? initial(words[words.length - 1]) : "");
+  const isAdmin = editorName.trim().toLowerCase() === "admin";
+%>
 <nav class="rail" aria-label="Panel de contenido">
   <a class="brand" href="/">PLAYZAAR <span>CMS</span></a>
   <div class="rail-nav">
@@ -13,7 +19,16 @@
     </span>
   </div>
   <div class="rail-foot">
-    <span class="who"><%= editorName %></span>
+    <span class="avatar" role="img" aria-label="<%= editorName %>" title="<%= editorName %>">
+      <% if (isAdmin) { %>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21a8 8 0 0 1 16 0" />
+        </svg>
+      <% } else { %>
+        <%= initials %>
+      <% } %>
+    </span>
     <% if (typeof siteUrl !== 'undefined' && siteUrl) { %>
       <a class="site" href="<%= siteUrl %>" target="_blank" rel="noopener">Ver sitio ↗</a>
     <% } %>
