@@ -34,7 +34,11 @@
         <section aria-labelledby="sections-title">
           <div class="sections-head">
             <h2 id="sections-title">Contenido</h2>
-            <span class="label" id="sections-count"></span>
+            <span class="sections-tools">
+              <span class="label" id="sections-count"></span>
+              <button type="button" class="link-btn" id="collapse-all">Colapsar todo</button>
+              <button type="button" class="link-btn" id="expand-all">Expandir todo</button>
+            </span>
           </div>
           <div id="sections-root"></div>
           <div class="add-section-row">
@@ -111,6 +115,7 @@
   <script id="section-catalog" type="application/json"><%- JSON.stringify(sectionCatalog) %></script>
   <script id="initial-sections" type="application/json"><%- JSON.stringify(page.sections || []) %></script>
   <script id="image-preview-config" type="application/json"><%- JSON.stringify(imagePreviewConfig) %></script>
+  <script src="/confirm-delete.js"></script>
   <script src="/admin.js"></script>
 </body>
 </html>

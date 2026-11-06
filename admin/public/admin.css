@@ -212,6 +212,28 @@ code, .mono { font-family: var(--font-mono); font-size: 12px; }
   box-shadow: 0 0 0 1px var(--rule-strong);
 }
 .btn-secondary:hover { background: var(--well); }
+.btn:disabled { background: var(--well); color: var(--faint); cursor: not-allowed; transform: none; }
+.btn:disabled:hover { background: var(--well); }
+
+/* ---------- Diálogo de confirmar borrado ---------- */
+.confirm-dialog {
+  width: min(420px, calc(100vw - 32px));
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-sheet);
+  background: var(--sheet);
+  color: var(--ink);
+  box-shadow: var(--lift), 0 16px 40px rgba(23, 21, 15, 0.2);
+}
+.confirm-dialog[open] { animation: confirm-in 160ms var(--ease-out); }
+.confirm-dialog::backdrop { background: rgba(23, 21, 15, 0.45); }
+@keyframes confirm-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+.confirm-body { display: grid; gap: 12px; padding: 24px; }
+.confirm-body h2 { font-weight: 700; font-size: 20px; line-height: 1.2; }
+.confirm-body p { margin: 0; color: var(--graphite); }
+.confirm-label { margin-top: 4px; font-weight: 500; font-size: 13px; color: var(--graphite); }
+.confirm-label code { padding: 1px 6px; border-radius: 4px; background: var(--proof-wash); color: var(--proof); }
+.confirm-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
 
 .btn-small { min-height: 32px; padding: 0 12px; font-size: 14px; }
 /* área táctil de 44px aunque se vea a 32px */
@@ -465,8 +487,10 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 /* Secciones del contenido (las genera admin.js) */
 .sections-head { display: flex; align-items: baseline; justify-content: space-between; margin: 0 0 12px; }
 .sections-head h2 { font-weight: 700; font-size: 18px; }
+.sections-tools { display: flex; align-items: baseline; gap: 16px; }
+.sections-tools .link-btn { font-size: 13px; }
 
-#sections-root { display: grid; gap: 12px; }
+#sections-root { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 
 .section-card {
   background: var(--sheet);
@@ -474,13 +498,55 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
   box-shadow: var(--lift);
   scroll-margin-top: 24px;
 }
+/* La cabecera se queda fija arriba mientras se recorre una sección larga */
 .section-card-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   min-height: 52px;
-  padding: 8px 8px 8px 16px;
+  padding: 4px 8px 4px 8px;
   border-bottom: 1px solid var(--rule);
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+  background: var(--sheet);
+}
+.section-card.is-collapsed .section-card-header { border-bottom-color: transparent; border-radius: var(--r-sheet); }
+
+/* Toda la cabecera (menos las acciones) es el botón de plegar */
+.section-toggle {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--r-control);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out);
+}
+.section-toggle:hover { background: var(--well); }
+.section-chevron { display: inline-flex; flex: none; color: var(--pencil); transition: transform 160ms var(--ease-out); }
+.section-chevron svg { width: 16px; height: 16px; }
+.section-card.is-collapsed .section-chevron { transform: rotate(-90deg); }
+.section-toggle .section-name { flex: 0 1 auto; }
+.section-hint { display: none; }
+.section-card.is-collapsed .section-hint {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--graphite);
 }
 .section-index { font-family: var(--font-mono); font-size: 12px; color: var(--pencil); font-variant-numeric: tabular-nums; }
 .section-name { flex: 1; min-width: 0; font-family: var(--font-display); font-weight: 600; font-size: 16px; line-height: 1.25; }
@@ -662,4 +728,5 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
   .btn:active { transform: none; }
+  .confirm-dialog[open] { animation: none; }
 }

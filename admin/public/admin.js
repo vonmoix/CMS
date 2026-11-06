@@ -391,6 +391,20 @@
     return m ? m[1] : label;
   }
 
+  const ICON_CHEVRON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  const ICON_TRASH =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>';
+
+  // Secciones plegadas (por objeto: al reordenar siguen plegadas)
+  const collapsed = new WeakSet();
+
+  // Pista de una línea para reconocer una sección plegada
+  function sectionHint(section) {
+    const v = section.title || section.eyebrow || section.label || "";
+    return typeof v === "string" ? v.replace(/\s+/g, " ").trim() : "";
+  }
+
   function sectionCard(section, index) {
     const def = CATALOG[section.type];
     if (!def) {
@@ -419,9 +433,63 @@
       );
     });
 
-    const header = el("div", { class: "section-card-header" }, [
+    const card = el("div", { class: "section-card", id: `section-${index}` });
+    const fieldsId = `section-fields-${index}`;
+    fieldsWrap.id = fieldsId;
+
+    const toggle = el("button", {
+      type: "button",
+      class: "section-toggle",
+      "aria-controls": fieldsId,
+    }, [
+      el("span", { class: "section-chevron" }),
       el("span", { class: "section-index", text: String(index + 1).padStart(2, "0") }),
       sectionName(def.label),
+      el("span", { class: "section-hint", text: sectionHint(section) }),
+    ]);
+    toggle.querySelector(".section-chevron").innerHTML = ICON_CHEVRON;
+
+    function applyCollapsed() {
+      const isCollapsed = collapsed.has(section);
+      card.classList.toggle("is-collapsed", isCollapsed);
+      fieldsWrap.hidden = isCollapsed;
+      toggle.setAttribute("aria-expanded", String(!isCollapsed));
+      toggle.title = isCollapsed ? "Expandir sección" : "Colapsar sección";
+      // la pista se actualiza con lo que se haya escrito mientras estaba abierta
+      toggle.querySelector(".section-hint").textContent = sectionHint(section);
+    }
+    toggle.addEventListener("click", () => {
+      if (collapsed.has(section)) collapsed.delete(section);
+      else collapsed.add(section);
+      applyCollapsed();
+    });
+
+    const deleteBtn = el("button", {
+      type: "button",
+      class: "icon-btn danger",
+      title: "Eliminar sección",
+      "aria-label": "Eliminar sección",
+      onclick: async () => {
+        const label = `${String(index + 1).padStart(2, "0")} · ${plainLabel(def.label)}`;
+        const ok = window.confirmDelete
+          ? await window.confirmDelete({
+              title: `Eliminar la sección ${label}`,
+              message: "Se quita de la página. No se publica hasta que pulses «Guardar y publicar».",
+            })
+          : confirm("¿Eliminar esta sección?");
+        if (!ok) return;
+        state.sections.splice(index, 1);
+        render();
+        // el botón ya no existe: el foco pasa a la sección que ocupa su sitio
+        const toggles = root.querySelectorAll(".section-toggle");
+        const next = toggles[Math.min(index, toggles.length - 1)];
+        if (next) next.focus();
+      },
+    });
+    deleteBtn.innerHTML = ICON_TRASH;
+
+    const header = el("div", { class: "section-card-header" }, [
+      toggle,
       el("div", { class: "section-card-actions" }, [
         el("button", {
           type: "button",
@@ -451,22 +519,14 @@
             render();
           },
         }),
-        el("button", {
-          type: "button",
-          class: "icon-btn danger",
-          title: "Eliminar sección",
-          "aria-label": "Eliminar sección",
-          text: "×",
-          onclick: () => {
-            if (!confirm("¿Eliminar esta sección?")) return;
-            state.sections.splice(index, 1);
-            render();
-          },
-        }),
+        deleteBtn,
       ]),
     ]);
 
-    return el("div", { class: "section-card", id: `section-${index}` }, [header, fieldsWrap]);
+    card.appendChild(header);
+    card.appendChild(fieldsWrap);
+    applyCollapsed();
+    return card;
   }
 
   const outline = document.getElementById("section-outline");
@@ -505,6 +565,21 @@
       root.appendChild(sectionCard(section, index));
     });
     renderOutline();
+  }
+
+  const collapseAllBtn = document.getElementById("collapse-all");
+  const expandAllBtn = document.getElementById("expand-all");
+  if (collapseAllBtn) {
+    collapseAllBtn.addEventListener("click", () => {
+      state.sections.forEach((s) => collapsed.add(s));
+      render();
+    });
+  }
+  if (expandAllBtn) {
+    expandAllBtn.addEventListener("click", () => {
+      state.sections.forEach((s) => collapsed.delete(s));
+      render();
+    });
   }
 
   form.addEventListener("submit", () => {
