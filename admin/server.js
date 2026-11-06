@@ -55,12 +55,26 @@ app.get("/healthz", (req, res) => res.send("ok"));
 
 // -------------------- Auth --------------------
 
+// Solo para desarrollo: con DEV_AUTOLOGIN=nombre se entra sin contraseña desde
+// esta misma máquina. Se ignora siempre en producción. Se mira la conexión real
+// y no req.ip, que con "trust proxy" puede venir de una cabecera.
+const DEV_AUTOLOGIN = process.env.NODE_ENV === "production" ? "" : (process.env.DEV_AUTOLOGIN || "").trim();
+if (DEV_AUTOLOGIN) console.warn(`⚠️  DEV_AUTOLOGIN activo: entrada sin contraseña desde esta máquina como "${DEV_AUTOLOGIN}".`);
+
+function devAutologin(req) {
+  const isLocal = ["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(req.socket.remoteAddress);
+  if (DEV_AUTOLOGIN && isLocal && !req.session.editorName) req.session.editorName = DEV_AUTOLOGIN;
+}
+
 function requireAuth(req, res, next) {
+  devAutologin(req);
   if (req.session.editorName) return next();
   return res.redirect("/login");
 }
 
 app.get("/login", (req, res) => {
+  devAutologin(req);
+  if (req.session.editorName) return res.redirect("/");
   res.render("login", { error: null });
 });
 

@@ -21,7 +21,7 @@ const SECTION_CATALOG = {
   introText: {
     label: "Título y texto de introducción (header-hero / header-section)",
     fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (optional)", type: "text" },
       { name: "title", label: "Título (opcional)", type: "text" },
       { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
       { name: "copy", label: "Texto", type: "textarea" },
@@ -41,16 +41,17 @@ const SECTION_CATALOG = {
   titleHero: {
     label: "Título con subrayado (title-hero / title-section)",
     fields: [
-      { name: "eyebrow", label: "Texto superior (opcional)", type: "text" },
+      { name: "eyebrow", label: "Eyebrow (optional)", type: "text" },
       { name: "title", label: "Título", type: "text", required: true },
       { name: "highlight", label: "Parte del título en rojo (opcional)", type: "text" },
       {
         name: "size",
-        label: "Tipo",
+        label: "Tamaño",
         type: "select",
+        display: "radios",
         options: [
-          { value: "xl", label: "Hero (title-hero)" },
-          { value: "l", label: "Sección (title-section)" },
+          { value: "xl", label: "Hero" },
+          { value: "l", label: "Section" },
         ],
         default: "xl",
       },
