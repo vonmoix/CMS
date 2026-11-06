@@ -313,38 +313,42 @@
           el("span", { class: "label", text: title }),
           ...children,
         ]);
+      const removeBtn = el("button", {
+        type: "button",
+        class: "icon-btn danger",
+        title: "Quitar carta",
+        "aria-label": "Quitar carta",
+        "data-remove-card": base,
+        onclick: async () => {
+          const name = (item.title || "").trim();
+          const ok = await window.confirmDelete({
+            title: name ? `¿Quitar la carta «${name}»?` : "¿Quitar esta carta?",
+            message: "Se quita de la sección. No se publica hasta que pulses «Guardar y publicar».",
+            typed: false,
+            confirmLabel: "Quitar carta",
+          });
+          if (!ok) return;
+          values.splice(idx, 1);
+          render();
+          // el botón ya no existe: el foco pasa a la carta que ocupa su sitio
+          const next = root.querySelector(`[data-remove-card="${path}.${Math.min(idx, values.length - 1)}"]`);
+          if (next) next.focus({ preventScroll: true });
+        },
+      });
+      removeBtn.innerHTML = ICON_TRASH;
       const row = el("div", { class: "repeat-item" }, [
-        cardGroup("Parte delantera de la carta", [
+        cardGroup("Parte delantera", [
           el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
           // el texto alternativo de la carta es siempre el nombre del juego
           imageControl(`${base}.image`, item.image, { withAlt: false }),
         ]),
-        cardGroup("Parte trasera de la carta", [
+        cardGroup("Parte trasera", [
           el("label", { class: "small-label", text: "Enlace botón Play" }, [textInput("playUrl", "https://")]),
           el("label", { class: "small-label", text: "Enlace botón Info (PDF)" }, [textInput("sheetUrl", "https://")]),
           el("label", { class: "small-label", text: "Feature Hit Rate (opcional)" }, [textInput("hitRate", "1 in 325")]),
           el("label", { class: "small-label", text: "RTP (opcional)" }, [textInput("rtp", "96%")]),
         ]),
-        el("button", {
-          type: "button",
-          class: "link-btn danger",
-          text: "Quitar carta",
-          "data-remove-card": base,
-          onclick: async () => {
-            const name = (item.title || "").trim();
-            const ok = await window.confirmDelete({
-              title: name ? `¿Quitar la carta «${name}»?` : "¿Quitar esta carta?",
-              message: "Se quita de la sección. No se publica hasta que pulses «Guardar y publicar».",
-              typed: false,
-            });
-            if (!ok) return;
-            values.splice(idx, 1);
-            render();
-            // el botón ya no existe: el foco pasa a la carta que ocupa su sitio
-            const next = root.querySelector(`[data-remove-card="${path}.${Math.min(idx, values.length - 1)}"]`);
-            if (next) next.focus({ preventScroll: true });
-          },
-        }),
+        el("div", { class: "card-foot" }, [removeBtn]),
       ]);
       list.appendChild(row);
     });

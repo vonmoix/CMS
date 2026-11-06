@@ -1,6 +1,6 @@
 // Diálogo de confirmación para borrar: hay que escribir "delete".
 //   confirmDelete({ title, message }) → Promise<boolean>
-// Con typed: false es una pregunta de Sí / No, sin escribir nada.
+// Con typed: false no hay que escribir nada; confirmLabel es el texto del botón.
 // Además, cualquier <form data-confirm-delete data-confirm-title="…"
 // data-confirm-text="…"> pide la confirmación antes de enviarse.
 (function () {
@@ -59,7 +59,7 @@
     });
   }
 
-  window.confirmDelete = function confirmDelete({ title, message, typed = true }) {
+  window.confirmDelete = function confirmDelete({ title, message, typed = true, confirmLabel = "Eliminar" }) {
     if (!dialog) build();
     if (settle) return Promise.resolve(false);
     opener = document.activeElement;
@@ -68,8 +68,7 @@
     input.value = "";
     wordEl.hidden = !typed;
     confirmBtn.disabled = typed;
-    confirmBtn.textContent = typed ? "Eliminar" : "Sí";
-    cancelBtn.textContent = typed ? "Cancelar" : "No";
+    confirmBtn.textContent = confirmLabel;
     dialog.returnValue = "";
     return new Promise((resolve) => {
       settle = resolve;
