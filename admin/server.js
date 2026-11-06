@@ -120,9 +120,40 @@ function sortPagesByOrder(pages) {
   });
 }
 
+// GitHub tarda unos segundos en reflejar un commit en sus lecturas: si se lee
+// la lista justo después de guardar, puede devolver la versión anterior (y
+// pulsar otra flecha de orden deshacía o duplicaba el cambio anterior). Se
+// recuerda lo último que guardó este panel y se usa en lugar de la lectura
+// atrasada, durante unos minutos y solo si es más reciente (updatedAt).
+const RECENT_SAVE_TTL_MS = 5 * 60 * 1000;
+const recentSaves = new Map(); // slug -> { sha, data, at }
+
+function rememberSave(slug, data, saved, editorName) {
+  recentSaves.set(slug, {
+    sha: saved.sha,
+    data: { ...data, updatedAt: saved.updatedAt, updatedBy: editorName || "panel" },
+    at: Date.now(),
+  });
+}
+
+async function listPagesFresh() {
+  const pages = await github.listPages();
+  const now = Date.now();
+  return pages.map((p) => {
+    const r = recentSaves.get(p.slug);
+    if (!r) return p;
+    if (now - r.at > RECENT_SAVE_TTL_MS) {
+      recentSaves.delete(p.slug);
+      return p;
+    }
+    const fetched = p.data && p.data.updatedAt ? String(p.data.updatedAt) : "";
+    return String(r.data.updatedAt || "") > fetched ? { ...p, sha: r.sha, data: r.data } : p;
+  });
+}
+
 app.get("/", async (req, res, next) => {
   try {
-    const pages = sortPagesByOrder(await github.listPages());
+    const pages = sortPagesByOrder(await listPagesFresh());
     res.render("dashboard", {
       pages,
       publicUrl,
@@ -244,12 +275,13 @@ app.post("/pages/:slugParam", async (req, res, next) => {
     // borramos el antiguo tras crear el nuevo.
     const previousSlug = req.body.previousSlug;
 
-    await github.savePage({
+    const savedPage = await github.savePage({
       slug,
       data,
       sha: previousSlug && previousSlug !== slug ? null : existingSha,
       editorName: req.session.editorName,
     });
+    rememberSave(slug, data, savedPage, req.session.editorName);
 
     if (previousSlug && previousSlug !== slug) {
       try {
@@ -301,49 +333,51 @@ app.post("/pages/:slug/delete", async (req, res, next) => {
 
 // Mueve una página un puesto arriba/abajo en el menú: recalcula el orden de
 // toda la lista y solo confirma en GitHub las páginas cuyo puesto cambió.
-app.post("/pages/:slug/move", async (req, res, next) => {
-  try {
-    const sorted = sortPagesByOrder(await github.listPages());
-    const index = sorted.findIndex((p) => p.slug === req.params.slug);
-    const targetIndex = req.body.direction === "up" ? index - 1 : index + 1;
-
-    if (index === -1 || targetIndex < 0 || targetIndex >= sorted.length) {
-      return res.redirect("/");
-    }
-
-    [sorted[index], sorted[targetIndex]] = [sorted[targetIndex], sorted[index]];
-
-    await Promise.all(
-      sorted
-        .map((p, i) => ({ p, i }))
-        .filter(({ p, i }) => p.data && p.data.order !== i)
-        .map(({ p, i }) =>
-          github.savePage({
-            slug: p.slug,
-            data: { ...p.data, order: i },
-            sha: p.sha,
-            editorName: req.session.editorName,
-          }).then(({ sha }) => {
-            p.sha = sha;
-            p.data = { ...p.data, order: i };
-          })
-        )
-    );
-
-    // Renderizamos directamente con el orden que acabamos de guardar, en vez
-    // de redirigir a "/" y releer de GitHub: justo después de un commit, la
-    // API de contenidos puede tardar un instante en reflejarlo (por eso a
-    // veces hacía falta refrescar a mano para ver el cambio).
-    res.render("dashboard", {
-      pages: sorted,
-      publicUrl,
-      editorName: req.session.editorName,
-      flash: null,
-    });
-  } catch (err) {
-    next(err);
-  }
+// Las peticiones de mover se encolan: dos clics seguidos no se pisan.
+let moveQueue = Promise.resolve();
+app.post("/pages/:slug/move", (req, res, next) => {
+  const job = moveQueue.then(() => movePage(req, res));
+  moveQueue = job.catch(() => {});
+  job.catch(next);
 });
+
+async function movePage(req, res) {
+  const sorted = sortPagesByOrder(await listPagesFresh());
+  const index = sorted.findIndex((p) => p.slug === req.params.slug);
+  const targetIndex = req.body.direction === "up" ? index - 1 : index + 1;
+
+  if (index === -1 || targetIndex < 0 || targetIndex >= sorted.length) {
+    return res.redirect("/");
+  }
+
+  [sorted[index], sorted[targetIndex]] = [sorted[targetIndex], sorted[index]];
+
+  // Uno detrás de otro: GitHub rechaza (409) dos commits simultáneos sobre
+  // la misma rama, y el reintento dejaba commits duplicados y órdenes a medias.
+  for (const { p, i } of sorted.map((p, i) => ({ p, i })).filter(({ p, i }) => p.data && p.data.order !== i)) {
+    const data = { ...p.data, order: i };
+    const saved = await github.savePage({
+      slug: p.slug,
+      data,
+      sha: p.sha,
+      editorName: req.session.editorName,
+    });
+    p.sha = saved.sha;
+    p.data = { ...data, updatedAt: saved.updatedAt, updatedBy: req.session.editorName || "panel" };
+    rememberSave(p.slug, data, saved, req.session.editorName);
+  }
+
+  // Renderizamos directamente con el orden que acabamos de guardar, en vez
+  // de redirigir a "/" y releer de GitHub: justo después de un commit, la
+  // API de contenidos puede tardar un instante en reflejarlo (por eso a
+  // veces hacía falta refrescar a mano para ver el cambio).
+  res.render("dashboard", {
+    pages: sorted,
+    publicUrl,
+    editorName: req.session.editorName,
+    flash: null,
+  });
+}
 
 // -------------------- Vista previa de imágenes del repo de medios --------------------
 

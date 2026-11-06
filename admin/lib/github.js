@@ -139,7 +139,7 @@ async function savePage({ slug, data, sha, editorName }) {
 
   try {
     const res = await commit(sha);
-    return { sha: res.data.content.sha };
+    return { sha: res.data.content.sha, updatedAt: payload.updatedAt };
   } catch (err) {
     // La API de contenidos de GitHub a veces devuelve un sha ya desfasado
     // justo después de un commit muy reciente (p. ej. varias operaciones de
@@ -148,7 +148,7 @@ async function savePage({ slug, data, sha, editorName }) {
     if (sha && err.status === 409) {
       const fresh = await getPage(slug, octokit);
       const res = await commit(fresh.sha);
-      return { sha: res.data.content.sha };
+      return { sha: res.data.content.sha, updatedAt: payload.updatedAt };
     }
     throw err;
   }

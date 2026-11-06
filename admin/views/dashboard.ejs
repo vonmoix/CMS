@@ -112,5 +112,16 @@
     <% } %>
   </main>
 </div>
+<script>
+  // Mientras se guarda un cambio de orden, las flechas se bloquean: cada clic
+  // es un commit en GitHub y varios seguidos se pisaban entre sí.
+  document.querySelectorAll('form[action$="/move"]').forEach(function (form) {
+    form.addEventListener('submit', function () {
+      setTimeout(function () {
+        document.querySelectorAll('.order-btns button').forEach(function (b) { b.disabled = true; });
+      }, 0);
+    });
+  });
+</script>
 </body>
 </html>
