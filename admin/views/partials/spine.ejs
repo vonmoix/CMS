@@ -20,7 +20,7 @@
   };
   var list = Array.isArray(sections) ? sections : [];
 %>
-<span class="spine<%= list.length ? '' : ' is-empty' %>" role="img"
+<span class="spine<%= list.length ? '' : ' is-empty' %><%= list.length > 11 ? ' is-dense' : '' %>" role="img"
   aria-label="<%= list.length ? (list.length + (list.length === 1 ? ' sección' : ' secciones')) : 'Sin secciones' %>"
   title="<%= list.length ? (list.length + (list.length === 1 ? ' sección' : ' secciones')) : 'Sin secciones' %>">
   <% list.forEach(function (s) { var d = SPINE[s && s.type] || ['', 1.5]; %><i class="<%= d[0] %>" style="flex:<%= d[1] %>"></i><% }); %>

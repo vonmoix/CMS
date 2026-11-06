@@ -79,8 +79,8 @@
               <% } %>
               <div class="page-meta">
                 <code><%= p.slug === 'index' ? '/' : '/' + p.slug + '/' %></code>
-                <% if (p.data && p.data.hideFromNav) { %><span class="tag">Fuera del menú</span><% } %>
                 <% if (p.data && !p.data.draft) { %><a href="<%= publicUrl(p.slug) %>" target="_blank" rel="noopener">Ver ↗</a><% } %>
+                <% if (p.data && p.data.hideFromNav) { %><span class="tag">Fuera del menú</span><% } %>
               </div>
             </div>
 
