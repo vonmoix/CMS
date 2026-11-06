@@ -2,7 +2,7 @@
   "title": "Showcase",
   "description": "Component showcase: one section of each type, to compare with the \"Components showcase\" artboards in Figma. Hidden from the menu.",
   "slug": "showcase",
-  "order": 3,
+  "order": 2,
   "draft": false,
   "hideFromNav": true,
   "seo": {
@@ -329,6 +329,6 @@
       }
     }
   ],
-  "updatedAt": "2026-11-05T10:48:16.710Z",
+  "updatedAt": "2026-11-06T08:31:43.074Z",
   "updatedBy": "admin"
 }
