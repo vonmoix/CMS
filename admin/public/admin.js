@@ -160,7 +160,7 @@
     return i;
   }
 
-  function imageControl(path, value) {
+  function imageControl(path, value, { withAlt = true } = {}) {
     value = value || { src: "", alt: "" };
 
     const preview = el("div", { class: "image-preview" });
@@ -208,7 +208,7 @@
       preview,
       el("label", { class: "small-label", text: "Ruta de la imagen" }, [srcInput]),
       el("div", { class: "image-upload" }, [uploadBtn, fileInput, status]),
-      el("label", { class: "small-label", text: "Texto alternativo" }, [altInput]),
+      withAlt && el("label", { class: "small-label", text: "Texto alternativo" }, [altInput]),
     ]);
   }
 
@@ -316,7 +316,8 @@
       const row = el("div", { class: "repeat-item" }, [
         cardGroup("Parte delantera de la carta", [
           el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
-          imageControl(`${base}.image`, item.image),
+          // el texto alternativo de la carta es siempre el nombre del juego
+          imageControl(`${base}.image`, item.image, { withAlt: false }),
         ]),
         cardGroup("Parte trasera de la carta", [
           el("label", { class: "small-label", text: "Enlace botón Play" }, [textInput("playUrl", "https://")]),

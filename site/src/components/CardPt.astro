@@ -27,7 +27,7 @@ const newTab = (href: string) => (opensNew(href) ? { target: "_blank", rel: "noo
 <article class="card-pt">
   <div class="flip">
     <div class="face front">
-      <img class="cover" src={withBase(image.src)} alt={image.alt || title} />
+      <img class="cover" src={withBase(image.src)} alt={title} />
       {rtp && <p class="rtp-chip"><span class="stat-label">RTP</span> {rtp}</p>}
     </div>
     <div class="face back">

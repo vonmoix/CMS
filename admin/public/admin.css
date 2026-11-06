@@ -612,7 +612,7 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 .repeat-item .image-field, .repeat-item .card-group { background: var(--sheet); }
 .card-group { margin: 0 0 12px; }
 .card-group .label { display: block; margin-bottom: 12px; }
-.card-group .small-label:last-child { margin-bottom: 0; }
+.card-group .small-label:last-child, .card-group .image-upload:last-child { margin-bottom: 0; }
 /* Dentro de un grupo la imagen no lleva recuadro propio */
 .card-group .image-field { margin: 0; padding: 0; background: none; box-shadow: none; }
 
