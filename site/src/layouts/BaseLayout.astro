@@ -13,9 +13,8 @@ interface Props {
 
 const { title, description = "", ogImage } = Astro.props as Props;
 
-// Menú: todas las páginas publicadas salvo la home y las marcadas con
-// "hideFromNav" (se vuelve a ella con el
-// logo), en el orden fijado desde el panel de
+// Menú: Home y todas las páginas publicadas salvo las marcadas con
+// "hideFromNav", en el orden fijado desde el panel de
 // administración (campo "order"; a igualdad, por título). Se genera solo,
 // así que una página nueva creada desde el panel aparece en la cabecera sin
 // tocar código.
@@ -26,6 +25,8 @@ const navPages = (await getCollection("pages", (p) => !p.data.draft && !p.data.h
     order: p.data.order,
   }))
   .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, "es"));
+// Figma (header, Links=On): "Home" es el primer enlace del menú
+navPages.unshift({ title: "Home", href: withBase("/"), order: -1 });
 
 const normalize = (path: string) => path.replace(/\/+$/, "") || "/";
 const currentPath = normalize(Astro.url.pathname);
@@ -181,12 +182,12 @@ const currentPath = normalize(Astro.url.pathname);
     }
   }
 
-  /* Como .header__inner de la landing: máx. 1440, padding lateral --pad-x (24 / 48) */
+  /* Figma (header): padding lateral 16 en móvil y 24 en escritorio; máx. 1440 */
   .site-nav {
     max-width: var(--max-width);
     height: var(--header-h);
     margin: 0 auto;
-    padding: 0 var(--pad-x);
+    padding: 0 var(--gap-gap-16);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -207,6 +208,10 @@ const currentPath = normalize(Astro.url.pathname);
   }
 
   @media (min-width: 769px) {
+    .site-nav {
+      padding: 0 var(--spacing-sp-24);
+    }
+
     .brand__logo {
       height: 41px;
       width: 116px;
@@ -218,7 +223,7 @@ const currentPath = normalize(Astro.url.pathname);
     margin: 0;
     padding: 0;
     display: flex;
-    align-self: stretch;
+    align-items: center;
     gap: var(--gap-gap-24);
     min-width: 0;
   }
@@ -227,10 +232,12 @@ const currentPath = normalize(Astro.url.pathname);
     display: flex;
   }
 
+  /* Figma nav-link: texto + subrayado de 2px a 4px debajo (rojo en la página actual) */
   .nav-links a {
-    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: var(--gap-gap-4);
     font-weight: 600;
     font-size: var(--font-size-body-l);
     line-height: var(--line-height-body-l);
@@ -248,15 +255,15 @@ const currentPath = normalize(Astro.url.pathname);
     color: var(--color-text);
   }
 
-  /* Indicador de página actual pegado al borde inferior de la cabecera */
-  .nav-links a[aria-current="page"]::after {
+  .nav-links a::after {
     content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
     height: 2px;
-    background: var(--color-accent);
+    background: transparent;
+  }
+
+  .nav-links a[aria-current="page"]::after {
+    background: var(--fill-surface-red);
   }
 
   .nav-index {
@@ -270,13 +277,14 @@ const currentPath = normalize(Astro.url.pathname);
   /* ---------- Menú móvil (solo con JS; sin JS la lista se muestra entera) ---------- */
 
   @media (max-width: 719px) {
+    /* Figma menu-button: 44×44 con icon_burger de 24 */
     .js .nav-toggle {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-sm);
-      min-height: 44px;
-      margin-right: calc(var(--space-sm) * -1);
-      padding: 0 var(--space-sm);
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
       background: none;
       border: 0;
       color: var(--text-buttons-primary-default);
@@ -296,40 +304,50 @@ const currentPath = normalize(Astro.url.pathname);
     .nav-toggle-icon {
       position: relative;
       width: var(--spacing-sp-24);
-      height: calc(var(--spacing-sp-2) * 3 + var(--gap-gap-4) * 2);
+      height: var(--spacing-sp-24);
     }
 
-    .nav-toggle-icon span {
+    .nav-toggle-burger,
+    .nav-toggle-x {
       position: absolute;
-      left: 0;
-      width: 100%;
-      height: var(--spacing-sp-2);
-      background: currentColor;
-      transition: transform 240ms var(--ease-out), opacity 160ms var(--ease-out);
+      inset: 0;
+      transition: opacity 160ms var(--ease-out), transform 240ms var(--ease-out);
     }
 
-    .nav-toggle-icon span:nth-child(1) {
-      top: 0;
-    }
-
-    .nav-toggle-icon span:nth-child(2) {
-      top: calc(var(--spacing-sp-2) + var(--gap-gap-4));
-    }
-
-    .nav-toggle-icon span:nth-child(3) {
-      bottom: 0;
-    }
-
-    [data-open] .nav-toggle-icon span:nth-child(1) {
-      transform: translateY(calc(var(--spacing-sp-2) + var(--gap-gap-4))) rotate(45deg);
-    }
-
-    [data-open] .nav-toggle-icon span:nth-child(2) {
+    /* Menú abierto: el icono pasa a una X dibujada con dos barras */
+    .nav-toggle-x {
       opacity: 0;
+      transform: rotate(-90deg);
     }
 
-    [data-open] .nav-toggle-icon span:nth-child(3) {
-      transform: translateY(calc((var(--spacing-sp-2) + var(--gap-gap-4)) * -1)) rotate(-45deg);
+    .nav-toggle-x::before,
+    .nav-toggle-x::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      top: calc(50% - 1px);
+      height: 2px;
+      border-radius: 1px;
+      background: var(--text-primary);
+    }
+
+    .nav-toggle-x::before {
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle-x::after {
+      transform: rotate(-45deg);
+    }
+
+    [data-open] .nav-toggle-burger {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
+
+    [data-open] .nav-toggle-x {
+      opacity: 1;
+      transform: none;
     }
 
     /* Sin JS: los enlaces bajo la marca, en una fila que se puede deslizar */
@@ -379,6 +397,7 @@ const currentPath = normalize(Astro.url.pathname);
 
     .js .nav-links a {
       flex: 1;
+      flex-direction: row;
       align-items: baseline;
       gap: var(--space-md);
       padding: 18px 0;
@@ -394,7 +413,7 @@ const currentPath = normalize(Astro.url.pathname);
       color: var(--color-accent);
     }
 
-    .js .nav-links a[aria-current="page"]::after {
+    .js .nav-links a::after {
       display: none;
     }
 
@@ -411,7 +430,8 @@ const currentPath = normalize(Astro.url.pathname);
   @media (prefers-reduced-motion: reduce) {
     .nav-links,
     .nav-links li,
-    .nav-toggle-icon span {
+    .nav-toggle-burger,
+    .nav-toggle-x {
       transition: none !important;
     }
   }

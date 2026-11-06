@@ -17,7 +17,10 @@ const normalize = (path: string) => path.replace(/\/+$/, "") || "/";
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
       <span class="nav-toggle-label" data-nav-label>Menú</span>
-      <span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle-icon" aria-hidden="true">
+        <img class="nav-toggle-burger" src="https://pzlanding-sigma.vercel.app/images/icon_burger.svg" alt="" width="24" height="24" />
+        <span class="nav-toggle-x"></span>
+      </span>
     </button>
     <ul class="nav-links" id="nav-menu">
       {pages.map((p, i) => (
