@@ -6,13 +6,12 @@
 </head>
 <body class="login-body">
   <main class="login-stage">
+  <%# Cuerpo fijo y cabeza en 15 fotogramas. El brillo es otra tira con los mismos fotogramas %>
   <div class="login-mascot">
-    <img src="https://pzlanding-sigma.vercel.app/images/login-mascot.webp" alt="" />
-    <%# Rayos de las gafas, calcados de la imagen: si cambia, hay que volver a calcarlos %>
-    <svg class="login-shine" viewBox="0 0 475 480" aria-hidden="true">
-      <polygon class="login-bolt" points="191,320 177,348 191,350 181,374 212,344 201,342 212,322 192,320" />
-      <polygon class="login-bolt" points="328,314 315,316 305,338 302,346 315,348 307,370 310,368 335,338 336,336 326,334 336,314" />
-    </svg>
+    <img src="https://pzlanding-sigma.vercel.app/images/login-mascot-body.webp" alt="" />
+    <div class="login-head" style="background-image: url(https://pzlanding-sigma.vercel.app/images/login-mascot-head.webp)">
+      <div class="login-shine" style="background-image: url(https://pzlanding-sigma.vercel.app/images/login-mascot-shine.webp)"></div>
+    </div>
   </div>
   <form class="sheet login-card" method="post" action="/login">
     <%- include('partials/login-hand', { side: 'left' }) %>
