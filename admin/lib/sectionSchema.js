@@ -27,11 +27,12 @@ const SECTION_CATALOG = {
       { name: "copy", label: "Texto", type: "textarea" },
       {
         name: "size",
-        label: "Tipo",
+        label: "Tamaño",
         type: "select",
+        display: "radios",
         options: [
-          { value: "xl", label: "Hero (header-hero)" },
-          { value: "l", label: "Sección (header-section)" },
+          { value: "xl", label: "Hero" },
+          { value: "l", label: "Section" },
         ],
         default: "xl",
       },
@@ -163,10 +164,12 @@ const SURFACE_FIELD = {
   name: "surface",
   label: "Color de fondo de la franja",
   type: "select",
+  // Se pinta como muestras: los colores son los de site/src/styles/tokens.css
+  display: "swatches",
   options: [
-    { value: "grey-medium", label: "Gris medio" },
-    { value: "grey-dark", label: "Gris oscuro" },
-    { value: "white", label: "Blanco" },
+    { value: "grey-medium", label: "Gris medio", color: "#1f1f1f" },
+    { value: "grey-dark", label: "Gris oscuro", color: "#0a0003" },
+    { value: "white", label: "Blanco", color: "#efefef" },
   ],
   default: "grey-medium",
 };

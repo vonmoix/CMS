@@ -430,7 +430,7 @@ form label.checkbox {
   font-size: 14px;
   cursor: pointer;
 }
-input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
   width: 18px; height: 18px; margin: 1px 0 0; flex: none;
   accent-color: var(--ink);
 }
@@ -545,9 +545,45 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 .field-label { margin-bottom: 16px; }
 .field-label > span { display: block; }
 
+.radios { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; }
+.radio { display: flex; align-items: center; gap: 8px; min-height: 28px; margin: 0; font-weight: 400; color: var(--ink); cursor: pointer; }
+.radio input { margin: 0; }
+
+/* Muestras de color (fondo de la franja) */
+.swatches { display: flex; gap: 12px; margin-top: 8px; }
+.swatch { position: relative; display: block; margin: 0; cursor: pointer; }
+.swatch-chip {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-control);
+  box-shadow: inset 0 0 0 1px var(--rule-strong);
+  transition: box-shadow 150ms var(--ease-out);
+}
+.swatch:hover .swatch-chip { box-shadow: inset 0 0 0 1px var(--rule-strong), 0 0 0 2px var(--sheet), 0 0 0 3px var(--rule-ink); }
+.swatch input:checked + .swatch-chip { box-shadow: inset 0 0 0 1px var(--rule-strong), 0 0 0 2px var(--sheet), 0 0 0 4px var(--proof); }
+.swatch input:focus-visible + .swatch-chip { outline: 2px solid var(--ink); outline-offset: 5px; }
+.swatch-tip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 3;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--sheet);
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 2px);
+  transition: opacity 120ms var(--ease-out), transform 120ms var(--ease-out);
+}
+.swatch:hover .swatch-tip, .swatch input:focus-visible ~ .swatch-tip { opacity: 1; transform: translate(-50%, 0); }
+
 .small-label { font-weight: 500; font-size: 12px; color: var(--graphite); margin-bottom: 10px; }
 
-.image-field, .button-field, .card-back {
+.image-field, .button-field, .card-group {
   margin-top: 6px;
   padding: 12px;
   border-radius: var(--r-control);
@@ -573,10 +609,12 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
   background: var(--tray);
   box-shadow: inset 0 0 0 1px var(--rule);
 }
-.repeat-item .image-field, .repeat-item .card-back { background: var(--sheet); }
-.card-back { margin: 12px 0; }
-.card-back .label { display: block; margin-bottom: 12px; }
-.card-back .small-label:last-child { margin-bottom: 0; }
+.repeat-item .image-field, .repeat-item .card-group { background: var(--sheet); }
+.card-group { margin: 0 0 12px; }
+.card-group .label { display: block; margin-bottom: 12px; }
+.card-group .small-label:last-child { margin-bottom: 0; }
+/* Dentro de un grupo la imagen no lleva recuadro propio */
+.card-group .image-field { margin: 0; padding: 0; background: none; box-shadow: none; }
 
 .section-empty {
   padding: 28px 16px;

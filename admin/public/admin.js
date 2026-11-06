@@ -107,6 +107,35 @@
     return node;
   }
 
+  // Radios nativos (flechas y lector de pantalla) pintados como muestras de color
+  function swatchControl(path, field, value, labelledBy) {
+    const current = value || field.default;
+    const group = el("div", { class: "swatches", role: "radiogroup", "aria-labelledby": labelledBy });
+    field.options.forEach((o) => {
+      const radio = el("input", { type: "radio", class: "sr-only", name: path, value: o.value, "aria-label": o.label });
+      radio.checked = o.value === current;
+      radio.addEventListener("change", () => setAt(state, path, o.value));
+      const chip = el("span", { class: "swatch-chip" });
+      chip.style.backgroundColor = o.color;
+      group.appendChild(
+        el("label", { class: "swatch" }, [radio, chip, el("span", { class: "swatch-tip", text: o.label })])
+      );
+    });
+    return group;
+  }
+
+  function radioControl(path, field, value, labelledBy) {
+    const current = value || field.default;
+    const group = el("div", { class: "radios", role: "radiogroup", "aria-labelledby": labelledBy });
+    field.options.forEach((o) => {
+      const radio = el("input", { type: "radio", name: path, value: o.value });
+      radio.checked = o.value === current;
+      radio.addEventListener("change", () => setAt(state, path, o.value));
+      group.appendChild(el("label", { class: "radio" }, [radio, el("span", { text: o.label })]));
+    });
+    return group;
+  }
+
   function fieldControl(path, field, value) {
     if (field.type === "textarea") {
       const t = el("textarea", { rows: "3", "data-path": path });
@@ -279,11 +308,17 @@
         i.addEventListener("input", () => setAt(state, `${base}.${key}`, i.value));
         return i;
       };
+      const cardGroup = (title, children) =>
+        el("div", { class: "card-group", role: "group", "aria-label": title }, [
+          el("span", { class: "label", text: title }),
+          ...children,
+        ]);
       const row = el("div", { class: "repeat-item" }, [
-        el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
-        imageControl(`${base}.image`, item.image),
-        el("div", { class: "card-back", role: "group", "aria-label": "Parte trasera de la carta" }, [
-          el("span", { class: "label", text: "Parte trasera de la carta" }),
+        cardGroup("Parte delantera de la carta", [
+          el("label", { class: "small-label", text: "Nombre del juego" }, [textInput("title", "Flaming Gridlines")]),
+          imageControl(`${base}.image`, item.image),
+        ]),
+        cardGroup("Parte trasera de la carta", [
           el("label", { class: "small-label", text: "Enlace botón Play" }, [textInput("playUrl", "https://")]),
           el("label", { class: "small-label", text: "Enlace botón Info (PDF)" }, [textInput("sheetUrl", "https://")]),
           el("label", { class: "small-label", text: "Feature Hit Rate (opcional)" }, [textInput("hitRate", "1 in 325")]),
@@ -393,6 +428,17 @@
     def.fields.forEach((field) => {
       const path = `sections.${index}.${field.name}`;
       const value = section[field.name];
+      if (field.display) {
+        // Varios radios: no pueden ir dentro de un único <label>
+        const labelId = `${path}-label`;
+        fieldsWrap.appendChild(
+          el("div", { class: "field-label" }, [
+            el("span", { id: labelId, text: field.label }),
+            (field.display === "swatches" ? swatchControl : radioControl)(path, field, value, labelId),
+          ])
+        );
+        return;
+      }
       let control;
       if (field.type === "image") control = imageControl(path, value);
       else if (field.type === "button") control = buttonControl(path, value);
