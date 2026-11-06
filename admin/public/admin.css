@@ -10,8 +10,7 @@
   --sheet: #ffffff;            /* hoja elevada */
   --well: #efece6;             /* contenedores de formulario: los campos blancos resaltan sobre él */
   --well-hover: #e9e6df;
-  --nest-1: #e6e2da;           /* bloques con campos: imagen, parte delantera y trasera */
-  --nest-2: #ded9cf;           /* contenedor de esos bloques (carta, pregunta) */
+  --nest: #e2ded5;             /* bloques con campos dentro de un contenedor: imagen, parte delantera y trasera */
 
   /* Tinta */
   --ink: #17150f;              /* texto principal */
@@ -590,8 +589,7 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
   margin-top: 6px;
   padding: 12px;
   border-radius: var(--r-control);
-  background: var(--nest-1);
-  box-shadow: inset 0 0 0 1px var(--rule-strong);
+  background: var(--nest);
 }
 .button-field { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
 .button-field .small-label { margin-bottom: 0; }
@@ -610,17 +608,15 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 .repeat-item {
   padding: 12px;
   border-radius: var(--r-control);
-  background: var(--nest-2);
   box-shadow: inset 0 0 0 1px var(--rule-strong);
 }
-.repeat-item .image-field, .repeat-item .card-group { background: var(--nest-1); }
 .repeat-item .link-btn.danger, .repeat-item .icon-btn.danger { color: var(--proof-press); }
 .card-foot { display: flex; justify-content: flex-end; }
 .card-group { margin: 0 0 12px; }
 .card-group .label { display: block; margin-bottom: 12px; color: var(--graphite); }
 .card-group .small-label:last-child, .card-group .image-upload:last-child { margin-bottom: 0; }
 /* Dentro de un grupo la imagen no lleva recuadro propio */
-.card-group .image-field { margin: 0; padding: 0; background: none; box-shadow: none; }
+.card-group .image-field { margin: 0; padding: 0; background: none; }
 
 .section-empty {
   padding: 28px 16px;
