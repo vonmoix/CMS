@@ -1,99 +1,116 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Páginas — Panel de contenido</title>
-  <link rel="stylesheet" href="/admin.css" />
+  <title>Páginas — Playzaar Web</title>
+  <%- include('partials/head') %>
 </head>
 <body>
-  <header class="topbar">
-    <strong>Panel de contenido</strong>
-    <div class="topbar-right">
-      <span class="muted">Conectado como <%= editorName %></span>
-      <form method="post" action="/logout"><button class="link-btn" type="submit">Salir</button></form>
-    </div>
-  </header>
+<%
+  function when(iso) {
+    if (!iso) return '—';
+    var d = new Date(iso);
+    var mins = Math.round((Date.now() - d.getTime()) / 60000);
+    if (mins < 1) return 'ahora';
+    if (mins < 60) return 'hace ' + mins + ' min';
+    var hours = Math.round(mins / 60);
+    if (hours < 24) return 'hace ' + hours + ' h';
+    if (hours < 48) return 'ayer';
+    return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+  var published = pages.filter(function (p) { return p.data && !p.data.draft; }).length;
+%>
+<div class="app">
+  <%- include('partials/rail', { current: 'pages', editorName: editorName, siteUrl: publicUrl('index') }) %>
 
-  <main class="container">
-    <div class="page-header">
-      <h1>Páginas</h1>
-      <a class="btn" href="/pages/new">+ Nueva página</a>
+  <main class="desk">
+    <div class="desk-head">
+      <div>
+        <div class="label"><%= pages.length %> <%= pages.length === 1 ? 'página' : 'páginas' %> · <%= published %> en vivo</div>
+        <h1>Páginas</h1>
+      </div>
+      <a class="btn" href="/pages/new">Nueva página</a>
     </div>
 
     <% if (flash) { %>
-      <p class="banner"><%= flash %></p>
+      <p class="banner" role="status"><%= flash %></p>
     <% } %>
 
     <% if (!pages.length) { %>
-      <p class="muted">Todavía no hay páginas. Crea la primera con "Nueva página".</p>
-    <% } %>
+      <div class="sheet empty">
+        <h2>Monta la primera página</h2>
+        <p>Cada página se compone de secciones apiladas. Empieza por la portada y ve añadiendo bloques.</p>
+        <a class="btn" href="/pages/new">Nueva página</a>
+      </div>
+    <% } else { %>
+      <div class="sheet" role="table" aria-label="Páginas del sitio">
+        <div class="pages-head" role="row">
+          <span class="label" role="columnheader">Orden</span>
+          <span class="label" role="columnheader">Página</span>
+          <span class="label" role="columnheader" title="Secciones">Secc.</span>
+          <span class="label" role="columnheader">Estado</span>
+          <span class="label" role="columnheader">Editada</span>
+          <span role="columnheader"><span class="sr-only">Acciones</span></span>
+        </div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Orden</th>
-          <th>Título</th>
-          <th>Slug</th>
-          <th>Estado</th>
-          <th>Última edición</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% pages.forEach(function(p, i) { %>
-          <tr>
-            <td class="order-controls">
-              <form method="post" action="/pages/<%= p.slug %>/move" style="display:inline">
-                <input type="hidden" name="direction" value="up" />
-                <button class="icon-btn" type="submit" title="Subir en el menú" <%= i === 0 ? 'disabled' : '' %>>↑</button>
-              </form>
-              <form method="post" action="/pages/<%= p.slug %>/move" style="display:inline">
-                <input type="hidden" name="direction" value="down" />
-                <button class="icon-btn" type="submit" title="Bajar en el menú" <%= i === pages.length - 1 ? 'disabled' : '' %>>↓</button>
-              </form>
-            </td>
-            <td>
+        <% pages.forEach(function (p, i) {
+             var title = p.data ? p.data.title : p.slug;
+             var status = p.data && p.data.draft ? 'draft' : 'live';
+        %>
+          <div class="page-row" role="row">
+            <div class="order" role="cell">
+              <span class="num"><%= String(i + 1).padStart(2, '0') %></span>
+              <span class="order-btns">
+                <form method="post" action="/pages/<%= p.slug %>/move">
+                  <input type="hidden" name="direction" value="up" />
+                  <button class="icon-btn" type="submit" title="Subir en el menú" aria-label="Subir <%= title %> en el menú" <%= i === 0 ? 'disabled' : '' %>>↑</button>
+                </form>
+                <form method="post" action="/pages/<%= p.slug %>/move">
+                  <input type="hidden" name="direction" value="down" />
+                  <button class="icon-btn" type="submit" title="Bajar en el menú" aria-label="Bajar <%= title %> en el menú" <%= i === pages.length - 1 ? 'disabled' : '' %>>↓</button>
+                </form>
+              </span>
+            </div>
+
+            <div class="page-title" role="cell">
               <% if (!p.data) { %>
-                (error al leer)
-              <% } else if (p.data.draft) { %>
-                <a href="/pages/<%= p.slug %>/edit" title="Borrador: todavía no está publicada"><%= p.data.title %></a>
+                <span class="title error">No se pudo leer «<%= p.slug %>»</span>
               <% } else { %>
-                <a href="<%= publicUrl(p.slug) %>" target="_blank" rel="noopener" title="Ver la página publicada"><%= p.data.title %> <span aria-hidden="true">↗</span></a>
+                <a class="title" href="/pages/<%= p.slug %>/edit"><%= title %></a>
               <% } %>
-            </td>
-            <td><code><%= p.slug %></code></td>
-            <td>
-              <% if (p.data && p.data.draft) { %>
-                <span class="badge">Borrador</span>
-              <% } else { %>
-                <span class="badge badge-live">Publicada</span>
-                <% if (p.data && p.data.hideFromNav) { %><span class="badge">Fuera del menú</span><% } %>
-              <% } %>
-            </td>
-            <td class="muted">
-              <%= p.data && p.data.updatedAt ? new Date(p.data.updatedAt).toLocaleString('es-ES') : '—' %>
-              <% if (p.data && p.data.updatedBy) { %> · <%= p.data.updatedBy %><% } %>
-            </td>
-            <td>
-              <div class="row-actions">
-                <a class="icon-btn" href="/pages/<%= p.slug %>/edit" title="Editar" aria-label="Editar <%= p.slug %>">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-                </a>
-                <% if (p.slug !== 'index') { %>
-                  <form method="post" action="/pages/<%= p.slug %>/delete" onsubmit="return confirm('¿Eliminar la página &quot;' + '<%= p.slug %>' + '&quot;? Esta acción no se puede deshacer.');" style="display:inline">
-                    <button class="icon-btn danger" type="submit" title="Eliminar" aria-label="Eliminar <%= p.slug %>">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
-                    </button>
-                  </form>
-                <% } %>
+              <div class="page-meta">
+                <code><%= p.slug === 'index' ? '/' : '/' + p.slug + '/' %></code>
+                <% if (p.data && p.data.hideFromNav) { %><span class="tag">Fuera del menú</span><% } %>
+                <% if (p.data && !p.data.draft) { %><a href="<%= publicUrl(p.slug) %>" target="_blank" rel="noopener">Ver ↗</a><% } %>
               </div>
-            </td>
-          </tr>
+            </div>
+
+            <div role="cell"><%- include('partials/spine', { sections: p.data && p.data.sections }) %></div>
+
+            <div role="cell"><%- include('partials/track', { status: status }) %></div>
+
+            <div class="edited" role="cell">
+              <%= when(p.data && p.data.updatedAt) %>
+              <% if (p.data && p.data.updatedBy) { %><span><%= p.data.updatedBy %></span><% } %>
+            </div>
+
+            <div class="row-actions" role="cell">
+              <a class="icon-btn" href="/pages/<%= p.slug %>/edit" title="Editar" aria-label="Editar <%= title %>">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </a>
+              <% if (p.slug !== 'index') { %>
+                <form method="post" action="/pages/<%= p.slug %>/delete" onsubmit="return confirm('¿Eliminar la página &quot;<%= p.slug %>&quot;? Esta acción no se puede deshacer.');">
+                  <button class="icon-btn danger" type="submit" title="Eliminar" aria-label="Eliminar <%= title %>">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                  </button>
+                </form>
+              <% } %>
+            </div>
+          </div>
         <% }); %>
-      </tbody>
-    </table>
-    <p class="muted">El orden fijado aquí es el que se usa para los enlaces de la cabecera y el menú móvil del sitio.</p>
+      </div>
+      <p class="pages-foot">El orden de esta lista es el de la cabecera y el menú móvil del sitio.</p>
+    <% } %>
   </main>
+</div>
 </body>
 </html>

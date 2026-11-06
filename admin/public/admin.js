@@ -213,7 +213,7 @@
     const addBtn = el("button", {
       type: "button",
       class: "btn btn-secondary btn-small",
-      text: "+ Añadir imagen",
+      text: "Añadir imagen",
       onclick: () => {
         values.push({ src: "", alt: "" });
         render();
@@ -252,7 +252,7 @@
     const addBtn = el("button", {
       type: "button",
       class: "btn btn-secondary btn-small",
-      text: "+ Añadir pregunta",
+      text: "Añadir pregunta",
       onclick: () => {
         values.push({ question: "", answer: "" });
         render();
@@ -339,7 +339,7 @@
     const addBtn = el("button", {
       type: "button",
       class: "btn btn-secondary btn-small",
-      text: "+ Añadir carta",
+      text: "Añadir carta",
       onclick: () => {
         values.push({ title: "", image: { src: "", alt: "" }, playUrl: "", sheetUrl: "" });
         render();
@@ -378,10 +378,23 @@
       });
   }
 
+  // "Vídeo de cabecera (section-video)" → nombre legible + nombre técnico aparte
+  function sectionName(label) {
+    const m = /^(.*?)\s*\(([^)]+)\)$/.exec(label || "");
+    const name = el("span", { class: "section-name", text: m ? m[1] : label });
+    if (m) name.appendChild(el("code", { text: m[2] }));
+    return name;
+  }
+
+  function plainLabel(label) {
+    const m = /^(.*?)\s*\(([^)]+)\)$/.exec(label || "");
+    return m ? m[1] : label;
+  }
+
   function sectionCard(section, index) {
     const def = CATALOG[section.type];
     if (!def) {
-      return el("div", { class: "card section-card" }, [
+      return el("div", { class: "section-card section-fields", id: `section-${index}` }, [
         el("p", { class: "error", text: `Tipo de sección desconocido: "${section.type}"` }),
       ]);
     }
@@ -407,12 +420,14 @@
     });
 
     const header = el("div", { class: "section-card-header" }, [
-      el("strong", { text: `${index + 1}. ${def.label}` }),
+      el("span", { class: "section-index", text: String(index + 1).padStart(2, "0") }),
+      sectionName(def.label),
       el("div", { class: "section-card-actions" }, [
         el("button", {
           type: "button",
           class: "icon-btn",
           title: "Subir",
+          "aria-label": "Subir sección",
           text: "↑",
           onclick: () => {
             if (index === 0) return;
@@ -426,6 +441,7 @@
           type: "button",
           class: "icon-btn",
           title: "Bajar",
+          "aria-label": "Bajar sección",
           text: "↓",
           onclick: () => {
             if (index === state.sections.length - 1) return;
@@ -437,8 +453,10 @@
         }),
         el("button", {
           type: "button",
-          class: "link-btn danger",
-          text: "Eliminar sección",
+          class: "icon-btn danger",
+          title: "Eliminar sección",
+          "aria-label": "Eliminar sección",
+          text: "×",
           onclick: () => {
             if (!confirm("¿Eliminar esta sección?")) return;
             state.sections.splice(index, 1);
@@ -448,17 +466,45 @@
       ]),
     ]);
 
-    return el("div", { class: "card section-card" }, [header, fieldsWrap]);
+    return el("div", { class: "section-card", id: `section-${index}` }, [header, fieldsWrap]);
+  }
+
+  const outline = document.getElementById("section-outline");
+  const countEl = document.getElementById("sections-count");
+
+  function renderOutline() {
+    const n = state.sections.length;
+    if (countEl) countEl.textContent = n ? `${n} ${n === 1 ? "sección" : "secciones"}` : "";
+    if (!outline) return;
+    outline.innerHTML = "";
+    if (!n) {
+      outline.appendChild(el("li", { class: "outline-empty", text: "Sin secciones todavía." }));
+      return;
+    }
+    state.sections.forEach((section, index) => {
+      const def = CATALOG[section.type];
+      const a = el("a", { href: `#section-${index}` }, [
+        el("span", { class: "mono", text: String(index + 1).padStart(2, "0") }),
+        el("span", { text: def ? plainLabel(def.label) : section.type }),
+      ]);
+      outline.appendChild(el("li", {}, [a]));
+    });
   }
 
   function render() {
     root.innerHTML = "";
     if (!state.sections.length) {
-      root.appendChild(el("p", { class: "muted", text: "Esta página todavía no tiene secciones." }));
+      root.appendChild(
+        el("p", {
+          class: "section-empty",
+          text: "Esta página todavía no tiene secciones. Elige un tipo abajo y añade la primera.",
+        })
+      );
     }
     state.sections.forEach((section, index) => {
       root.appendChild(sectionCard(section, index));
     });
+    renderOutline();
   }
 
   form.addEventListener("submit", () => {

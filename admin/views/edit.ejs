@@ -1,97 +1,112 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= isNew ? 'Nueva página' : ('Editar — ' + page.title) %></title>
-  <link rel="stylesheet" href="/admin.css" />
+  <title><%= isNew ? 'Nueva página' : ('Editar — ' + page.title) %> — Playzaar Web</title>
+  <%- include('partials/head') %>
 </head>
 <body>
-  <header class="topbar">
-    <a class="back-link" href="/">&larr; Páginas</a>
-    <div class="topbar-right">
-      <span class="muted">Conectado como <%= editorName %></span>
-    </div>
-  </header>
+<div class="app">
+  <%- include('partials/rail', { current: 'pages', editorName: editorName }) %>
 
-  <main class="container">
-    <h1><%= isNew ? 'Nueva página' : 'Editar página' %></h1>
-
-    <% if (error) { %>
-      <p class="banner banner-error"><%= error %></p>
-    <% } %>
-
+  <main class="desk">
     <form id="page-form" method="post" action="/pages/<%= isNew ? 'new' : slug %>">
       <input type="hidden" name="sha" value="<%= sha || '' %>" />
       <input type="hidden" name="previousSlug" value="<%= isNew ? '' : slug %>" />
       <input type="hidden" name="order" value="<%= page.order != null ? page.order : '' %>" />
       <input type="hidden" name="sectionsJson" id="sectionsJson" />
 
-      <fieldset class="card">
-        <legend>Datos generales</legend>
-
-        <label>
-          Título de la página
-          <input type="text" name="title" required value="<%= page.title || '' %>" />
-        </label>
-
-        <label>
-          Slug (parte de la URL)
-          <input
-            type="text"
-            name="slug"
-            <%= (!isNew && slug === 'index') ? 'readonly' : '' %>
-            value="<%= isNew ? '' : slug %>"
-            placeholder="ej. sobre-nosotros"
-          />
-          <small class="muted">
-            "index" es la página de inicio ("/"). Cualquier otro valor se publica en "/&lt;slug&gt;/".
-          </small>
-        </label>
-
-        <label>
-          Descripción interna (no se publica)
-          <input type="text" name="description" value="<%= page.description || '' %>" />
-        </label>
-
-        <label class="checkbox">
-          <input type="checkbox" name="draft" <%= page.draft ? 'checked' : '' %> />
-          Borrador (no se publica todavía)
-        </label>
-
-        <label class="checkbox">
-          <input type="checkbox" name="hideFromNav" <%= page.hideFromNav ? 'checked' : '' %> />
-          Ocultar del menú (se publica, pero solo se llega por su URL)
-        </label>
-      </fieldset>
-
-      <fieldset class="card">
-        <legend>SEO</legend>
-        <label>
-          Título SEO (opcional)
-          <input type="text" name="seoTitle" value="<%= (page.seo && page.seo.title) || '' %>" />
-        </label>
-        <label>
-          Descripción SEO (opcional)
-          <input type="text" name="seoDescription" value="<%= (page.seo && page.seo.description) || '' %>" />
-        </label>
-      </fieldset>
-
-      <fieldset class="card">
-        <legend>Contenido de la página</legend>
-        <div id="sections-root"></div>
-        <div class="add-section-row">
-          <select id="add-section-type"></select>
-          <button type="button" id="add-section-btn" class="btn btn-secondary">+ Añadir sección</button>
+      <div class="desk-head">
+        <div>
+          <div class="crumb label"><a href="/">Páginas</a> <span aria-hidden="true">/</span> <span><%= isNew ? 'Nueva' : (slug === 'index' ? '/' : '/' + slug + '/') %></span></div>
+          <h1><%= isNew ? 'Nueva página' : page.title %></h1>
         </div>
-      </fieldset>
+        <div class="form-actions">
+          <a class="btn btn-secondary" href="/">Cancelar</a>
+          <button type="submit" class="btn">Guardar y publicar</button>
+        </div>
+      </div>
 
-      <div class="form-actions">
-        <button type="submit" class="btn">Guardar y publicar</button>
-        <a class="btn btn-secondary" href="/">Cancelar</a>
+      <% if (error) { %>
+        <p class="banner banner-error" role="alert"><%= error %></p>
+      <% } %>
+
+      <div class="editor">
+        <section aria-labelledby="sections-title">
+          <div class="sections-head">
+            <h2 id="sections-title">Contenido</h2>
+            <span class="label" id="sections-count"></span>
+          </div>
+          <div id="sections-root"></div>
+          <div class="add-section-row">
+            <label class="sr-only" for="add-section-type">Tipo de sección</label>
+            <select id="add-section-type"></select>
+            <button type="button" id="add-section-btn" class="btn btn-secondary">Añadir sección</button>
+          </div>
+        </section>
+
+        <aside class="editor-side">
+          <fieldset class="sheet" aria-labelledby="lg-page">
+            <div class="panel">
+              <span class="label" id="lg-page">Página</span>
+              <label>
+                Título
+                <input type="text" name="title" required value="<%= page.title || '' %>" />
+              </label>
+              <label>
+                Slug
+                <input
+                  type="text"
+                  name="slug"
+                  class="mono"
+                  <%= (!isNew && slug === 'index') ? 'readonly' : '' %>
+                  value="<%= isNew ? '' : slug %>"
+                  placeholder="sobre-nosotros"
+                />
+                <small class="hint">«index» es la portada (/). Cualquier otro valor se publica en /slug/.</small>
+              </label>
+              <label>
+                Descripción interna
+                <input type="text" name="description" value="<%= page.description || '' %>" />
+                <small class="hint">Solo la ve el equipo; no se publica.</small>
+              </label>
+            </div>
+            <div class="panel">
+              <label class="checkbox">
+                <input type="checkbox" name="draft" <%= page.draft ? 'checked' : '' %> />
+                <span>Borrador<small class="hint">No se publica todavía.</small></span>
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="hideFromNav" <%= page.hideFromNav ? 'checked' : '' %> />
+                <span>Fuera del menú<small class="hint">Se publica, pero solo se llega por su URL.</small></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="sheet" aria-labelledby="lg-seo">
+            <div class="panel">
+              <span class="label" id="lg-seo">SEO</span>
+              <label>
+                Título SEO
+                <input type="text" name="seoTitle" value="<%= (page.seo && page.seo.title) || '' %>" placeholder="<%= page.title || '' %>" />
+              </label>
+              <label>
+                Descripción SEO
+                <textarea name="seoDescription" rows="2"><%= (page.seo && page.seo.description) || '' %></textarea>
+              </label>
+            </div>
+          </fieldset>
+
+          <nav class="sheet outline-panel" aria-label="Índice de secciones">
+            <div class="panel">
+              <span class="label">Índice</span>
+              <ol class="outline" id="section-outline"></ol>
+            </div>
+          </nav>
+        </aside>
       </div>
     </form>
   </main>
+</div>
 
   <script id="section-catalog" type="application/json"><%- JSON.stringify(sectionCatalog) %></script>
   <script id="initial-sections" type="application/json"><%- JSON.stringify(page.sections || []) %></script>

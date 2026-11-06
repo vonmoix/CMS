@@ -1,0 +1,16 @@
+<%#
+  Línea de estado: Borrador → En revisión → Build → En vivo.
+  Recibe "status": 'draft' | 'review' | 'live'.
+  'review' solo es visual por ahora: el panel aún publica directamente.
+%>
+<%
+  var STEPS = { draft: 0, review: 1, live: 3 };
+  var LABELS = { draft: 'Borrador', review: 'En revisión', live: 'En vivo' };
+  var at = STEPS[status] != null ? STEPS[status] : 0;
+%>
+<span class="track is-<%= status %>">
+  <span class="track-line" aria-hidden="true">
+    <% for (var i = 0; i < 4; i++) { %><% if (i > 0) { %><s class="<%= i <= at ? 'done' : '' %>"></s><% } %><b class="<%= i === at ? 'now' : (i < at ? 'done' : '') %>"></b><% } %>
+  </span>
+  <span class="track-label"><%= LABELS[status] %></span>
+</span>

@@ -1,0 +1,22 @@
+<%#
+  Raíl de navegación del panel. Recibe:
+    current     — "pages" (sección activa)
+    editorName  — nombre con el que se ha iniciado sesión
+    siteUrl     — URL pública del sitio (opcional)
+%>
+<nav class="rail" aria-label="Panel de contenido">
+  <a class="brand" href="/">PLAYZAAR <span>WEB</span></a>
+  <div class="rail-nav">
+    <a class="rail-link" href="/" <%- current === 'pages' ? 'aria-current="page"' : '' %>>Páginas</a>
+    <span class="rail-link is-soon" title="Aquí aparecerán los cambios pendientes de aprobar">
+      En revisión <span class="soon">pronto</span>
+    </span>
+  </div>
+  <div class="rail-foot">
+    <span class="who"><%= editorName %></span>
+    <% if (typeof siteUrl !== 'undefined' && siteUrl) { %>
+      <a class="site" href="<%= siteUrl %>" target="_blank" rel="noopener">Ver sitio ↗</a>
+    <% } %>
+    <form method="post" action="/logout"><button class="link-btn" type="submit">Salir</button></form>
+  </div>
+</nav>

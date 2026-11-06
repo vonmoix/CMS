@@ -1,0 +1,27 @@
+<%#
+  Pliego de secciones: miniatura vertical del orden de secciones de una página.
+  Recibe "sections" (array de {type}). Cada tipo tiene una forma y un peso
+  (altura relativa) aproximados a cómo se ve en el sitio.
+%>
+<%
+  var SPINE = {
+    sectionVideo:     ['s-media', 4],
+    introText:        ['s-text', 1.5],
+    titleHero:        ['s-text', 1],
+    hero:             ['s-split', 3],
+    sectionImageCard: ['s-media', 3],
+    gamesGroup:       ['s-grid', 3],
+    carousel:         ['s-grid', 2.5],
+    textImage:        ['s-split', 2.5],
+    gallery:          ['s-grid', 3],
+    sectionMascot:    ['s-media', 2.5],
+    faq:              ['s-text', 2],
+    cta:              ['s-cta', 1]
+  };
+  var list = Array.isArray(sections) ? sections : [];
+%>
+<span class="spine<%= list.length ? '' : ' is-empty' %>" role="img"
+  aria-label="<%= list.length ? (list.length + (list.length === 1 ? ' sección' : ' secciones')) : 'Sin secciones' %>"
+  title="<%= list.length ? (list.length + (list.length === 1 ? ' sección' : ' secciones')) : 'Sin secciones' %>">
+  <% list.forEach(function (s) { var d = SPINE[s && s.type] || ['', 1.5]; %><i class="<%= d[0] %>" style="flex:<%= d[1] %>"></i><% }); %>
+</span>
