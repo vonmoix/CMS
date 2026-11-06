@@ -1,0 +1,20 @@
+<%#
+  Mano del personaje sobre el borde de la tarjeta de login. Recibe:
+    side — "left" o "right" (la derecha es la misma mano en espejo)
+%>
+<svg class="login-hand login-hand-<%= side %>" viewBox="0 0 78 48" aria-hidden="true">
+  <defs><clipPath id="login-hand-<%= side %>"><path d="M3 16 Q3 3 17 3 H61 Q75 3 75 16 V30 A12 12 0 0 1 51 30 V34 A12 12 0 0 1 27 34 V29 A12 12 0 0 1 3 29 Z" /></clipPath></defs>
+  <g clip-path="url(#login-hand-<%= side %>)">
+    <rect width="78" height="48" fill="#e2201a" />
+    <path d="M60 0 H78 V26 H66 Q62 12 60 0 Z" fill="#a50d10" />
+    <path d="M9 12 Q14 7 24 7" stroke="#f0604f" stroke-width="3" stroke-linecap="round" fill="none" />
+      <path d="M3 27 Q15.0 22 27 27 V48 H3 Z" fill="#f5f2ee" />
+      <path d="M3 38 Q15.0 44 27 34 V48 H3 Z" fill="#c9c4c4" />
+      <path d="M27 32 Q39.0 27 51 32 V48 H27 Z" fill="#f5f2ee" />
+      <path d="M27 43 Q39.0 49 51 39 V48 H27 Z" fill="#c9c4c4" />
+      <path d="M51 28 Q63.0 23 75 28 V48 H51 Z" fill="#f5f2ee" />
+      <path d="M51 39 Q63.0 45 75 35 V48 H51 Z" fill="#c9c4c4" />
+  </g>
+  <path d="M27 34 V15 M51 30 V14" stroke="#0b0b0b" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <path d="M3 16 Q3 3 17 3 H61 Q75 3 75 16 V30 A12 12 0 0 1 51 30 V34 A12 12 0 0 1 27 34 V29 A12 12 0 0 1 3 29 Z" fill="none" stroke="#0b0b0b" stroke-width="3" stroke-linejoin="round" />
+</svg>

@@ -667,9 +667,15 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
   min-height: 100vh;
   padding: 24px 16px;
 }
-.login-card { width: 100%; max-width: 360px; padding: 28px; }
-.login-card .brand { padding: 0 0 20px; }
-.login-card h1 { font-weight: 700; font-size: 22px; margin-bottom: 4px; }
+/* El personaje asoma por detrás de la tarjeta y la sujeta con los dedos por arriba */
+.login-stage { position: relative; width: 100%; max-width: 360px; }
+.login-stage::before { content: ""; display: block; aspect-ratio: 360 / 338; }
+.login-mascot { position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; user-select: none; }
+.login-hand { position: absolute; top: -16px; width: 19%; pointer-events: none; filter: drop-shadow(0 2px 2px rgba(23, 21, 15, 0.22)); }
+.login-hand-left { left: 7%; }
+.login-hand-right { right: 7%; transform: scaleX(-1); }
+.login-card { position: relative; z-index: 1; width: 100%; padding: 28px; }
+.login-card .brand { margin: 0; padding: 0 0 24px; font-size: 24px; text-align: center; }
 .login-card > p { margin: 0 0 20px; color: var(--graphite); }
 .login-card .btn { width: 100%; margin-top: 8px; }
 
@@ -697,6 +703,12 @@ small.muted, .hint { display: block; margin-top: 6px; font-weight: 400; font-siz
 .password-toggle .icon-eye-off { display: none; }
 .password-toggle.is-visible .icon-eye { display: none; }
 .password-toggle.is-visible .icon-eye-off { display: block; }
+
+/* Pantallas bajas: el personaje sube para que el formulario quepa sin scroll */
+@media (max-height: 720px) {
+  .login-stage::before { aspect-ratio: 360 / 140; }
+  .login-mascot { transform: translateY(-54.4%); }
+}
 
 /* ---------- Móvil ---------- */
 @media (max-width: 900px) {

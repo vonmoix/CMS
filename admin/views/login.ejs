@@ -5,10 +5,13 @@
   <%- include('partials/head') %>
 </head>
 <body class="login-body">
+  <main class="login-stage">
+  <img class="login-mascot" src="https://pzlanding-sigma.vercel.app/images/login-mascot.webp" alt="" />
   <form class="sheet login-card" method="post" action="/login">
+    <%- include('partials/login-hand', { side: 'left' }) %>
+    <%- include('partials/login-hand', { side: 'right' }) %>
     <span class="brand">PLAYZAAR <span>CMS</span></span>
-    <h1>Panel de contenido</h1>
-    <p>Inicia sesión para editar las páginas del sitio.</p>
+    <h1 class="sr-only">Iniciar sesión</h1>
     <% if (error) { %>
       <p class="banner banner-error" role="alert"><%= error %></p>
     <% } %>
@@ -40,6 +43,7 @@
     </label>
     <button type="submit" class="btn">Entrar</button>
   </form>
+  </main>
   <script>
     (function () {
       var toggle = document.getElementById("password-toggle");
